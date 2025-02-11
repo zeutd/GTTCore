@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "gttcore:item/packaged_circuit/packaged_circuit_hv"
+  }
+}
