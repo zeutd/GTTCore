@@ -1,6 +1,5 @@
 package com.gtt.gttcore.common.data.recipes;
 
-import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.data.chemical.material.stack.UnificationEntry;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.common.data.GTBlocks;
@@ -9,6 +8,7 @@ import com.gregtechceu.gtceu.config.ConfigHolder;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
 import com.gregtechceu.gtceu.data.recipe.VanillaRecipeHelper;
 import com.gtt.gttcore.common.data.GTTBlocks;
+import com.gtt.gttcore.common.data.GTTMultiblockMachines;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraftforge.common.Tags;
 
@@ -16,10 +16,12 @@ import java.util.function.Consumer;
 
 import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
+import static com.gregtechceu.gtceu.common.data.GTBlocks.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.*;
 import static com.gtt.gttcore.common.data.GTTItems.*;
 import static com.gtt.gttcore.common.data.GTTMaterials.*;
+import static com.gtt.gttcore.common.data.recipes.GTTRecipeTypes.*;
 
 public class MiscRecipes {
     public static void init(Consumer<FinishedRecipe> provider) {
@@ -61,6 +63,9 @@ public class MiscRecipes {
                 "PIP", 'P', new UnificationEntry(TagPrefix.plate, Zirconium), 'F',
                 new UnificationEntry(TagPrefix.frameGt, GTMaterials.Zirconium), 'I',
                 new UnificationEntry(TagPrefix.pipeNormalFluid, GTMaterials.Zirconium));
+        VanillaRecipeHelper.addShapedRecipe(provider, true, "greenhouse_machine",
+                GTTMultiblockMachines.GREENHOUSE.asStack(),
+                "AWA", "GSG", "WCW", 'A', CustomTags.LV_CIRCUITS, 'W', new UnificationEntry(cableGtSingle, Copper), 'G', Tags.Blocks.GLASS, 'S', CASING_STEEL_SOLID.asStack());
         FLUID_SOLIDFICATION_RECIPES.recipeBuilder("lead_glass").EUt(16)
                 .inputItems(Tags.Blocks.GLASS)
                 .inputFluids(Lead.getFluid(L * 2))
@@ -85,6 +90,11 @@ public class MiscRecipes {
                 .outputItems(dustTiny, Thorium, 1)
                 .outputItems(dustTiny, Radium, 2)
                 .duration(400).save(provider);
-
+        SUPERCRITICAL_STEAM_TURBINE_FUELS.recipeBuilder("steam")
+                .inputFluids(SupercriticalSteam.getFluid(640))
+                .outputFluids(DistilledWater.getFluid(4))
+                .duration(10)
+                .EUt(-V[ZPM])
+                .save(provider);
     }
 }

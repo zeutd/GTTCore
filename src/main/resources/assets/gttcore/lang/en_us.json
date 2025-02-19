@@ -31,5 +31,6 @@
   "material.gttcore.diisooctyl_phthalate":"Diisooctyl Phthalate",
   "material.gttcore.microcrystal_magnesium_chloride":"Microcrystal Magnesium Chloride",
   "material.gttcore.ziegler_natta_catalyst":"Ziegler-Natta Catalyst",
-  "gttcore.fission_reactor": "Fission Reactor"
+  "gttcore.fission_reactor": "Fission Reactor",
+  "gttcore.plasma_heat_exchanger": "Plasma Heat Exchanger"
 }

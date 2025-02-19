@@ -1,14 +1,15 @@
 package com.gtt.gttcore.common.data;
 
-import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags;
 import com.gregtechceu.gtceu.api.data.chemical.material.properties.*;
 import com.gregtechceu.gtceu.api.fluids.FluidBuilder;
+import com.gregtechceu.gtceu.api.fluids.FluidState;
 import com.gregtechceu.gtceu.common.data.GTElements;
 import com.gtt.gttcore.GTTCore;
 
 import static com.gregtechceu.gtceu.api.GTValues.*;
+import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags.DISABLE_DECOMPOSITION;
 import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialIconSet.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 
@@ -18,7 +19,8 @@ public class GTTMaterials {
             UltraHighMolecularWeightPolyethylene, Fullerene,
             WetDibutylMagnesium, DibutylMagnesium, Bromobutane, SodiumBromide, Butanol, CultivateProducts, SodiumSulfate, Octanol, OctanolMagnesium, PhosphorusTrichloride, PhthaloylChlorine, DiisooctylPhthalate, MicrocrystalMagnesiumChloride, ZieglerNattaCatalyst,
             Zircon, ZirconiumCarbide, ZirconiumTetrachloride,
-            DepletedUranium238, DepletedPlutonium239, DepletedThorium
+            DepletedUranium238, DepletedPlutonium239, DepletedThorium,
+            SupercriticalSteam
        ;
     public static void init() {
         ElectronDegeneratium = new Material.Builder(GTTCore.id("electron_degeneratium"))
@@ -151,6 +153,14 @@ public class GTTMaterials {
                 .flags(MaterialFlags.GENERATE_ROD)
                 .element(GTElements.Th)
                 .radioactiveHazard(1)
+                .buildAndRegister();
+        SupercriticalSteam = new Material.Builder(GTTCore.id("supercritical_steam"))
+                .gas(new FluidBuilder()
+                        .state(FluidState.GAS)
+                        .temperature(10000))
+                .color(0xEEEEEE)
+                .flags(DISABLE_DECOMPOSITION)
+                .components(Hydrogen, 2, Oxygen, 1)
                 .buildAndRegister();
     }
     public static void modify() {

@@ -155,10 +155,11 @@ tasks.withType(JavaCompile).configureEach {
     options.release.set(17)
 }
 
-task runModpack {
+tasks.register('runModpack') {
+    dependsOn jar
     doLast {
         exec {
-            commandLine "executeGame.bat"
+            commandLine "executeGame.bat", "${mod_id}-${mod_version}.jar"
         }
     }
 }

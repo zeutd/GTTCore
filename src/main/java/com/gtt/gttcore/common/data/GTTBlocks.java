@@ -29,6 +29,8 @@ public class GTTBlocks {
             GTTCore.id("block/machine_casing_pipe_zirconium"));
     public static final BlockEntry<Block> CASING_LOW_NEUTRON_ABSORPTION = createCasingBlock("low_neutron_absorption_casing",
             GTTCore.id("block/low_neutron_absorption_casing"));
+    public static final BlockEntry<Block> CASING_NAQUADAH_ALLOY_TURBINE = createCasingBlock("naquadah_alloy_turbine_casing",
+            GTTCore.id("block/machine_casing_turbine_naquadah_alloy"));
     public static final BlockEntry<Block> CASING_LEAD_GLASS = createGlassCasingBlock("lead_glass",
             GTTCore.id("block/lead_glass"), () -> RenderType::translucent);
 
