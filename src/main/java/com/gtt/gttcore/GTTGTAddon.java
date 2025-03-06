@@ -37,7 +37,7 @@ public class GTTGTAddon implements IGTAddon {
     public void addRecipes(Consumer<FinishedRecipe> provider) {
         GTTRecipes.init(provider);
     }
-    
+
     // If you have custom ingredient types, uncomment this & change to match your capability.
     // KubeJS WILL REMOVE YOUR RECIPES IF THESE ARE NOT REGISTERED.
     /*

@@ -32,5 +32,10 @@
   "material.gttcore.microcrystal_magnesium_chloride":"Microcrystal Magnesium Chloride",
   "material.gttcore.ziegler_natta_catalyst":"Ziegler-Natta Catalyst",
   "gttcore.fission_reactor": "Fission Reactor",
-  "gttcore.plasma_heat_exchanger": "Plasma Heat Exchanger"
+  "gttcore.plasma_heat_exchanger": "Plasma Heat Exchanger",
+  "gttcore.greenhouse": "Greenhouse",
+  "gttcore.laser_freezer": "Laser Freezer",
+  "gttcore.particle_collider": "Particle Collider",
+  "gttcore.large_rock_crusher": "Large Rock Crusher",
+  "gttcore.engraving_plant": "Engraving Plant"
 }

@@ -1,7 +1,6 @@
 package com.gtt.gttcore.common.data;
 
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
-import com.gtt.gttcore.GTTCore;
 import com.tterrag.registrate.util.entry.ItemEntry;
 import net.minecraft.world.item.Item;
 
@@ -53,11 +52,51 @@ public class GTTItems {
     public static ItemEntry<Item> PACKAGED_CIRCUIT_MAX = REGISTRATE.item("packaged_circuit_max", Item::new)
             .lang("Packaged MAX Circuit").tag(CustomTags.MAX_CIRCUITS)
             .register();
+    public static ItemEntry<Item> PARTICLE_CONTAINER = REGISTRATE.item("particle_container", Item::new)
+            .lang("Particle Container")
+            .register();
+    public static ItemEntry<Item> MAGNETIC_CONFINEMENT_RING = REGISTRATE.item("magnetic_confinement_ring", Item::new)
+            .lang("Magnetic Confinement Ring")
+            .register();
+    public static ItemEntry<Item> GRAVITATIONAL_LENS = REGISTRATE.item("gravitational_lens", Item::new)
+            .lang("Gravitational Lens")
+            .register();
+
+
+    //T8: Optical
+
+    public static ItemEntry<Item> OPTICAL_PROCESSOR_ZPM = REGISTRATE.item("optical_processor", Item::new)
+            .lang("Optical Processor").tag(CustomTags.ZPM_CIRCUITS)
+            .register();
+    public static ItemEntry<Item> OPTICAL_PROCESSOR_ASSEMBLY_UV = REGISTRATE.item("optical_processor_assembly", Item::new)
+            .lang("Optical Processor Assembly").tag(CustomTags.UV_CIRCUITS)
+            .register();
+    public static ItemEntry<Item> OPTICAL_SUPER_COMPUTER_UHV = REGISTRATE.item("optical_processor_computer", Item::new)
+            .lang("Optical Processor Supercomputer").tag(CustomTags.UHV_CIRCUITS)
+            .register();
+    public static ItemEntry<Item> OPTICAL_MAINFRAME_UEV = REGISTRATE.item("optical_processor_mainframe", Item::new)
+            .lang("Optical Processor Mainframe").tag(CustomTags.UEV_CIRCUITS)
+            .register();
+
+    //T9: Entanglement
+    public static ItemEntry<Item> ENTANGLEMENT_PROCESSOR_UV = REGISTRATE.item("entanglement_processor", Item::new)
+            .lang("Entanglement Processor").tag(CustomTags.UV_CIRCUITS)
+            .register();
+    public static ItemEntry<Item> ENTANGLEMENT_PROCESSOR_ASSEMBLY_UHV = REGISTRATE.item("entanglement_processor_assembly", Item::new)
+            .lang("Entanglement Processor Assembly").tag(CustomTags.UHV_CIRCUITS)
+            .register();
+    public static ItemEntry<Item> ENTANGLEMENT_SUPER_COMPUTER_UEV = REGISTRATE.item("entanglement_processor_computer", Item::new)
+            .lang("Entanglement Processor Supercomputer").tag(CustomTags.UEV_CIRCUITS)
+            .register();
+    public static ItemEntry<Item> ENTANGLEMENT_MAINFRAME_UIV = REGISTRATE.item("entanglement_processor_mainframe", Item::new)
+            .lang("Entanglement Processor Mainframe").tag(CustomTags.UIV_CIRCUITS)
+            .register();
     public static final ItemEntry<Item>[] PACKAGED_CIRCUITS_ARRAY = new ItemEntry[]{
             PACKAGED_CIRCUIT_ULV,
             PACKAGED_CIRCUIT_LV,
             PACKAGED_CIRCUIT_MV,
             PACKAGED_CIRCUIT_HV,
+            PACKAGED_CIRCUIT_EV,
             PACKAGED_CIRCUIT_IV,
             PACKAGED_CIRCUIT_LuV,
             PACKAGED_CIRCUIT_ZPM,

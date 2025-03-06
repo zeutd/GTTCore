@@ -9,7 +9,7 @@ import com.gregtechceu.gtceu.common.data.GTElements;
 import com.gtt.gttcore.GTTCore;
 
 import static com.gregtechceu.gtceu.api.GTValues.*;
-import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags.DISABLE_DECOMPOSITION;
+import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags.*;
 import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialIconSet.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 
@@ -20,7 +20,8 @@ public class GTTMaterials {
             WetDibutylMagnesium, DibutylMagnesium, Bromobutane, SodiumBromide, Butanol, CultivateProducts, SodiumSulfate, Octanol, OctanolMagnesium, PhosphorusTrichloride, PhthaloylChlorine, DiisooctylPhthalate, MicrocrystalMagnesiumChloride, ZieglerNattaCatalyst,
             Zircon, ZirconiumCarbide, ZirconiumTetrachloride,
             DepletedUranium238, DepletedPlutonium239, DepletedThorium,
-            SupercriticalSteam
+            SupercriticalSteam,
+            AtomicSteel
        ;
     public static void init() {
         ElectronDegeneratium = new Material.Builder(GTTCore.id("electron_degeneratium"))
@@ -162,11 +163,20 @@ public class GTTMaterials {
                 .flags(DISABLE_DECOMPOSITION)
                 .components(Hydrogen, 2, Oxygen, 1)
                 .buildAndRegister();
+        AtomicSteel = new Material.Builder(GTTCore.id("atomic_steel"))
+                .color(0x122570)
+                .ingot()
+                .components(Chromium, 5, Iron, 3, Zirconium, 2, Naquadah, 3)
+                .flags(GENERATE_FRAME, GENERATE_PLATE)
+                .buildAndRegister();
     }
     public static void modify() {
+        Plutonium239.addFlags(MaterialFlags.GENERATE_ROD);
+
         Zirconium.setMaterialARGB(0x7799a9);
         Zirconium.setMaterialSecondaryARGB(0x6489a9);
         Zirconium.setProperty(PropertyKey.INGOT, new IngotProperty());
+        Zirconium.addFlags(MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_FRAME);
         Zirconium.setProperty(PropertyKey.FLUID_PIPE, new FluidPipeProperties(2000, 800, true, true, true, false));
         Zirconium.setProperty(PropertyKey.BLAST, (new BlastProperty.Builder().temp(1941, BlastProperty.GasTier.MID)
                 .blastStats(VA[EV], 1500)

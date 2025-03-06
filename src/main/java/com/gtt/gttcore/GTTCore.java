@@ -9,12 +9,9 @@ import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
 import com.gregtechceu.gtceu.api.registry.registrate.GTRegistrate;
 import com.gregtechceu.gtceu.common.registry.GTRegistration;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
-import com.gtt.gttcore.common.data.GTTBlocks;
-import com.gtt.gttcore.common.data.GTTMultiblockMachines;
+import com.gtt.gttcore.common.data.*;
 import com.gtt.gttcore.common.data.recipes.GTTRecipeTypes;
 import com.gtt.gttcore.common.registry.GTTRegistration;
-import com.gtt.gttcore.common.data.GTTItems;
-import com.gtt.gttcore.common.data.GTTMaterials;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -88,5 +85,6 @@ public class GTTCore {
 
     private void registerMachines(GTCEuAPI.RegisterEvent<ResourceLocation, MachineDefinition> event) {
         GTTMultiblockMachines.init();
+        GTTMachines.init();
     }
 }

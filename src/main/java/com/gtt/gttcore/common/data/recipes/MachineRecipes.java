@@ -6,9 +6,13 @@ import com.gregtechceu.gtceu.api.data.chemical.material.properties.PropertyKey;
 import com.gregtechceu.gtceu.api.data.chemical.material.registry.MaterialRegistry;
 import com.gregtechceu.gtceu.api.fluids.FluidState;
 import com.gregtechceu.gtceu.api.fluids.store.FluidStorageKeys;
+import com.gregtechceu.gtceu.api.registry.GTRegistries;
+import com.gregtechceu.gtceu.core.mixins.RecipeManagerAccessor;
 import com.gtt.gttcore.GTTCore;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.RecipeManager;
 
 import java.util.function.Consumer;
 
@@ -26,23 +30,22 @@ public class MachineRecipes {
     public static void init(Consumer<FinishedRecipe> provider) {
         registerFissionRecipes(provider);
         registerGreenhouseRecipes(provider);
-        registerPlasmaHeatExchangerRecipes(provider);
     }
 
     private static void registerFissionRecipes(Consumer<FinishedRecipe> provider) {
-        FISSION_RECIPES.recipeBuilder("fission_uranium")
+        FISSION_RECIPES.recipeBuilder(GTTCore.id("fission_uranium"))
                 .inputItems(rod, Uranium238, 16)
                 .outputItems(rod, DepletedUranium238, 16)
                 .EUt(-V[ZPM])
                 .duration(100)
                 .save(provider);
-        FISSION_RECIPES.recipeBuilder("fission_plutonium")
+        FISSION_RECIPES.recipeBuilder(GTTCore.id("fission_plutonium"))
                 .inputItems(rod, Plutonium239, 16)
                 .outputItems(rod, DepletedPlutonium239, 16)
                 .EUt(-V[ZPM] - V[IV])
                 .duration(100)
                 .save(provider);
-        FISSION_RECIPES.recipeBuilder("fission_thorium")
+        FISSION_RECIPES.recipeBuilder(GTTCore.id("fission_thorium"))
                 .inputItems(rod, Thorium, 16)
                 .outputItems(rod, DepletedThorium, 16)
                 .EUt(-V[ZPM])
@@ -147,22 +150,9 @@ public class MachineRecipes {
         greenhouse("brown_mushroom", BROWN_MUSHROOM.getDefaultInstance(), 1000, new ItemStack[]{BROWN_MUSHROOM.getDefaultInstance().copyWithCount(24)}, false, provider);
         greenhouse("brown_mushroom_boosted", BROWN_MUSHROOM.getDefaultInstance(), 1000, new ItemStack[]{BROWN_MUSHROOM.getDefaultInstance().copyWithCount(48)}, true, provider);
     }
-    private static void registerPlasmaHeatExchangerRecipes(Consumer<FinishedRecipe> provider){
-        GTTCore.LOGGER.info("114514");
-        for (MaterialRegistry registry : GTCEuAPI.materialManager.getRegistries()) {
-            for (Material material : registry.getAllMaterials()) {
-                if(material.hasFluid() && material.getProperty(PropertyKey.FLUID).get(FluidStorageKeys.PLASMA) != null){
-                    PLASMA_HEAT_EXCHANGER_RECIPES.recipeBuilder(material.getName() + "_heat_exchange")
-                            .inputFluids(material.getFluid(FluidStorageKeys.PLASMA, 1000), DistilledWater.getFluid(10000))
-                            .outputFluids(material.getFluid(1000), SupercriticalSteam.getFluid(1000000))
-                            .duration(10).save(provider);
-                }
-            }
-        }
-    }
     private static void greenhouse(String id, ItemStack input, int fluid, ItemStack[] output, boolean boosted, Consumer<FinishedRecipe> provider) {
         if (boosted) {
-            GREENHOUSE_RECIPES.recipeBuilder(id)
+            GREENHOUSE_RECIPES.recipeBuilder(GTTCore.id(id))
                     .circuitMeta(2)
                     .notConsumable(input)
                     .inputItems(FERTILIZER)
@@ -172,7 +162,7 @@ public class MachineRecipes {
                     .EUt(32)
                     .save(provider);
         } else {
-            GREENHOUSE_RECIPES.recipeBuilder(id)
+            GREENHOUSE_RECIPES.recipeBuilder(GTTCore.id(id))
                     .circuitMeta(1)
                     .notConsumable(input)
                     .inputFluids(Water.getFluid(fluid))
