@@ -1,0 +1,7 @@
+{
+  "values": [
+    "gttcore:packaged_circuit_uv",
+    "gttcore:optical_processor_assembly",
+    "gttcore:entanglement_processor"
+  ]
+}

@@ -13,13 +13,25 @@ import static com.gtt.gttcore.common.data.GTTMaterials.*;
 
 public class ZieglerNattaLine {
     public static void init(Consumer<FinishedRecipe> provider) {
-        DISTILLATION_RECIPES.recipeBuilder(GTTCore.id("cultivate_products"))
+        FERMENTING_RECIPES.recipeBuilder(GTTCore.id("cultivate_products"))
+                .inputFluids(FermentedBiomass.getFluid(100))
+                .outputFluids(CultivateProducts.getFluid(100))
+                .duration(300)
+                .EUt(VH[LV])
+                .circuitMeta(1)
+                .save(provider);
+        DISTILLATION_RECIPES.recipeBuilder(GTTCore.id("cultivate_products_distillation"))
                 .inputFluids(CultivateProducts.getFluid(1000))
                 .outputFluids(Butanol.getFluid(250))
                 .outputFluids(Ethanol.getFluid(500))
                 .outputFluids(Acetone.getFluid(250))
                 .duration(100)
                 .EUt(VH[3])
+                .save(provider);
+        CHEMICAL_RECIPES.recipeBuilder("butanol_from_butene")
+                .inputFluids(Butene.getFluid(1000))
+                .inputFluids(Water.getFluid(1000))
+                .outputFluids(Butanol.getFluid(1000))
                 .save(provider);
         CHEMICAL_RECIPES.recipeBuilder("bromobutane")
                 .inputItems(dust, SodiumBromide)

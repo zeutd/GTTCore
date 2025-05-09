@@ -1,0 +1,25 @@
+{
+  "values": [
+    "gttcore:electron_degeneratium_bucket",
+    "gttcore:ultra_high_molecular_weight_polyethylene_bucket",
+    "gttcore:fullerene_bucket",
+    "gttcore:wet_dibutyl_magnesium_bucket",
+    "gttcore:dibutyl_magnesium_bucket",
+    "gttcore:bromobutane_bucket",
+    "gttcore:butanol_bucket",
+    "gttcore:cultivate_products_bucket",
+    "gttcore:octanol_bucket",
+    "gttcore:phosphorus_trichloride_bucket",
+    "gttcore:phthaloyl_chlorine_bucket",
+    "gttcore:diisooctyl_phthalate_bucket",
+    "gttcore:supercritical_steam_bucket",
+    "gttcore:platinum_group_solution_bucket",
+    "gttcore:platinum_palladium_solution_bucket",
+    "gttcore:palladium_solution_bucket",
+    "gttcore:rhodium_sulfate_solution_bucket",
+    "gttcore:chlororhodic_acid_bucket",
+    "gttcore:ruthenium_osmium_salt_solution_bucket",
+    "gttcore:ruthenium_solution_bucket",
+    "gttcore:osmium_solution_bucket"
+  ]
+}

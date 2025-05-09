@@ -1,0 +1,10 @@
+{
+  "values": [
+    "gttcore:reinforced_machine_casing",
+    "gttcore:radiation_proof_machine_casing",
+    "gttcore:zirconium_pipe_casing",
+    "gttcore:low_neutron_absorption_casing",
+    "gttcore:naquadah_alloy_turbine_casing",
+    "gttcore:lead_glass"
+  ]
+}

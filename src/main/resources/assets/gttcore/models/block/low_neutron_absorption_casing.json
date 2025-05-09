@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/cube_all",
-  "textures": {
-    "all": "gttcore:block/low_neutron_absorption_casing"
-  }
-}

@@ -21,7 +21,8 @@ public class GTTMaterials {
             Zircon, ZirconiumCarbide, ZirconiumTetrachloride,
             DepletedUranium238, DepletedPlutonium239, DepletedThorium,
             SupercriticalSteam,
-            AtomicSteel
+            AtomicSteel,
+            PlatinumGroupSolution, PlatinumPalladiumSolution, AmmoniumHexachloroplatinate, PalladiumSolution, Diamminedichloropalladium, InertMetalSodiumBisulfate, RhodiumSulfateSolution, RhodiumHydroxide, ChlororhodicAcid, AmmoniumHexachlororhodate, AmmoniumHexanitrorhodium, SodiumPeroxide, RutheniumOsmiumIridiumMixture, RutheniumOsmiumIridiumMixtureSodiumPeroxide, RutheniumOsmiumSaltSolution, IridiumOxide, AmmoniumHexachloroiridate, RutheniumOsmiumOxide, RutheniumOxide, RutheniumSolution, OsmiumSolution, AmmoniumHexachlororuthenate, Tetraamminedioxidoosmiumdichloride
        ;
     public static void init() {
         ElectronDegeneratium = new Material.Builder(GTTCore.id("electron_degeneratium"))
@@ -169,6 +170,127 @@ public class GTTMaterials {
                 .components(Chromium, 5, Iron, 3, Zirconium, 2, Naquadah, 3)
                 .flags(GENERATE_FRAME, GENERATE_PLATE)
                 .buildAndRegister();
+        // Platinum Group Line
+        PlatinumGroupSolution = new Material.Builder(GTTCore.id("platinum_group_solution"))
+                .color(0x333354)
+                .liquid()
+                .buildAndRegister();
+        AmmoniumHexachloroplatinate = new Material.Builder(GTTCore.id("ammonium_hexachloroplatinate"))
+                .color(0xd2d580)
+                .dust()
+                .components(Nitrogen, 2, Hydrogen, 8, Platinum, 1, Chlorine, 6)
+                .flags(DISABLE_DECOMPOSITION)
+                .buildAndRegister()
+                .setFormula("(NH4)2PtCl6", true);
+        PlatinumPalladiumSolution = new Material.Builder(GTTCore.id("platinum_palladium_solution"))
+                .color(0x545433)
+                .liquid()
+                .buildAndRegister();
+        PalladiumSolution = new Material.Builder(GTTCore.id("palladium_solution"))
+                .color(0x543333)
+                .liquid()
+                .buildAndRegister();
+        Diamminedichloropalladium = new Material.Builder(GTTCore.id("diamminedichloropalladium"))
+                .color(0x844533)
+                .dust()
+                .components(Chlorine, 2, Hydrogen, 6, Nitrogen, 2, Palladium, 1)
+                .flags(DISABLE_DECOMPOSITION)
+                .buildAndRegister()
+                .setFormula("PdCl2(NH3)2", true);
+        InertMetalSodiumBisulfate = new Material.Builder(GTTCore.id("inert_metal_sodium_bisulfate"))
+                .color(0x756565)
+                .dust()
+                .buildAndRegister();
+        RhodiumSulfateSolution = new Material.Builder(GTTCore.id("rhodium_sulfate_solution"))
+                .color(0x707000)
+                .liquid()
+                .buildAndRegister();
+        RhodiumHydroxide = new Material.Builder(GTTCore.id("rhodium_hydroxide"))
+                .color(0x888899)
+                .dust()
+                .components(Rhodium, 1, Oxygen, 3, Hydrogen, 3)
+                .flags(DISABLE_DECOMPOSITION)
+                .buildAndRegister();
+        ChlororhodicAcid = new Material.Builder(GTTCore.id("chlororhodic_acid"))
+                .color(0x700070)
+                .liquid()
+                .components(Hydrogen, 3, Rhodium, 1, Chlorine, 6)
+                .flags(DISABLE_DECOMPOSITION)
+                .buildAndRegister();
+        AmmoniumHexachlororhodate = new Material.Builder(GTTCore.id("ammonium_hexachlororhodate"))
+                .color(0xd42030)
+                .dust()
+                .components(Nitrogen, 3, Hydrogen, 12, Chlorine, 6, Rhodium, 1)
+                .flags(DISABLE_DECOMPOSITION)
+                .buildAndRegister()
+                .setFormula("(NH4)3RhCl6", true);
+        AmmoniumHexanitrorhodium = new Material.Builder(GTTCore.id("ammonium_hexanitrorhodium"))
+                .color(0xf0f0b0)
+                .dust()
+                .components(Nitrogen, 8 ,Hydrogen, 8, Rhodium, 1, Oxygen, 12)
+                .flags(DISABLE_DECOMPOSITION)
+                .buildAndRegister()
+                .setFormula("(NH4)2(Rh(NO2)6)");
+        SodiumPeroxide = new Material.Builder(GTTCore.id("sodium_peroxide"))
+                .color(0xf0f0b0)
+                .dust()
+                .components(Sodium, 2, Oxygen, 2)
+                .buildAndRegister();
+        RutheniumOsmiumIridiumMixture = new Material.Builder(GTTCore.id("ruthenium_osmium_iridium_mixture"))
+                .color(0xa0a0b0)
+                .dust()
+                .buildAndRegister();
+        RutheniumOsmiumIridiumMixtureSodiumPeroxide = new Material.Builder(GTTCore.id("ruthenium_osmium_iridium_mixture_sodium_peroxide"))
+                .color(0xb0b080)
+                .dust()
+                .buildAndRegister();
+        RutheniumOsmiumSaltSolution = new Material.Builder(GTTCore.id("ruthenium_osmium_salt_solution"))
+                .color(0x202050)
+                .liquid()
+                .buildAndRegister();
+        IridiumOxide = new Material.Builder(GTTCore.id("iridium_oxide"))
+                .color(0xa9a989)
+                .dust()
+                .components(Iridium, 1, Oxygen, 2)
+                .flags(DISABLE_DECOMPOSITION)
+                .buildAndRegister();
+        AmmoniumHexachloroiridate = new Material.Builder(GTTCore.id("ammonium_hexachloroiridate"))
+                .color(0x89a9a9)
+                .dust()
+                .components(Nitrogen, 3, Hydrogen, 12, Iridium, 1, Chlorine, 6)
+                .flags(DISABLE_DECOMPOSITION)
+                .buildAndRegister()
+                .setFormula("(NH4)3IrCl6");
+        RutheniumOsmiumOxide = new Material.Builder(GTTCore.id("ruthenium_osmium_oxide"))
+                .color(0xa9b9c9)
+                .dust()
+                .buildAndRegister();
+        RutheniumOxide = new Material.Builder(GTTCore.id("ruthenium_oxide"))
+                .color(0xb9c9a9)
+                .dust()
+                .buildAndRegister();
+        RutheniumSolution = new Material.Builder(GTTCore.id("ruthenium_solution"))
+                .color(0xa9c9f9)
+                .liquid()
+                .buildAndRegister();
+        OsmiumSolution = new Material.Builder(GTTCore.id("osmium_solution"))
+                .color(0xa9f9e9)
+                .liquid()
+                .buildAndRegister();
+        AmmoniumHexachlororuthenate = new Material.Builder(GTTCore.id("ammonium_hexachlororuthenate"))
+                .color(0xf9c9e9)
+                .dust()
+                .components(Nitrogen, 3, Hydrogen, 12, Ruthenium, 1, Chlorine, 6)
+                .flags(DISABLE_DECOMPOSITION)
+                .buildAndRegister()
+                .setFormula("(NH4)3RuCl6");
+        Tetraamminedioxidoosmiumdichloride = new Material.Builder(GTTCore.id("tetraamminedioxidoosmiumdichloride"))
+                .color(0xc9f9e9)
+                .dust()
+                .components(Osmium, 1, Chlorine, 2, Oxygen, 2, Nitrogen, 4, Hydrogen, 12)
+                .flags(DISABLE_DECOMPOSITION)
+                .buildAndRegister()
+                .setFormula("OsCl2O2(NH3)4");
     }
     public static void modify() {
         Plutonium239.addFlags(MaterialFlags.GENERATE_ROD);
@@ -181,6 +303,7 @@ public class GTTMaterials {
         Zirconium.setProperty(PropertyKey.BLAST, (new BlastProperty.Builder().temp(1941, BlastProperty.GasTier.MID)
                 .blastStats(VA[EV], 1500)
                 .vacuumStats(VA[EV])).build());
+
         Polonium.setMaterialARGB(0x1519a9);
         Polonium.setMaterialSecondaryARGB(0x05051E);
         Polonium.setProperty(PropertyKey.INGOT, new IngotProperty());
@@ -192,5 +315,8 @@ public class GTTMaterials {
         Neptunium.setMaterialARGB(0x198595);
         Neptunium.setMaterialSecondaryARGB(0x051E1E);
         Neptunium.setProperty(PropertyKey.INGOT, new IngotProperty());
+
+        InertMetalMixture.setComponents();
+        InertMetalMixture.setFormula("");
     }
 }

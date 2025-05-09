@@ -22,17 +22,17 @@ import static com.gtt.gttcore.common.registry.GTTRegistration.REGISTRATE;
 
 public class GTTBlocks {
     public static final BlockEntry<Block> CASING_IRIDIUM_REINFORCED = createCasingBlock("reinforced_machine_casing",
-            GTTCore.id("block/machine_casing_reinforced"));
+            GTTCore.id("block/casings/machine_casing_reinforced"));
     public static final BlockEntry<Block> CASING_LEAD_RADIATION_PROOF = createCasingBlock("radiation_proof_machine_casing",
-            GTTCore.id("block/machine_casing_radiation_proof"));
+            GTTCore.id("block/casings/machine_casing_radiation_proof"));
     public static final BlockEntry<Block> CASING_ZIRCONIUM_PIPE = createCasingBlock("zirconium_pipe_casing",
-            GTTCore.id("block/machine_casing_pipe_zirconium"));
+            GTTCore.id("block/casings/machine_casing_pipe_zirconium"));
     public static final BlockEntry<Block> CASING_LOW_NEUTRON_ABSORPTION = createCasingBlock("low_neutron_absorption_casing",
-            GTTCore.id("block/low_neutron_absorption_casing"));
+            GTTCore.id("block/casings/low_neutron_absorption_casing"));
     public static final BlockEntry<Block> CASING_NAQUADAH_ALLOY_TURBINE = createCasingBlock("naquadah_alloy_turbine_casing",
-            GTTCore.id("block/machine_casing_turbine_naquadah_alloy"));
+            GTTCore.id("block/casings/machine_casing_turbine_naquadah_alloy"));
     public static final BlockEntry<Block> CASING_LEAD_GLASS = createGlassCasingBlock("lead_glass",
-            GTTCore.id("block/lead_glass"), () -> RenderType::translucent);
+            GTTCore.id("block/casings/lead_glass"), () -> RenderType::translucent);
 
     public static BlockEntry<Block> createCasingBlock(String name, ResourceLocation texture) {
         return createCasingBlock(name, Block::new, texture, () -> Blocks.IRON_BLOCK,

@@ -24,6 +24,7 @@ public class GTTRecipeTypes {
         CHEMICAL_RECIPES.onRecipeBuild((recipeBuilder, provider) -> {
             CHEMICAL_PLANT_RECIPES
                     .copyFrom(recipeBuilder)
+                    .duration(recipeBuilder.duration / 4)
                     .save(provider);
             LARGE_CHEMICAL_RECIPES
                     .copyFrom(recipeBuilder)
@@ -59,7 +60,7 @@ public class GTTRecipeTypes {
     public final static GTRecipeType FISSION_RECIPES = register("fission_reactor", GENERATOR).setMaxIOSize(1, 1, 1, 1)
             .setEUIO(IO.OUT)
             .setSlotOverlay(false, false, GuiTextures.MOLECULAR_OVERLAY_1)
-            .setProgressBar(GuiTextures.PROGRESS_BAR_WIREMILL, LEFT_TO_RIGHT)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_FUSION, LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.REPLICATOR);
     public final static GTRecipeType GREENHOUSE_RECIPES = register("greenhouse", MULTIBLOCK).setMaxIOSize(3, 6, 1, 0)
             .setEUIO(IO.IN)
