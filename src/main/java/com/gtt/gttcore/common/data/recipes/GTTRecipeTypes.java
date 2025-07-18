@@ -1,9 +1,7 @@
 package com.gtt.gttcore.common.data.recipes;
 
 import com.gregtechceu.gtceu.api.GTValues;
-import com.gregtechceu.gtceu.api.capability.recipe.EURecipeCapability;
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
-import com.gregtechceu.gtceu.api.capability.recipe.RecipeCapability;
 import com.gregtechceu.gtceu.api.gui.GuiTextures;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeSerializer;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
@@ -61,7 +59,11 @@ public class GTTRecipeTypes {
             .setEUIO(IO.OUT)
             .setSlotOverlay(false, false, GuiTextures.MOLECULAR_OVERLAY_1)
             .setProgressBar(GuiTextures.PROGRESS_BAR_FUSION, LEFT_TO_RIGHT)
-            .setSound(GTSoundEntries.REPLICATOR);
+            .setSound(GTSoundEntries.BOILER);
+    public final static GTRecipeType ROCKET_ASSEMBLER_RECIPES = register("rocket_assembler", MULTIBLOCK).setMaxIOSize(9, 1, 0, 0)
+            .setEUIO(IO.OUT)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_ASSEMBLY_LINE, LEFT_TO_RIGHT)
+            .setSound(GTSoundEntries.ASSEMBLER);
     public final static GTRecipeType GREENHOUSE_RECIPES = register("greenhouse", MULTIBLOCK).setMaxIOSize(3, 6, 1, 0)
             .setEUIO(IO.IN)
             .setSlotOverlay(false, false, GuiTextures.SAWBLADE_OVERLAY)
@@ -88,6 +90,15 @@ public class GTTRecipeTypes {
             .setProgressBar(GuiTextures.PROGRESS_BAR_MACERATE, LEFT_TO_RIGHT)
             .setMaxTooltips(4)
             .setSound(GTSoundEntries.FIRE);
+    public final static GTRecipeType CULTIVATOR_RECIPES = register("cultivator", ELECTRIC)
+            .setMaxIOSize(1, 1, 1, 1)
+            .setEUIO(IO.IN)
+            .setSlotOverlay(false, false, GuiTextures.DUST_OVERLAY)
+            .setSlotOverlay(true, false, GuiTextures.BREWER_OVERLAY)
+            .setSlotOverlay(false, false, GuiTextures.BREWER_OVERLAY)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, LEFT_TO_RIGHT)
+            .setMaxTooltips(4)
+            .setSound(GTSoundEntries.CHEMICAL);
     public static final GTRecipeType CHEMICAL_PLANT_RECIPES = register("chemical_plant", MULTIBLOCK)
             .setMaxIOSize(9, 9, 9, 9).setEUIO(IO.IN)
             .prepareBuilder(recipeBuilder -> recipeBuilder.EUt(GTValues.VA[GTValues.LV]))

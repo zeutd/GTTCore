@@ -1,5 +1,6 @@
 {
   "values": [
-    "gttcore:packaged_circuit_opv"
+    "gttcore:packaged_circuit_opv",
+    "gttcore:hypercausal_processor_mainframe"
   ]
 }

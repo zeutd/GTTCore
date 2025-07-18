@@ -1,0 +1,119 @@
+package com.gtt.gttcore.common.data.recipes;
+
+import com.gregtechceu.gtceu.data.recipe.CustomTags;
+import com.gregtechceu.gtceu.data.recipe.GTCraftingComponents;
+import earth.terrarium.adastra.common.registry.ModItems;
+import net.minecraft.data.recipes.FinishedRecipe;
+
+import java.util.function.Consumer;
+
+import static com.gregtechceu.gtceu.api.GTValues.*;
+import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
+import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
+import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.*;
+import static com.gtt.gttcore.common.data.GTTMaterials.*;
+import static com.gtt.gttcore.common.data.recipes.GTTRecipeTypes.*;
+
+public class RocketRecipes {
+    public static void init(Consumer<FinishedRecipe> provider) {
+        ASSEMBLER_RECIPES.recipeBuilder("steel_fuel_tank")
+                .inputItems(plate, Steel, 16)
+                .inputItems(pipeSmallFluid, Steel, 2)
+                .outputItems(ModItems.STEEL_TANK)
+                .save(provider);
+        ASSEMBLER_RECIPES.recipeBuilder("desh_fuel_tank")
+                .inputItems(plate, Desh, 16)
+                .inputItems(pipeSmallFluid, Desh, 2)
+                .outputItems(ModItems.DESH_TANK)
+                .save(provider);
+        ASSEMBLER_RECIPES.recipeBuilder("ostrum_fuel_tank")
+                .inputItems(plate, Ostrum, 16)
+                .inputItems(pipeSmallFluid, Ostrum, 2)
+                .outputItems(ModItems.OSTRUM_TANK)
+                .save(provider);
+        ASSEMBLER_RECIPES.recipeBuilder("calorite_fuel_tank")
+                .inputItems(plate, Calorite, 16)
+                .inputItems(pipeSmallFluid, Calorite, 2)
+                .outputItems(ModItems.CALORITE_TANK)
+                .save(provider);
+        ROCKET_ASSEMBLER_RECIPES.recipeBuilder("rocket_t1")
+                .inputItems(ModItems.ROCKET_NOSE_CONE)
+                .inputItems(plate, Steel, 48)
+                .inputItems(frameGt, Steel, 2)
+                .inputItems(pipeSmallFluid, Steel, 2)
+                .inputItems(ModItems.STEEL_TANK, 2)
+                .inputItems(ModItems.ROCKET_FIN, 2)
+                .inputItems(ModItems.STEEL_ENGINE, 1)
+                .inputItems(CustomTags.EV_CIRCUITS, 4)
+                .outputItems(ModItems.TIER_1_ROCKET)
+                .save(provider);
+        ROCKET_ASSEMBLER_RECIPES.recipeBuilder("rocket_t2")
+                .inputItems(ModItems.ROCKET_NOSE_CONE)
+                .inputItems(plate, Desh, 48)
+                .inputItems(frameGt, Steel, 2)
+                .inputItems(pipeSmallFluid, Desh, 2)
+                .inputItems(ModItems.DESH_TANK, 2)
+                .inputItems(ModItems.ROCKET_FIN, 2)
+                .inputItems(ModItems.DESH_ENGINE, 1)
+                .inputItems(CustomTags.IV_CIRCUITS, 4)
+                .outputItems(ModItems.TIER_2_ROCKET)
+                .save(provider);
+        ROCKET_ASSEMBLER_RECIPES.recipeBuilder("rocket_t3")
+                .inputItems(ModItems.ROCKET_NOSE_CONE)
+                .inputItems(plate, Ostrum, 48)
+                .inputItems(frameGt, Steel, 2)
+                .inputItems(pipeSmallFluid, Ostrum, 2)
+                .inputItems(ModItems.OSTRUM_TANK, 2)
+                .inputItems(ModItems.ROCKET_FIN, 2)
+                .inputItems(ModItems.OSTRUM_ENGINE, 1)
+                .inputItems(ModItems.DESH_ENGINE, 2)
+                .inputItems(CustomTags.LuV_CIRCUITS, 4)
+                .outputItems(ModItems.TIER_3_ROCKET)
+                .save(provider);
+        ROCKET_ASSEMBLER_RECIPES.recipeBuilder("rocket_t4")
+                .inputItems(ModItems.ROCKET_NOSE_CONE)
+                .inputItems(plate, Calorite, 48)
+                .inputItems(frameGt, VanadiumSteel, 3)
+                .inputItems(pipeSmallFluid, Calorite, 2)
+                .inputItems(ModItems.CALORITE_TANK, 2)
+                .inputItems(ModItems.ROCKET_FIN, 2)
+                .inputItems(ModItems.CALORITE_ENGINE, 3)
+                .inputItems(ModItems.OSTRUM_ENGINE, 2)
+                .inputItems(CustomTags.ZPM_CIRCUITS, 4)
+                .outputItems(ModItems.TIER_4_ROCKET)
+                .save(provider);
+        ASSEMBLER_RECIPES.recipeBuilder("rocket_nose_cone")
+                .inputItems(plate, Steel, 12)
+                .inputItems(gemFlawless, Ruby)
+                .outputItems(ModItems.ROCKET_NOSE_CONE)
+                .save(provider);
+        ASSEMBLER_RECIPES.recipeBuilder("steel_engine")
+                .inputItems(plate, Steel, 12)
+                .inputItems(GTCraftingComponents.PUMP.get(HV))
+                .inputItems(GTCraftingComponents.ROTOR.get(HV))
+                .inputItems(GTCraftingComponents.MOTOR.get(HV))
+                .outputItems(ModItems.STEEL_ENGINE)
+                .save(provider);
+        ASSEMBLER_RECIPES.recipeBuilder("desh_engine")
+                .inputItems(plate, Desh, 12)
+                .inputItems(GTCraftingComponents.PUMP.get(EV))
+                .inputItems(GTCraftingComponents.ROTOR.get(EV))
+                .inputItems(GTCraftingComponents.MOTOR.get(EV))
+                .outputItems(ModItems.DESH_ENGINE)
+                .save(provider);
+        ASSEMBLER_RECIPES.recipeBuilder("ostrum_engine")
+                .inputItems(plate, Ostrum, 12)
+                .inputItems(GTCraftingComponents.PUMP.get(IV))
+                .inputItems(GTCraftingComponents.ROTOR.get(IV))
+                .inputItems(GTCraftingComponents.MOTOR.get(IV))
+                .outputItems(ModItems.OSTRUM_ENGINE)
+                .save(provider);
+        ASSEMBLER_RECIPES.recipeBuilder("calorite_engine")
+                .inputItems(plate, Calorite, 12)
+                .inputItems(GTCraftingComponents.PUMP.get(LuV))
+                .inputItems(GTCraftingComponents.ROTOR.get(LuV))
+                .inputItems(GTCraftingComponents.MOTOR.get(LuV))
+                .outputItems(ModItems.CALORITE_ENGINE)
+                .save(provider);
+    }
+}

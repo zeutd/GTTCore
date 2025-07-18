@@ -1,5 +1,7 @@
 {
   "values": [
-    "gttcore:packaged_circuit_uxv"
+    "gttcore:packaged_circuit_uxv",
+    "gttcore:annihilation_processor_mainframe",
+    "gttcore:hypercausal_processor_computer"
   ]
 }

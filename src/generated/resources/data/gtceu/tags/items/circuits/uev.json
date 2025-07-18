@@ -2,6 +2,8 @@
   "values": [
     "gttcore:packaged_circuit_uev",
     "gttcore:optical_processor_mainframe",
-    "gttcore:entanglement_processor_computer"
+    "gttcore:entanglement_processor_computer",
+    "gttcore:annihilation_processor_assembly",
+    "gttcore:hypercausal_processor"
   ]
 }

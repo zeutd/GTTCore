@@ -1,5 +1,5 @@
 {
     "ldlib": {
-        "connection": "gttcore:block/lead_glass_ctm"
+        "connection": "gttcore:block/casings/lead_glass_ctm"
     }
 }

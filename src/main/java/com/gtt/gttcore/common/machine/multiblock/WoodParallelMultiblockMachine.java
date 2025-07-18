@@ -10,6 +10,8 @@ import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.feature.multiblock.IDisplayUIMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableMultiblockMachine;
+import com.gregtechceu.gtceu.api.machine.steam.SteamEnergyRecipeHandler;
+import com.gregtechceu.gtceu.api.machine.trait.RecipeHandlerList;
 import com.gregtechceu.gtceu.api.misc.IgnoreEnergyRecipeHandler;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
@@ -45,7 +47,7 @@ public class WoodParallelMultiblockMachine extends WorkableMultiblockMachine imp
     @Override
     public void onStructureFormed() {
         super.onStructureFormed();
-        capabilitiesProxy.put(IO.IN, EURecipeCapability.CAP, List.of(new IgnoreEnergyRecipeHandler()));
+        addHandlerList(RecipeHandlerList.of(IO.IN, new IgnoreEnergyRecipeHandler()));
     }
 
     public static ModifierFunction recipeModifier(@NotNull MetaMachine machine, @NotNull GTRecipe recipe) {

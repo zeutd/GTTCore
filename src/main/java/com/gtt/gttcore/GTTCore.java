@@ -6,8 +6,6 @@ import com.gregtechceu.gtceu.api.data.chemical.material.event.MaterialRegistryEv
 import com.gregtechceu.gtceu.api.data.chemical.material.event.PostMaterialEvent;
 import com.gregtechceu.gtceu.api.machine.MachineDefinition;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
-import com.gregtechceu.gtceu.api.registry.registrate.GTRegistrate;
-import com.gregtechceu.gtceu.common.registry.GTRegistration;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
 import com.gtt.gttcore.common.data.*;
 import com.gtt.gttcore.common.data.recipes.GTTRecipeTypes;
@@ -49,7 +47,7 @@ public class GTTCore {
     }
 
     public static ResourceLocation id(String path) {
-        return new ResourceLocation(MOD_ID, FormattingUtil.toLowerCaseUnder(path));
+        return new ResourceLocation(MOD_ID, FormattingUtil.toLowerCaseUnderscore(path));
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
@@ -84,7 +82,7 @@ public class GTTCore {
     }
 
     private void registerMachines(GTCEuAPI.RegisterEvent<ResourceLocation, MachineDefinition> event) {
-        GTTMultiblockMachines.init();
+        GTTMultiMachines.init();
         GTTMachines.init();
     }
 }

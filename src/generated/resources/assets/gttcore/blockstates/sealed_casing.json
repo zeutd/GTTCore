@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "gttcore:block/sealed_casing"
+    }
+  }
+}

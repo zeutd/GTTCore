@@ -2,20 +2,27 @@ package com.gtt.gttcore.common.data;
 
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags;
+import com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialIconSet;
 import com.gregtechceu.gtceu.api.data.chemical.material.properties.*;
 import com.gregtechceu.gtceu.api.fluids.FluidBuilder;
 import com.gregtechceu.gtceu.api.fluids.FluidState;
 import com.gregtechceu.gtceu.common.data.GTElements;
 import com.gtt.gttcore.GTTCore;
+import com.mojang.blaze3d.platform.IconSet;
+import earth.terrarium.adastra.common.registry.ModBlocks;
+import earth.terrarium.adastra.common.registry.ModItems;
+import net.minecraft.world.item.Items;
 
 import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags.*;
 import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialIconSet.*;
+import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
+import static com.gtt.gttcore.common.data.GTTElements.*;
 
 public class GTTMaterials {
     public static Material
-        ElectronDegeneratium,
+            Desh, Ostrum, Calorite, IceShard,
             UltraHighMolecularWeightPolyethylene, Fullerene,
             WetDibutylMagnesium, DibutylMagnesium, Bromobutane, SodiumBromide, Butanol, CultivateProducts, SodiumSulfate, Octanol, OctanolMagnesium, PhosphorusTrichloride, PhthaloylChlorine, DiisooctylPhthalate, MicrocrystalMagnesiumChloride, ZieglerNattaCatalyst,
             Zircon, ZirconiumCarbide, ZirconiumTetrachloride,
@@ -25,13 +32,41 @@ public class GTTMaterials {
             PlatinumGroupSolution, PlatinumPalladiumSolution, AmmoniumHexachloroplatinate, PalladiumSolution, Diamminedichloropalladium, InertMetalSodiumBisulfate, RhodiumSulfateSolution, RhodiumHydroxide, ChlororhodicAcid, AmmoniumHexachlororhodate, AmmoniumHexanitrorhodium, SodiumPeroxide, RutheniumOsmiumIridiumMixture, RutheniumOsmiumIridiumMixtureSodiumPeroxide, RutheniumOsmiumSaltSolution, IridiumOxide, AmmoniumHexachloroiridate, RutheniumOsmiumOxide, RutheniumOxide, RutheniumSolution, OsmiumSolution, AmmoniumHexachlororuthenate, Tetraamminedioxidoosmiumdichloride
        ;
     public static void init() {
-        ElectronDegeneratium = new Material.Builder(GTTCore.id("electron_degeneratium"))
+        Desh = new Material.Builder(GTTCore.id("desh"))
                 .ingot()
                 .dust()
                 .liquid()
-                .color(0x55AA55).iconSet(METALLIC)
-                .element(GTTElements.Ed)
-                .flags(MaterialFlags.GENERATE_PLATE)
+                .element(De)
+                .ore()
+                .color(0xFF8D57).secondaryColor(0xFFAF67).iconSet(METALLIC)
+                .flags(MaterialFlags.GENERATE_PLATE, GENERATE_ROD)
+                .fluidPipeProperties(1900, 100, true, true, true, false)
+                .buildAndRegister();
+        Calorite = new Material.Builder(GTTCore.id("calorite"))
+                .ingot()
+                .dust()
+                .liquid()
+                .element(Ct)
+                .ore()
+                .color(0xD45267).secondaryColor(0xEE6688).iconSet(SHINY)
+                .flags(MaterialFlags.GENERATE_PLATE, GENERATE_ROD)
+                .fluidPipeProperties(2900, 200, true, true, true, true)
+                .buildAndRegister();
+        Ostrum = new Material.Builder(GTTCore.id("ostrum"))
+                .ingot()
+                .dust()
+                .liquid()
+                .element(Om)
+                .ore()
+                .color(0xA96685).secondaryColor(0xCB7799).iconSet(METALLIC)
+                .flags(MaterialFlags.GENERATE_PLATE, GENERATE_ROD)
+                .fluidPipeProperties(2400, 150, true, true, true, false)
+                .buildAndRegister();
+        IceShard = new Material.Builder(GTTCore.id("ice_shard"))
+                .gem()
+                .components(Nitrogen, 1, Hydrogen, 4, Nitrogen, 1, Oxygen, 3)
+                .color(0xE0DEFF)
+                .ore()
                 .buildAndRegister();
         UltraHighMolecularWeightPolyethylene = new Material.Builder(GTTCore.id("ultra_high_molecular_weight_polyethylene"))
                 .polymer()
@@ -47,6 +82,7 @@ public class GTTMaterials {
                 .flags(MaterialFlags.GENERATE_FOIL)
                 .components(Carbon, 60)
                 .buildAndRegister();
+        //region Ziegler-Natta Catalyst
         WetDibutylMagnesium = new Material.Builder(GTTCore.id("wet_dibutyl_magnesium"))
                 .fluid()
                 .color(0xbbbb71)
@@ -116,6 +152,7 @@ public class GTTMaterials {
                 .color(0x666666)
                 .components(TitaniumTetrachloride, 1, MagnesiumChloride, 1)
                 .buildAndRegister();
+        //endregion
         Zircon = new Material.Builder(GTTCore.id("zircon"))
                 .gem()
                 .color(0x93ff90)
@@ -165,12 +202,14 @@ public class GTTMaterials {
                 .components(Hydrogen, 2, Oxygen, 1)
                 .buildAndRegister();
         AtomicSteel = new Material.Builder(GTTCore.id("atomic_steel"))
-                .color(0x122570)
+                .color(0x211560)
                 .ingot()
-                .components(Chromium, 5, Iron, 3, Zirconium, 2, Naquadah, 3)
+                .components(Trinium, 5, Iron, 3, Zirconium, 2, Naquadah, 3)
                 .flags(GENERATE_FRAME, GENERATE_PLATE)
+                .blast(b -> b.temp(7200, BlastProperty.GasTier.HIGHER)
+                        .blastStats(VA[LuV], 1000))
                 .buildAndRegister();
-        // Platinum Group Line
+        //region Platinum Group Line
         PlatinumGroupSolution = new Material.Builder(GTTCore.id("platinum_group_solution"))
                 .color(0x333354)
                 .liquid()
@@ -239,14 +278,17 @@ public class GTTMaterials {
         RutheniumOsmiumIridiumMixture = new Material.Builder(GTTCore.id("ruthenium_osmium_iridium_mixture"))
                 .color(0xa0a0b0)
                 .dust()
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister();
         RutheniumOsmiumIridiumMixtureSodiumPeroxide = new Material.Builder(GTTCore.id("ruthenium_osmium_iridium_mixture_sodium_peroxide"))
                 .color(0xb0b080)
                 .dust()
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister();
         RutheniumOsmiumSaltSolution = new Material.Builder(GTTCore.id("ruthenium_osmium_salt_solution"))
                 .color(0x202050)
                 .liquid()
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister();
         IridiumOxide = new Material.Builder(GTTCore.id("iridium_oxide"))
                 .color(0xa9a989)
@@ -264,18 +306,22 @@ public class GTTMaterials {
         RutheniumOsmiumOxide = new Material.Builder(GTTCore.id("ruthenium_osmium_oxide"))
                 .color(0xa9b9c9)
                 .dust()
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister();
         RutheniumOxide = new Material.Builder(GTTCore.id("ruthenium_oxide"))
                 .color(0xb9c9a9)
                 .dust()
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister();
         RutheniumSolution = new Material.Builder(GTTCore.id("ruthenium_solution"))
                 .color(0xa9c9f9)
                 .liquid()
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister();
         OsmiumSolution = new Material.Builder(GTTCore.id("osmium_solution"))
                 .color(0xa9f9e9)
                 .liquid()
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister();
         AmmoniumHexachlororuthenate = new Material.Builder(GTTCore.id("ammonium_hexachlororuthenate"))
                 .color(0xf9c9e9)
@@ -291,6 +337,32 @@ public class GTTMaterials {
                 .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister()
                 .setFormula("OsCl2O2(NH3)4");
+        //endregion
+
+        ingot.setIgnored(Desh, ModItems.DESH_INGOT);
+        ingot.setIgnored(Ostrum, ModItems.OSTRUM_INGOT);
+        ingot.setIgnored(Calorite, ModItems.CALORITE_INGOT);
+        block.setIgnored(Desh, ModItems.DESH_BLOCK);
+        block.setIgnored(Ostrum, ModItems.OSTRUM_BLOCK);
+        block.setIgnored(Calorite, ModItems.CALORITE_BLOCK);
+        nugget.setIgnored(Desh, ModItems.DESH_NUGGET);
+        nugget.setIgnored(Ostrum, ModItems.OSTRUM_NUGGET);
+        nugget.setIgnored(Calorite, ModItems.CALORITE_NUGGET);
+        rawOreBlock.setIgnored(Desh, ModItems.RAW_DESH_BLOCK);
+        rawOreBlock.setIgnored(Ostrum, ModItems.RAW_OSTRUM_BLOCK);
+        rawOreBlock.setIgnored(Calorite, ModItems.RAW_CALORITE_BLOCK);
+        rawOre.setIgnored(Desh, ModItems.RAW_DESH);
+        rawOre.setIgnored(Ostrum, ModItems.RAW_OSTRUM);
+        rawOre.setIgnored(Calorite, ModItems.RAW_CALORITE);
+        /*oreDeepslate.setIgnored(Desh, ModItems.DEEPSLATE_DESH_ORE);
+        oreDeepslate.setIgnored(Desh, ModItems.DEEPSLATE_OSTRUM_ORE);
+        oreDeepslate.setIgnored(Desh, ModItems.DEEPSLATE_CALORITE_ORE);
+        oreDeepslate.setIgnored(Desh, ModItems.DEEPSLATE_ICE_SHARD_ORE);
+        ore.setIgnored(Desh, ModItems.ORE);
+        oreDeepslate.setIgnored(Desh, ModItems.DEEPSLATE_OSTRUM_ORE);
+        oreDeepslate.setIgnored(Desh, ModItems.DEEPSLATE_CALORITE_ORE);
+        oreDeepslate.setIgnored(Desh, ModItems.DEEPSLATE_ICE_SHARD_ORE);*/
+        gem.setIgnored(IceShard, ModItems.ICE_SHARD);
     }
     public static void modify() {
         Plutonium239.addFlags(MaterialFlags.GENERATE_ROD);
@@ -303,6 +375,8 @@ public class GTTMaterials {
         Zirconium.setProperty(PropertyKey.BLAST, (new BlastProperty.Builder().temp(1941, BlastProperty.GasTier.MID)
                 .blastStats(VA[EV], 1500)
                 .vacuumStats(VA[EV])).build());
+
+        Gallium.setProperty(PropertyKey.ORE, new OreProperty(1, 1));
 
         Polonium.setMaterialARGB(0x1519a9);
         Polonium.setMaterialSecondaryARGB(0x05051E);

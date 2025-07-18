@@ -14,5 +14,7 @@ public class GTTRecipes {
         ZieglerNattaLine.init(provider);
         ZirconiumLine.init(provider);
         PlatinumGroupLine.init(provider);
+        MixerRecipes.init(provider);
+        RocketRecipes.init(provider);
     }
 }

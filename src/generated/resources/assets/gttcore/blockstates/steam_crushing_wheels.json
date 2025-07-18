@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "active=false": {
+      "model": "gttcore:block/steam_crushing_wheels"
+    },
+    "active=true": {
+      "model": "gttcore:block/steam_crushing_wheels_active"
+    }
+  }
+}

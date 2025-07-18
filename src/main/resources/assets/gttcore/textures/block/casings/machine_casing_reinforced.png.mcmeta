@@ -1,5 +1,5 @@
 {
   "ldlib": {
-    "connection": "gttcore:block/machine_casing_reinforced_ctm"
+    "connection": "gttcore:block/casings/machine_casing_reinforced_ctm"
   }
 }

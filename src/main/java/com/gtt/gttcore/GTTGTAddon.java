@@ -2,12 +2,17 @@ package com.gtt.gttcore;
 
 import com.gregtechceu.gtceu.api.addon.GTAddon;
 import com.gregtechceu.gtceu.api.addon.IGTAddon;
+import com.gregtechceu.gtceu.api.addon.events.MaterialCasingCollectionEvent;
 import com.gregtechceu.gtceu.api.registry.registrate.GTRegistrate;
+import com.gtt.gttcore.common.data.GTTElements;
+import com.gtt.gttcore.common.data.GTTOres;
 import com.gtt.gttcore.common.data.recipes.GTTRecipes;
 import net.minecraft.data.recipes.FinishedRecipe;
 
 import java.util.function.Consumer;
 
+import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
+import static com.gtt.gttcore.common.data.GTTBlocks.*;
 import static com.gtt.gttcore.common.registry.GTTRegistration.REGISTRATE;
 
 @SuppressWarnings("unused")
@@ -24,6 +29,10 @@ public class GTTGTAddon implements IGTAddon {
     }
 
     @Override
+    public void registerOreVeins(){
+        GTTOres.init();
+    }
+    @Override
     public String addonModId() {
         return GTTCore.MOD_ID;
     }
@@ -31,6 +40,11 @@ public class GTTGTAddon implements IGTAddon {
     @Override
     public void registerTagPrefixes() {
         //CustomTagPrefixes.init();
+    }
+
+    @Override
+    public void registerElements(){
+        GTTElements.init();
     }
 
     @Override
@@ -52,5 +66,12 @@ public class GTTGTAddon implements IGTAddon {
     @Override
     public boolean requiresHighTier() {
         return true;
+    }
+
+    @Override
+    public void collectMaterialCasings(MaterialCasingCollectionEvent event){
+        event.add(Iridium, CASING_IRIDIUM_REINFORCED);
+        event.add(Lead, CASING_LEAD_RADIATION_PROOF);
+        event.add(Zirconium, CASING_LOW_NEUTRON_ABSORPTION);
     }
 }

@@ -2,6 +2,7 @@
   "values": [
     "gttcore:packaged_circuit_uhv",
     "gttcore:optical_processor_computer",
-    "gttcore:entanglement_processor_assembly"
+    "gttcore:entanglement_processor_assembly",
+    "gttcore:annihilation_processor"
   ]
 }

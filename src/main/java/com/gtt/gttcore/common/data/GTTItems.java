@@ -6,6 +6,7 @@ import net.minecraft.world.item.Item;
 
 import static com.gtt.gttcore.common.registry.GTTRegistration.REGISTRATE;
 
+@SuppressWarnings("unchecked")
 public class GTTItems {
     public static ItemEntry<Item> PACKAGED_CIRCUIT_ULV = REGISTRATE.item("packaged_circuit_ulv", Item::new)
             .lang("Packaged ULV Circuit").tag(CustomTags.ULV_CIRCUITS)
@@ -90,6 +91,34 @@ public class GTTItems {
             .register();
     public static ItemEntry<Item> ENTANGLEMENT_MAINFRAME_UIV = REGISTRATE.item("entanglement_processor_mainframe", Item::new)
             .lang("Entanglement Processor Mainframe").tag(CustomTags.UIV_CIRCUITS)
+            .register();
+
+    //T10: Annihilation
+    public static ItemEntry<Item> ANNIHILATION_PROCESSOR_UHV = REGISTRATE.item("annihilation_processor", Item::new)
+            .lang("Annihilation Processor").tag(CustomTags.UHV_CIRCUITS)
+            .register();
+    public static ItemEntry<Item> ANNIHILATION_PROCESSOR_ASSEMBLY_UEV = REGISTRATE.item("annihilation_processor_assembly", Item::new)
+            .lang("Annihilation Processor Assembly").tag(CustomTags.UEV_CIRCUITS)
+            .register();
+    public static ItemEntry<Item> ANNIHILATION_SUPER_COMPUTER_UIV = REGISTRATE.item("annihilation_processor_computer", Item::new)
+            .lang("Annihilation Processor Supercomputer").tag(CustomTags.UIV_CIRCUITS)
+            .register();
+    public static ItemEntry<Item> ANNIHILATION_MAINFRAME_UXV = REGISTRATE.item("annihilation_processor_mainframe", Item::new)
+            .lang("Annihilation Processor Mainframe").tag(CustomTags.UXV_CIRCUITS)
+            .register();
+
+    //T11 : Hypercausal
+    public static ItemEntry<Item> HYPERCAUSAL_PROCESSOR_UEV = REGISTRATE.item("hypercausal_processor", Item::new)
+            .lang("Hypercausal Processor").tag(CustomTags.UEV_CIRCUITS)
+            .register();
+    public static ItemEntry<Item> HYPERCAUSAL_PROCESSOR_UIV = REGISTRATE.item("hypercausal_processor_assembly", Item::new)
+            .lang("Hypercausal Processor Assembly").tag(CustomTags.UIV_CIRCUITS)
+            .register();
+    public static ItemEntry<Item> HYPERCAUSAL_PROCESSOR_UXV = REGISTRATE.item("hypercausal_processor_computer", Item::new)
+            .lang("Hypercausal Processor Supercomputer").tag(CustomTags.UXV_CIRCUITS)
+            .register();
+    public static ItemEntry<Item> HYPERCAUSAL_PROCESSOR_OpV = REGISTRATE.item("hypercausal_processor_mainframe", Item::new)
+            .lang("Hypercausal Processor Mainframe").tag(CustomTags.OpV_CIRCUITS)
             .register();
     public static final ItemEntry<Item>[] PACKAGED_CIRCUITS_ARRAY = new ItemEntry[]{
             PACKAGED_CIRCUIT_ULV,

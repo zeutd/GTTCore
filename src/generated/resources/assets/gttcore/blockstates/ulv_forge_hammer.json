@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "gttcore:block/machine/ulv_forge_hammer",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "gttcore:block/machine/ulv_forge_hammer"
+    },
+    "facing=south": {
+      "model": "gttcore:block/machine/ulv_forge_hammer",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "gttcore:block/machine/ulv_forge_hammer",
+      "y": 270
+    }
+  }
+}

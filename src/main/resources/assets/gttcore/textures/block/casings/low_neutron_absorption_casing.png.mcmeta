@@ -1,5 +1,5 @@
 {
     "ldlib": {
-        "connection": "gttcore:block/low_neutron_absorption_casing_ctm"
+        "connection": "gttcore:block/casings/low_neutron_absorption_casing_ctm"
     }
 }

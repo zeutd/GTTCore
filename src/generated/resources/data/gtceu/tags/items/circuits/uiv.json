@@ -1,6 +1,8 @@
 {
   "values": [
     "gttcore:packaged_circuit_uiv",
-    "gttcore:entanglement_processor_mainframe"
+    "gttcore:entanglement_processor_mainframe",
+    "gttcore:annihilation_processor_computer",
+    "gttcore:hypercausal_processor_assembly"
   ]
 }

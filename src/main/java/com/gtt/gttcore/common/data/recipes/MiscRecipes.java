@@ -1,18 +1,15 @@
 package com.gtt.gttcore.common.data.recipes;
 
 import com.gregtechceu.gtceu.api.GTValues;
-import com.gregtechceu.gtceu.api.data.chemical.material.stack.UnificationEntry;
+import com.gregtechceu.gtceu.api.data.chemical.material.stack.MaterialEntry;
+
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.common.data.*;
-import com.gregtechceu.gtceu.common.data.machines.GTMultiMachines;
 import com.gregtechceu.gtceu.config.ConfigHolder;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
 import com.gregtechceu.gtceu.data.recipe.VanillaRecipeHelper;
 import com.gtt.gttcore.common.data.GTTBlocks;
-import com.gtt.gttcore.common.data.GTTItems;
-import com.gtt.gttcore.common.data.GTTMultiblockMachines;
 import net.minecraft.data.recipes.FinishedRecipe;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.Tags;
 
 import java.util.function.Consumer;
@@ -26,7 +23,7 @@ import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.*;
 import static com.gtt.gttcore.common.data.GTTBlocks.*;
 import static com.gtt.gttcore.common.data.GTTItems.*;
 import static com.gtt.gttcore.common.data.GTTMaterials.*;
-import static com.gtt.gttcore.common.data.GTTMultiblockMachines.*;
+import static com.gtt.gttcore.common.data.GTTMultiMachines.*;
 import static com.gtt.gttcore.common.data.recipes.GTTRecipeTypes.*;
 
 public class MiscRecipes {
@@ -70,9 +67,9 @@ public class MiscRecipes {
                 .duration(50).save(provider);
         VanillaRecipeHelper.addShapedRecipe(provider, true, "casing_zirconium_pipe",
                 GTTBlocks.CASING_ZIRCONIUM_PIPE.asStack(ConfigHolder.INSTANCE.recipes.casingsPerCraft), "PIP", "IFI",
-                "PIP", 'P', new UnificationEntry(TagPrefix.plate, Zirconium), 'F',
-                new UnificationEntry(TagPrefix.frameGt, GTMaterials.Zirconium), 'I',
-                new UnificationEntry(TagPrefix.pipeNormalFluid, GTMaterials.Zirconium));
+                "PIP", 'P', new MaterialEntry(TagPrefix.plate, Zirconium), 'F',
+                new MaterialEntry(TagPrefix.frameGt, GTMaterials.Zirconium), 'I',
+                new MaterialEntry(TagPrefix.pipeNormalFluid, GTMaterials.Zirconium));
         FLUID_SOLIDFICATION_RECIPES.recipeBuilder("lead_glass").EUt(16)
                 .inputItems(Tags.Blocks.GLASS)
                 .inputFluids(Lead.getFluid(L * 2))
@@ -112,7 +109,7 @@ public class MiscRecipes {
                 "GSG",
                 "WAW",
                 'A', CustomTags.LV_CIRCUITS,
-                'W', new UnificationEntry(cableGtSingle, Copper),
+                'W', new MaterialEntry(cableGtSingle, Copper),
                 'G', Tags.Blocks.GLASS,
                 'S', CASING_STEEL_SOLID.asStack()
         );
@@ -158,9 +155,9 @@ public class MiscRecipes {
                 .EUt(VA[EV]).duration(200).save(provider);
         VanillaRecipeHelper.addShapedRecipe(provider, true, "large_supercritical_steam_turbine_machine",
                 LARGE_SUPERCRITICAL_STEAM_TURBINE.asStack(), "PSP", "SAS", "CSC", 'S',
-                new UnificationEntry(TagPrefix.gear, NaquadahAlloy), 'P', CustomTags.ZPM_CIRCUITS, 'A',
+                new MaterialEntry(TagPrefix.gear, NaquadahAlloy), 'P', CustomTags.ZPM_CIRCUITS, 'A',
                 GTMachines.HULL[GTValues.ZPM].asStack(), 'C',
-                new UnificationEntry(TagPrefix.pipeLargeFluid, GTMaterials.NaquadahAlloy));
+                new MaterialEntry(TagPrefix.pipeLargeFluid, GTMaterials.NaquadahAlloy));
         ASSEMBLER_RECIPES.recipeBuilder("fission_reactor_machine")
                 .inputItems(CASING_LEAD_RADIATION_PROOF)
                 .inputItems(CustomTags.LuV_CIRCUITS, 5)

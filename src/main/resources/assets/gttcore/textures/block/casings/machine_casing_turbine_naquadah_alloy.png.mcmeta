@@ -1,5 +1,5 @@
 {
     "ldlib": {
-        "connection": "gttcore:block/machine_casing_turbine_naquadah_alloy_ctm"
+        "connection": "gttcore:block/casings/machine_casing_turbine_naquadah_alloy_ctm"
     }
 }
