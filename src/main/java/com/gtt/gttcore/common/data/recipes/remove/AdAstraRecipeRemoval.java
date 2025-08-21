@@ -1,0 +1,70 @@
+package com.gtt.gttcore.common.data.recipes.remove;
+
+import com.simibubi.create.Create;
+import dev.latvian.mods.kubejs.recipe.filter.IDFilter;
+import dev.latvian.mods.kubejs.recipe.filter.RecipeFilter;
+import dev.latvian.mods.kubejs.recipe.filter.TypeFilter;
+import earth.terrarium.adastra.AdAstra;
+import earth.terrarium.adastra.common.registry.ModRecipeTypes;
+import net.minecraft.resources.ResourceLocation;
+
+import java.util.function.Consumer;
+
+public class AdAstraRecipeRemoval {
+    public static void init(Consumer<RecipeFilter> provider) {
+        provider.accept(new TypeFilter(ModRecipeTypes.ALLOYING.getId()));
+        provider.accept(new TypeFilter(ModRecipeTypes.COMPRESSING.getId()));
+        provider.accept(new TypeFilter(ModRecipeTypes.CRYO_FREEZING.getId()));
+        provider.accept(new TypeFilter(ModRecipeTypes.NASA_WORKBENCH.getId()));
+        provider.accept(new TypeFilter(ModRecipeTypes.OXYGEN_LOADING.getId()));
+        provider.accept(new TypeFilter(ModRecipeTypes.REFINING.getId()));
+        provider.accept(new IDFilter(new ResourceLocation("ad_astra:steel_engine")));
+        provider.accept(new IDFilter(new ResourceLocation("ad_astra:fan")));
+        provider.accept(new IDFilter(new ResourceLocation("ad_astra:desh_engine")));
+        provider.accept(new IDFilter(new ResourceLocation("ad_astra:calorite_engine")));
+        provider.accept(new IDFilter(new ResourceLocation("ad_astra:ostrum_engine")));
+        provider.accept(new IDFilter(new ResourceLocation("ad_astra:steel_tank")));
+        provider.accept(new IDFilter(new ResourceLocation("ad_astra:desh_tank")));
+        provider.accept(new IDFilter(new ResourceLocation("ad_astra:calorite_tank")));
+        provider.accept(new IDFilter(new ResourceLocation("ad_astra:ostrum_tank")));
+        provider.accept(new IDFilter(new ResourceLocation("ad_astra:engine_frame")));
+        provider.accept(new IDFilter(new ResourceLocation("ad_astra:photovoltaic_etrium_cell")));
+        provider.accept(new IDFilter(new ResourceLocation("ad_astra:rocket_nose_cone")));
+        provider.accept(new IDFilter(new ResourceLocation("ad_astra:steel_cable")));
+        provider.accept(new IDFilter(new ResourceLocation("ad_astra:desh_cable")));
+        provider.accept(new IDFilter(new ResourceLocation("ad_astra:desh_fluid_pipe")));
+        provider.accept(new IDFilter(new ResourceLocation("ad_astra:ostrum_fluid_pipe")));
+        provider.accept(new IDFilter(new ResourceLocation("ad_astra:cable_duct")));
+        provider.accept(new IDFilter(new ResourceLocation("ad_astra:fluid_pipe_duct")));
+        provider.accept(new IDFilter(new ResourceLocation("ad_astra:coal_generator")));
+        provider.accept(new IDFilter(new ResourceLocation("ad_astra:compressor")));
+        provider.accept(new IDFilter(new ResourceLocation("ad_astra:electronic_blast_furnace")));
+        provider.accept(new IDFilter(new ResourceLocation("ad_astra:nasa_workbench")));
+        provider.accept(new IDFilter(new ResourceLocation("ad_astra:fuel_refinery")));
+        provider.accept(new IDFilter(new ResourceLocation("ad_astra:oxygen_loader")));
+        provider.accept(new IDFilter(new ResourceLocation("ad_astra:solar_panel")));
+        provider.accept(new IDFilter(new ResourceLocation("ad_astra:water_pump")));
+        provider.accept(new IDFilter(new ResourceLocation("ad_astra:oxygen_distributor")));
+        provider.accept(new IDFilter(new ResourceLocation("ad_astra:gravity_normalizer")));
+        provider.accept(new IDFilter(new ResourceLocation("ad_astra:energizer")));
+        provider.accept(new IDFilter(new ResourceLocation("ad_astra:cryo_freezer")));
+        provider.accept(new IDFilter(new ResourceLocation("ad_astra:etrionic_capacitor")));
+        provider.accept(new IDFilter(new ResourceLocation("ad_astra:wrench")));
+        provider.accept(new IDFilter(new ResourceLocation("ad_astra:zip_gun")));
+        provider.accept(new IDFilter(new ResourceLocation("ad_astra:space_suit")));
+        provider.accept(new IDFilter(new ResourceLocation("ad_astra:netherite_space_suit")));
+        provider.accept(new IDFilter(new ResourceLocation("ad_astra:jet_suit")));
+        provider.accept(new IDFilter(new ResourceLocation("ad_astra:oxygen_gear")));
+        provider.accept(new IDFilter(new ResourceLocation("ad_astra:iron_rod")));
+        provider.accept(new IDFilter(new ResourceLocation("ad_astra:steel_rod")));
+        provider.accept(new IDFilter(new ResourceLocation("ad_astra:desh_rod")));
+        provider.accept(new IDFilter(new ResourceLocation("ad_astra:steel_block")));
+        provider.accept(new IDFilter(new ResourceLocation("ad_astra:desh_block")));
+        provider.accept(new IDFilter(new ResourceLocation("ad_astra:ostrum_block")));
+        provider.accept(new IDFilter(new ResourceLocation("ad_astra:calorite_block")));
+        provider.accept(new IDFilter(new ResourceLocation("ad_astra:steel_block")));
+        provider.accept(new IDFilter(new ResourceLocation("ad_astra:raw_ostrum_block")));
+        provider.accept(new IDFilter(new ResourceLocation("ad_astra:raw_calorite_block")));
+        provider.accept(new IDFilter(new ResourceLocation("ad_astra:raw_steel_block")));
+    }
+}

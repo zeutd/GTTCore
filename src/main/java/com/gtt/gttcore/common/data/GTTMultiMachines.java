@@ -12,6 +12,7 @@ import com.gregtechceu.gtceu.api.machine.multiblock.MultiblockControllerMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.PartAbility;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.pattern.FactoryBlockPattern;
+import com.gregtechceu.gtceu.api.pattern.MultiblockShapeInfo;
 import com.gregtechceu.gtceu.api.pattern.Predicates;
 import com.gregtechceu.gtceu.api.pattern.TraceabilityPredicate;
 import com.gregtechceu.gtceu.api.pattern.predicates.SimplePredicate;
@@ -20,14 +21,19 @@ import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
 import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
 import com.gregtechceu.gtceu.api.registry.registrate.MultiblockMachineBuilder;
 import com.gregtechceu.gtceu.common.data.*;
+import com.gregtechceu.gtceu.common.data.machines.GTAEMachines;
+import com.gregtechceu.gtceu.common.machine.multiblock.electric.DistillationTowerMachine;
 import com.gregtechceu.gtceu.common.machine.multiblock.electric.FusionReactorMachine;
 import com.gregtechceu.gtceu.common.machine.multiblock.generator.LargeTurbineMachine;
 import com.gregtechceu.gtceu.common.machine.multiblock.steam.SteamParallelMultiblockMachine;
+import com.gregtechceu.gtceu.common.registry.GTRegistration;
 import com.gtt.gttcore.GTTCore;
 import com.gtt.gttcore.common.machine.multiblock.GTTPartAbility;
 import com.gtt.gttcore.common.machine.multiblock.HugeTurbineMachine;
+import com.gtt.gttcore.common.machine.multiblock.SteamDistillationTowerMachine;
 import com.gtt.gttcore.common.machine.multiblock.WoodParallelMultiblockMachine;
 import com.lowdragmc.lowdraglib.utils.BlockInfo;
+import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.ItemLike;
@@ -35,6 +41,9 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.registries.ForgeRegistries;
 
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 import java.util.Locale;
 import java.util.function.BiFunction;
 import java.util.function.Supplier;
@@ -45,7 +54,10 @@ import static com.gregtechceu.gtceu.api.pattern.Predicates.*;
 import static com.gregtechceu.gtceu.api.pattern.util.RelativeDirection.*;
 import static com.gregtechceu.gtceu.common.data.GCYMBlocks.*;
 import static com.gregtechceu.gtceu.common.data.GTBlocks.*;
+import static com.gregtechceu.gtceu.common.data.GTMachines.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
+import static com.gregtechceu.gtceu.common.data.GTRecipeModifiers.BATCH_MODE;
+import static com.gregtechceu.gtceu.common.data.GTRecipeModifiers.OC_NON_PERFECT_SUBTICK;
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.*;
 import static com.gregtechceu.gtceu.utils.FormattingUtil.toRomanNumeral;
 import static com.gtt.gttcore.common.registry.GTTRegistration.REGISTRATE;
@@ -59,6 +71,7 @@ public class GTTMultiMachines {
             .langValue("Large Greenhouse")
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(GREENHOUSE_RECIPES)
+            .recipeModifiers(OC_NON_PERFECT_SUBTICK, GTRecipeModifiers.PARALLEL_HATCH)
             .appearanceBlock(CASING_STAINLESS_CLEAN)
             .pattern(definition -> FactoryBlockPattern.start(BACK,UP,LEFT)
                     .aisle("AAAAAAAAAAAAAAAAAAA","AAAAAAAAAAAAAAAAAAA","ABBBBBABBBBBABBBBBA","ABBBBBABBBBBABBBBBA","ABBBBBABBBBBABBBBBA","ABBBBBABBBBBABBBBBA","AAAAAAAAAAAAAAAAAAA","                   ","                   ","                   ")
@@ -75,7 +88,9 @@ public class GTTMultiMachines {
                     .aisle("AAAAAAAAAAAAAAAAAAA","ACCCCCCCCCCCCCCCCCA","B                 B","B                 B","B                 B","B                 B","B                 B","ABBBBBABBBBBABBBBBA","                   ","                   ")
                     .aisle("AAAAAAAAAAAAAAAAAAA","AAAAAAAAAAAAAAAAAAA","ABBBBBABBBBBABBBBBA","ABBBBBABBBBBABBBBBA","ABBBBBABBBBBABBBBBA","ABBBBBABBBBBABBBBBA","AAAAAAAAAAAAAAAAAAA","                   ","                   ","D                  ")
                     .where("~", Predicates.controller(Predicates.blocks(definition.get())))
-                    .where("A", Predicates.blocks(ForgeRegistries.BLOCKS.getValue(new ResourceLocation("gtceu:clean_machine_casing"))).or(autoAbilities(definition.getRecipeTypes())))
+                    .where("A", Predicates.blocks(ForgeRegistries.BLOCKS.getValue(new ResourceLocation("gtceu:clean_machine_casing")))
+                            .or(autoAbilities(definition.getRecipeTypes()))
+                            .or(autoAbilities(true, false, true)))
                     .where("B", Predicates.blocks(ForgeRegistries.BLOCKS.getValue(new ResourceLocation("gtceu:laminated_glass"))))
                     .where("C", blocks(Blocks.DIRT, Blocks.GRASS_BLOCK, Blocks.MOSS_BLOCK))
                     .where("D", Predicates.blocks(ForgeRegistries.BLOCKS.getValue(new ResourceLocation("gtceu:industrial_steam_casing"))))
@@ -122,7 +137,9 @@ public class GTTMultiMachines {
                     .aisle("  BBBBBBB  ","  D  E  D  ","  D     D  ","           ","     C     ","     C     ","           ")
                     .aisle("   BBBBB   ","   DD~DD   ","   DDDDD   ","     C     ","     C     ","           ","           ")
                     .where("~", Predicates.controller(Predicates.blocks(definition.get())))
-                    .where("B", Predicates.blocks(ForgeRegistries.BLOCKS.getValue(new ResourceLocation("gtceu:steam_machine_casing"))))
+                    .where("B", Predicates.blocks(ForgeRegistries.BLOCKS.getValue(new ResourceLocation("gtceu:steam_machine_casing")))
+                            .or(autoAbilities(definition.getRecipeTypes()))
+                            .or(autoAbilities(true, false, true)))
                     .where("C", frames(Bronze))
                     .where("D", Predicates.blocks(ForgeRegistries.BLOCKS.getValue(new ResourceLocation("gtceu:industrial_steam_casing"))))
                     .where("E", Predicates.blocks(ForgeRegistries.BLOCKS.getValue(new ResourceLocation("gtceu:bronze_pipe_casing"))))
@@ -132,7 +149,121 @@ public class GTTMultiMachines {
             .workableCasingModel(GTCEu.id("block/casings/gcym/industrial_steam_casing"),
                     GTCEu.id("block/machines/mixer"))
             .register();
+    public final static MultiblockMachineDefinition LARGE_STEAM_CENTRIFUGE = REGISTRATE.multiblock("large_steam_centrifuge", (m) -> new SteamParallelMultiblockMachine(m, 32))
+            .langValue("Large Steam Centrifuge")
+            .recipeType(CENTRIFUGE_RECIPES)
+            .appearanceBlock(CASING_INDUSTRIAL_STEAM)
+            .recipeModifier(SteamParallelMultiblockMachine::recipeModifier)
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle("         ","   AAA   ","   AAA   ","         ")
+                    .aisle("   AAA   ","  A B A  ","  A B A  ","   AAA   ")
+                    .aisle("  AAAAA  "," A  B  A "," A  B  A ","  AAAAA  ")
+                    .aisle(" AAAAAAA ","A   B   A","A   B   A"," AAAAAAA ")
+                    .aisle(" AAAAAAA ","ABBBCBBBA","ABBBCBBBA"," AAAAAAA ")
+                    .aisle(" AAAAAAA ","A   B   A","A   B   A"," AAAAAAA ")
+                    .aisle("  AAAAA  "," A  B  A "," A  B  A ","  AAAAA  ")
+                    .aisle("   AAA   ","  A B A  ","  A B A  ","   AAA   ")
+                    .aisle("         ","   A~A   ","   AAA   ","         ")
+                    .where("~", Predicates.controller(Predicates.blocks(definition.get())))
+                    .where("A", Predicates.blocks(ForgeRegistries.BLOCKS.getValue(new ResourceLocation("gtceu:industrial_steam_casing")))
+                            .or(autoAbilities(definition.getRecipeTypes()))
+                            .or(autoAbilities(true, false, true)))
+                    .where("B", Predicates.blocks(ForgeRegistries.BLOCKS.getValue(new ResourceLocation("gtceu:bronze_pipe_casing"))))
+                    .where("C", Predicates.blocks(ForgeRegistries.BLOCKS.getValue(new ResourceLocation("gtceu:bronze_gearbox"))))
+                    .where(" ", any())
+                    .build())
+            .workableCasingModel(GTCEu.id("block/casings/gcym/industrial_steam_casing"),
+                    GTCEu.id("block/machines/centrifuge"))
+            .register();
+    public final static MultiblockMachineDefinition LARGE_STEAM_ORE_WASHER = REGISTRATE.multiblock("large_steam_ore_washer", (m) -> new SteamParallelMultiblockMachine(m, 64))
+            .langValue("Large Steam Ore Washer")
+            .recipeType(ORE_WASHER_RECIPES)
+            .appearanceBlock(CASING_INDUSTRIAL_STEAM)
+            .recipeModifier(SteamParallelMultiblockMachine::recipeModifier)
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle("AAAAAAA","BBBBBBB","BBBBBBB","BBBBBBB")
+                    .aisle("AAAAAAA","BCCCCCB","B     B","B     B")
+                    .aisle("AAAAAAA","B     B","B     B","B     B")
+                    .aisle("AAAAAAA","B     B","B     B","B     B")
+                    .aisle("AAAAAAA","B     B","B     B","B     B")
+                    .aisle("AAAAAAA","B     B","B     B","B     B")
+                    .aisle("AAAAAAA","B     B","B     B","B     B")
+                    .aisle("AAAAAAA","B     B","B     B","B     B")
+                    .aisle("AAAAAAA","BCCCCCB","B     B","B     B")
+                    .aisle("AAAAAAA","BBB~BBB","BBBBBBB","BBBBBBB")
+                    .where("~", Predicates.controller(Predicates.blocks(definition.get())))
+                    .where("A", Predicates.blocks(ForgeRegistries.BLOCKS.getValue(new ResourceLocation("gtceu:steam_machine_casing"))))
+                    .where("B", Predicates.blocks(ForgeRegistries.BLOCKS.getValue(new ResourceLocation("gtceu:industrial_steam_casing"))))
+                    .where("C", Predicates.blocks(ForgeRegistries.BLOCKS.getValue(new ResourceLocation("gtceu:bronze_pipe_casing"))))
+                    .where(" ", any())
+                    .build())
+            .workableCasingModel(GTCEu.id("block/casings/gcym/industrial_steam_casing"),
+                    GTCEu.id("block/machines/mixer"))
+            .register();
+    public final static MultiblockMachineDefinition LARGE_STEAM_MACERATOR = REGISTRATE.multiblock("large_steam_macerator", (m) -> new SteamParallelMultiblockMachine(m, 64))
+            .langValue("Large Steam Macerator")
+            .recipeType(MACERATOR_RECIPES)
+            .appearanceBlock(CASING_INDUSTRIAL_STEAM)
+            .recipeModifier(SteamParallelMultiblockMachine::recipeModifier)
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle("AAAAAAA","BBBBBBB","BBBBBBB","BBBBBBB","BBBBBBB")
+                    .aisle("AAAAAAA","BCCCCCB","BCCCCCB","BCCCCCB","B     B")
+                    .aisle("AAAAAAA","BCCCCCB","BCCCCCB","BCCCCCB","B     B")
+                    .aisle("AAAAAAA","BCCCCCB","BCCCCCB","BCCCCCB","B     B")
+                    .aisle("AAAAAAA","BCCCCCB","BCCCCCB","BCCCCCB","B     B")
+                    .aisle("AAAAAAA","BCCCCCB","BCCCCCB","BCCCCCB","B     B")
+                    .aisle("AAAAAAA","BBBBBBB","BBB~BBB","BBBBBBB","BBBBBBB")
+                    .where("~", Predicates.controller(Predicates.blocks(definition.get())))
+                    .where("A", Predicates.blocks(ForgeRegistries.BLOCKS.getValue(new ResourceLocation("gtceu:steam_machine_casing")))
+                            .or(autoAbilities(definition.getRecipeTypes()))
+                            .or(autoAbilities(true, false, true)))
+                    .where("B", Predicates.blocks(ForgeRegistries.BLOCKS.getValue(new ResourceLocation("gtceu:industrial_steam_casing"))))
+                    .where("C", Predicates.blocks(ForgeRegistries.BLOCKS.getValue(new ResourceLocation("gttcore:steam_crushing_wheels"))))
+                    .where(" ", any())
+                    .build())
+            .workableCasingModel(GTCEu.id("block/casings/gcym/industrial_steam_casing"),
+                    GTCEu.id("block/machines/mixer"))
+            .register();
 
+    public static final MultiblockMachineDefinition STEAM_DISTILLATION_TOWER = REGISTRATE
+            .multiblock("steam_distillation_tower", SteamDistillationTowerMachine::new)
+            .rotationState(RotationState.NON_Y_AXIS)
+            .langValue("Steam Distillation Tower")
+            .recipeType(GTRecipeTypes.DISTILLATION_RECIPES)
+            .recipeModifiers(SteamDistillationTowerMachine::recipeModifier)
+            .appearanceBlock(CASING_STEEL_SEALED)
+            .pattern(definition -> {
+                TraceabilityPredicate exportPredicate = abilities(PartAbility.EXPORT_FLUIDS_1X);
+                if (GTCEu.Mods.isAE2Loaded()) {
+                    exportPredicate = exportPredicate.or(blocks(GTAEMachines.FLUID_EXPORT_HATCH_ME.get()));
+                }
+                exportPredicate.setMaxLayerLimited(1);
+                TraceabilityPredicate maint = autoAbilities(true, false, false)
+                        .setMaxGlobalLimited(1);
+                return FactoryBlockPattern.start(RIGHT, BACK, UP)
+                        .aisle("YYY", "YYY", "YYY")
+                        .aisle("ZSZ", "Z#Z", "ZZZ")
+                        .aisle("XXX", "X#X", "XXX").setRepeatable(0, 10)
+                        .aisle("XXX", "XXX", "XXX")
+                        .where('S', Predicates.controller(blocks(definition.getBlock())))
+                        .where('Y', blocks(FIREBOX_STEEL.get())
+                                .or(Predicates.abilities(PartAbility.EXPORT_ITEMS).setMaxGlobalLimited(1))
+                                .or(Predicates.abilities(PartAbility.STEAM).setMinGlobalLimited(1)
+                                        .setMaxGlobalLimited(2))
+                                .or(Predicates.abilities(PartAbility.IMPORT_FLUIDS).setExactLimit(1))
+                                .or(maint))
+                        .where('Z', blocks(CASING_STEEL_SEALED.get())
+                                .or(exportPredicate)
+                                .or(maint))
+                        .where('X', blocks(CASING_STEEL_SEALED.get()).or(exportPredicate))
+                        .where('#', Predicates.air())
+                        .build();
+            })
+            .allowExtendedFacing(false)
+            .partSorter(Comparator.comparingInt(p -> p.self().getPos().getY()))
+            .workableCasingModel(GTTCore.id("block/casings/machine_casing_sealed_steel"),
+                    GTCEu.id("block/multiblock/generator/large_steel_boiler"))
+            .register();
     public final static MultiblockMachineDefinition LARGE_STEAM_FORGE_HAMMER = REGISTRATE.multiblock("large_steam_forge_hammer", SteamParallelMultiblockMachine::new)
             .langValue("Large Steam Forge Hammer")
             .recipeType(FORGE_HAMMER_RECIPES)
@@ -262,7 +393,7 @@ public class GTTMultiMachines {
             .register();
     public final static MultiblockMachineDefinition GREENHOUSE = REGISTRATE
             .multiblock("greenhouse", WorkableElectricMultiblockMachine::new)
-            .langValue("greenhouse")
+            .langValue("Greenhouse")
             .tooltips(Component.translatable("gtceu.machine.available_recipe_map_1.tooltip",
                     Component.translatable("gttcore.greenhouse")))
             .recipeType(GREENHOUSE_RECIPES)
@@ -279,7 +410,9 @@ public class GTTMultiMachines {
                     .where("~", controller(blocks(definition.get())))
                     .where("B", blocks(Blocks.GLASS))
                     .where("C", blocks(Blocks.DIRT, Blocks.GRASS_BLOCK, Blocks.MOSS_BLOCK))
-                    .where("A", blocks(CASING_STEEL_SOLID.get()).setMinGlobalLimited(100))
+                    .where("A", blocks(CASING_STEEL_SOLID.get()).setMinGlobalLimited(100)
+                            .or(autoAbilities(definition.getRecipeTypes()))
+                            .or(autoAbilities(true, false, false)))
                     .where(" ", any())
                     .where("#", air())
                     .build())
@@ -294,7 +427,7 @@ public class GTTMultiMachines {
                     Component.translatable("gttcore.laser_freezer")))
             .rotationState(RotationState.ALL)
             .recipeType(VACUUM_RECIPES)
-            .recipeModifiers((m, r) -> ModifierFunction.builder().modifyAllContents(ContentModifier.multiplier(256)).eutMultiplier(256).parallels(256).build(), GTRecipeModifiers.PARALLEL_HATCH, GTRecipeModifiers.OC_PERFECT_SUBTICK)
+            .recipeModifiers((m, r) -> ModifierFunction.builder().modifyAllContents(ContentModifier.multiplier(256)).eutMultiplier(256).parallels(256).build(), GTRecipeModifiers.PARALLEL_HATCH, GTRecipeModifiers.OC_NON_PERFECT_SUBTICK)
             .appearanceBlock(CASING_ALUMINIUM_FROSTPROOF)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("                                             ","                                             ","                                             ","                                             ","                                             ","                     AAA                     ","                    AAAAA                    ","                    AAAAA                    ","                    AAAAA                    ","                     AAA                     ","                                             ","                                             ","                                             ","                                             ","                                             ")
@@ -326,45 +459,6 @@ public class GTTMultiMachines {
                     .where("#", air())
                     .build())
             .workableCasingModel(GTCEu.id("block/casings/solid/machine_casing_frost_proof"),
-                    GTCEu.id("block/multiblock/gcym/mega_vacuum_freezer"))
-            .register();
-
-    public final static MultiblockMachineDefinition ENGRAVING_PLANT = REGISTRATE
-            .multiblock("engraving_plant", WorkableElectricMultiblockMachine::new)
-            .langValue("engraving_plant")
-            .tooltips(Component.translatable("gtceu.multiblock.parallelizable.tooltip"))
-            .tooltips(Component.translatable("gtceu.machine.available_recipe_map_1.tooltip",
-                    Component.translatable("gttcore.engraving_plant")))
-            .rotationState(RotationState.ALL)
-            .recipeType(LASER_ENGRAVER_RECIPES)
-            .recipeModifiers((m, r) -> ModifierFunction.builder().modifyAllContents(ContentModifier.multiplier(256)).eutMultiplier(256).parallels(256).build(), GTRecipeModifiers.PARALLEL_HATCH, GTRecipeModifiers.OC_NON_PERFECT_SUBTICK)
-            .appearanceBlock(CASING_LASER_SAFE_ENGRAVING)
-            .pattern(definition -> FactoryBlockPattern.start(LEFT, UP, BACK)
-                    .aisle("                 ","                 ","     AAAAAAA     ","    AAAAAAAAA    ","   AAAAAAAAAAA   ","  AAAABBBBBAAAA  ","  AAABBBBBBBAAA  ","  AAABBBBBBBAAA  ","  AAABBB~BBBAAA  ","  AAABBBBBBBAAA  ","  AAABBBBBBBAAA  ","  AAAABBBBBAAAA  ","   AAAAAAAAAAA   ","    AAAAAAAAA    ","     AAAAAAA     ","                 ","                 ")
-                    .aisle("                 ","     BBBBBBB     ","   BBBBBBBBBBB   ","  BBBB#####BBBB  ","  BBB       BBB  "," BBB#########BBB "," BB###########BB "," BB           BB "," BB###########BB "," BB###########BB "," BB###########BB "," BBB#########BBB ","  BBB#######BBB  ","  BBBB#####BBBB  ","   BBBBBBBBBBB   ","     BBBBBBB     ","                 ")
-                    .aisle("                 ","                 ","     BBBBBBB     ","    BBBBBBBBB    ","   BBBBBBBBBBB   ","  BBBBBBBBBBBBB  ","  BBBBBBBBBBBBB  ","  BBBBBBBBBBBBB  ","  BBBBBBCBBBBBB  ","  BBBBBBBBBBBBB  ","  BBBBBBBBBBBBB  ","  BBBBBBBBBBBBB  ","   BBBBBBBBBBB   ","    BBBBBBBBB    ","     BBBBBBB     ","                 ","                 ")
-                    .aisle("BB             BB","BB             BB","                 ","                 ","                 ","                 ","                 ","                 ","                 ","                 ","                 ","                 ","                 ","                 ","                 ","BB             BB","BB             BB")
-                    .aisle("BB             BB","BDB           BDB"," BB           BB ","                 ","      BBBBB      ","     B     B     ","    B       B    ","    B       B    ","    B       B    ","    B       B    ","    B       B    ","     B     B     ","      BBBBB      ","                 "," BB           BB ","BDB           BDB","BB             BB")
-                    .aisle("                 "," BB           BB "," BDB         BDB ","  BB BBBBBBB BB  ","    BBDDDDDBB    ","   BBDBBBBBDBB   ","   BDB     BDB   ","   BDB     BDB   ","   BDB     BDB   ","   BDB     BDB   ","   BDB     BDB   ","   BBDBBBBBDBB   ","    BBDDDDDBB    ","  BB BBBBBBB BB  "," BDB         BDB "," BB           BB ","                 ")
-                    .aisle("                 ","                 ","  BB         BB  ","  BDD       DDB  ","   DC BBBBB CD   ","     BBDDDBB     ","    BBDCCCDBB    ","    BDCCCCCDB    ","    BDCCCCCDB    ","    BDCCCCCDB    ","    BBDCCCDBB    ","     BBDDDBB     ","   DC BBBBB CD   ","  BDD       DDB  ","  BB         BB  ","                 ","                 ")
-                    .aisle("                 ","                 ","                 ","   DC       CD   ","   CC       CC   ","       BBB       ","      B   B      ","     B     B     ","     B     B     ","     B     B     ","      B   B      ","       BBB       ","   CC       CC   ","   DC       CD   ","                 ","                 ","                 ")
-                    .aisle("                 ","                 ","                 ","                 ","                 ","                 ","                 ","                 ","                 ","                 ","                 ","                 ","                 ","                 ","                 ","                 ","                 ")
-                    .aisle("                 ","                 ","                 ","                 ","                 ","                 ","                 ","                 ","                 ","                 ","                 ","                 ","                 ","                 ","                 ","                 ","                 ")
-                    .aisle("                 ","                 ","                 ","                 ","                 ","                 ","                 ","                 ","        A        ","                 ","                 ","                 ","                 ","                 ","                 ","                 ","                 ")
-                    .aisle("                 ","                 ","                 ","                 ","                 ","                 ","                 ","        A        ","       AAA       ","        A        ","                 ","                 ","                 ","                 ","                 ","                 ","                 ")
-                    .aisle("                 ","                 ","                 ","                 ","                 ","                 ","                 ","                 ","        A        ","                 ","                 ","                 ","                 ","                 ","                 ","                 ","                 ")
-                    .where("~", Predicates.controller(Predicates.blocks(definition.get())))
-                    .where("A", Predicates.blocks(ForgeRegistries.BLOCKS.getValue(new ResourceLocation("gtceu:electrolytic_cell"))))
-                    .where("B", Predicates.blocks(ForgeRegistries.BLOCKS.getValue(new ResourceLocation("gtceu:laser_safe_engraving_casing"))).setMinGlobalLimited(400)
-                            .or(autoAbilities(definition.getRecipeTypes()))
-                            .or(autoAbilities(true, false, true))
-                            .or(abilities(INPUT_LASER)))
-                    .where("C", Predicates.blocks(ForgeRegistries.BLOCKS.getValue(new ResourceLocation("gtceu:fusion_glass"))))
-                    .where("D", Predicates.blocks(ForgeRegistries.BLOCKS.getValue(new ResourceLocation("gtceu:molybdenum_disilicide_coil_block"))))
-                    .where(" ", any())
-                    .where("#", air())
-                    .build())
-            .workableCasingModel(GTCEu.id("block/casings/gcym/laser_safe_engraving_casing"),
                     GTCEu.id("block/multiblock/gcym/mega_vacuum_freezer"))
             .register();
 

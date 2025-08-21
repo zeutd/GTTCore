@@ -2,8 +2,10 @@
   "required": true,
   "package": "com.gtt.gttcore.mixin",
   "compatibilityLevel": "JAVA_17",
+  "refmap": "gttcore.mixins.refmap.json",
   "minVersion": "0.8",
   "mixins": [
+    "ServerScriptManagerMixin"
   ],
   "client": [
   ],

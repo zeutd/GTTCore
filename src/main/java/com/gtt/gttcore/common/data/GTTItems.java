@@ -1,9 +1,23 @@
 package com.gtt.gttcore.common.data;
 
+import com.gregtechceu.gtceu.api.item.ComponentItem;
+import com.gregtechceu.gtceu.common.data.GTCovers;
+import com.gregtechceu.gtceu.common.item.CoverPlaceBehavior;
+import com.gregtechceu.gtceu.common.item.TooltipBehavior;
+import com.gregtechceu.gtceu.common.registry.GTRegistration;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
+import com.gregtechceu.gtceu.utils.FormattingUtil;
+import com.gtt.gttcore.common.item.BeerItem;
+import com.simibubi.create.AllTags;
+import com.simibubi.create.content.equipment.BuildersTeaItem;
 import com.tterrag.registrate.util.entry.ItemEntry;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
 
+import static com.gregtechceu.gtceu.common.data.GTItems.attach;
 import static com.gtt.gttcore.common.registry.GTTRegistration.REGISTRATE;
 
 @SuppressWarnings("unchecked")
@@ -64,6 +78,20 @@ public class GTTItems {
             .register();
 
 
+    public static ItemEntry<Item> UNAWAKENED_WETWARE_PROCESSOR_LuV = REGISTRATE.item("unawakened_wetware_processor", Item::new)
+            .lang("Unawakened Wetware Processor")
+            .register();
+    public static ItemEntry<Item> UNAWAKENED_WETWARE_PROCESSOR_ASSEMBLY_ZPM = REGISTRATE
+            .item("unawakened_wetware_processor_assembly", Item::new).lang("Unawakened Wetware Processor Assembly")
+            .register();
+    public static ItemEntry<Item> UNAWAKENED_WETWARE_SUPER_COMPUTER_UV = REGISTRATE.item("unawakened_wetware_processor_computer", Item::new)
+            .lang("Unawakened Wetware Processor Supercomputer")
+            .register();
+    public static ItemEntry<Item> UNAWAKENED_WETWARE_MAINFRAME_UHV = REGISTRATE.item("unawakened_wetware_processor_mainframe", Item::new)
+            .lang("Unawakened Wetware Processor Mainframe")
+            .register();
+
+
     //T8: Optical
 
     public static ItemEntry<Item> OPTICAL_PROCESSOR_ZPM = REGISTRATE.item("optical_processor", Item::new)
@@ -120,6 +148,58 @@ public class GTTItems {
     public static ItemEntry<Item> HYPERCAUSAL_PROCESSOR_OpV = REGISTRATE.item("hypercausal_processor_mainframe", Item::new)
             .lang("Hypercausal Processor Mainframe").tag(CustomTags.OpV_CIRCUITS)
             .register();
+
+    public static ItemEntry<Item> ELECTRIC_MOTOR_ULV = REGISTRATE.item("ulv_electric_motor", Item::new)
+            .lang("ULV Electric Motor")
+            .tag(CustomTags.ELECTRIC_MOTORS)
+            .register();
+    public static ItemEntry<ComponentItem> ELECTRIC_PUMP_ULV = REGISTRATE.item("ulv_electric_pump", ComponentItem::create)
+            .lang("ULV Electric Pump")
+            .onRegister(attach(new CoverPlaceBehavior(GTTCovers.PUMP_ULV)))
+            .onRegister(attach(new TooltipBehavior(lines -> {
+                lines.add(Component.translatable("item.gtceu.electric.pump.tooltip"));
+                lines.add(Component.translatable("gtceu.universal.tooltip.fluid_transfer_rate",
+                        FormattingUtil.formatNumbers(1280 / 20)));
+            })))
+            .tag(CustomTags.ELECTRIC_PUMPS)
+            .register();
+    public static ItemEntry<Item> ELECTRIC_PISTON_ULV = GTRegistration.REGISTRATE.item("ulv_electric_piston", Item::new)
+            .lang("ULV Electric Piston")
+            .tag(CustomTags.ELECTRIC_PISTONS)
+            .register();
+    public static ItemEntry<ComponentItem> FLUID_REGULATOR_ULV = REGISTRATE
+            .item("ulv_fluid_regulator", ComponentItem::create)
+            .lang("ULV Fluid Regulator")
+            .onRegister(attach(new CoverPlaceBehavior(GTTCovers.FLUID_REGULATOR_ULV)))
+            .onRegister(attach(new TooltipBehavior(lines -> {
+                lines.add(Component.translatable("item.gtceu.fluid.regulator.tooltip"));
+                lines.add(Component.translatable("gtceu.universal.tooltip.fluid_transfer_rate", 1280 / 4 / 20));
+            })))
+            .tag(CustomTags.FLUID_REGULATORS)
+            .register();
+    public static ItemEntry<ComponentItem> ROBOT_ARM_LV = GTRegistration.REGISTRATE.item("lv_robot_arm", ComponentItem::create)
+            .lang("LV Robot Arm")
+            .onRegister(attach(new CoverPlaceBehavior(GTTCovers.ROBOT_ARM_ULV)))
+            .onRegister(attach(new TooltipBehavior(lines -> {
+                lines.add(Component.translatable("item.gtceu.robot.arm.tooltip"));
+                lines.add(Component.translatable("gtceu.universal.tooltip.item_transfer_rate", 8));
+            })))
+            .tag(CustomTags.ROBOT_ARMS)
+            .register();
+
+    public static ItemEntry<BeerItem> BEER_BOTTLE = REGISTRATE.item("beer_bottle",BeerItem::new)
+		.properties(p -> p
+            .stacksTo(16)
+            .food(new FoodProperties.Builder()
+				.nutrition(1)
+				.saturationMod(.6F)
+				.alwaysEat()
+				.effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 3 * 60 * 20, 0, false, false, false), 1F)
+            .build()
+			)
+                    )
+                    .lang("Beer Bottle")
+		.register();
     public static final ItemEntry<Item>[] PACKAGED_CIRCUITS_ARRAY = new ItemEntry[]{
             PACKAGED_CIRCUIT_ULV,
             PACKAGED_CIRCUIT_LV,

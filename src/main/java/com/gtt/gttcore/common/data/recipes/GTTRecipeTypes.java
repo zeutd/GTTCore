@@ -3,22 +3,40 @@ package com.gtt.gttcore.common.data.recipes;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.gui.GuiTextures;
+import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeSerializer;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
 import com.gregtechceu.gtceu.api.recipe.ingredient.FluidIngredient;
 import com.gregtechceu.gtceu.api.registry.GTRegistries;
 import com.gregtechceu.gtceu.common.data.*;
+import com.gregtechceu.gtceu.data.recipe.builder.GTRecipeBuilder;
 import com.gtt.gttcore.GTTCore;
 import com.gtt.gttcore.common.data.GTTMaterials;
+import com.simibubi.create.api.data.recipe.PressingRecipeGen;
+import com.simibubi.create.content.kinetics.press.PressingRecipe;
+import com.simibubi.create.content.processing.sequenced.SequencedAssemblyRecipeBuilder;
+import com.simibubi.create.foundation.data.recipe.CreatePressingRecipeGen;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.world.item.crafting.RecipeType;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import static com.gregtechceu.gtceu.api.GTValues.ULV;
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.*;
 import static com.lowdragmc.lowdraglib.gui.texture.ProgressTexture.FillDirection.LEFT_TO_RIGHT;
 
 @SuppressWarnings("deprecation")
 public class GTTRecipeTypes {
+    public static List<GTRecipeBuilder> toReRegisterCreatePressing;
+    public static List<GTRecipeBuilder> toReRegisterCreateMixing;
+    public static List<GTRecipeBuilder> toReRegisterCreateMilling;
+    //public static List<GTRecipeBuilder> toReRegisterCreate;
     public static void init(){
+        toReRegisterCreatePressing = new ArrayList<>();
+        toReRegisterCreateMixing = new ArrayList<>();
+        toReRegisterCreateMilling = new ArrayList<>();
         CHEMICAL_RECIPES.onRecipeBuild((recipeBuilder, provider) -> {
             CHEMICAL_PLANT_RECIPES
                     .copyFrom(recipeBuilder)
@@ -46,6 +64,18 @@ public class GTTRecipeTypes {
                     .outputFluids(GTTMaterials.SupercriticalSteam.getFluid(eu / 100 * 200))
                     .outputFluids((FluidIngredient) recipeBuilder.output.get(GTRecipeCapabilities.FLUID).get(0).content)
                     .save(provider);
+        });
+        FORGE_HAMMER_RECIPES.onRecipeBuild((recipeBuilder, provider) -> {
+            if (recipeBuilder.EUt().voltage() > GTValues.V[ULV]) return;
+            toReRegisterCreatePressing.add(recipeBuilder);
+        });
+        MIXER_RECIPES.onRecipeBuild((recipeBuilder, provider) -> {
+            if (recipeBuilder.EUt().voltage() > GTValues.V[ULV]) return;
+            toReRegisterCreateMixing.add(recipeBuilder);
+        });
+        MACERATOR_RECIPES.onRecipeBuild((recipeBuilder, provider) -> {
+            if (recipeBuilder.EUt().voltage() > GTValues.V[ULV]) return;
+            toReRegisterCreateMilling.add(recipeBuilder);
         });
     }
     public static GTRecipeType register(String name, String group, RecipeType<?>... proxyRecipes) {

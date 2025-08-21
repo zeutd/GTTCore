@@ -4,15 +4,21 @@ import com.gregtechceu.gtceu.api.addon.GTAddon;
 import com.gregtechceu.gtceu.api.addon.IGTAddon;
 import com.gregtechceu.gtceu.api.addon.events.MaterialCasingCollectionEvent;
 import com.gregtechceu.gtceu.api.registry.registrate.GTRegistrate;
+import com.gtt.gttcore.common.data.GTTCovers;
 import com.gtt.gttcore.common.data.GTTElements;
+import com.gtt.gttcore.common.data.GTTItems;
 import com.gtt.gttcore.common.data.GTTOres;
 import com.gtt.gttcore.common.data.recipes.GTTRecipes;
+import com.gtt.gttcore.common.data.recipes.remove.GregTechRecipeRemoval;
 import net.minecraft.data.recipes.FinishedRecipe;
+import net.minecraft.resources.ResourceLocation;
 
 import java.util.function.Consumer;
 
+import static com.gregtechceu.gtceu.common.data.GCYMBlocks.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 import static com.gtt.gttcore.common.data.GTTBlocks.*;
+import static com.gtt.gttcore.common.data.GTTMaterials.*;
 import static com.gtt.gttcore.common.registry.GTTRegistration.REGISTRATE;
 
 @SuppressWarnings("unused")
@@ -52,6 +58,10 @@ public class GTTGTAddon implements IGTAddon {
         GTTRecipes.init(provider);
     }
 
+    @Override
+    public void removeRecipes(Consumer<ResourceLocation> provider) {
+        GregTechRecipeRemoval.initID(provider);
+    }
     // If you have custom ingredient types, uncomment this & change to match your capability.
     // KubeJS WILL REMOVE YOUR RECIPES IF THESE ARE NOT REGISTERED.
     /*
@@ -73,5 +83,12 @@ public class GTTGTAddon implements IGTAddon {
         event.add(Iridium, CASING_IRIDIUM_REINFORCED);
         event.add(Lead, CASING_LEAD_RADIATION_PROOF);
         event.add(Zirconium, CASING_LOW_NEUTRON_ABSORPTION);
+        event.add(AtomicSteel, CASING_ATOMIC);
+    }
+
+    @Override
+    public void registerCovers(){
+        GTTCovers.init();
+        GTTItems.init();
     }
 }

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "gttcore:item/unawakened_wetware_processor_assembly"
+  }
+}

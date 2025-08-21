@@ -4,15 +4,24 @@ import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.data.chemical.material.stack.MaterialEntry;
 
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
+import com.gregtechceu.gtceu.api.data.tag.TagUtil;
 import com.gregtechceu.gtceu.common.data.*;
 import com.gregtechceu.gtceu.config.ConfigHolder;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
 import com.gregtechceu.gtceu.data.recipe.VanillaRecipeHelper;
+import com.gtt.gttcore.GTTCore;
 import com.gtt.gttcore.common.data.GTTBlocks;
+import com.simibubi.create.AllBlocks;
+import com.simibubi.create.AllItems;
+import com.simibubi.create.AllTags;
 import net.minecraft.data.recipes.FinishedRecipe;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.common.Tags;
 
 import java.util.function.Consumer;
+import java.util.stream.Stream;
 
 import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
@@ -25,6 +34,8 @@ import static com.gtt.gttcore.common.data.GTTItems.*;
 import static com.gtt.gttcore.common.data.GTTMaterials.*;
 import static com.gtt.gttcore.common.data.GTTMultiMachines.*;
 import static com.gtt.gttcore.common.data.recipes.GTTRecipeTypes.*;
+import static com.simibubi.create.AllItems.WHEAT_FLOUR;
+import static com.simibubi.create.AllItems.ZINC_NUGGET;
 
 public class MiscRecipes {
     public static void init(Consumer<FinishedRecipe> provider) {
@@ -65,7 +76,7 @@ public class MiscRecipes {
                 .outputItems(
                         CASING_LOW_NEUTRON_ABSORPTION.asStack(ConfigHolder.INSTANCE.recipes.casingsPerCraft))
                 .duration(50).save(provider);
-        VanillaRecipeHelper.addShapedRecipe(provider, true, "casing_zirconium_pipe",
+        VanillaRecipeHelper.addShapedRecipe(provider, true, GTTCore.id("casing_zirconium_pipe"),
                 GTTBlocks.CASING_ZIRCONIUM_PIPE.asStack(ConfigHolder.INSTANCE.recipes.casingsPerCraft), "PIP", "IFI",
                 "PIP", 'P', new MaterialEntry(TagPrefix.plate, Zirconium), 'F',
                 new MaterialEntry(TagPrefix.frameGt, GTMaterials.Zirconium), 'I',
@@ -103,7 +114,7 @@ public class MiscRecipes {
                 .save(provider);
     }
     public static void registerMachineRecipes(Consumer<FinishedRecipe> provider){
-        VanillaRecipeHelper.addShapedRecipe(provider, true, "greenhouse_machine",
+        VanillaRecipeHelper.addShapedRecipe(provider, true, GTTCore.id("greenhouse_machine"),
                 GREENHOUSE.asStack(),
                 "AWA",
                 "GSG",
@@ -153,7 +164,7 @@ public class MiscRecipes {
                 .inputItems(ELECTRIC_PUMP_LuV, 2)
                 .outputItems(HUGE_SUPERCRITICAL_STEAM_TURBINE)
                 .EUt(VA[EV]).duration(200).save(provider);
-        VanillaRecipeHelper.addShapedRecipe(provider, true, "large_supercritical_steam_turbine_machine",
+        VanillaRecipeHelper.addShapedRecipe(provider, true, GTTCore.id("large_supercritical_steam_turbine_machine"),
                 LARGE_SUPERCRITICAL_STEAM_TURBINE.asStack(), "PSP", "SAS", "CSC", 'S',
                 new MaterialEntry(TagPrefix.gear, NaquadahAlloy), 'P', CustomTags.ZPM_CIRCUITS, 'A',
                 GTMachines.HULL[GTValues.ZPM].asStack(), 'C',
@@ -167,5 +178,59 @@ public class MiscRecipes {
                 .inputItems(ELECTRIC_PISTON_IV, 10)
                 .outputItems(FISSION_REACTOR)
                 .EUt(VA[IV]).duration(200).save(provider);
+        ASSEMBLER_RECIPES.recipeBuilder("create_track")
+                .inputItems(AllTags.AllItemTags.SLEEPERS.tag)
+                .inputItems(Ingredient.fromValues(Stream.of(new Ingredient.TagValue(Tags.Items.NUGGETS_IRON), new Ingredient.TagValue(TagUtil.createItemTag("nuggets/zinc")))))
+                .outputItems(AllBlocks.TRACK, 16)
+                .EUt(VH[ULV])
+                .duration(100)
+                .save(provider);
+
+
+
+
+        BREWING_RECIPES.recipeBuilder("raw_beer")
+                .inputItems(dust, Wheat)
+                .inputFluids(Water.getFluid(1000))
+                .outputFluids(RawBeer.getFluid(1000))
+                .save(provider);
+        FERMENTING_RECIPES.recipeBuilder("beer")
+                .inputFluids(RawBeer.getFluid(1000))
+                .outputFluids(Beer.getFluid(1000))
+                .save(provider);
+        CANNER_RECIPES.recipeBuilder("beer_bottle")
+                .inputFluids(Beer.getFluid(250))
+                .inputItems(Items.GLASS_BOTTLE)
+                .outputItems(BEER_BOTTLE)
+                .save(provider);
+
+
+
+
+
+
+
+        VanillaRecipeHelper.addShapedRecipe(provider, true, GTTCore.id("conveyor_from_rubber_plate"),
+                AllItems.BELT_CONNECTOR.asStack(4),
+                "SSS",
+                        "SSS",
+                        "   ",
+                'S', new MaterialEntry(plate, Rubber)
+        );
+        VanillaRecipeHelper.addShapedRecipe(provider, true, GTTCore.id("conveyor_from_styrene_butadiene_rubber_plate"),
+                AllItems.BELT_CONNECTOR.asStack(4),
+                "SSS",
+                "SSS",
+                "   ",
+                'S', new MaterialEntry(plate, StyreneButadieneRubber)
+        );
+        VanillaRecipeHelper.addShapedRecipe(provider, true, GTTCore.id("conveyor_from_silicon_rubber_plate"),
+                AllItems.BELT_CONNECTOR.asStack(4),
+                "SSS",
+                "SSS",
+                "   ",
+                'S', new MaterialEntry(plate, SiliconeRubber)
+        );
+
     }
 }

@@ -7,6 +7,7 @@ license = "${mod_license}"
 issueTrackerURL="https://github.com/zeutd/GTTCore/issues" #optional
 # A list of mods - how many allowed here is determined by the individual mod loader
 
+
 [[mods]]
     modId = "${mod_id}"
     version = "${version}"
@@ -19,9 +20,10 @@ issueTrackerURL="https://github.com/zeutd/GTTCore/issues" #optional
     # Some more fluff displayed in the Mods panel. Plug your stuff here!
     authors="${mod_author}"
     description = '''
-    Core mod of GregTech Tiny
+Core mod of GregTech Tiny
 '''
-
+    [[mixins]]
+        config="${mod_id}.mixins.json"
     [[dependencies.${mod_id}]]
         modId = "forge"
         mandatory = true
@@ -46,3 +48,15 @@ issueTrackerURL="https://github.com/zeutd/GTTCore/issues" #optional
         versionRange = "[${ad_astra_version},)"
         ordering = "AFTER"
         side = "BOTH"
+    [[dependencies.${mod_id}]]
+        modId="create"
+        mandatory=true
+        versionRange="[6.0.0,)"
+        ordering="AFTER"
+        side="BOTH"
+    [[dependencies.${mod_id}]]
+        modId="kubejs"
+        mandatory=true
+        versionRange="[2000,)"
+        ordering="AFTER"
+        side="BOTH"

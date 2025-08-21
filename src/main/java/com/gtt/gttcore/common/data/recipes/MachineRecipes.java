@@ -1,10 +1,19 @@
 package com.gtt.gttcore.common.data.recipes;
 
+import com.gregtechceu.gtceu.api.machine.multiblock.CleanroomType;
 import com.gtt.gttcore.GTTCore;
+import com.simibubi.create.AllBlocks;
+import com.simibubi.create.AllTags;
+import com.simibubi.create.foundation.data.recipe.CreateRecipeProvider;
 import net.minecraft.data.recipes.FinishedRecipe;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraftforge.common.Tags;
 
 import java.util.function.Consumer;
+import java.util.stream.Stream;
 
 import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
@@ -12,14 +21,90 @@ import static com.gregtechceu.gtceu.common.data.GTBlocks.*;
 import static com.gregtechceu.gtceu.common.data.GTItems.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.*;
+import static com.gtt.gttcore.common.data.GTTItems.*;
 import static com.gtt.gttcore.common.data.GTTMaterials.*;
 import static com.gtt.gttcore.common.data.recipes.GTTRecipeTypes.*;
+import static com.simibubi.create.AllItems.ZINC_NUGGET;
 import static net.minecraft.world.item.Items.*;
 
 public class MachineRecipes {
     public static void init(Consumer<FinishedRecipe> provider) {
         registerFissionRecipes(provider);
         registerGreenhouseRecipes(provider);
+        registerCultivatorRecipes(provider);
+    }
+    private static void registerCultivatorRecipes(Consumer<FinishedRecipe> provider){
+        CULTIVATOR_RECIPES.recipeBuilder("fermented_biomass")
+                .inputFluids(Biomass.getFluid(100))
+                .outputFluids(FermentedBiomass.getFluid(100))
+                .duration(75).EUt(2).save(provider);
+        CULTIVATOR_RECIPES.recipeBuilder(GTTCore.id("cultivate_products"))
+                .inputFluids(FermentedBiomass.getFluid(100))
+                .outputFluids(CultivateProducts.getFluid(100))
+                .duration(150)
+                .EUt(VH[LV])
+                .circuitMeta(1)
+                .save(provider);
+        CULTIVATOR_RECIPES.recipeBuilder(GTTCore.id("wetware_processor_awakening"))
+                .inputItems(UNAWAKENED_WETWARE_PROCESSOR_LuV)
+                .inputFluids(SterileGrowthMedium.getFluid(500))
+                .outputItems(WETWARE_PROCESSOR_LuV)
+                .duration(400)
+                .EUt(VA[EV])
+                .cleanroom(CleanroomType.STERILE_CLEANROOM)
+                .save(provider);
+        CULTIVATOR_RECIPES.recipeBuilder(GTTCore.id("wetware_processor_awakening"))
+                .inputItems(UNAWAKENED_WETWARE_PROCESSOR_ASSEMBLY_ZPM)
+                .inputFluids(SterileGrowthMedium.getFluid(500))
+                .outputItems(WETWARE_PROCESSOR_ASSEMBLY_ZPM)
+                .duration(400)
+                .EUt(VA[EV])
+                .cleanroom(CleanroomType.STERILE_CLEANROOM)
+                .save(provider);
+        CULTIVATOR_RECIPES.recipeBuilder(GTTCore.id("wetware_processor_awakening"))
+                .inputItems(UNAWAKENED_WETWARE_SUPER_COMPUTER_UV)
+                .inputFluids(SterileGrowthMedium.getFluid(500))
+                .outputItems(WETWARE_SUPER_COMPUTER_UV)
+                .duration(400)
+                .EUt(VA[EV])
+                .cleanroom(CleanroomType.STERILE_CLEANROOM)
+                .save(provider);
+        CULTIVATOR_RECIPES.recipeBuilder(GTTCore.id("wetware_mainframe_awakening"))
+                .inputItems(UNAWAKENED_WETWARE_MAINFRAME_UHV)
+                .inputFluids(SterileGrowthMedium.getFluid(500))
+                .outputItems(WETWARE_MAINFRAME_UHV)
+                .duration(400)
+                .EUt(VA[EV])
+                .cleanroom(CleanroomType.STERILE_CLEANROOM)
+                .save(provider);
+        CULTIVATOR_RECIPES.recipeBuilder("stem_cells").EUt(VA[LuV]).duration(300)
+                .inputItems(dust, Osmiridium)
+                .inputFluids(Bacteria.getFluid(500))
+                .inputFluids(SterileGrowthMedium.getFluid(500))
+                .outputItems(STEM_CELLS, 32)
+                .outputFluids(BacterialSludge.getFluid(500))
+                .cleanroom(CleanroomType.STERILE_CLEANROOM)
+                .save(provider);
+        CULTIVATOR_RECIPES.recipeBuilder("enriched_bacterial_sludge_from_u238").EUt(4).duration(64)
+                .inputItems(dust, Uranium238)
+                .inputFluids(BacterialSludge.getFluid(1000))
+                .outputFluids(EnrichedBacterialSludge.getFluid(1000))
+                .cleanroom(CleanroomType.STERILE_CLEANROOM)
+                .save(provider);
+
+        CULTIVATOR_RECIPES.recipeBuilder("enriched_bacterial_sludge_from_u235").EUt(4).duration(64)
+                .inputItems(dustTiny, Uranium235)
+                .inputFluids(BacterialSludge.getFluid(1000))
+                .outputFluids(EnrichedBacterialSludge.getFluid(1000))
+                .cleanroom(CleanroomType.STERILE_CLEANROOM)
+                .save(provider);
+
+        CULTIVATOR_RECIPES.recipeBuilder("enriched_bacterial_sludge_from_naquadria").EUt(4).duration(64)
+                .inputItems(dustTiny, Naquadria)
+                .inputFluids(BacterialSludge.getFluid(1000))
+                .outputFluids(EnrichedBacterialSludge.getFluid(2000))
+                .cleanroom(CleanroomType.STERILE_CLEANROOM)
+                .save(provider);
     }
 
     private static void registerFissionRecipes(Consumer<FinishedRecipe> provider) {
