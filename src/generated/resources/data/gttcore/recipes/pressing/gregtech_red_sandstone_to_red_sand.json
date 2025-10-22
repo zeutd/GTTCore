@@ -1,0 +1,17 @@
+{
+  "type": "create:pressing",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:red_sandstone"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "minecraft:red_sand"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:cobalt_foil"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:small_cobalt_dust"
+    }
+  ]
+}

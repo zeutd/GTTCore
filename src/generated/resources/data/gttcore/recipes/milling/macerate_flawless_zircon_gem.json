@@ -1,0 +1,18 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gttcore:flawless_zircon_gem"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 2,
+      "item": "gttcore:zircon_dust"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:refined_ores/coal"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:coal_dust"
+    },
+    {
+      "chance": 0.14,
+      "item": "gtceu:thorium_dust"
+    }
+  ]
+}

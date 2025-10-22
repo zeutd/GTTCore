@@ -1,0 +1,31 @@
+{
+  "type": "create:mixing",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:dusts/sugar"
+      }
+    },
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:brown_mushroom"
+      }
+    },
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:spider_eye"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "minecraft:fermented_spider_eye"
+    }
+  ]
+}

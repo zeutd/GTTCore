@@ -1,0 +1,21 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:gravel"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:stone_dust"
+    },
+    {
+      "chance": 0.33,
+      "item": "minecraft:flint"
+    }
+  ]
+}

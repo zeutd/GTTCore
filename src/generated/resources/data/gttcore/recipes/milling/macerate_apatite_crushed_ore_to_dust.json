@@ -1,0 +1,20 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:purified_ores/apatite"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:pure_apatite_dust"
+    },
+    {
+      "item": "gtceu:phosphate_dust"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:long_electrum_rod"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:electrum_dust"
+    }
+  ]
+}

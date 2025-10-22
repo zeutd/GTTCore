@@ -1,0 +1,17 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "ad_astra:ice_shard"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gttcore:ice_shard_dust"
+    }
+  ]
+}

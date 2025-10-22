@@ -1,0 +1,17 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:chipped_green_sapphire_gem"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:small_green_sapphire_dust"
+    }
+  ]
+}

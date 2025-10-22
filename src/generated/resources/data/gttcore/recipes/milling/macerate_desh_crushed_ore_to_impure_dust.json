@@ -1,0 +1,20 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:crushed_ores/desh"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gttcore:impure_desh_dust"
+    },
+    {
+      "item": "gttcore:desh_dust"
+    }
+  ]
+}

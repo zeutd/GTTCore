@@ -1,0 +1,28 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "forge:intersection",
+      "children": [
+        {
+          "tag": "forge:ores/electrotine"
+        },
+        {
+          "tag": "forge:ores_in_ground/deepslate"
+        }
+      ]
+    }
+  ],
+  "results": [
+    {
+      "count": 10,
+      "item": "gtceu:crushed_electrotine_ore"
+    },
+    {
+      "item": "minecraft:redstone"
+    },
+    {
+      "item": "gtceu:deepslate_dust"
+    }
+  ]
+}

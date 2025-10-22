@@ -1,0 +1,26 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:raw_materials/basaltic_mineral_sand"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 2,
+      "item": "gtceu:crushed_basaltic_mineral_sand_ore"
+    },
+    {
+      "chance": 0.14,
+      "item": "gtceu:basalt_dust"
+    },
+    {
+      "chance": 0.67,
+      "item": "gtceu:stone_dust"
+    }
+  ]
+}

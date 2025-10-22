@@ -1,0 +1,17 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:fine_aluminium_wire"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:tiny_aluminium_dust"
+    }
+  ]
+}

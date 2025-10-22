@@ -1,0 +1,17 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:damascus_steel_screw"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:tiny_damascus_steel_dust"
+    }
+  ]
+}

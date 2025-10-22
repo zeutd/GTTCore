@@ -1,0 +1,17 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:blue_steel_ingot"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:blue_steel_dust"
+    }
+  ]
+}

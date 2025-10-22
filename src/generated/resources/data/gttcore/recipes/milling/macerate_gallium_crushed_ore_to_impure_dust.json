@@ -1,0 +1,20 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:crushed_ores/gallium"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:impure_gallium_dust"
+    },
+    {
+      "item": "gtceu:gallium_dust"
+    }
+  ]
+}

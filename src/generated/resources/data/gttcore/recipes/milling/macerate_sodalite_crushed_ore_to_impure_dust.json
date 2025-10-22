@@ -1,0 +1,21 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:crushed_ores/sodalite"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:impure_sodalite_dust"
+    },
+    {
+      "count": 4,
+      "item": "gtceu:lazurite_dust"
+    }
+  ]
+}

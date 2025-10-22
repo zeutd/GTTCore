@@ -1,0 +1,18 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gttcore:depleted_uranium_rod"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 2,
+      "item": "gttcore:small_depleted_uranium_dust"
+    }
+  ]
+}

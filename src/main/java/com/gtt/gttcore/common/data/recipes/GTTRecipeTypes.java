@@ -3,7 +3,6 @@ package com.gtt.gttcore.common.data.recipes;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.gui.GuiTextures;
-import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeSerializer;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
 import com.gregtechceu.gtceu.api.recipe.ingredient.FluidIngredient;
@@ -12,13 +11,10 @@ import com.gregtechceu.gtceu.common.data.*;
 import com.gregtechceu.gtceu.data.recipe.builder.GTRecipeBuilder;
 import com.gtt.gttcore.GTTCore;
 import com.gtt.gttcore.common.data.GTTMaterials;
-import com.simibubi.create.api.data.recipe.PressingRecipeGen;
-import com.simibubi.create.content.kinetics.press.PressingRecipe;
-import com.simibubi.create.content.processing.sequenced.SequencedAssemblyRecipeBuilder;
-import com.simibubi.create.foundation.data.recipe.CreatePressingRecipeGen;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraftforge.data.event.GatherDataEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +30,9 @@ public class GTTRecipeTypes {
     public static List<GTRecipeBuilder> toReRegisterCreateMilling;
     //public static List<GTRecipeBuilder> toReRegisterCreate;
     public static void init(){
+
+    }
+    public static void gatherData(){
         toReRegisterCreatePressing = new ArrayList<>();
         toReRegisterCreateMixing = new ArrayList<>();
         toReRegisterCreateMilling = new ArrayList<>();
@@ -48,8 +47,8 @@ public class GTTRecipeTypes {
         });
         LARGE_CHEMICAL_RECIPES.onRecipeBuild((recipeBuilder, provider) ->
                 CHEMICAL_PLANT_RECIPES
-                    .copyFrom(recipeBuilder)
-                    .save(provider)
+                        .copyFrom(recipeBuilder)
+                        .save(provider)
         );
         ROCK_BREAKER_RECIPES.onRecipeBuild((recipeBuilder, provider) ->
                 LARGE_ROCK_BREAKER_RECIPES
@@ -108,7 +107,7 @@ public class GTTRecipeTypes {
             .setSlotOverlay(false, false, GuiTextures.MOLECULAR_OVERLAY_1)
             .setProgressBar(GuiTextures.PROGRESS_BAR_BOILER_FUEL.get(true), LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.BOILER);
-    public final static GTRecipeType PARTICLE_COLLIDER_RECIPES = register("particle_collider", MULTIBLOCK).setMaxIOSize(2, 1, 2, 2)
+    public final static GTRecipeType PARTICLE_ACCELERATOR_RECIPES = register("particle_collider", MULTIBLOCK).setMaxIOSize(2, 1, 2, 2)
             .setEUIO(IO.IN)
             .setSlotOverlay(true, true, GuiTextures.MOLECULAR_OVERLAY_1)
             .setSlotOverlay(false, true, GuiTextures.MOLECULAR_OVERLAY_1)
@@ -131,6 +130,7 @@ public class GTTRecipeTypes {
             .setSound(GTSoundEntries.CHEMICAL);
     public static final GTRecipeType CHEMICAL_PLANT_RECIPES = register("chemical_plant", MULTIBLOCK)
             .setMaxIOSize(9, 9, 9, 9).setEUIO(IO.IN)
+            .setEUIO(IO.IN)
             .prepareBuilder(recipeBuilder -> recipeBuilder.EUt(GTValues.VA[GTValues.LV]))
             .setSlotOverlay(false, false, false, GuiTextures.MOLECULAR_OVERLAY_1)
             .setSlotOverlay(false, false, true, GuiTextures.MOLECULAR_OVERLAY_2)
@@ -140,4 +140,17 @@ public class GTTRecipeTypes {
             .setSlotOverlay(true, true, GuiTextures.VIAL_OVERLAY_2)
             .setSound(GTSoundEntries.CHEMICAL)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE, LEFT_TO_RIGHT);
+    public static final GTRecipeType LASER_ENGRAVING_PLANT_RECIPES = register("laser_engraving_plant", MULTIBLOCK)
+            .setMaxIOSize(2, 1, 0, 0).setEUIO(IO.IN)
+            .setEUIO(IO.IN)
+            .setSlotOverlay(false, false, true, GuiTextures.LENS_OVERLAY)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, LEFT_TO_RIGHT)
+            .setMaxTooltips(4)
+            .setSound(GTSoundEntries.ELECTROLYZER);
+    public static final GTRecipeType HIGH_ENERGY_LASER_PIPE_COOLANT = register("high_energy_laser_pipe_coolant", MULTIBLOCK)
+            .setMaxIOSize(0, 0, 1, 0).setEUIO(IO.IN)
+            .setSlotOverlay(false, true, false, GuiTextures.ATOMIC_OVERLAY_1)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_RESEARCH_STATION_1, LEFT_TO_RIGHT)
+            .setMaxTooltips(4)
+            .setSound(GTSoundEntries.REPLICATOR);
 }

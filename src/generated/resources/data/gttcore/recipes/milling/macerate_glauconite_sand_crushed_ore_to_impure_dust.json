@@ -1,0 +1,20 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:crushed_ores/glauconite_sand"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:impure_glauconite_sand_dust"
+    },
+    {
+      "item": "gtceu:sodium_dust"
+    }
+  ]
+}

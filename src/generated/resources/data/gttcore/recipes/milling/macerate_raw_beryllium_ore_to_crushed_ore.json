@@ -1,0 +1,24 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:raw_materials/beryllium"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 2,
+      "item": "gtceu:crushed_beryllium_ore"
+    },
+    {
+      "item": "minecraft:emerald"
+    },
+    {
+      "item": "gtceu:stone_dust"
+    }
+  ]
+}

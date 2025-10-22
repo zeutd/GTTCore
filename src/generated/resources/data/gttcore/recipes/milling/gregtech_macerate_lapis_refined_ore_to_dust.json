@@ -1,0 +1,21 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:refined_ores/lapis"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:lapis_dust"
+    },
+    {
+      "chance": 0.14,
+      "item": "gtceu:pyrite_dust"
+    }
+  ]
+}

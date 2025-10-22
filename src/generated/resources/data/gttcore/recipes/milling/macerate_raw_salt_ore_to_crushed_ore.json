@@ -1,0 +1,24 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:raw_materials/salt"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 4,
+      "item": "gtceu:crushed_salt_ore"
+    },
+    {
+      "item": "gtceu:rock_salt_gem"
+    },
+    {
+      "item": "gtceu:stone_dust"
+    }
+  ]
+}

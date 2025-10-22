@@ -21,7 +21,7 @@ public class GTTCreateFillingRecipeGen extends FillingRecipeGen {
     }
     GeneratedRecipe
 
-            BEER_BOTTLE = create("honey_bottle", b -> b.require(GTTMaterials.Beer.getFluid(), 250)
+            BEER_BOTTLE = create("beer_bottle", b -> b.require(GTTMaterials.Beer.getFluid(), 250)
             .require(Items.GLASS_BOTTLE)
             .output(GTTItems.BEER_BOTTLE))
             ;

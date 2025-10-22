@@ -1,0 +1,20 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:purified_ores/bauxite"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:pure_bauxite_dust"
+    },
+    {
+      "item": "gtceu:rutile_dust"
+    }
+  ]
+}

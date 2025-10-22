@@ -37,10 +37,10 @@ public class GTTRecipeProvider extends RecipeProvider {
     public static void registerAllProcessing(DataGenerator gen, PackOutput output) {
         GTCraftingComponents.init();
         GTRecipes.recipeAddition(ignored -> {});
-//        GENERATORS.add(new GTTCreatePressingRecipeGen(output));
-//        GENERATORS.add(new GTTCreateMixingRecipeGen(output));
-//        GENERATORS.add(new GTTCreateFillingRecipeGen(output));
-//        GENERATORS.add(new GTTCreateMillingRecipeGen(output));
+        GENERATORS.add(new GTTCreatePressingRecipeGen(output));
+        GENERATORS.add(new GTTCreateMixingRecipeGen(output));
+        GENERATORS.add(new GTTCreateFillingRecipeGen(output));
+        GENERATORS.add(new GTTCreateMillingRecipeGen(output));
         gen.addProvider(true, new DataProvider() {
 
             @Override

@@ -1,0 +1,24 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:raw_materials/tetrahedrite"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 2,
+      "item": "gtceu:crushed_tetrahedrite_ore"
+    },
+    {
+      "item": "gtceu:antimony_dust"
+    },
+    {
+      "item": "gtceu:stone_dust"
+    }
+  ]
+}

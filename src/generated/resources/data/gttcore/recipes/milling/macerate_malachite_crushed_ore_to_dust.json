@@ -1,0 +1,20 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:purified_ores/malachite"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:pure_malachite_dust"
+    },
+    {
+      "item": "gtceu:calcite_dust"
+    }
+  ]
+}

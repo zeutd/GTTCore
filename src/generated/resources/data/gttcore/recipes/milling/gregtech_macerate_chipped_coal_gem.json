@@ -1,0 +1,17 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:chipped_coal_gem"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:small_coal_dust"
+    }
+  ]
+}

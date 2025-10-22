@@ -1,0 +1,30 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "forge:intersection",
+      "children": [
+        {
+          "tag": "forge:ores/sodalite"
+        },
+        {
+          "tag": "forge:ores_in_ground/netherrack"
+        }
+      ]
+    }
+  ],
+  "results": [
+    {
+      "count": 24,
+      "item": "gtceu:crushed_sodalite_ore"
+    },
+    {
+      "chance": 0.14,
+      "item": "gtceu:lazurite_gem"
+    },
+    {
+      "chance": 0.67,
+      "item": "gtceu:netherrack_dust"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:crushed_ores/yellow_limonite"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:impure_yellow_limonite_dust"
+    },
+    {
+      "item": "gtceu:nickel_dust"
+    }
+  ]
+}

@@ -4,7 +4,6 @@
 build/
 out/
 classes/
-
 # eclipse
 
 *.launch
@@ -32,3 +31,4 @@ run/
 run-data/
 mods/
 executeGame.bat
+/src/main/resources/multiblocks.txt

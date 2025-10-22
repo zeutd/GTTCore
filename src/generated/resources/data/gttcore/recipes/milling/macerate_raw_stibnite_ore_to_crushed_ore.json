@@ -1,0 +1,24 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:raw_materials/stibnite"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 2,
+      "item": "gtceu:crushed_stibnite_ore"
+    },
+    {
+      "item": "gtceu:antimony_trioxide_dust"
+    },
+    {
+      "item": "gtceu:stone_dust"
+    }
+  ]
+}

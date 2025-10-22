@@ -1,0 +1,17 @@
+{
+  "type": "create:mixing",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:dirt"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "minecraft:mud"
+    }
+  ]
+}

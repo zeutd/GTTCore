@@ -1,0 +1,22 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:invar_wrench_tip"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 4,
+      "item": "gtceu:invar_dust"
+    },
+    {
+      "count": 4,
+      "item": "gtceu:tiny_steel_dust"
+    }
+  ]
+}

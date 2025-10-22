@@ -1,0 +1,28 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "forge:intersection",
+      "children": [
+        {
+          "tag": "forge:ores/fullers_earth"
+        },
+        {
+          "tag": "forge:ores_in_ground/stone"
+        }
+      ]
+    }
+  ],
+  "results": [
+    {
+      "count": 4,
+      "item": "gtceu:crushed_fullers_earth_ore"
+    },
+    {
+      "item": "gtceu:aluminium_dust"
+    },
+    {
+      "item": "gtceu:stone_dust"
+    }
+  ]
+}

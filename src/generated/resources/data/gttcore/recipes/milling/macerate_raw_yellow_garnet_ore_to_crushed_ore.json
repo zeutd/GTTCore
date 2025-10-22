@@ -1,0 +1,24 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:raw_materials/yellow_garnet"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 8,
+      "item": "gtceu:crushed_yellow_garnet_ore"
+    },
+    {
+      "item": "gtceu:andradite_gem"
+    },
+    {
+      "item": "gtceu:stone_dust"
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:raw_materials/mica"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 4,
+      "item": "gtceu:crushed_mica_ore"
+    },
+    {
+      "item": "gtceu:potassium_dust"
+    },
+    {
+      "item": "gtceu:stone_dust"
+    }
+  ]
+}

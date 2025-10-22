@@ -20,13 +20,13 @@ public class GTTCreateMixingRecipeGen extends MixingRecipeGen {
 
     {
         for (GTRecipeBuilder recipeBuilder : GTTRecipeTypes.toReRegisterCreateMixing) {
-            create(GTTCore.id(recipeBuilder.id.getPath()), b -> {
+            create(GTTCore.id("gregtech_" + recipeBuilder.id.getPath()), b -> {
                 if (recipeBuilder.input.containsKey(ItemRecipeCapability.CAP))
                     recipeBuilder.input.get(ItemRecipeCapability.CAP).stream().filter(content -> content.chance != 0).forEach(content -> b.require((Ingredient) content.content));
                 if (recipeBuilder.input.containsKey(FluidRecipeCapability.CAP))
                     recipeBuilder.input.get(FluidRecipeCapability.CAP).forEach(content -> Arrays.stream(((FluidIngredient) content.content).getStacks()).toList().forEach(fluidStack -> b.require(com.simibubi.create.foundation.fluid.FluidIngredient.fromFluidStack(fluidStack))));
                 if (recipeBuilder.output.containsKey(ItemRecipeCapability.CAP))
-                    recipeBuilder.output.get(ItemRecipeCapability.CAP).forEach(content -> Arrays.stream(((SizedIngredient) content.content).getItems()).toList().forEach(b::output));
+                    recipeBuilder.output.get(ItemRecipeCapability.CAP).forEach(content -> Arrays.stream(((SizedIngredient) content.content).getItems()).toList().forEach(i -> b.output((float) content.chance / content.maxChance, i)));
                 if (recipeBuilder.output.containsKey(FluidRecipeCapability.CAP))
                     recipeBuilder.output.get(FluidRecipeCapability.CAP).forEach(content -> Arrays.stream(((FluidIngredient) content.content).getStacks()).toList().forEach(b::output));
                 return b;

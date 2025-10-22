@@ -1,0 +1,20 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:purified_ores/uraninite"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:pure_uraninite_dust"
+    },
+    {
+      "item": "gtceu:thorium_dust"
+    }
+  ]
+}

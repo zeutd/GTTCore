@@ -1,0 +1,26 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:raw_materials/ice_shard"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 2,
+      "item": "gttcore:crushed_ice_shard_ore"
+    },
+    {
+      "chance": 0.14,
+      "item": "ad_astra:ice_shard"
+    },
+    {
+      "chance": 0.67,
+      "item": "gtceu:stone_dust"
+    }
+  ]
+}

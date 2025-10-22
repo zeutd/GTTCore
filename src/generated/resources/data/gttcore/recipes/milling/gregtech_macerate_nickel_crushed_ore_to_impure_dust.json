@@ -1,0 +1,21 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:crushed_ores/nickel"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:impure_nickel_dust"
+    },
+    {
+      "chance": 0.14,
+      "item": "gtceu:cobalt_dust"
+    }
+  ]
+}

@@ -1,6 +1,8 @@
 package com.gtt.gttcore.common.data.recipes;
 
 import com.gregtechceu.gtceu.api.GTValues;
+import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
+import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.gregtechceu.gtceu.api.data.chemical.material.stack.MaterialEntry;
 
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
@@ -11,10 +13,13 @@ import com.gregtechceu.gtceu.data.recipe.CustomTags;
 import com.gregtechceu.gtceu.data.recipe.VanillaRecipeHelper;
 import com.gtt.gttcore.GTTCore;
 import com.gtt.gttcore.common.data.GTTBlocks;
+import com.gtt.gttcore.common.data.GTTMaterials;
+import com.gtt.gttcore.data.recipe.GTTTags;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.AllItems;
 import com.simibubi.create.AllTags;
 import net.minecraft.data.recipes.FinishedRecipe;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -36,6 +41,8 @@ import static com.gtt.gttcore.common.data.GTTMultiMachines.*;
 import static com.gtt.gttcore.common.data.recipes.GTTRecipeTypes.*;
 import static com.simibubi.create.AllItems.WHEAT_FLOUR;
 import static com.simibubi.create.AllItems.ZINC_NUGGET;
+import static net.minecraft.world.item.Items.DIRT;
+import static net.minecraft.world.item.Items.DIRT_PATH;
 
 public class MiscRecipes {
     public static void init(Consumer<FinishedRecipe> provider) {
@@ -45,7 +52,7 @@ public class MiscRecipes {
                 .notConsumable(dust, ZieglerNattaCatalyst)
                 .outputFluids(UltraHighMolecularWeightPolyethylene.getFluid(216))
                 .duration(100)
-                .EUt(V[2])
+                .EUt(VA[2])
                 .save(provider);
         for(int i = 0; i < PACKAGED_CIRCUITS_ARRAY.length; i++){
             PACKER_RECIPES.recipeBuilder(PACKAGED_CIRCUITS_ARRAY[i].getId().getPath())
@@ -110,7 +117,7 @@ public class MiscRecipes {
                 .inputFluids(SupercriticalSteam.getFluid(64))
                 .outputFluids(DistilledWater.getFluid(4))
                 .duration(5)
-                .EUt(-V[ZPM])
+                .EUt(-VA[ZPM])
                 .save(provider);
     }
     public static void registerMachineRecipes(Consumer<FinishedRecipe> provider){
@@ -232,5 +239,39 @@ public class MiscRecipes {
                 'S', new MaterialEntry(plate, SiliconeRubber)
         );
 
+
+
+
+
+
+
+
+
+
+
+
+        VanillaRecipeHelper.addShapedRecipe(provider, true, GTTCore.id("andesite_alloy"),
+            AllItems.ANDESITE_ALLOY.asStack(1),
+                "BA",
+                "AB",
+                'A', new MaterialEntry(rock, Andesite),
+                'B', GTTTags.andesiteAlloyable
+        );
+
+        for (Material material : andesiteAlloyIngredient) {
+            VanillaRecipeHelper.addShapedRecipe(provider, String.format("mortar_grind_%s", material.getName()),
+                    ChemicalHelper.get(dust, material), "X", "m", 'X', new MaterialEntry(rawOre, material));
+        }
+
+
+
+
+
+        SIFTER_RECIPES.recipeBuilder(GTTCore.id("dirt_from_coarse_dirt"))
+                .EUt(ULV)
+                .inputItems(DIRT)
+                .duration(20 * 10)
+                .outputItems(DIRT_PATH)
+                .save(provider);
     }
 }

@@ -1,0 +1,17 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:uranium_235_plate"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:uranium_235_dust"
+    }
+  ]
+}

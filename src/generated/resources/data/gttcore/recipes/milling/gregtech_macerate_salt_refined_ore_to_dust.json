@@ -1,0 +1,21 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:refined_ores/salt"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:salt_dust"
+    },
+    {
+      "chance": 0.14,
+      "item": "gtceu:borax_dust"
+    }
+  ]
+}

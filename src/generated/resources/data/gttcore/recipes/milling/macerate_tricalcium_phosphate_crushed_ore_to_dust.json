@@ -1,0 +1,20 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:purified_ores/tricalcium_phosphate"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:pure_tricalcium_phosphate_dust"
+    },
+    {
+      "item": "gtceu:phosphate_dust"
+    }
+  ]
+}

@@ -20,11 +20,12 @@ public class GTTCreateMillingRecipeGen extends MillingRecipeGen {
 
     {
         for (GTRecipeBuilder recipeBuilder : GTTRecipeTypes.toReRegisterCreateMilling) {
-            create(GTTCore.id(recipeBuilder.id.getPath()), b -> {
+            LOGGER.info(recipeBuilder.id.getPath());
+            create(GTTCore.id("gregtech_" + recipeBuilder.id.getPath()), b -> {
                 if (recipeBuilder.input.containsKey(ItemRecipeCapability.CAP))
                     recipeBuilder.input.get(ItemRecipeCapability.CAP).stream().filter(content -> content.chance != 0).forEach(content -> b.require((Ingredient) content.content));
                 if (recipeBuilder.output.containsKey(ItemRecipeCapability.CAP))
-                    recipeBuilder.output.get(ItemRecipeCapability.CAP).forEach(content -> Arrays.stream(((SizedIngredient) content.content).getItems()).toList().forEach(b::output));
+                    recipeBuilder.output.get(ItemRecipeCapability.CAP).forEach(content -> Arrays.stream(((SizedIngredient) content.content).getItems()).toList().forEach(i -> b.output((float) content.chance / content.maxChance, i)));
                 return b;
             });
         }

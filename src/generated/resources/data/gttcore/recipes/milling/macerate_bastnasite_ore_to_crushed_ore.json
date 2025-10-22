@@ -1,0 +1,28 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "forge:intersection",
+      "children": [
+        {
+          "tag": "forge:ores/bastnasite"
+        },
+        {
+          "tag": "forge:ores_in_ground/stone"
+        }
+      ]
+    }
+  ],
+  "results": [
+    {
+      "count": 4,
+      "item": "gtceu:crushed_bastnasite_ore"
+    },
+    {
+      "item": "gtceu:neodymium_dust"
+    },
+    {
+      "item": "gtceu:stone_dust"
+    }
+  ]
+}

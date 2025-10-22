@@ -1,0 +1,20 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:purified_ores/sapphire"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:pure_sapphire_dust"
+    },
+    {
+      "item": "gtceu:green_sapphire_dust"
+    }
+  ]
+}

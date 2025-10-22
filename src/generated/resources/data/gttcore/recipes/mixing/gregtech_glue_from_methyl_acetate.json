@@ -1,0 +1,10 @@
+{
+  "type": "create:mixing",
+  "ingredients": [],
+  "results": [
+    {
+      "amount": 2500,
+      "fluid": "gtceu:glue"
+    }
+  ]
+}

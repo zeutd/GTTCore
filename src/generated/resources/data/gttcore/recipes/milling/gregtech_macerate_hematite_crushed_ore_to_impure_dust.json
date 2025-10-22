@@ -1,0 +1,21 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:crushed_ores/hematite"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:impure_hematite_dust"
+    },
+    {
+      "chance": 0.14,
+      "item": "gtceu:magnetite_dust"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:aluminium_chainsaw_head"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 18,
+      "item": "gtceu:small_steel_dust"
+    },
+    {
+      "count": 2,
+      "item": "gtceu:aluminium_dust"
+    }
+  ]
+}

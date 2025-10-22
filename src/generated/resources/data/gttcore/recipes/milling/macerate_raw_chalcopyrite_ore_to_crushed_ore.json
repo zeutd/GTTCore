@@ -1,0 +1,24 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:raw_materials/chalcopyrite"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 2,
+      "item": "gtceu:crushed_chalcopyrite_ore"
+    },
+    {
+      "item": "gtceu:pyrite_dust"
+    },
+    {
+      "item": "gtceu:stone_dust"
+    }
+  ]
+}

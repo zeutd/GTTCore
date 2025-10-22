@@ -1,0 +1,24 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:raw_materials/fullers_earth"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 4,
+      "item": "gtceu:crushed_fullers_earth_ore"
+    },
+    {
+      "item": "gtceu:aluminium_dust"
+    },
+    {
+      "item": "gtceu:stone_dust"
+    }
+  ]
+}

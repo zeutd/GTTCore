@@ -1,0 +1,17 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:chipped_nether_quartz_gem"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:small_nether_quartz_dust"
+    }
+  ]
+}

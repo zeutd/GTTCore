@@ -1,0 +1,17 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:antimony_ingot"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:antimony_dust"
+    }
+  ]
+}

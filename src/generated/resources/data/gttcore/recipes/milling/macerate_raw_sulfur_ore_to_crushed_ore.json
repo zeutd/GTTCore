@@ -1,0 +1,24 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:raw_materials/sulfur"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 2,
+      "item": "gtceu:crushed_sulfur_ore"
+    },
+    {
+      "item": "gtceu:sulfur_dust"
+    },
+    {
+      "item": "gtceu:stone_dust"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "type": "create:pressing",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:deepslate"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "minecraft:cobbled_deepslate"
+    }
+  ]
+}

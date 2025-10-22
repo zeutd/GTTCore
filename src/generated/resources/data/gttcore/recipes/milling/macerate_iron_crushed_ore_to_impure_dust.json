@@ -1,0 +1,20 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:crushed_ores/iron"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:impure_iron_dust"
+    },
+    {
+      "item": "gtceu:nickel_dust"
+    }
+  ]
+}

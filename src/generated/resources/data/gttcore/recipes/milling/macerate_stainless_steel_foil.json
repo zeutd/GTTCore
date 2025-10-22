@@ -1,0 +1,17 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:stainless_steel_foil"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:small_stainless_steel_dust"
+    }
+  ]
+}

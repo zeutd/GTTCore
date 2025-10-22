@@ -10,23 +10,32 @@ import com.gregtechceu.gtceu.api.machine.multiblock.PartAbility;
 import com.gregtechceu.gtceu.api.machine.steam.SimpleSteamMachine;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
 import com.gregtechceu.gtceu.api.registry.registrate.MachineBuilder;
+import com.gregtechceu.gtceu.client.renderer.machine.DynamicRenderHelper;
+import com.gregtechceu.gtceu.client.util.TooltipHelper;
 import com.gregtechceu.gtceu.common.data.GTMedicalConditions;
 import com.gregtechceu.gtceu.common.data.GTRecipeModifiers;
 import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
 import com.gregtechceu.gtceu.common.machine.multiblock.part.ParallelHatchPartMachine;
 import com.gregtechceu.gtceu.common.machine.multiblock.part.SteamItemBusPartMachine;
+import com.gregtechceu.gtceu.common.machine.storage.CreativeChestMachine;
 import com.gregtechceu.gtceu.common.registry.GTRegistration;
 import com.gregtechceu.gtceu.config.ConfigHolder;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
+import com.gtt.gttcore.GTTCore;
 import com.gtt.gttcore.common.data.recipes.GTTRecipeTypes;
+import com.gtt.gttcore.common.machine.CreativeHighEnergyLaserProviderMachine;
 import com.gtt.gttcore.common.machine.multiblock.GTTPartAbility;
+import com.gtt.gttcore.common.machine.multiblock.part.HighEnergyLaserHatchPartMachine;
 import com.gtt.gttcore.common.machine.multiblock.part.SteamFluidHatchPartMachine;
 import it.unimi.dsi.fastutil.Pair;
 import it.unimi.dsi.fastutil.ints.Int2IntFunction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.ItemStack;
 
+import java.util.List;
 import java.util.Locale;
+import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 
@@ -34,20 +43,39 @@ import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.api.capability.recipe.IO.IN;
 import static com.gregtechceu.gtceu.api.capability.recipe.IO.OUT;
 import static com.gregtechceu.gtceu.common.data.machines.GTMachineUtils.*;
+import static com.gregtechceu.gtceu.common.data.models.GTMachineModels.createBasicMachineModel;
 import static com.gregtechceu.gtceu.utils.FormattingUtil.toEnglishName;
 import static com.gtt.gttcore.common.registry.GTTRegistration.REGISTRATE;
 
 public class GTTMachines {
-    public static final MachineDefinition[] ULV_BENDER = registerULVMachines("bender", GTRecipeTypes.BENDER_RECIPES);
-    public static final MachineDefinition[] ULV_ELECTRIC_FURNACE = registerULVMachines("electric_furnace", GTRecipeTypes.FURNACE_RECIPES);
-    public static final MachineDefinition[] ULV_ALLOY_SMELTER = registerULVMachines("alloy_smelter", GTRecipeTypes.ALLOY_SMELTER_RECIPES);
-    public static final MachineDefinition[] ULV_HEATER = registerULVMachines("fluid_heater", GTRecipeTypes.FLUID_HEATER_RECIPES, hvCappedTankSizeFunction);
-    public static final MachineDefinition[] ULV_FORGE_HAMMER = registerULVMachines("forge_hammer", GTRecipeTypes.FORGE_HAMMER_RECIPES);
-    public static final MachineDefinition[] ULV_ORE_WASHER = registerULVMachines("ore_washer", GTRecipeTypes.ORE_WASHER_RECIPES);
-    public static final MachineDefinition[] ULV_CHEMICAL_REACTOR = registerULVMachines("chemical_reactor", GTRecipeTypes.CHEMICAL_RECIPES);
-    public static final MachineDefinition[] ULV_CUTTER = registerULVMachines("cutter", GTRecipeTypes.CUTTER_RECIPES);
-    public static final MachineDefinition[] ULV_MIXER = registerULVMachines("mixer", GTRecipeTypes.MIXER_RECIPES, hvCappedTankSizeFunction);
-    public static final MachineDefinition[] ULV_WIREMILL = registerULVMachines("wiremill", GTRecipeTypes.WIREMILL_RECIPES);
+    public static final MachineDefinition HIGH_ENERGY_LASER_EXPORT_HATCH = REGISTRATE
+            .machine("high_energy_laser_export_hatch", holder -> new HighEnergyLaserHatchPartMachine(holder, true))
+            .rotationState(RotationState.ALL)
+            .tier(UHV)
+            .abilities(GTTPartAbility.EXPORT_HIGH_ENERGY_LASER)
+            .workableTieredHullModel(GTCEu.id("laser_source_hatch"))
+            .tooltips(Component.translatable("gttcore.machine.high_energy_hatch.export.tooltip"))
+            .register();
+    public static final MachineDefinition HIGH_ENERGY_LASER_IMPORT_HATCH = REGISTRATE
+            .machine("high_energy_laser_import_hatch", holder -> new HighEnergyLaserHatchPartMachine(holder, false))
+            .rotationState(RotationState.ALL)
+            .tier(UHV)
+            .abilities(GTTPartAbility.IMPORT_HIGH_ENERGY_LASER)
+            .workableTieredHullModel(GTCEu.id("laser_target_hatch"))
+            .tooltips(Component.translatable("gttcore.machine.high_energy_hatch.import.tooltip"))
+            .register();
+
+
+    public static final MachineDefinition ULV_BENDER = registerULVMachines("bender", GTRecipeTypes.BENDER_RECIPES);
+    public static final MachineDefinition ULV_ELECTRIC_FURNACE = registerULVMachines("electric_furnace", GTRecipeTypes.FURNACE_RECIPES);
+    public static final MachineDefinition ULV_ALLOY_SMELTER = registerULVMachines("alloy_smelter", GTRecipeTypes.ALLOY_SMELTER_RECIPES);
+    public static final MachineDefinition ULV_HEATER = registerULVMachines("fluid_heater", GTRecipeTypes.FLUID_HEATER_RECIPES, hvCappedTankSizeFunction);
+    public static final MachineDefinition ULV_FORGE_HAMMER = registerULVMachines("forge_hammer", GTRecipeTypes.FORGE_HAMMER_RECIPES);
+    public static final MachineDefinition ULV_ORE_WASHER = registerULVMachines("ore_washer", GTRecipeTypes.ORE_WASHER_RECIPES);
+    public static final MachineDefinition ULV_CHEMICAL_REACTOR = registerULVMachines("chemical_reactor", GTRecipeTypes.CHEMICAL_RECIPES);
+    public static final MachineDefinition ULV_CUTTER = registerULVMachines("cutter", GTRecipeTypes.CUTTER_RECIPES);
+    public static final MachineDefinition ULV_MIXER = registerULVMachines("mixer", GTRecipeTypes.MIXER_RECIPES, hvCappedTankSizeFunction);
+    public static final MachineDefinition ULV_WIREMILL = registerULVMachines("wiremill", GTRecipeTypes.WIREMILL_RECIPES);
 
     public static final MachineDefinition[] CULTIVATOR = registerSimpleMachines("cultivator", GTTRecipeTypes.CULTIVATOR_RECIPES, GTCEu.id("block/machines/fermenter" ));
 
@@ -69,9 +97,9 @@ public class GTTMachines {
             UHV, UEV, UIV);
     public static final Pair<MachineDefinition, MachineDefinition> STEAM_CENTRIFUGE = registerSimpleSteamMachines(
             "centrifuge", GTRecipeTypes.CENTRIFUGE_RECIPES);
-    public static final MachineDefinition[] ULV_STEAM_TURBINE = registerSimpleGenerator("steam_turbine",
-            GTRecipeTypes.STEAM_TURBINE_FUELS, steamGeneratorTankSizeFunction, 0.0f, GTValues.ULV);
-    public static final MachineDefinition WOOD_FLUID_IMPORT_HATCH = GTRegistration.REGISTRATE
+    public static final MachineDefinition ULV_STEAM_TURBINE = registerSimpleGenerator("steam_turbine",
+            GTRecipeTypes.STEAM_TURBINE_FUELS, steamGeneratorTankSizeFunction, 0.0f, GTValues.ULV)[0];
+    public static final MachineDefinition WOOD_FLUID_IMPORT_HATCH = REGISTRATE
             .machine("wood_input_hatch", holder -> new SteamFluidHatchPartMachine(holder, IN))
             .rotationState(RotationState.ALL)
             .abilities(GTTPartAbility.WOOD_IMPORT_FLUIDS)
@@ -80,7 +108,7 @@ public class GTTMachines {
             .tooltips(Component.translatable("gtceu.machine.fluid_hatch.export.tooltip"),
                     Component.translatable("gttcore.machine.wood_bus.tooltip"))
             .register();
-    public static final MachineDefinition WOOD_FLUID_EXPORT_HATCH = GTRegistration.REGISTRATE
+    public static final MachineDefinition WOOD_FLUID_EXPORT_HATCH = REGISTRATE
             .machine("wood_output_hatch", holder -> new SteamFluidHatchPartMachine(holder, OUT))
             .rotationState(RotationState.ALL)
             .abilities(GTTPartAbility.WOOD_EXPORT_FLUIDS)
@@ -89,7 +117,7 @@ public class GTTMachines {
             .tooltips(Component.translatable("gtceu.machine.fluid_hatch.import.tooltip"),
                     Component.translatable("gttcore.machine.wood_bus.tooltip"))
             .register();
-    public static final MachineDefinition WOOD_ITEM_IMPORT_BUS = GTRegistration.REGISTRATE
+    public static final MachineDefinition WOOD_ITEM_IMPORT_BUS = REGISTRATE
             .machine("wood_input_bus", holder -> new SteamItemBusPartMachine(holder, IN))
             .rotationState(RotationState.ALL)
             .abilities(GTTPartAbility.WOOD_IMPORT_ITEMS)
@@ -98,7 +126,7 @@ public class GTTMachines {
             .tooltips(Component.translatable("gtceu.machine.fluid_hatch.export.tooltip"),
                     Component.translatable("gttcore.machine.wood_bus.tooltip"))
             .register();
-    public static final MachineDefinition WOOD_ITEM_EXPORT_BUS = GTRegistration.REGISTRATE
+    public static final MachineDefinition WOOD_ITEM_EXPORT_BUS = REGISTRATE
             .machine("wood_output_bus", holder -> new SteamItemBusPartMachine(holder, OUT))
             .rotationState(RotationState.ALL)
             .abilities(GTTPartAbility.WOOD_EXPORT_ITEMS)
@@ -107,6 +135,44 @@ public class GTTMachines {
             .tooltips(Component.translatable("gtceu.machine.fluid_hatch.import.tooltip"),
                     Component.translatable("gtceu.machine.steam_bus.tooltip"))
             .register();
+
+    public static final BiConsumer<ItemStack, List<Component>> CREATIVE_TOOLTIPS = (stack, list) -> list.add(
+            Component.translatable("gtceu.creative_tooltip.1")
+                    .append(Component.translatable("gtceu.creative_tooltip.2")
+                            .withStyle(TooltipHelper.RAINBOW_HSL_SLOW))
+                    .append(Component.translatable("gtceu.creative_tooltip.3")));
+    public static final MachineDefinition CREATIVE_HIGH_ENERGY_LASER_PROVIDER = REGISTRATE
+            .machine("creative_high_energy_laser_provider", CreativeHighEnergyLaserProviderMachine::new)
+            .rotationState(RotationState.ALL)
+            .allowExtendedFacing(true)
+            .tooltipBuilder((stack, list) -> {
+                CREATIVE_TOOLTIPS.accept(stack, list);
+            })
+            .tier(MAX)
+            .workableTieredHullModel(
+                    GTCEu.id("laser_source_hatch")
+            )
+            .hasBER(true)
+            .register();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public static MachineDefinition[] registerTieredMachines(String name,
                                                              BiFunction<IMachineBlockEntity, Integer, MetaMachine> factory,
@@ -220,15 +286,15 @@ public class GTTMachines {
                 tiers);
     }
 
-    public static MachineDefinition[] registerULVMachines(String name, GTRecipeType recipeType) {
+    public static MachineDefinition registerULVMachines(String name, GTRecipeType recipeType) {
         return registerULVMachines(name, recipeType, defaultTankSizeFunction);
     }
 
-    public static MachineDefinition[] registerULVMachines(String name, GTRecipeType recipeType, Int2IntFunction tankScalingFunction) {
+    public static MachineDefinition registerULVMachines(String name, GTRecipeType recipeType, Int2IntFunction tankScalingFunction) {
         return registerULVMachines(name, recipeType, tankScalingFunction, false);
     }
 
-    public static MachineDefinition[] registerULVMachines(String name,
+    public static MachineDefinition registerULVMachines(String name,
                                                           GTRecipeType recipeType,
                                                           Int2IntFunction tankScalingFunction,
                                                           boolean hasPollutionDebuff) {
@@ -253,6 +319,6 @@ public class GTTMachines {
                                     tankScalingFunction.applyAsInt(tier), true))
                             .register();
                 },
-                ULV);
+                ULV)[0];
     }
 }

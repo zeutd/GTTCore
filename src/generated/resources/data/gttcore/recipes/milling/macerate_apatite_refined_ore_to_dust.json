@@ -1,0 +1,20 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:refined_ores/apatite"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:apatite_dust"
+    },
+    {
+      "item": "gtceu:pyrochlore_dust"
+    }
+  ]
+}

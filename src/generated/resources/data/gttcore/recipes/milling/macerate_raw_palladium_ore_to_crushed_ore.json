@@ -1,0 +1,24 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:raw_materials/palladium"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 2,
+      "item": "gtceu:crushed_palladium_ore"
+    },
+    {
+      "item": "gtceu:palladium_dust"
+    },
+    {
+      "item": "gtceu:stone_dust"
+    }
+  ]
+}

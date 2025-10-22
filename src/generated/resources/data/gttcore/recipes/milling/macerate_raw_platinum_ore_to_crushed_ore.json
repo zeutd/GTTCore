@@ -1,0 +1,24 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:raw_materials/platinum"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 2,
+      "item": "gtceu:crushed_platinum_ore"
+    },
+    {
+      "item": "gtceu:nickel_dust"
+    },
+    {
+      "item": "gtceu:stone_dust"
+    }
+  ]
+}

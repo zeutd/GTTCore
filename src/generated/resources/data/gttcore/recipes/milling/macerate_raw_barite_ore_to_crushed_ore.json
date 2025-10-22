@@ -1,0 +1,24 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:raw_materials/barite"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 2,
+      "item": "gtceu:crushed_barite_ore"
+    },
+    {
+      "item": "gtceu:barite_dust"
+    },
+    {
+      "item": "gtceu:stone_dust"
+    }
+  ]
+}

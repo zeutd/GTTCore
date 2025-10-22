@@ -1,0 +1,24 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:raw_materials/gold"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 2,
+      "item": "gtceu:crushed_gold_ore"
+    },
+    {
+      "item": "gtceu:copper_dust"
+    },
+    {
+      "item": "gtceu:stone_dust"
+    }
+  ]
+}

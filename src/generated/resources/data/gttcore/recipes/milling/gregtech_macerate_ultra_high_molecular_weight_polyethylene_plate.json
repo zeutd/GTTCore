@@ -1,0 +1,17 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gttcore:ultra_high_molecular_weight_polyethylene_plate"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gttcore:ultra_high_molecular_weight_polyethylene_dust"
+    }
+  ]
+}

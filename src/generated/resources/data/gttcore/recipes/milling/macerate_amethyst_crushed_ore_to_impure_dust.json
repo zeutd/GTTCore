@@ -1,0 +1,20 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:crushed_ores/amethyst"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:impure_amethyst_dust"
+    },
+    {
+      "item": "gtceu:amethyst_dust"
+    }
+  ]
+}

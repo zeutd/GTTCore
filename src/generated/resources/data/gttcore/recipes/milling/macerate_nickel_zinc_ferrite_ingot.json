@@ -1,0 +1,17 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:nickel_zinc_ferrite_ingot"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:nickel_zinc_ferrite_dust"
+    }
+  ]
+}

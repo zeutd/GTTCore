@@ -1,0 +1,21 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:crushed_ores/monazite"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:impure_monazite_dust"
+    },
+    {
+      "count": 2,
+      "item": "gtceu:thorium_dust"
+    }
+  ]
+}

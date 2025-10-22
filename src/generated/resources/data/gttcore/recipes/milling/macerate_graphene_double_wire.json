@@ -1,0 +1,17 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:graphene_double_wire"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:graphene_dust"
+    }
+  ]
+}

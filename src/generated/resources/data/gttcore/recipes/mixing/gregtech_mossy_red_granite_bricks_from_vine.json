@@ -1,0 +1,24 @@
+{
+  "type": "create:mixing",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:red_granite_bricks"
+      }
+    },
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:vine"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:mossy_red_granite_bricks"
+    }
+  ]
+}

@@ -26,5 +26,31 @@ public class CreateRecipeRemoval {
         provider.accept(new IDFilter(Create.asResource("pressing/brass_ingot")));
         provider.accept(new IDFilter(Create.asResource("pressing/copper_ingot")));
         provider.accept(new IDFilter(Create.asResource("mixing/brass_ingot")));
+        provider.accept(new IDFilter(Create.asResource("pressing/sugar_cane")));
+        provider.accept(new IDFilter(Create.asResource("pressing/calorite_ingot")));
+        provider.accept(new IDFilter(Create.asResource("pressing/steel_ingot")));
+        provider.accept(new IDFilter(Create.asResource("pressing/ostrum_ingot")));
+        provider.accept(new IDFilter(Create.asResource("pressing/desh_ingot")));
+        provider.accept(new IDFilter(Create.asResource("mixing/andesite_alloy_from_zinc")));
+        provider.accept(new IDFilter(Create.asResource("mixing/dough_by_mixing")));
+        provider.accept(new IDFilter(Create.asResource("mixing/chocolate")));
+        provider.accept(new IDFilter(Create.asResource("mixing/tea")));
+        provider.accept(new IDFilter(Create.asResource("mixing/andesite_alloy")));
+//        provider.accept(new IDFilter(Create.asResource("")));
+//        provider.accept(new IDFilter(Create.asResource("")));
+//        provider.accept(new IDFilter(Create.asResource("")));
+//        provider.accept(new IDFilter(Create.asResource("")));
+//        provider.accept(new IDFilter(Create.asResource("")));
+//        provider.accept(new IDFilter(Create.asResource("")));
+//        provider.accept(new IDFilter(Create.asResource("")));
+//        provider.accept(new IDFilter(Create.asResource("")));
+//        provider.accept(new IDFilter(Create.asResource("")));
+//        provider.accept(new IDFilter(Create.asResource("")));
+//        provider.accept(new IDFilter(Create.asResource("")));
+//        provider.accept(new IDFilter(Create.asResource("")));
+//        provider.accept(new IDFilter(Create.asResource("")));
+//        provider.accept(new IDFilter(Create.asResource("")));
+//        provider.accept(new IDFilter(Create.asResource("")));
+//        provider.accept(new IDFilter(Create.asResource("")));
     }
 }

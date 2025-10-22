@@ -1,0 +1,17 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:darmstadtium_plate"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:darmstadtium_dust"
+    }
+  ]
+}

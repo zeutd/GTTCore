@@ -1,0 +1,20 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:purified_ores/ice_shard"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gttcore:pure_ice_shard_dust"
+    },
+    {
+      "item": "gttcore:ice_shard_dust"
+    }
+  ]
+}

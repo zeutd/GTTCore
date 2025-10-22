@@ -1,0 +1,22 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:copper_quadruple_cable"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 2,
+      "item": "gtceu:copper_dust"
+    },
+    {
+      "count": 2,
+      "item": "gtceu:rubber_dust"
+    }
+  ]
+}

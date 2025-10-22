@@ -1,0 +1,24 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:raw_materials/nether_quartz"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 4,
+      "item": "gtceu:crushed_nether_quartz_ore"
+    },
+    {
+      "item": "gtceu:quartzite_gem"
+    },
+    {
+      "item": "gtceu:stone_dust"
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:raw_materials/oilsands"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 2,
+      "item": "gtceu:crushed_oilsands_ore"
+    },
+    {
+      "item": "gtceu:oilsands_dust"
+    },
+    {
+      "item": "gtceu:stone_dust"
+    }
+  ]
+}

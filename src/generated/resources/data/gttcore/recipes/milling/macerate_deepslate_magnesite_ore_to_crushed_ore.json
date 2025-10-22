@@ -1,0 +1,28 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "forge:intersection",
+      "children": [
+        {
+          "tag": "forge:ores/magnesite"
+        },
+        {
+          "tag": "forge:ores_in_ground/deepslate"
+        }
+      ]
+    }
+  ],
+  "results": [
+    {
+      "count": 2,
+      "item": "gtceu:crushed_magnesite_ore"
+    },
+    {
+      "item": "gtceu:magnesium_dust"
+    },
+    {
+      "item": "gtceu:deepslate_dust"
+    }
+  ]
+}

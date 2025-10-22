@@ -1,0 +1,20 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:purified_ores/yellow_garnet"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:pure_yellow_garnet_dust"
+    },
+    {
+      "item": "gtceu:grossular_dust"
+    }
+  ]
+}

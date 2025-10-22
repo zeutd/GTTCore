@@ -21,13 +21,12 @@ public class GTTCreatePressingRecipeGen extends PressingRecipeGen {
     }
 
     {
-        GTTCore.LOGGER.info(GTTRecipeTypes.toReRegisterCreatePressing);
         for (GTRecipeBuilder recipeBuilder : GTTRecipeTypes.toReRegisterCreatePressing) {
-            create(GTTCore.id(recipeBuilder.id.getPath()), b -> {
+            create(GTTCore.id("gregtech_" + recipeBuilder.id.getPath()), b -> {
                 if (recipeBuilder.input.containsKey(ItemRecipeCapability.CAP))
                     recipeBuilder.input.get(ItemRecipeCapability.CAP).forEach(item -> b.require((Ingredient) item.content));
                 if (recipeBuilder.output.containsKey(ItemRecipeCapability.CAP))
-                    recipeBuilder.output.get(ItemRecipeCapability.CAP).forEach(item -> Arrays.stream(((SizedIngredient) item.content).getItems()).toList().forEach(b::output));
+                    recipeBuilder.output.get(ItemRecipeCapability.CAP).forEach(content -> Arrays.stream(((SizedIngredient) content.content).getItems()).toList().forEach(i -> b.output((float) content.chance / content.maxChance, i)));
                 return b;
             });
         }

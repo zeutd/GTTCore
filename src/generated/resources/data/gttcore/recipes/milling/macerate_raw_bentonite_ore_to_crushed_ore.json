@@ -1,0 +1,24 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:raw_materials/bentonite"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 6,
+      "item": "gtceu:crushed_bentonite_ore"
+    },
+    {
+      "item": "gtceu:aluminium_dust"
+    },
+    {
+      "item": "gtceu:stone_dust"
+    }
+  ]
+}

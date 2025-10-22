@@ -1,0 +1,17 @@
+{
+  "type": "create:pressing",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:red_granite"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:red_granite_cobblestone"
+    }
+  ]
+}

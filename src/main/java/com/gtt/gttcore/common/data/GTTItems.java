@@ -159,11 +159,11 @@ public class GTTItems {
             .onRegister(attach(new TooltipBehavior(lines -> {
                 lines.add(Component.translatable("item.gtceu.electric.pump.tooltip"));
                 lines.add(Component.translatable("gtceu.universal.tooltip.fluid_transfer_rate",
-                        FormattingUtil.formatNumbers(1280 / 20)));
+                        FormattingUtil.formatNumbers(1280 / 4 / 20)));
             })))
             .tag(CustomTags.ELECTRIC_PUMPS)
             .register();
-    public static ItemEntry<Item> ELECTRIC_PISTON_ULV = GTRegistration.REGISTRATE.item("ulv_electric_piston", Item::new)
+    public static ItemEntry<Item> ELECTRIC_PISTON_ULV = REGISTRATE.item("ulv_electric_piston", Item::new)
             .lang("ULV Electric Piston")
             .tag(CustomTags.ELECTRIC_PISTONS)
             .register();
@@ -177,14 +177,25 @@ public class GTTItems {
             })))
             .tag(CustomTags.FLUID_REGULATORS)
             .register();
-    public static ItemEntry<ComponentItem> ROBOT_ARM_LV = GTRegistration.REGISTRATE.item("lv_robot_arm", ComponentItem::create)
-            .lang("LV Robot Arm")
+    public static ItemEntry<ComponentItem> ROBOT_ARM_ULV = REGISTRATE.item("ulv_robot_arm", ComponentItem::create)
+            .lang("ULV Robot Arm")
             .onRegister(attach(new CoverPlaceBehavior(GTTCovers.ROBOT_ARM_ULV)))
             .onRegister(attach(new TooltipBehavior(lines -> {
                 lines.add(Component.translatable("item.gtceu.robot.arm.tooltip"));
-                lines.add(Component.translatable("gtceu.universal.tooltip.item_transfer_rate", 8));
+                lines.add(Component.translatable("gtceu.universal.tooltip.item_transfer_rate", 8 / 4));
             })))
             .tag(CustomTags.ROBOT_ARMS)
+            .register();
+
+    public static ItemEntry<ComponentItem> CONVEYOR_MODULE_ULV = REGISTRATE
+            .item("ulv_conveyor_module", ComponentItem::create)
+            .lang("ULV Conveyor Module")
+            .onRegister(attach(new CoverPlaceBehavior(GTTCovers.CONVEYOR_ULV)))
+            .onRegister(attach(new TooltipBehavior(lines -> {
+                lines.add(Component.translatable("item.gtceu.conveyor.module.tooltip"));
+                lines.add(Component.translatable("gtceu.universal.tooltip.item_transfer_rate", 8 / 4));
+            })))
+            .tag(CustomTags.CONVEYOR_MODULES)
             .register();
 
     public static ItemEntry<BeerItem> BEER_BOTTLE = REGISTRATE.item("beer_bottle",BeerItem::new)

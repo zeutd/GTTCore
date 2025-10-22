@@ -2,6 +2,7 @@ package com.gtt.gttcore.common.data.recipes;
 
 import com.gregtechceu.gtceu.api.machine.multiblock.CleanroomType;
 import com.gtt.gttcore.GTTCore;
+import com.gtt.gttcore.api.capability.recipe.HighEnergyLaserRecipeCapability;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.AllTags;
 import com.simibubi.create.foundation.data.recipe.CreateRecipeProvider;
@@ -32,6 +33,7 @@ public class MachineRecipes {
         registerFissionRecipes(provider);
         registerGreenhouseRecipes(provider);
         registerCultivatorRecipes(provider);
+        registerHighEnergyLaserRecipes(provider);
     }
     private static void registerCultivatorRecipes(Consumer<FinishedRecipe> provider){
         CULTIVATOR_RECIPES.recipeBuilder("fermented_biomass")
@@ -53,7 +55,7 @@ public class MachineRecipes {
                 .EUt(VA[EV])
                 .cleanroom(CleanroomType.STERILE_CLEANROOM)
                 .save(provider);
-        CULTIVATOR_RECIPES.recipeBuilder(GTTCore.id("wetware_processor_awakening"))
+        CULTIVATOR_RECIPES.recipeBuilder(GTTCore.id("wetware_processor_assembly_awakening"))
                 .inputItems(UNAWAKENED_WETWARE_PROCESSOR_ASSEMBLY_ZPM)
                 .inputFluids(SterileGrowthMedium.getFluid(500))
                 .outputItems(WETWARE_PROCESSOR_ASSEMBLY_ZPM)
@@ -61,7 +63,7 @@ public class MachineRecipes {
                 .EUt(VA[EV])
                 .cleanroom(CleanroomType.STERILE_CLEANROOM)
                 .save(provider);
-        CULTIVATOR_RECIPES.recipeBuilder(GTTCore.id("wetware_processor_awakening"))
+        CULTIVATOR_RECIPES.recipeBuilder(GTTCore.id("wetware_super_computer_awakening"))
                 .inputItems(UNAWAKENED_WETWARE_SUPER_COMPUTER_UV)
                 .inputFluids(SterileGrowthMedium.getFluid(500))
                 .outputItems(WETWARE_SUPER_COMPUTER_UV)
@@ -111,20 +113,41 @@ public class MachineRecipes {
         FISSION_RECIPES.recipeBuilder(GTTCore.id("fission_uranium"))
                 .inputItems(rod, Uranium238, 16)
                 .outputItems(rod, DepletedUranium238, 16)
-                .EUt(-V[ZPM])
+                .EUt(-VA[ZPM])
                 .duration(100)
                 .save(provider);
         FISSION_RECIPES.recipeBuilder(GTTCore.id("fission_plutonium"))
                 .inputItems(rod, Plutonium239, 16)
                 .outputItems(rod, DepletedPlutonium239, 16)
-                .EUt(-V[ZPM] - V[IV])
+                .EUt(-VA[ZPM] - VA[IV])
                 .duration(100)
                 .save(provider);
         FISSION_RECIPES.recipeBuilder(GTTCore.id("fission_thorium"))
                 .inputItems(rod, Thorium, 16)
                 .outputItems(rod, DepletedThorium, 16)
-                .EUt(-V[ZPM])
+                .EUt(-VA[ZPM])
                 .duration(100)
+                .save(provider);
+    }
+
+    private static void registerHighEnergyLaserRecipes(Consumer<FinishedRecipe> provider){
+        PARTICLE_ACCELERATOR_RECIPES.recipeBuilder(GTTCore.id("test"))
+                .EUt(VA[ULV])
+                .inputItems(DIRT)
+                .duration(10)
+                .outputItems(DIRT_PATH)
+                .output(HighEnergyLaserRecipeCapability.CAP, 1000)
+                .save(provider);
+        LASER_ENGRAVING_PLANT_RECIPES.recipeBuilder(GTTCore.id("test"))
+                .EUt(VA[ULV])
+                .inputItems(DIRT_PATH)
+                .duration(10)
+                .outputItems(DIRT)
+                .input(HighEnergyLaserRecipeCapability.CAP, 1000)
+                .save(provider);
+        HIGH_ENERGY_LASER_PIPE_COOLANT.recipeBuilder(GTTCore.id("high_energy_laser_pipe_coolant"))
+                .duration(200)
+                .inputFluids(PCBCoolant.getFluid(1000))
                 .save(provider);
     }
 

@@ -1,0 +1,24 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:raw_materials/diamond"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 2,
+      "item": "gtceu:crushed_diamond_ore"
+    },
+    {
+      "item": "gtceu:graphite_dust"
+    },
+    {
+      "item": "gtceu:stone_dust"
+    }
+  ]
+}

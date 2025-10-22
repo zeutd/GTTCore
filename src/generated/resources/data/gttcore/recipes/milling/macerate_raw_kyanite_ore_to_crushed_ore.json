@@ -1,0 +1,24 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:raw_materials/kyanite"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 2,
+      "item": "gtceu:crushed_kyanite_ore"
+    },
+    {
+      "item": "gtceu:talc_dust"
+    },
+    {
+      "item": "gtceu:stone_dust"
+    }
+  ]
+}

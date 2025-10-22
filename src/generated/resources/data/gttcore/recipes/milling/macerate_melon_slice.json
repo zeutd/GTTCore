@@ -1,0 +1,17 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:melon_slice"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "minecraft:melon_seeds"
+    }
+  ]
+}

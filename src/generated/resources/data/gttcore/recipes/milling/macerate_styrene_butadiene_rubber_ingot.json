@@ -1,0 +1,17 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:styrene_butadiene_rubber_ingot"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:styrene_butadiene_rubber_dust"
+    }
+  ]
+}

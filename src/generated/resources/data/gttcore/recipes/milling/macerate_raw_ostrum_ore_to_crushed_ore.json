@@ -1,0 +1,24 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:raw_materials/ostrum"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 2,
+      "item": "gttcore:crushed_ostrum_ore"
+    },
+    {
+      "item": "gttcore:ostrum_dust"
+    },
+    {
+      "item": "gtceu:stone_dust"
+    }
+  ]
+}

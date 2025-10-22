@@ -1,0 +1,24 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:raw_materials/cassiterite_sand"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 4,
+      "item": "gtceu:crushed_cassiterite_sand_ore"
+    },
+    {
+      "item": "gtceu:tin_dust"
+    },
+    {
+      "item": "gtceu:stone_dust"
+    }
+  ]
+}

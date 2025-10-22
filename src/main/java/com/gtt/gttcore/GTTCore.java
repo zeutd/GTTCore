@@ -71,40 +71,6 @@ public class GTTCore {
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
-        WorldgenEvents.REMOVE.listenJava(ScriptType.STARTUP, null, e -> {
-            LOGGER.info("Removing Features");
-            RemoveWorldgenEventJS removeWorldgenEvent = (RemoveWorldgenEventJS) e;
-            removeWorldgenEvent.removeFeatureById(GenerationStep.Decoration.UNDERGROUND_ORES,
-                    new ResourceLocation[]{
-                            new ResourceLocation("ad_astra:moon_iron_ore"),
-                            new ResourceLocation("ad_astra:moon_desh_ore"),
-                            new ResourceLocation("ad_astra:moon_ice_shard_ore"),
-
-                            new ResourceLocation("ad_astra:mars_diamond_ore"),
-                            new ResourceLocation("ad_astra:mars_ice_shard_ore"),
-                            new ResourceLocation("ad_astra:mars_iron_ore"),
-                            new ResourceLocation("ad_astra:mars_ostrum_ore"),
-
-                            new ResourceLocation("ad_astra:venus_calorite_ore"),
-                            new ResourceLocation("ad_astra:venus_coal_ore"),
-                            new ResourceLocation("ad_astra:venus_diamond_ore"),
-                            new ResourceLocation("ad_astra:venus_gold_ore"),
-
-                            new ResourceLocation("ad_astra:mercury_iron_ore"),
-
-                            new ResourceLocation("ad_astra:glacio_coal_ore"),
-                            new ResourceLocation("ad_astra:glacio_copper_ore"),
-                            new ResourceLocation("ad_astra:glacio_ice_shard_ore"),
-                            new ResourceLocation("ad_astra:glacio_iron_ore"),
-                            new ResourceLocation("ad_astra:glacio_lapis_ore"),
-                            new ResourceLocation("ad_astra:glacio_deepslate_coal_ore"),
-                            new ResourceLocation("ad_astra:glacio_deepslate_copper_ore"),
-                            new ResourceLocation("ad_astra:glacio_deepslate_iron_ore"),
-                            new ResourceLocation("ad_astra:glacio_deepslate_lapis_ore")
-                    }
-            );
-            return null;
-        });
         event.enqueueWork(() -> {
             LOGGER.info("GTT Common Setup");
             //LOGGER.info("Look, I found a {}!", Items.DIAMOND);

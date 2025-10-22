@@ -1,0 +1,17 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:borosilicate_glass_ingot"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:borosilicate_glass_dust"
+    }
+  ]
+}

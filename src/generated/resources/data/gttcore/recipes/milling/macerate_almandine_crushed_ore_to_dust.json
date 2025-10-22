@@ -1,0 +1,20 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:purified_ores/almandine"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:pure_almandine_dust"
+    },
+    {
+      "item": "gtceu:aluminium_dust"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gttcore:calorite_plate"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gttcore:calorite_dust"
+    }
+  ]
+}

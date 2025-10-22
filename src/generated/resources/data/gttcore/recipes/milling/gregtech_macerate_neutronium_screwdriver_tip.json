@@ -1,0 +1,17 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:neutronium_screwdriver_tip"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:neutronium_dust"
+    }
+  ]
+}

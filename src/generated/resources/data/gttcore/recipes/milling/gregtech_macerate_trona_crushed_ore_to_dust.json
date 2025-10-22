@@ -1,0 +1,21 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:purified_ores/trona"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:pure_trona_dust"
+    },
+    {
+      "chance": 0.14,
+      "item": "gtceu:soda_ash_dust"
+    }
+  ]
+}

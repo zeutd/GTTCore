@@ -1,0 +1,17 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "ad_astra:ostrum_ingot"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gttcore:ostrum_dust"
+    }
+  ]
+}

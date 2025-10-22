@@ -1,0 +1,24 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:raw_materials/neodymium"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 2,
+      "item": "gtceu:crushed_neodymium_ore"
+    },
+    {
+      "item": "gtceu:rare_earth_dust"
+    },
+    {
+      "item": "gtceu:stone_dust"
+    }
+  ]
+}

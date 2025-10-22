@@ -1,0 +1,20 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:purified_ores/calorite"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gttcore:pure_calorite_dust"
+    },
+    {
+      "item": "gttcore:calorite_dust"
+    }
+  ]
+}

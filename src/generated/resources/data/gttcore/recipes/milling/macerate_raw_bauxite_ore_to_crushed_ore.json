@@ -1,0 +1,24 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:raw_materials/bauxite"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 2,
+      "item": "gtceu:crushed_bauxite_ore"
+    },
+    {
+      "item": "gtceu:grossular_gem"
+    },
+    {
+      "item": "gtceu:stone_dust"
+    }
+  ]
+}

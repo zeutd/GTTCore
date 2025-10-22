@@ -1,0 +1,25 @@
+{
+  "type": "create:mixing",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:dusts/flint"
+      }
+    },
+    {
+      "type": "gtceu:sized",
+      "count": 16,
+      "ingredient": {
+        "tag": "forge:dusts/quartz_sand"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 16,
+      "item": "gtceu:glass_dust"
+    }
+  ]
+}

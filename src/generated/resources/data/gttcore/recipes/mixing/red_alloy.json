@@ -1,0 +1,24 @@
+{
+  "type": "create:mixing",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:dusts/copper"
+      }
+    },
+    {
+      "type": "gtceu:sized",
+      "count": 4,
+      "ingredient": {
+        "tag": "forge:dusts/redstone"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:red_alloy_dust"
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:raw_materials/naquadah"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 2,
+      "item": "gtceu:crushed_naquadah_ore"
+    },
+    {
+      "item": "gtceu:sulfur_dust"
+    },
+    {
+      "item": "gtceu:stone_dust"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:netherrack"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:netherrack_dust"
+    },
+    {
+      "chance": 0.075,
+      "item": "minecraft:gold_nugget"
+    }
+  ]
+}

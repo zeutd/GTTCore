@@ -1,0 +1,20 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:purified_ores/topaz"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:pure_topaz_dust"
+    },
+    {
+      "item": "gtceu:blue_topaz_dust"
+    }
+  ]
+}

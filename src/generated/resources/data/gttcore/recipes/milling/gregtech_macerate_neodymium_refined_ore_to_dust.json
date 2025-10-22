@@ -1,0 +1,21 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:refined_ores/neodymium"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:neodymium_dust"
+    },
+    {
+      "chance": 0.14,
+      "item": "gtceu:rare_earth_dust"
+    }
+  ]
+}

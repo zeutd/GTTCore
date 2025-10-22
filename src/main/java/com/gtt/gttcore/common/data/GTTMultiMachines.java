@@ -2,6 +2,7 @@ package com.gtt.gttcore.common.data;
 
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.GTValues;
+import com.gregtechceu.gtceu.api.capability.IMiner;
 import com.gregtechceu.gtceu.api.data.RotationState;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
@@ -12,7 +13,6 @@ import com.gregtechceu.gtceu.api.machine.multiblock.MultiblockControllerMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.PartAbility;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.pattern.FactoryBlockPattern;
-import com.gregtechceu.gtceu.api.pattern.MultiblockShapeInfo;
 import com.gregtechceu.gtceu.api.pattern.Predicates;
 import com.gregtechceu.gtceu.api.pattern.TraceabilityPredicate;
 import com.gregtechceu.gtceu.api.pattern.predicates.SimplePredicate;
@@ -22,18 +22,17 @@ import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
 import com.gregtechceu.gtceu.api.registry.registrate.MultiblockMachineBuilder;
 import com.gregtechceu.gtceu.common.data.*;
 import com.gregtechceu.gtceu.common.data.machines.GTAEMachines;
-import com.gregtechceu.gtceu.common.machine.multiblock.electric.DistillationTowerMachine;
+import com.gregtechceu.gtceu.common.machine.multiblock.electric.AssemblyLineMachine;
 import com.gregtechceu.gtceu.common.machine.multiblock.electric.FusionReactorMachine;
 import com.gregtechceu.gtceu.common.machine.multiblock.generator.LargeTurbineMachine;
 import com.gregtechceu.gtceu.common.machine.multiblock.steam.SteamParallelMultiblockMachine;
 import com.gregtechceu.gtceu.common.registry.GTRegistration;
+import com.gregtechceu.gtceu.config.ConfigHolder;
 import com.gtt.gttcore.GTTCore;
-import com.gtt.gttcore.common.machine.multiblock.GTTPartAbility;
-import com.gtt.gttcore.common.machine.multiblock.HugeTurbineMachine;
-import com.gtt.gttcore.common.machine.multiblock.SteamDistillationTowerMachine;
-import com.gtt.gttcore.common.machine.multiblock.WoodParallelMultiblockMachine;
+import com.gtt.gttcore.common.data.recipes.GTTRecipeTypes;
+import com.gtt.gttcore.common.machine.multiblock.*;
 import com.lowdragmc.lowdraglib.utils.BlockInfo;
-import net.minecraft.core.Direction;
+import com.mojang.realmsclient.dto.BackupList;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.ItemLike;
@@ -41,9 +40,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.registries.ForgeRegistries;
 
-import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.List;
 import java.util.Locale;
 import java.util.function.BiFunction;
 import java.util.function.Supplier;
@@ -54,10 +51,10 @@ import static com.gregtechceu.gtceu.api.pattern.Predicates.*;
 import static com.gregtechceu.gtceu.api.pattern.util.RelativeDirection.*;
 import static com.gregtechceu.gtceu.common.data.GCYMBlocks.*;
 import static com.gregtechceu.gtceu.common.data.GTBlocks.*;
-import static com.gregtechceu.gtceu.common.data.GTMachines.*;
+import static com.gregtechceu.gtceu.common.data.GTMachines.ITEM_IMPORT_BUS;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
-import static com.gregtechceu.gtceu.common.data.GTRecipeModifiers.BATCH_MODE;
-import static com.gregtechceu.gtceu.common.data.GTRecipeModifiers.OC_NON_PERFECT_SUBTICK;
+import static com.gregtechceu.gtceu.common.data.GTRecipeModifiers.*;
+import static com.gregtechceu.gtceu.common.data.GTRecipeModifiers.OC_NON_PERFECT;
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.*;
 import static com.gregtechceu.gtceu.utils.FormattingUtil.toRomanNumeral;
 import static com.gtt.gttcore.common.registry.GTTRegistration.REGISTRATE;
@@ -86,7 +83,7 @@ public class GTTMultiMachines {
                     .aisle("AAAAAAAAAAAAAAAAAAA","ACCCCCCCCCCCCCCCCCA","B                 B","B                 B","B                 B","B                 B","B                 B","B                 B","ABBBBBABBBBBABBBBBA","                   ")
                     .aisle("AAAAAAAAAAAAAAAAAAA","ACCCCCCCCCCCCCCCCCA","B                 B","B                 B","B                 B","B                 B","B                 B","ABBBBBABBBBBABBBBBA","                   ","                   ")
                     .aisle("AAAAAAAAAAAAAAAAAAA","ACCCCCCCCCCCCCCCCCA","B                 B","B                 B","B                 B","B                 B","B                 B","ABBBBBABBBBBABBBBBA","                   ","                   ")
-                    .aisle("AAAAAAAAAAAAAAAAAAA","AAAAAAAAAAAAAAAAAAA","ABBBBBABBBBBABBBBBA","ABBBBBABBBBBABBBBBA","ABBBBBABBBBBABBBBBA","ABBBBBABBBBBABBBBBA","AAAAAAAAAAAAAAAAAAA","                   ","                   ","D                  ")
+                    .aisle("AAAAAAAAAAAAAAAAAAA","AAAAAAAAAAAAAAAAAAA","ABBBBBABBBBBABBBBBA","ABBBBBABBBBBABBBBBA","ABBBBBABBBBBABBBBBA","ABBBBBABBBBBABBBBBA","AAAAAAAAAAAAAAAAAAA","                   ","                   ","                   ")
                     .where("~", Predicates.controller(Predicates.blocks(definition.get())))
                     .where("A", Predicates.blocks(ForgeRegistries.BLOCKS.getValue(new ResourceLocation("gtceu:clean_machine_casing")))
                             .or(autoAbilities(definition.getRecipeTypes()))
@@ -97,6 +94,63 @@ public class GTTMultiMachines {
                     .where(" ", any())
                     .build())
             .workableCasingModel(GTCEu.id("block/casings/solid/machine_casing_clean_stainless_steel"),
+                    GTCEu.id("block/multiblock/assembly_line"))
+            .register();
+    public final static MultiblockMachineDefinition LASER_ENGRAVING_PLANT = REGISTRATE.multiblock("laser_engraving_plant", HighEnergyLaserMachine::new)
+            .langValue("Laser Engraving Plant")
+            .recipeType(LASER_ENGRAVING_PLANT_RECIPES)
+            .recipeModifiers(OC_PERFECT_SUBTICK, GTRecipeModifiers.PARALLEL_HATCH)
+            .appearanceBlock(CASING_LASER_SAFE_ENGRAVING)
+            .pattern(definition -> FactoryBlockPattern.start(LEFT, UP, BACK)
+                    .aisle("                       ","                       ","                       ","                       ","                       ","                       ","                       ","                       ","                       ","                       ","          A~A          ","          AGA          ","          AAA          ","                       ","                       ","                       ","                       ","                       ","                       ","                       ","                       ","                       ","                       ")
+                    .aisle("                       ","                       ","                       ","           B           ","           B           ","           B           ","           B           ","           B           ","           B           ","           B           ","          CCC          ","   BBBBBBBCBCBBBBBBB   ","          CCC          ","           B           ","           B           ","           B           ","           B           ","           B           ","           B           ","           B           ","                       ","                       ","                       ")
+                    .aisle("                       ","                       ","          AAA          ","                       ","                       ","                       ","                       ","                       ","                       ","                       ","  A       CCC       A  ","  A       CBC       A  ","  A       CCC       A  ","                       ","                       ","                       ","                       ","                       ","                       ","                       ","          AAA          ","                       ","                       ")
+                    .aisle("                       ","          AAA          ","          AAA          ","          CCC          ","                       ","                       ","                       ","                       ","                       ","                       "," AAC      AAA      CAA "," AAC      ABA      CAA "," AAC      AAA      CAA ","                       ","                       ","                       ","                       ","                       ","                       ","          CCC          ","          AAA          ","          AAA          ","                       ")
+                    .aisle("          AAA          ","          AAA          ","          CCC          ","          CCC          ","          AAA          ","                       ","                       ","                       ","                       ","                       ","AACCA     CCC     ACCAA","AACCA     CBC     ACCAA","AACCA     CCC     ACCAA","                       ","                       ","                       ","                       ","                       ","          AAA          ","          CCC          ","          CCC          ","          AAA          ","          AAA          ")
+                    .aisle("                       ","          CCC          ","          CCC          ","          AAA          ","          AAA          ","          CCC          ","                       ","                       ","                       ","           A           "," CCAAC    CAC    CAACC "," CCAAC   ACDCA   CAACC "," CCAAC    CAC    CAACC ","           A           ","                       ","                       ","                       ","          CCC          ","          AAA          ","          AAA          ","          CCC          ","          CCC          ","                       ")
+                    .aisle("                       ","                       ","          AAA          ","          AAA          ","          CCC          ","          CCC          ","          AAA          ","           A           ","           A           ","                       ","  AACCA   AAA   ACCAA  ","  AACCAAA A A AAACCAA  ","  AACCA   AAA   ACCAA  ","                       ","           A           ","           A           ","          AAA          ","          CCC          ","          CCC          ","          AAA          ","          AAA          ","                       ","                       ")
+                    .aisle("                       ","                       ","                       ","          CCC          ","          CCC          ","          ADA          ","          A A          ","                       ","                       ","                       ","   CCAA         AACC   ","   CCD           DCC   ","   CCAA         AACC   ","                       ","                       ","                       ","          A A          ","          ADA          ","          CCC          ","          CCC          ","                       ","                       ","                       ")
+                    .aisle("                       ","                       ","                       ","                       ","          AAA          ","          A A          ","                       ","                       ","                       ","                       ","    AA           AA    ","    A             A    ","    AA           AA    ","                       ","                       ","                       ","                       ","          A A          ","          AAA          ","                       ","                       ","                       ","                       ")
+                    .aisle("                       ","                       ","                       ","                       ","           E           ","                       ","                       ","                       ","                       ","                       ","                       ","    E             E    ","                       ","                       ","                       ","                       ","                       ","                       ","           E           ","                       ","                       ","                       ","                       ")
+                    .aisle("                       ","                       ","                       ","                       ","           E           ","                       ","                       ","                       ","                       ","                       ","                       ","    E             E    ","                       ","                       ","                       ","                       ","                       ","                       ","           E           ","                       ","                       ","                       ","                       ")
+                    .aisle("                       ","                       ","                       ","                       ","                       ","           E           ","                       ","                       ","                       ","                       ","                       ","     E           E     ","                       ","                       ","                       ","                       ","                       ","           E           ","                       ","                       ","                       ","                       ","                       ")
+                    .aisle("                       ","                       ","                       ","                       ","                       ","                       ","           E           ","           E           ","                       ","                       ","                       ","      EE       EE      ","                       ","                       ","                       ","           E           ","           E           ","                       ","                       ","                       ","                       ","                       ","                       ")
+                    .aisle("                       ","                       ","                       ","                       ","                       ","                       ","                       ","                       ","           E           ","           E           ","           E           ","        EEEFEEE        ","           E           ","           E           ","           E           ","                       ","                       ","                       ","                       ","                       ","                       ","                       ","                       ")
+                    .where("~", Predicates.controller(Predicates.blocks(definition.get())))
+                    .where("A", Predicates.blocks(ForgeRegistries.BLOCKS.getValue(new ResourceLocation("gtceu:laser_safe_engraving_casing")))
+                            .or(autoAbilities(definition.getRecipeTypes()))
+                            .or(autoAbilities(true, false, true))
+                    )
+                    .where("B", Predicates.blocks(ForgeRegistries.BLOCKS.getValue(new ResourceLocation("gtceu:electrolytic_cell"))))
+                    .where("C", Predicates.blocks(ForgeRegistries.BLOCKS.getValue(new ResourceLocation("gtceu:molybdenum_disilicide_coil_block"))))
+                    .where("D", Predicates.blocks(ForgeRegistries.BLOCKS.getValue(new ResourceLocation("gtceu:fusion_glass"))))
+                    .where("E", Predicates.frames(Tritanium))
+                    .where("F", Predicates.blocks(ForgeRegistries.BLOCKS.getValue(new ResourceLocation("gtceu:uhv_machine_casing"))))
+                    .where("G", abilities(GTTPartAbility.IMPORT_HIGH_ENERGY_LASER))
+                    .where(" ", any())
+                    .build())
+            .workableCasingModel(GTCEu.id("block/casings/gcym/laser_safe_engraving_casing"),
+                    GTCEu.id("block/multiblock/assembly_line"))
+            .register();
+
+    public static final MultiblockMachineDefinition HIGH_ENERGY_LASER_PIPE = REGISTRATE
+            .multiblock("high_energy_laser_pipe", HighEnergyLaserPipeMachine::new)
+            .rotationState(RotationState.ALL)
+            .recipeType(HIGH_ENERGY_LASER_PIPE_COOLANT)
+            .appearanceBlock(CASING_STEEL_SOLID)
+            .pattern(definition -> FactoryBlockPattern.start(BACK, UP, RIGHT)
+                    .aisle(" A ", "~IA", " A ")
+                    .aisle(" A ", "APA", " A ").setRepeatable(1, 15)
+                    .aisle(" A ", "AOA", " A ")
+                    .where(" ", any())
+                    .where('~', Predicates.controller(Predicates.blocks(definition.get())))
+                    .where('A', Predicates.blocks(CASING_ATOMIC.get()).or(autoAbilities(definition.getRecipeTypes())))
+                    .where('P', Predicates.blocks(FUSION_COIL.get()))
+                    .where('I', Predicates.abilities(GTTPartAbility.IMPORT_HIGH_ENERGY_LASER))
+                    .where('O', Predicates.abilities(GTTPartAbility.EXPORT_HIGH_ENERGY_LASER))
+                    .build())
+            .partSorter(AssemblyLineMachine::partSorter)
+            .workableCasingModel(GTCEu.id("block/casings/solid/machine_casing_solid_steel"),
                     GTCEu.id("block/multiblock/assembly_line"))
             .register();
     public final static MultiblockMachineDefinition ROCKET_ASSEMBLER = REGISTRATE.multiblock("rocket_assembler", WorkableElectricMultiblockMachine::new)
@@ -340,7 +394,7 @@ public class GTTMultiMachines {
                     Component.translatable("gtceu.gas_collector")))
             .tooltips(Component.translatable("gtceu.machine.perfect_oc"))
             .recipeType(GAS_COLLECTOR_RECIPES)
-            .recipeModifiers(GTRecipeModifiers.PARALLEL_HATCH, GTRecipeModifiers.OC_PERFECT_SUBTICK)
+            .recipeModifiers(GTRecipeModifiers.PARALLEL_HATCH, OC_PERFECT_SUBTICK)
             .appearanceBlock(CASING_STEEL_SOLID)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("AAAAA","ABBBA","ABBBA","ABBBA","AAAAA")
@@ -493,47 +547,87 @@ public class GTTMultiMachines {
             .workableCasingModel(GTCEu.id("block/casings/gcym/secure_maceration_casing"),
                     GTCEu.id("block/machines/rock_crusher"))
             .register();
-    public final static MultiblockMachineDefinition PARTICLE_COLLIDER = REGISTRATE
-            .multiblock("particle_collider", WorkableElectricMultiblockMachine::new)
-            .langValue("particle_collider")
+    public final static MultiblockMachineDefinition PARTICLE_ACCELERATOR = REGISTRATE
+            .multiblock("particle_accelerator", HighEnergyLaserMachine::new)
+            .langValue("Particle Accelerator")
             .tooltips(Component.translatable("gtceu.multiblock.parallelizable.tooltip"))
             .tooltips(Component.translatable("gtceu.machine.available_recipe_map_1.tooltip",
-                    Component.translatable("gttcore.particle_collider")))
+                    Component.translatable("gttcore.particle_accelerator")))
             .rotationState(RotationState.ALL)
-            .recipeType(PARTICLE_COLLIDER_RECIPES)
+            .recipeType(PARTICLE_ACCELERATOR_RECIPES)
             .recipeModifiers((m, r) -> ModifierFunction.builder().modifyAllContents(ContentModifier.multiplier(256)).eutMultiplier(256).parallels(256).build(), GTRecipeModifiers.PARALLEL_HATCH, GTRecipeModifiers.OC_NON_PERFECT_SUBTICK)
-            .appearanceBlock(CASING_ATOMIC)
-            .pattern(definition -> FactoryBlockPattern.start()
-                    .aisle("                         ","         AAAAAAA         ","       AAAAAAAAAA        ","         AAAAAAA         ","                         ")
-                    .aisle("         AAAAAAA         ","       AA       AA       ","      AA         AA      ","       AA       AA       ","         AAAAAAA         ")
-                    .aisle("       AAAAAAAAAAA       ","     AA           AA     ","    AA             AA    ","     AA           AA     ","       AAAAAAAAAAA       ")
-                    .aisle("     AAAAAAAAAAAAAAA     ","    A               A    ","   A                 A   ","    A               A    ","     AAAAAAAAAAAAAAA     ")
-                    .aisle("    AAAAAA     AAAAAA    ","   A      AAAAA      A   ","  A      AAAAAAA      A  ","   A      AAAAA      A   ","    AAAAAA     AAAAAA    ")
-                    .aisle("   AAAAA         AAAAA   ","  A     AA     AA     A  ","  A    AA       AA    A  ","  A     AA     AA     A  ","   AAAAA         AAAAA   ")
-                    .aisle("   AAAA           AAAA   ","  A    A         A    A  "," A    A           A    A ","  A    A         A    A  ","   AAAA           AAAA   ")
-                    .aisle("  AAAA             AAAA  "," A    A           A    A "," A   A             A   A "," A    A           A    A ","  AAAA             AAAA  ")
-                    .aisle("  AAA               AAA  "," A   A             A   A ","A    A             A    A"," A   A             A   A ","  AAA               AAA  ")
-                    .aisle(" AAAA               AAAA ","A    A             A    A","A   A               A   A","A    A             A    A"," AAAA               AAAA ")
-                    .aisle(" AAA                 AAA ","A   A               A   A","A   A               A   A","A   A               A   A"," AAA                 AAA ")
-                    .aisle(" AAA                 AAA ","A   A               A   A","A   A               A   A","A   A               A   A"," AAA                 AAA ")
-                    .aisle(" AAA                 AAA ","A   A               A   A","A   A               A   A","A   A               A   A"," AAA                 AAA ")
-                    .aisle(" AAA                 AAA ","A   A               A   A","A   A               A   A","A   A               A   A"," AAA                 AAA ")
-                    .aisle(" AAA                 AAA ","A   A               A   A","A   A               A   A","A   A               A   A"," AAA                 AAA ")
-                    .aisle(" AAAA               AAAA ","A    A             A    A","A   A               A   A","A    A             A    A"," AAAA               AAAA ")
-                    .aisle("  AAA               AAA  "," A   A             A   A ","A    A             A    A"," A   A             A   A ","  AAA               AAA  ")
-                    .aisle("  AAAA             AAAA  "," A    A           A    A "," A   A             A   A "," A    A           A    A ","  AAAA             AAAA  ")
-                    .aisle("   AAAA           AAAA   ","  A    A         A    A  "," A    A           A    A ","  A    A         A    A  ","   AAAA           AAAA   ")
-                    .aisle("   AAAAA         AAAAA   ","  A     AA     AA     A  ","  A    AA       AA    A  ","  A     AA     AA     A  ","   AAAAA         AAAAA   ")
-                    .aisle("    AAAAAA     AAAAAA    ","   A      AAAAA      A   ","  A      AAAAAAA      A  ","   A      AAAAA      A   ","    AAAAAA     AAAAAA    ")
-                    .aisle("     AAAAAAAAAAAAAAA     ","    A               A    ","   A                 A   ","    A               A    ","     AAAAAAAAAAAAAAA     ")
-                    .aisle("       AAAAAAAAAAA       ","     AA           AA     ","    AA             AA    ","     AA           AA     ","       AAAAAAAAAAA       ")
-                    .aisle("         AAAAAAA         ","       AA       AA       ","      AA         AA      ","       AA       AA       ","         AAAAAAA         ")
-                    .aisle("                         ","         AAAAAAA         ","        AAAA~AAAA        ","         AAAAAAA         ","                         ")
+            .appearanceBlock(HIGH_POWER_CASING)
+            .pattern(definition -> FactoryBlockPattern.start(BACK, UP, LEFT)
+                    .aisle("                                                              ","                                                              ","                          AAAAAAAAAAA                         ","                                                              ","                                                              ")
+                    .aisle("                                                              ","                          AAAAAAAAAAA                         ","                      EAAABBBBBBBBBBBAAAE                     ","                          AAAAAAAAAAA                         ","                                                              ")
+                    .aisle("                                                              ","                      AAAA           AAAA                     ","                   AAABBBBAAAAAAAAAAABBBBAAA                  ","                      AAAA           AAAA                     ","                                                              ")
+                    .aisle("                                                              ","                   AAA                   AAA                  ","                 AABBBAAAA           AAAABBBAA                ","                   AAA                   AAA                  ","                                                              ")
+                    .aisle("                                                              ","                 AAA                       AAA                ","                ABBBAA                   AABBBA               ","                 AAA                       AAA                ","                                                              ")
+                    .aisle("                                                              ","                AA                           AA               ","              AABBAA                       AABBAA             ","                AA                           AA               ","                                                              ")
+                    .aisle("                                                              ","              AA                               AA             ","             ABBAA                           AABBA            ","              AA                               AA             ","                                                              ")
+                    .aisle("                                                              ","             AA                                 AA            ","           AABBA                               ABBAA          ","             AA                                 AA            ","                                                              ")
+                    .aisle("                                                              ","           AA                                     AA          ","          ABBAA                                 AABBA         ","           AA                                     AA          ","                                                              ")
+                    .aisle("                                                              ","          AA                                       AA         ","         ABBA                                     ABBA        ","          AA                                       AA         ","                                                              ")
+                    .aisle("                                                              ","         AA                                         AA        ","        ABBA                                       ABBA       ","         AA                                         AA        ","                                                              ")
+                    .aisle("                                                              ","         A                                           A        ","        ABA                                         ABA       ","         A                                           A        ","                                                              ")
+                    .aisle("                                                              ","        A                                             A       ","       ABA                                           ABA      ","        A                                             A       ","                                                              ")
+                    .aisle("                                                              ","       AA                                             AA      ","      ABBA                                           ABBA     ","       AA                                             AA      ","                                                              ")
+                    .aisle("                                                              ","       A                                               A      ","      ABA                                             ABA     ","       A                                               A      ","                                                              ")
+                    .aisle("                                                              ","      A                                                 A     ","     ABA                                               ABA    ","      A                                                 A     ","                                                              ")
+                    .aisle("                                                              ","     AA                                                 AA    ","    ABBA                                               ABBA   ","     AA                                                 AA    ","                                                              ")
+                    .aisle("                                                              ","     A                                                   A    ","    ABA                                                 ABA   ","     A                                                   A    ","                                                              ")
+                    .aisle("                                                              ","    AA                                                   AA   ","   ABBA                                                 ABBA  ","    AA                                                   AA   ","                                                              ")
+                    .aisle("                                                              ","    A                                                     A   ","   ABA                                                   ABA  ","    A                                                     A   ","                                                              ")
+                    .aisle("                                                              ","    A                                                     A   ","   ABA                                                   ABA  ","    A                                                     A   ","                                                              ")
+                    .aisle("                                                              ","   A                                                       A  ","  EBA                                                     ABE ","   A                                                       A  ","                                                              ")
+                    .aisle("                                                              ","   A                                                       A  ","  ABA                                                     ABA ","   A                                                       A  ","                                                              ")
+                    .aisle("                                                              ","   A                                                       A  ","  ABA                                                     ABA ","   A                                                       A  ","                                                              ")
+                    .aisle("                                                              ","   A                                                       A  ","  ABA                                                     ABA ","   A                                                       A  ","                                                              ")
+                    .aisle("                                                              ","  A                                                         A "," ABA                                                       ABA","  A                                                         A ","                                                              ")
+                    .aisle("                                                              "," CCC                                                        A "," CBC                                                       ABA"," CCC                                                        A ","                                                              ")
+                    .aisle(" CCC                                                          ","CCCCC                                                       A ","CCBCC                                                      ABA","CCCCC                                                       A "," CCC                                                          ")
+                    .aisle(" CDC                                                          ","C   C                                                       A ","D   D                                                      ABA","C   C                                                       A "," CDC                                                          ")
+                    .aisle(" CDC                                                          ","C   C                                                       A ","C   D                                                      ABA","C   C                                                       A "," CDC                                                          ")
+                    .aisle(" CDC                                                          ","C   C                                                       A ","~   D                                                      ABA","C   C                                                       A "," CDC                                                          ")
+                    .aisle(" CDC                                                          ","C   C                                                       A ","C   D                                                      ABA","C   C                                                       A "," CDC                                                          ")
+                    .aisle(" CDC                                                          ","C   C                                                       A ","D   D                                                      ABA","C   C                                                       A "," CDC                                                          ")
+                    .aisle(" CCC                                                          ","CCCCC                                                       A ","CCBCC                                                      ABA","CCCCC                                                       A "," CCC                                                          ")
+                    .aisle("                                                              "," CCC                                                        A "," CBC                                                       ABA"," CCC                                                        A ","                                                              ")
+                    .aisle("                                                              ","  A                                                         A "," ABA                                                       ABA","  A                                                         A ","                                                              ")
+                    .aisle("                                                              ","   A                                                       A  ","  ABA                                                     ABA ","   A                                                       A  ","                                                              ")
+                    .aisle("                                                              ","   A                                                       A  ","  ABA                                                     ABA ","   A                                                       A  ","                                                              ")
+                    .aisle("                                                              ","   A                                                       A  ","  ABA                                                     ABA ","   A                                                       A  ","                                                              ")
+                    .aisle("                                                              ","   A                                                       A  ","  EBA                                                     ABE ","   A                                                       A  ","                                                              ")
+                    .aisle("                                                              ","    A                                                     A   ","   ABA                                                   ABA  ","    A                                                     A   ","                                                              ")
+                    .aisle("                                                              ","    A                                                     A   ","   ABA                                                   ABA  ","    A                                                     A   ","                                                              ")
+                    .aisle("                                                              ","    AA                                                   AA   ","   ABBA                                                 ABBA  ","    AA                                                   AA   ","                                                              ")
+                    .aisle("                                                              ","     A                                                   A    ","    ABA                                                 ABA   ","     A                                                   A    ","                                                              ")
+                    .aisle("                                                              ","     AA                                                 AA    ","    ABBA                                               ABBA   ","     AA                                                 AA    ","                                                              ")
+                    .aisle("                                                              ","      A                                                 A     ","     ABA                                               ABA    ","      A                                                 A     ","                                                              ")
+                    .aisle("                                                              ","       A                                               A      ","      ABA                                             ABA     ","       A                                               A      ","                                                              ")
+                    .aisle("                                                              ","       AA                                             AA      ","      ABBA                                           ABBA     ","       AA                                             AA      ","                                                              ")
+                    .aisle("                                                              ","        A                                             A       ","       ABA                                           ABA      ","        A                                             A       ","                                                              ")
+                    .aisle("                                                              ","         A                                           A        ","        ABA                                         ABA       ","         A                                           A        ","                                                              ")
+                    .aisle("                                                              ","         AA                                         AA        ","        ABBA                                       ABBA       ","         AA                                         AA        ","                                                              ")
+                    .aisle("                                                              ","          AA                                       AA         ","         ABBA                                     ABBA        ","          AA                                       AA         ","                                                              ")
+                    .aisle("                                                              ","           AA                                     AA          ","          ABBAA                                 AABBA         ","           AA                                     AA          ","                                                              ")
+                    .aisle("                                                              ","             AA                                 AA            ","           AABBA                               ABBAA          ","             AA                                 AA            ","                                                              ")
+                    .aisle("                                                              ","              AA                               AA             ","             ABBAA                           AABBA            ","              AA                               AA             ","                                                              ")
+                    .aisle("                                                              ","                AA                           AA               ","              AABBAA                       AABBAA             ","                AA                           AA               ","                                                              ")
+                    .aisle("                                                              ","                 AAA                       AAA                ","                ABBBAA                   AABBBA               ","                 AAA                       AAA                ","                                                              ")
+                    .aisle("                                                              ","                   AAA                   AAA                  ","                 AABBBAAAA           AAAABBBAA                ","                   AAA                   AAA                  ","                                                              ")
+                    .aisle("                                                              ","                      AAAA           AAAA                     ","                   AAABBBBAAAAAAAAAAABBBBAAA                  ","                      AAAA           AAAA                     ","                                                              ")
+                    .aisle("                                                              ","                          AAAAAAAAAAA                         ","                      EAAABBBBBBBBBBBAAAE                     ","                          AAAAAAAAAAA                         ","                                                              ")
+                    .aisle("                                                              ","                                                              ","                          AAAAAAAAAAA                         ","                                                              ","                                                              ")
                     .where("~", Predicates.controller(Predicates.blocks(definition.get())))
-                    .where("A", Predicates.blocks(ForgeRegistries.BLOCKS.getValue(new ResourceLocation("gtceu:atomic_casing"))).or(autoAbilities(definition.getRecipeTypes())).setMinGlobalLimited(700).or(autoAbilities(true, false, true)))
+                    .where("A", Predicates.blocks(ForgeRegistries.BLOCKS.getValue(new ResourceLocation("gtceu:atomic_casing"))))
+                    .where("B", Predicates.blocks(ForgeRegistries.BLOCKS.getValue(new ResourceLocation("gtceu:fusion_coil"))))
+                    .where("C", Predicates.blocks(ForgeRegistries.BLOCKS.getValue(new ResourceLocation("gtceu:high_power_casing"))).or(autoAbilities(definition.getRecipeTypes())).or(autoAbilities(true, false, true)))
+                    .where("D", Predicates.blocks(ForgeRegistries.BLOCKS.getValue(new ResourceLocation("gtceu:fusion_glass"))))
                     .where(" ", any())
+                    .where("E", Predicates.blocks(ForgeRegistries.BLOCKS.getValue(new ResourceLocation("gtceu:atomic_casing"))).or(Predicates.abilities(GTTPartAbility.EXPORT_HIGH_ENERGY_LASER)))
                     .build())
-            .workableCasingModel(GTCEu.id("block/casings/gcym/atomic_casing"),
+            .workableCasingModel(GTCEu.id("block/casings/hpca/high_power_casing"),
                     GTCEu.id("block/multiblock/fusion_reactor"))
             .register();
 
@@ -632,7 +726,7 @@ public class GTTMultiMachines {
                     Component.translatable("gttcore.plasma_heat_exchanger")))
             .rotationState(RotationState.ALL)
             .recipeType(PLASMA_HEAT_EXCHANGER_RECIPES)
-            .recipeModifiers(GTRecipeModifiers.OC_PERFECT_SUBTICK)
+            .recipeModifiers(OC_PERFECT_SUBTICK)
             .appearanceBlock(CASING_TUNGSTENSTEEL_ROBUST)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("AAABAAA","AAAAAAA","AAABAAA")
@@ -651,7 +745,7 @@ public class GTTMultiMachines {
             .multiblock("huge_chemical_reactor", WorkableElectricMultiblockMachine::new)
             .rotationState(RotationState.ALL)
             .recipeType(GTRecipeTypes.LARGE_CHEMICAL_RECIPES)
-            .recipeModifiers(GTRecipeModifiers.PARALLEL_HATCH, GTRecipeModifiers.OC_PERFECT_SUBTICK)
+            .recipeModifiers(GTRecipeModifiers.PARALLEL_HATCH, OC_PERFECT_SUBTICK)
             .appearanceBlock(CASING_PTFE_INERT)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle(" AAA ","AAAAA","AAAAA","AAAAA"," AAA ")
@@ -671,7 +765,7 @@ public class GTTMultiMachines {
             .multiblock("chemical_plant", WorkableElectricMultiblockMachine::new)
             .rotationState(RotationState.ALL)
             .recipeType(CHEMICAL_PLANT_RECIPES)
-            .recipeModifiers(GTRecipeModifiers.PARALLEL_HATCH, GTRecipeModifiers.OC_PERFECT_SUBTICK)
+            .recipeModifiers(GTRecipeModifiers.PARALLEL_HATCH, OC_PERFECT_SUBTICK)
             .appearanceBlock(CASING_PTFE_INERT)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("AAAAAAAAAAA","           ","           ","           ","           ","           ","           ","           ","AAAAAAAAAAA")

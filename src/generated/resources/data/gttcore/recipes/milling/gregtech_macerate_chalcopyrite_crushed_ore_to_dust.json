@@ -1,0 +1,21 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:purified_ores/chalcopyrite"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:pure_chalcopyrite_dust"
+    },
+    {
+      "chance": 0.14,
+      "item": "gtceu:cobalt_dust"
+    }
+  ]
+}

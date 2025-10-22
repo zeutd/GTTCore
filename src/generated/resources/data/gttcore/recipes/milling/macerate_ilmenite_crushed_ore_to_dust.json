@@ -1,0 +1,20 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:purified_ores/ilmenite"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:pure_ilmenite_dust"
+    },
+    {
+      "item": "gtceu:rutile_dust"
+    }
+  ]
+}

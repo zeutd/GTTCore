@@ -49,7 +49,14 @@ public class GTTRecipes {
     public static void replaceInput(Supplier<? extends ItemLike> toReplace, ItemStack replacement){
         replaceInputMap.put(new SingleItemMatch(new ItemStack(toReplace.get())), InputItem.of(Ingredient.of(replacement), 1));
     }
+    public static void replaceInput(Supplier<? extends ItemLike> toReplace, Supplier<? extends ItemLike> replacement){
+        replaceInputMap.put(new SingleItemMatch(new ItemStack(toReplace.get())), InputItem.of(Ingredient.of(replacement.get()), 1));
+    }
     public static void replace(Supplier<? extends ItemLike> toReplace, ItemStack replacement){
+        replaceInput(toReplace, replacement);
+        replaceOutput(toReplace, replacement);
+    }
+    public static void replace(Supplier<? extends ItemLike> toReplace, Supplier<? extends ItemLike> replacement){
         replaceInput(toReplace, replacement);
         replaceOutput(toReplace, replacement);
     }
@@ -60,6 +67,7 @@ public class GTTRecipes {
         replaceOutput(GTItems.WETWARE_PROCESSOR_ASSEMBLY_ZPM, GTTItems.UNAWAKENED_WETWARE_PROCESSOR_ASSEMBLY_ZPM);
         replaceOutput(GTItems.WETWARE_SUPER_COMPUTER_UV, GTTItems.UNAWAKENED_WETWARE_SUPER_COMPUTER_UV);
         replaceOutput(GTItems.WETWARE_MAINFRAME_UHV, GTTItems.UNAWAKENED_WETWARE_MAINFRAME_UHV);
+        replaceInput(AllItems.ELECTRON_TUBE, GTItems.VACUUM_TUBE);
     }
     public static void init(Consumer<FinishedRecipe> provider) {
         MiscRecipes.init(provider);

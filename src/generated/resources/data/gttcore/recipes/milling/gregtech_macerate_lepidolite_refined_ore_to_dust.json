@@ -1,0 +1,21 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:refined_ores/lepidolite"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:lepidolite_dust"
+    },
+    {
+      "chance": 0.14,
+      "item": "gtceu:boron_dust"
+    }
+  ]
+}

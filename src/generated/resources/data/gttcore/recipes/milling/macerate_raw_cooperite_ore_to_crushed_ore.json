@@ -1,0 +1,24 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:raw_materials/cooperite"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 2,
+      "item": "gtceu:crushed_cooperite_ore"
+    },
+    {
+      "item": "gtceu:nickel_dust"
+    },
+    {
+      "item": "gtceu:stone_dust"
+    }
+  ]
+}

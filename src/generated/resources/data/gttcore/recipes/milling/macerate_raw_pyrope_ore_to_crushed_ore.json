@@ -1,0 +1,24 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:raw_materials/pyrope"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 6,
+      "item": "gtceu:crushed_pyrope_ore"
+    },
+    {
+      "item": "gtceu:red_garnet_gem"
+    },
+    {
+      "item": "gtceu:stone_dust"
+    }
+  ]
+}

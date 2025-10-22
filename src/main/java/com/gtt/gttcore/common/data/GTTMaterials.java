@@ -2,17 +2,14 @@ package com.gtt.gttcore.common.data;
 
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags;
-import com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialIconSet;
 import com.gregtechceu.gtceu.api.data.chemical.material.properties.*;
 import com.gregtechceu.gtceu.api.fluids.FluidBuilder;
 import com.gregtechceu.gtceu.api.fluids.FluidState;
+import com.gregtechceu.gtceu.api.fluids.store.FluidStorageKeys;
 import com.gregtechceu.gtceu.common.data.GTElements;
 import com.gtt.gttcore.GTTCore;
-import com.mojang.blaze3d.platform.IconSet;
 import com.simibubi.create.AllItems;
-import earth.terrarium.adastra.common.registry.ModBlocks;
 import earth.terrarium.adastra.common.registry.ModItems;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ItemLike;
 
 import java.util.function.Supplier;
@@ -25,6 +22,13 @@ import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 import static com.gtt.gttcore.common.data.GTTElements.*;
 
 public class GTTMaterials {
+    public static Material[] andesiteAlloyIngredient = new Material[] {
+            Pyrite,
+            Magnetite,
+            YellowLimonite,
+            Goethite,
+            Hematite
+    };
     public static Material
             RawBeer, Beer,
             AndesiteAlloy,
@@ -345,7 +349,7 @@ public class GTTMaterials {
                 .setFormula("OsCl2O2(NH3)4");
         //endregion
         AndesiteAlloy = new Material.Builder(GTTCore.id("andesite_alloy"))
-                .color(0xb9e9e9).secondaryColor(0x495959)
+                .color(0xd0e0d9).secondaryColor(0x396059)
                 .ingot()
                 .dust()
                 .liquid()
@@ -388,14 +392,17 @@ public class GTTMaterials {
         oreDeepslate.setIgnored(Desh, ModItems.DEEPSLATE_CALORITE_ORE);
         oreDeepslate.setIgnored(Desh, ModItems.DEEPSLATE_ICE_SHARD_ORE);*/
         gem.setIgnored(IceShard, ModItems.ICE_SHARD);
+        //block.setIgnored(AndesiteAlloy, AllBlocks.ANDESITE_ALLOY_BLOCK.asItem());
     }
     public static void modify() {
+
         Netherite.addFlags(GENERATE_PLATE);
         Plutonium239.addFlags(MaterialFlags.GENERATE_ROD);
 
         Zirconium.setMaterialARGB(0x7799a9);
         Zirconium.setMaterialSecondaryARGB(0x6489a9);
         Zirconium.setProperty(PropertyKey.INGOT, new IngotProperty());
+        Zirconium.setProperty(PropertyKey.FLUID, new FluidProperty(FluidStorageKeys.LIQUID, new FluidBuilder()));
         Zirconium.addFlags(MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_FRAME);
         Zirconium.setProperty(PropertyKey.FLUID_PIPE, new FluidPipeProperties(2000, 800, true, true, true, false));
         Zirconium.setProperty(PropertyKey.BLAST, (new BlastProperty.Builder().temp(1941, BlastProperty.GasTier.MID)

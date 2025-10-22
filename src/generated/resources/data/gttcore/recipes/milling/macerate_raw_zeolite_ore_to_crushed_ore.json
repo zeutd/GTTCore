@@ -1,0 +1,24 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:raw_materials/zeolite"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 6,
+      "item": "gtceu:crushed_zeolite_ore"
+    },
+    {
+      "item": "gtceu:calcium_dust"
+    },
+    {
+      "item": "gtceu:stone_dust"
+    }
+  ]
+}

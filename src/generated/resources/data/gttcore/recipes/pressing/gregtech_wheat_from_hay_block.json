@@ -1,0 +1,18 @@
+{
+  "type": "create:pressing",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:hay_block"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 9,
+      "item": "minecraft:wheat"
+    }
+  ]
+}

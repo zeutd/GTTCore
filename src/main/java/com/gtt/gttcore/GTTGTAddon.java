@@ -2,14 +2,16 @@ package com.gtt.gttcore;
 
 import com.gregtechceu.gtceu.api.addon.GTAddon;
 import com.gregtechceu.gtceu.api.addon.IGTAddon;
+import com.gregtechceu.gtceu.api.addon.events.KJSRecipeKeyEvent;
 import com.gregtechceu.gtceu.api.addon.events.MaterialCasingCollectionEvent;
+import com.gregtechceu.gtceu.api.registry.GTRegistries;
 import com.gregtechceu.gtceu.api.registry.registrate.GTRegistrate;
-import com.gtt.gttcore.common.data.GTTCovers;
-import com.gtt.gttcore.common.data.GTTElements;
-import com.gtt.gttcore.common.data.GTTItems;
-import com.gtt.gttcore.common.data.GTTOres;
+import com.gregtechceu.gtceu.integration.kjs.recipe.components.ContentJS;
+import com.gtt.gttcore.common.data.*;
 import com.gtt.gttcore.common.data.recipes.GTTRecipes;
 import com.gtt.gttcore.common.data.recipes.remove.GregTechRecipeRemoval;
+import com.mojang.datafixers.util.Pair;
+import dev.latvian.mods.kubejs.recipe.component.NumberComponent;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.resources.ResourceLocation;
 
@@ -64,15 +66,15 @@ public class GTTGTAddon implements IGTAddon {
     }
     // If you have custom ingredient types, uncomment this & change to match your capability.
     // KubeJS WILL REMOVE YOUR RECIPES IF THESE ARE NOT REGISTERED.
-    /*
-    public static final ContentJS<Double> PRESSURE_IN = new ContentJS<>(NumberComponent.ANY_DOUBLE, GregitasRecipeCapabilities.PRESSURE, false);
-    public static final ContentJS<Double> PRESSURE_OUT = new ContentJS<>(NumberComponent.ANY_DOUBLE, GregitasRecipeCapabilities.PRESSURE, true);
+
+    public static final ContentJS<Long> HIGH_ENERGY_LASER_IN = new ContentJS<>(NumberComponent.ANY_LONG, GTTRecipeCapabilities.HIGH_ENERGY_LASER, false);
+    public static final ContentJS<Long> HIGH_ENERGY_LASER_OUT = new ContentJS<>(NumberComponent.ANY_LONG, GTTRecipeCapabilities.HIGH_ENERGY_LASER, true);
 
     @Override
     public void registerRecipeKeys(KJSRecipeKeyEvent event) {
-        event.registerKey(CustomRecipeCapabilities.PRESSURE, Pair.of(PRESSURE_IN, PRESSURE_OUT));
+        event.registerKey(GTTRecipeCapabilities.HIGH_ENERGY_LASER, Pair.of(HIGH_ENERGY_LASER_IN, HIGH_ENERGY_LASER_OUT));
     }
-    */
+
     @Override
     public boolean requiresHighTier() {
         return true;
@@ -90,5 +92,10 @@ public class GTTGTAddon implements IGTAddon {
     public void registerCovers(){
         GTTCovers.init();
         GTTItems.init();
+    }
+
+    @Override
+    public void registerRecipeCapabilities() {
+        GTTRecipeCapabilities.init();
     }
 }
