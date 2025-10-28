@@ -96,13 +96,13 @@ public class GTTMultiMachines {
             .workableCasingModel(GTCEu.id("block/casings/solid/machine_casing_clean_stainless_steel"),
                     GTCEu.id("block/multiblock/assembly_line"))
             .register();
-    public final static MultiblockMachineDefinition LASER_ENGRAVING_PLANT = REGISTRATE.multiblock("laser_engraving_plant", HighEnergyLaserMachine::new)
+    public final static MultiblockMachineDefinition LASER_ENGRAVING_PLANT = REGISTRATE.multiblock("laser_engraving_plant", WorkableElectricMultiblockMachine::new)
             .langValue("Laser Engraving Plant")
             .recipeType(LASER_ENGRAVING_PLANT_RECIPES)
             .recipeModifiers(OC_PERFECT_SUBTICK, GTRecipeModifiers.PARALLEL_HATCH)
             .appearanceBlock(CASING_LASER_SAFE_ENGRAVING)
             .pattern(definition -> FactoryBlockPattern.start(LEFT, UP, BACK)
-                    .aisle("                       ","                       ","                       ","                       ","                       ","                       ","                       ","                       ","                       ","                       ","          A~A          ","          AGA          ","          AAA          ","                       ","                       ","                       ","                       ","                       ","                       ","                       ","                       ","                       ","                       ")
+                    .aisle("                       ","                       ","                       ","                       ","                       ","                       ","                       ","                       ","                       ","          A~A          ","         AAAAA         ","         AAGAA         ","         AAAAA         ","          AAA          ","                       ","                       ","                       ","                       ","                       ","                       ","                       ","                       ","                       ")
                     .aisle("                       ","                       ","                       ","           B           ","           B           ","           B           ","           B           ","           B           ","           B           ","           B           ","          CCC          ","   BBBBBBBCBCBBBBBBB   ","          CCC          ","           B           ","           B           ","           B           ","           B           ","           B           ","           B           ","           B           ","                       ","                       ","                       ")
                     .aisle("                       ","                       ","          AAA          ","                       ","                       ","                       ","                       ","                       ","                       ","                       ","  A       CCC       A  ","  A       CBC       A  ","  A       CCC       A  ","                       ","                       ","                       ","                       ","                       ","                       ","                       ","          AAA          ","                       ","                       ")
                     .aisle("                       ","          AAA          ","          AAA          ","          CCC          ","                       ","                       ","                       ","                       ","                       ","                       "," AAC      AAA      CAA "," AAC      ABA      CAA "," AAC      AAA      CAA ","                       ","                       ","                       ","                       ","                       ","                       ","          CCC          ","          AAA          ","          AAA          ","                       ")
@@ -548,7 +548,7 @@ public class GTTMultiMachines {
                     GTCEu.id("block/machines/rock_crusher"))
             .register();
     public final static MultiblockMachineDefinition PARTICLE_ACCELERATOR = REGISTRATE
-            .multiblock("particle_accelerator", HighEnergyLaserMachine::new)
+            .multiblock("particle_accelerator", WorkableElectricMultiblockMachine::new)
             .langValue("Particle Accelerator")
             .tooltips(Component.translatable("gtceu.multiblock.parallelizable.tooltip"))
             .tooltips(Component.translatable("gtceu.machine.available_recipe_map_1.tooltip",
@@ -625,7 +625,7 @@ public class GTTMultiMachines {
                     .where("C", Predicates.blocks(ForgeRegistries.BLOCKS.getValue(new ResourceLocation("gtceu:high_power_casing"))).or(autoAbilities(definition.getRecipeTypes())).or(autoAbilities(true, false, true)))
                     .where("D", Predicates.blocks(ForgeRegistries.BLOCKS.getValue(new ResourceLocation("gtceu:fusion_glass"))))
                     .where(" ", any())
-                    .where("E", Predicates.blocks(ForgeRegistries.BLOCKS.getValue(new ResourceLocation("gtceu:atomic_casing"))).or(Predicates.abilities(GTTPartAbility.EXPORT_HIGH_ENERGY_LASER)))
+                    .where("E", Predicates.blocks(ForgeRegistries.BLOCKS.getValue(new ResourceLocation("gtceu:atomic_casing"))).or(Predicates.abilities(GTTPartAbility.EXPORT_HIGH_ENERGY_LASER).setMaxGlobalLimited(1)))
                     .build())
             .workableCasingModel(GTCEu.id("block/casings/hpca/high_power_casing"),
                     GTCEu.id("block/multiblock/fusion_reactor"))

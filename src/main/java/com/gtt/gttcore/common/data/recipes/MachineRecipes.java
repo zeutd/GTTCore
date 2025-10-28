@@ -146,7 +146,7 @@ public class MachineRecipes {
                 .input(HighEnergyLaserRecipeCapability.CAP, 1000)
                 .save(provider);
         HIGH_ENERGY_LASER_PIPE_COOLANT.recipeBuilder(GTTCore.id("high_energy_laser_pipe_coolant"))
-                .duration(200)
+                .duration(300)
                 .inputFluids(PCBCoolant.getFluid(1000))
                 .save(provider);
     }

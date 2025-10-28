@@ -23,10 +23,10 @@ public class ServerScriptManagerMixin {
     private void wrapResourceManagerMixin(CloseableResourceManager original, CallbackInfoReturnable<MultiPackResourceManager> cir) {
         ServerEvents.RECIPES.listenJava(ScriptType.SERVER, null, e -> {
             GTTRecipes.replaceOutputMap.forEach((k, v) -> {
-                RecipesEventJS.instance.replaceOutput(r -> !Objects.equals(r.kjs$getMod(), "gttcore"), k, v);
+                RecipesEventJS.instance.replaceOutput(r -> !Objects.equals(r.kjs$getMod(), GTTCore.MOD_ID), k, v);
             });
             GTTRecipes.replaceInputMap.forEach((k, v) -> {
-                RecipesEventJS.instance.replaceInput(r -> !Objects.equals(r.kjs$getMod(), "gttcore"), k, v);
+                RecipesEventJS.instance.replaceInput(r -> !Objects.equals(r.kjs$getMod(), GTTCore.MOD_ID), k, v);
             });
             GTTRecipes.remove(filter -> {
                 RecipesEventJS.instance.remove(filter);

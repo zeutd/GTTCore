@@ -21,7 +21,7 @@ public class GTTDatagen {
         LOGGER.info("GTT Datagen");
         DataGenerator generator = event.getGenerator();
         PackOutput output = generator.getPackOutput();
-        GTTRecipeProvider.registerAllProcessing(generator, output);
+        //GTTRecipeProvider.registerAllProcessing(generator, output);
         REGISTRATE.addDataGenerator(ProviderType.ITEM_TAGS, GTTTags::addItemTags);
         REGISTRATE.addDataGenerator(ProviderType.LANG, GTTLangHandler::init);
     }

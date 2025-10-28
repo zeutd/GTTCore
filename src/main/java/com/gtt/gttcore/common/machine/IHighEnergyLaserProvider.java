@@ -2,10 +2,12 @@ package com.gtt.gttcore.common.machine;
 
 import com.gtt.gttcore.api.machine.trait.NotifiableHighEnergyLaserContainer;
 
-public interface IHighEnergyLaserProvider {
-    long getLaserAmount();
+public interface IHighEnergyLaserProvider extends IHighEnergyLaserHatch{
+    int getLaserAmount();
 
-    void setLaserAmount(long amount);
+    void setLaserAmount(int amount);
 
-    boolean isTransmitter();
+    default void addLaserAmount(int amount){
+        setLaserAmount(getLaserAmount() + amount);
+    }
 }

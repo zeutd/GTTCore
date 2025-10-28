@@ -1,4 +1,4 @@
-// 1.20.1	2025-10-21T19:08:55.2893181	Registrate Provider for gttcore [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider]
+// 1.20.1	2025-10-22T21:52:48.4579599	Registrate Provider for gttcore [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider]
 ff28ef550715c02314b8bbac9227f922db4f4950 assets/gttcore/blockstates/chemical_plant.json
 d5fcb9cb1a0faa32e3764baf00a0d43b12ec075a assets/gttcore/blockstates/creative_high_energy_laser_provider.json
 37123b140b0948048b9f2fab5cc2bd6383a31864 assets/gttcore/blockstates/ev_cultivator.json
@@ -7,6 +7,7 @@ a8f9a04c96f8cfc379c3ef4af73246477e8cc843 assets/gttcore/blockstates/gas_huge_tur
 9d1486830f4bb0d45fce1ef8cdf3e56affb043a9 assets/gttcore/blockstates/greenhouse.json
 e227a591c4f3defc1770576c034a0d02ccca7e90 assets/gttcore/blockstates/high_energy_laser_export_hatch.json
 c04c271d65876cdc625361ba54502cc9d0e9c2a6 assets/gttcore/blockstates/high_energy_laser_import_hatch.json
+0536e11c058c20e5c4f4adb64403b998dd053059 assets/gttcore/blockstates/high_energy_laser_pipe.json
 0527316fb140eac7c2a67bc561df5638982dd006 assets/gttcore/blockstates/hp_steam_centrifuge.json
 f6bad15a308ccad8d4465d241031b06087b65f86 assets/gttcore/blockstates/huge_chemical_reactor.json
 5492a8270a26de6b441de2527c029025392e95a3 assets/gttcore/blockstates/hv_cultivator.json
@@ -71,8 +72,8 @@ e3ab39ea2678af8b2588aae1c4ff6dd4f1baa4b6 assets/gttcore/blockstates/wood_input_h
 95d056d8ad06e4e074d9c9c0797e69a78ecf5a3d assets/gttcore/blockstates/zirconium_pipe_casing.json
 7cb177d33e8666afea503a8b035d6c16c4453b82 assets/gttcore/blockstates/zpm_cultivator.json
 a6f51d0a26b36e25e0fd046308056609b35cd1d6 assets/gttcore/blockstates/zpm_large_fusion_reactor.json
-4fea6ee9bb972eb3c260911f930cf10b56df483d assets/gttcore/lang/en_ud.json
-907629c51a0bab78997ea21f84c7054a3d1c6b52 assets/gttcore/lang/en_us.json
+91ac43e4ca7687afbcd1e30830986ff13e918ecf assets/gttcore/lang/en_ud.json
+c54f8a078e937198696da170672ef6bc407d64c4 assets/gttcore/lang/en_us.json
 9c266659b005bbd4e6b5497f8088e795907befc3 assets/gttcore/models/block/lead_glass.json
 fd1fe22095a12d613deb3fdf4bc7a61636e8ece5 assets/gttcore/models/block/low_neutron_absorption_casing.json
 f5eb421c9864e792c837a3fc541b38bbf716b25b assets/gttcore/models/block/machine/chemical_plant.json
@@ -83,6 +84,7 @@ e907c28aed8fc57b2aa1e80d01954c3298642378 assets/gttcore/models/block/machine/ev_
 ebefb62d49be9d66648cb91f5a1e74e4e588b863 assets/gttcore/models/block/machine/greenhouse.json
 7778c83dceef7b3f6061896370fc085d6591bc24 assets/gttcore/models/block/machine/high_energy_laser_export_hatch.json
 e9a34e574809b026b7db3f1cc09eb828a33d6daa assets/gttcore/models/block/machine/high_energy_laser_import_hatch.json
+bb878b36a188cc3617571e48485dfcb869015f18 assets/gttcore/models/block/machine/high_energy_laser_pipe.json
 886a41108f386c27eeb70255dbdad5b3833e0a20 assets/gttcore/models/block/machine/hp_steam_centrifuge.json
 bafd78b6aebe4139a26ebd4e3849966af1b36781 assets/gttcore/models/block/machine/huge_chemical_reactor.json
 b8f23da57213adabef5e4e093e363f0d9a67aa29 assets/gttcore/models/block/machine/hv_cultivator.json
@@ -162,6 +164,7 @@ fa83c4db92ad6c1f1bd39e50a9167d78a541c90d assets/gttcore/models/item/gravitationa
 24cb96a571c97a81b1ceb55d4f3326f7c2b6a815 assets/gttcore/models/item/greenhouse.json
 8e3647e584684a08fcdd3adc84f60fb09c19ac54 assets/gttcore/models/item/high_energy_laser_export_hatch.json
 73e9e361d710938018ef180a26f7a0f04331c7d7 assets/gttcore/models/item/high_energy_laser_import_hatch.json
+c4d9593e300b92d7658b90fa0ba9e767d14a0b82 assets/gttcore/models/item/high_energy_laser_pipe.json
 fa0e8d1c4ec1211ef1185b0db1b0b094481fbd0d assets/gttcore/models/item/hp_steam_centrifuge.json
 90df52ffdd6a4c42e2df7474c70bd46e1646d09f assets/gttcore/models/item/huge_chemical_reactor.json
 e3edfe25d9c4de57047e508be166a4fca5485fe3 assets/gttcore/models/item/hv_cultivator.json
@@ -233,15 +236,18 @@ cf521cf8fe6f369192e7d852c9c32acac99d0017 assets/gttcore/models/item/uiv_cultivat
 08dec4e85132ef5a1b05a8e22aaa660d9dab7bd4 assets/gttcore/models/item/ulv_alloy_smelter.json
 e5be5915195609369f2e35988af03710ec559080 assets/gttcore/models/item/ulv_bender.json
 02a3d52fefedbfaf6687a9db62021e615aaee629 assets/gttcore/models/item/ulv_chemical_reactor.json
+01f0be80b7c312603eeb78cfeba698ddfe8f3b39 assets/gttcore/models/item/ulv_conveyor_module.json
 c13a980515ce40e4058805bea193d2c8f56ee7f1 assets/gttcore/models/item/ulv_cutter.json
 15ec79f23d362257ac63b53171efb2eb20d7ac36 assets/gttcore/models/item/ulv_electric_furnace.json
 f0e0f7392c373be78b2cffbbe725dc70cc0dd80c assets/gttcore/models/item/ulv_electric_motor.json
+84592d79861281b10f47c77d0bb93fed49225163 assets/gttcore/models/item/ulv_electric_piston.json
 3a593c37783f1f0f21fcc6e707b0b1c6e5a0b177 assets/gttcore/models/item/ulv_electric_pump.json
 7233b52826692760526ef1dc80ad80e6f06a1cb6 assets/gttcore/models/item/ulv_fluid_heater.json
 dc2bfa5910cd3d6f4b2062ba6dc38c4f35a9ad30 assets/gttcore/models/item/ulv_fluid_regulator.json
 0b8b28a8ac2d6b243f19c110104f3fd123a82fe5 assets/gttcore/models/item/ulv_forge_hammer.json
 ae60bff4b2076df1bab8818aa47bf72cbcffc170 assets/gttcore/models/item/ulv_mixer.json
 1968cc8646219a29e72ba6e2f3f55fe1339238d0 assets/gttcore/models/item/ulv_ore_washer.json
+d37514112b203e13373acc1e1961b21c8ef214d6 assets/gttcore/models/item/ulv_robot_arm.json
 4808ff14e93b68ac09f0ec8ee2f57616c44739d6 assets/gttcore/models/item/ulv_steam_turbine.json
 56c6b40114ae1bf36df1ca033a0f3e108e3dfc80 assets/gttcore/models/item/ulv_wiremill.json
 fbb0a19c92dbf83b87a5d49b1064acee73cbf47c assets/gttcore/models/item/unawakened_wetware_processor.json
@@ -275,9 +281,12 @@ bbd626834eabb91526e5160662af990ee18ea910 data/gtceu/tags/items/circuits/opv.json
 c0a5e4836de4491399b83c58a354a5fedd80865d data/gtceu/tags/items/circuits/uv.json
 bcf5981a27f8d10c5d1e3daf0f4fcb43d32853e6 data/gtceu/tags/items/circuits/uxv.json
 a7a46b915762792115a753c4c79ba550e47bc68e data/gtceu/tags/items/circuits/zpm.json
+6eb71d2b8c046307b5727876a0014ed9eb50b073 data/gtceu/tags/items/conveyor_modules.json
 5cf78901a9ddbe2b0f771c5241927b586ca37c8f data/gtceu/tags/items/electric_motors.json
+858d4510a26172d6f68c2c32308221874874df2d data/gtceu/tags/items/electric_pistons.json
 9c3c3fc2858630337221b67ed3f09b1442493763 data/gtceu/tags/items/electric_pumps.json
 80de55e6db9aff171504c9bb0c1adb00089f161a data/gtceu/tags/items/fluid_regulators.json
+41d80648f1d86bbc072b179941d693e2a5470ee4 data/gtceu/tags/items/robot_arms.json
 0b76b7846521d3c5319113e7ce5f3ecd58ff588b data/gttcore/loot_tables/blocks/lead_glass.json
 076a0eef0a2b86ae6ffc30961d5190f548ae3b40 data/gttcore/loot_tables/blocks/low_neutron_absorption_casing.json
 b1425832bb2a777d598fcdf5ab96ff78d808008d data/gttcore/loot_tables/blocks/naquadah_alloy_turbine_casing.json

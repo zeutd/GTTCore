@@ -254,7 +254,7 @@ public class MiscRecipes {
             AllItems.ANDESITE_ALLOY.asStack(1),
                 "BA",
                 "AB",
-                'A', new MaterialEntry(rock, Andesite),
+                'A', new MaterialEntry(block, Andesite),
                 'B', GTTTags.andesiteAlloyable
         );
 

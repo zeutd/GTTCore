@@ -1,18 +1,17 @@
 package com.gtt.gttcore.common.data.recipes.remove;
 
+import com.gtt.gttcore.GTTCore;
 import com.simibubi.create.AllRecipeTypes;
 import com.simibubi.create.Create;
 import dev.latvian.mods.kubejs.recipe.ReplacementMatch;
-import dev.latvian.mods.kubejs.recipe.filter.IDFilter;
-import dev.latvian.mods.kubejs.recipe.filter.InputFilter;
-import dev.latvian.mods.kubejs.recipe.filter.RecipeFilter;
-import dev.latvian.mods.kubejs.recipe.filter.TypeFilter;
+import dev.latvian.mods.kubejs.recipe.filter.*;
 import earth.terrarium.adastra.common.registry.ModBlocks;
 import earth.terrarium.adastra.common.registry.ModRecipeTypes;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.Recipe;
 
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
@@ -36,6 +35,7 @@ public class CreateRecipeRemoval {
         provider.accept(new IDFilter(Create.asResource("mixing/chocolate")));
         provider.accept(new IDFilter(Create.asResource("mixing/tea")));
         provider.accept(new IDFilter(Create.asResource("mixing/andesite_alloy")));
+        provider.accept(createTypeFilter(AllRecipeTypes.COMPACTING.getId()));
 //        provider.accept(new IDFilter(Create.asResource("")));
 //        provider.accept(new IDFilter(Create.asResource("")));
 //        provider.accept(new IDFilter(Create.asResource("")));
@@ -51,6 +51,12 @@ public class CreateRecipeRemoval {
 //        provider.accept(new IDFilter(Create.asResource("")));
 //        provider.accept(new IDFilter(Create.asResource("")));
 //        provider.accept(new IDFilter(Create.asResource("")));
-//        provider.accept(new IDFilter(Create.asResource("")));
+    }
+
+    private static RecipeFilter createTypeFilter(ResourceLocation type){
+        AndFilter filter = new AndFilter();
+        filter.list.add(new ModFilter(Create.ID));
+        filter.list.add(new TypeFilter(type));
+        return filter;
     }
 }

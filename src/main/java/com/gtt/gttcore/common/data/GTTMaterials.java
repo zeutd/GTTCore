@@ -8,6 +8,7 @@ import com.gregtechceu.gtceu.api.fluids.FluidState;
 import com.gregtechceu.gtceu.api.fluids.store.FluidStorageKeys;
 import com.gregtechceu.gtceu.common.data.GTElements;
 import com.gtt.gttcore.GTTCore;
+import com.simibubi.create.AllBlocks;
 import com.simibubi.create.AllItems;
 import earth.terrarium.adastra.common.registry.ModItems;
 import net.minecraft.world.level.ItemLike;
@@ -349,7 +350,7 @@ public class GTTMaterials {
                 .setFormula("OsCl2O2(NH3)4");
         //endregion
         AndesiteAlloy = new Material.Builder(GTTCore.id("andesite_alloy"))
-                .color(0xd0e0d9).secondaryColor(0x396059)
+                .color(0xe0f0e9).secondaryColor(0x596059)
                 .ingot()
                 .dust()
                 .liquid()
@@ -396,7 +397,7 @@ public class GTTMaterials {
     }
     public static void modify() {
 
-        Netherite.addFlags(GENERATE_PLATE);
+        Netherite.addFlags(GENERATE_PLATE, GENERATE_ROD, GENERATE_LONG_ROD);
         Plutonium239.addFlags(MaterialFlags.GENERATE_ROD);
 
         Zirconium.setMaterialARGB(0x7799a9);

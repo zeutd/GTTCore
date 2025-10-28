@@ -66,15 +66,15 @@ public class GTTRecipeTypes {
         });
         FORGE_HAMMER_RECIPES.onRecipeBuild((recipeBuilder, provider) -> {
             if (recipeBuilder.EUt().voltage() > GTValues.V[ULV]) return;
-            toReRegisterCreatePressing.add(recipeBuilder);
+            if (toReRegisterCreatePressing.stream().noneMatch(rb -> rb.id.getPath().equals(recipeBuilder.id.getPath())))toReRegisterCreatePressing.add(recipeBuilder);
         });
         MIXER_RECIPES.onRecipeBuild((recipeBuilder, provider) -> {
             if (recipeBuilder.EUt().voltage() > GTValues.V[ULV]) return;
-            toReRegisterCreateMixing.add(recipeBuilder);
+            if (toReRegisterCreateMixing.stream().noneMatch(rb -> rb.id.getPath().equals(recipeBuilder.id.getPath())))toReRegisterCreateMixing.add(recipeBuilder);
         });
         MACERATOR_RECIPES.onRecipeBuild((recipeBuilder, provider) -> {
             if (recipeBuilder.EUt().voltage() > GTValues.V[ULV]) return;
-            toReRegisterCreateMilling.add(recipeBuilder);
+            if (toReRegisterCreateMilling.stream().noneMatch(rb -> rb.id.getPath().equals(recipeBuilder.id.getPath())))toReRegisterCreateMilling.add(recipeBuilder);
         });
     }
     public static GTRecipeType register(String name, String group, RecipeType<?>... proxyRecipes) {
@@ -107,7 +107,7 @@ public class GTTRecipeTypes {
             .setSlotOverlay(false, false, GuiTextures.MOLECULAR_OVERLAY_1)
             .setProgressBar(GuiTextures.PROGRESS_BAR_BOILER_FUEL.get(true), LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.BOILER);
-    public final static GTRecipeType PARTICLE_ACCELERATOR_RECIPES = register("particle_collider", MULTIBLOCK).setMaxIOSize(2, 1, 2, 2)
+    public final static GTRecipeType PARTICLE_ACCELERATOR_RECIPES = register("particle_accelerator", MULTIBLOCK).setMaxIOSize(2, 1, 2, 2)
             .setEUIO(IO.IN)
             .setSlotOverlay(true, true, GuiTextures.MOLECULAR_OVERLAY_1)
             .setSlotOverlay(false, true, GuiTextures.MOLECULAR_OVERLAY_1)

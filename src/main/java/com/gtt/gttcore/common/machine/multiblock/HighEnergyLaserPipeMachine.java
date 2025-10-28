@@ -22,7 +22,7 @@ import static com.gtt.gttcore.GTTCore.LOGGER;
 
 public class HighEnergyLaserPipeMachine extends WorkableElectricMultiblockMachine {
     public static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(
-            HighEnergyLaserMachine.class, WorkableElectricMultiblockMachine.MANAGED_FIELD_HOLDER);
+            HighEnergyLaserPipeMachine.class, WorkableElectricMultiblockMachine.MANAGED_FIELD_HOLDER);
     @Override
     public ManagedFieldHolder getFieldHolder() {
         return MANAGED_FIELD_HOLDER;
@@ -30,7 +30,7 @@ public class HighEnergyLaserPipeMachine extends WorkableElectricMultiblockMachin
     public Set<HighEnergyLaserHatchPartMachine> laserOutputHatchMachines;
     public Set<HighEnergyLaserHatchPartMachine> laserInputHatchMachines;
     protected ConditionalSubscriptionHandler updateSubscription;
-    protected long laserAmount;
+    protected int laserAmount;
     public HighEnergyLaserPipeMachine(IMachineBlockEntity holder, Object... args) {
         super(holder, args);
         updateSubscription = new ConditionalSubscriptionHandler(this, this::updateTick,
@@ -54,14 +54,6 @@ public class HighEnergyLaserPipeMachine extends WorkableElectricMultiblockMachin
                 laserHatch.setLaserAmount(laserAmount / laserOutputHatchMachines.size());
             } else {
                 laserHatch.setLaserAmount(0);
-            }
-            BlockPos pos = laserHatch.getPos().relative(laserHatch.getFrontFacing());
-            BlockState state = getLevel().getBlockState(pos);
-            if (state.hasBlockEntity()) {
-                BlockEntity entity = getLevel().getBlockEntity(pos);
-                if (entity instanceof MetaMachineBlockEntity machineBlockEntity && machineBlockEntity.getMetaMachine() instanceof IHighEnergyLaserProvider other && !other.isTransmitter()) {
-                    other.setLaserAmount(laserHatch.getLaserAmount());
-                }
             }
         }
 
