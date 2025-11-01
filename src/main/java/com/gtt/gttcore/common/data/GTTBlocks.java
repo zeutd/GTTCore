@@ -39,7 +39,9 @@ public class GTTBlocks {
     public static final BlockEntry<Block> CASING_LEAD_GLASS = createGlassCasingBlock("lead_glass",
             GTTCore.id("block/casings/lead_glass"), () -> RenderType::translucent);
 
-
+    public static final BlockEntry<Block> CASING_STAINLESS_EVAPORATION = createCasingBlock(
+            "stainless_evaporation_casing",
+            GTCEu.id("block/casings/solid/machine_casing_stainless_evaporation"));
     public static final BlockEntry<ActiveBlock> STEAM_CRUSHING_WHEELS = createActiveCasing("steam_crushing_wheels",
             "block/steam_crushing_wheels");
     public static BlockEntry<Block> createCasingBlock(String name, ResourceLocation texture) {

@@ -1,12 +1,15 @@
 package com.gtt.gttcore.common.data.recipes;
 
+import appeng.core.definitions.AEBlocks;
 import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.common.data.GTItems;
 import com.gtt.gttcore.common.data.GTTItems;
+import com.gtt.gttcore.common.data.recipes.lines.BrineLine;
 import com.gtt.gttcore.common.data.recipes.lines.PlatinumGroupLine;
 import com.gtt.gttcore.common.data.recipes.lines.ZieglerNattaLine;
 import com.gtt.gttcore.common.data.recipes.lines.ZirconiumLine;
+import com.gtt.gttcore.common.data.recipes.remove.AE2RecipeRemoval;
 import com.gtt.gttcore.common.data.recipes.remove.AdAstraRecipeRemoval;
 import com.gtt.gttcore.common.data.recipes.remove.CreateRecipeRemoval;
 import com.simibubi.create.AllItems;
@@ -46,17 +49,37 @@ public class GTTRecipes {
     public static void replaceOutput(Supplier<? extends ItemLike> toReplace, ItemStack replacement){
         replaceOutputMap.put(new SingleItemMatch(new ItemStack(toReplace.get())), OutputItem.of(replacement, 1));
     }
+    public static void replaceOutput(Item toReplace, Supplier<? extends ItemLike> replacement){
+        replaceOutputMap.put(new SingleItemMatch(new ItemStack(toReplace)), OutputItem.of(new ItemStack(replacement.get()), 1));
+    }
+    public static void replaceOutput(Item toReplace, ItemStack replacement){
+        replaceOutputMap.put(new SingleItemMatch(new ItemStack(toReplace)), OutputItem.of(replacement, 1));
+    }
     public static void replaceInput(Supplier<? extends ItemLike> toReplace, ItemStack replacement){
         replaceInputMap.put(new SingleItemMatch(new ItemStack(toReplace.get())), InputItem.of(Ingredient.of(replacement), 1));
     }
     public static void replaceInput(Supplier<? extends ItemLike> toReplace, Supplier<? extends ItemLike> replacement){
         replaceInputMap.put(new SingleItemMatch(new ItemStack(toReplace.get())), InputItem.of(Ingredient.of(replacement.get()), 1));
     }
+    public static void replaceInput(Item toReplace, ItemStack replacement){
+        replaceInputMap.put(new SingleItemMatch(new ItemStack(toReplace)), InputItem.of(Ingredient.of(replacement), 1));
+    }
+    public static void replaceInput(Item toReplace, Supplier<? extends ItemLike> replacement){
+        replaceInputMap.put(new SingleItemMatch(new ItemStack(toReplace)), InputItem.of(Ingredient.of(replacement.get()), 1));
+    }
     public static void replace(Supplier<? extends ItemLike> toReplace, ItemStack replacement){
         replaceInput(toReplace, replacement);
         replaceOutput(toReplace, replacement);
     }
     public static void replace(Supplier<? extends ItemLike> toReplace, Supplier<? extends ItemLike> replacement){
+        replaceInput(toReplace, replacement);
+        replaceOutput(toReplace, replacement);
+    }
+    public static void replace(Item toReplace, ItemStack replacement){
+        replaceInput(toReplace, replacement);
+        replaceOutput(toReplace, replacement);
+    }
+    public static void replace(Item toReplace, Supplier<? extends ItemLike> replacement){
         replaceInput(toReplace, replacement);
         replaceOutput(toReplace, replacement);
     }
@@ -68,12 +91,14 @@ public class GTTRecipes {
         replaceOutput(GTItems.WETWARE_SUPER_COMPUTER_UV, GTTItems.UNAWAKENED_WETWARE_SUPER_COMPUTER_UV);
         replaceOutput(GTItems.WETWARE_MAINFRAME_UHV, GTTItems.UNAWAKENED_WETWARE_MAINFRAME_UHV);
         replaceInput(AllItems.ELECTRON_TUBE, GTItems.VACUUM_TUBE);
+        replace(AEBlocks.QUARTZ_BLOCK.asItem(), ChemicalHelper.get(TagPrefix.block, CertusQuartz));
     }
     public static void init(Consumer<FinishedRecipe> provider) {
         MiscRecipes.init(provider);
         MachineRecipes.init(provider);
         ZieglerNattaLine.init(provider);
         ZirconiumLine.init(provider);
+        BrineLine.init(provider);
         PlatinumGroupLine.init(provider);
         MixerRecipes.init(provider);
         RocketRecipes.init(provider);
@@ -82,5 +107,6 @@ public class GTTRecipes {
     public static void remove(Consumer<RecipeFilter> provider) {
         CreateRecipeRemoval.init(provider);
         AdAstraRecipeRemoval.init(provider);
+        AE2RecipeRemoval.init(provider);
     }
 }

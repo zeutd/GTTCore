@@ -10,18 +10,14 @@ import com.gregtechceu.gtceu.api.machine.multiblock.PartAbility;
 import com.gregtechceu.gtceu.api.machine.steam.SimpleSteamMachine;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
 import com.gregtechceu.gtceu.api.registry.registrate.MachineBuilder;
-import com.gregtechceu.gtceu.client.renderer.machine.DynamicRenderHelper;
 import com.gregtechceu.gtceu.client.util.TooltipHelper;
 import com.gregtechceu.gtceu.common.data.GTMedicalConditions;
 import com.gregtechceu.gtceu.common.data.GTRecipeModifiers;
 import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
 import com.gregtechceu.gtceu.common.machine.multiblock.part.ParallelHatchPartMachine;
 import com.gregtechceu.gtceu.common.machine.multiblock.part.SteamItemBusPartMachine;
-import com.gregtechceu.gtceu.common.machine.storage.CreativeChestMachine;
-import com.gregtechceu.gtceu.common.registry.GTRegistration;
 import com.gregtechceu.gtceu.config.ConfigHolder;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
-import com.gtt.gttcore.GTTCore;
 import com.gtt.gttcore.common.data.recipes.GTTRecipeTypes;
 import com.gtt.gttcore.common.machine.CreativeHighEnergyLaserProviderMachine;
 import com.gtt.gttcore.common.machine.multiblock.GTTPartAbility;
@@ -37,13 +33,11 @@ import java.util.List;
 import java.util.Locale;
 import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
-import java.util.function.Function;
 
 import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.api.capability.recipe.IO.IN;
 import static com.gregtechceu.gtceu.api.capability.recipe.IO.OUT;
 import static com.gregtechceu.gtceu.common.data.machines.GTMachineUtils.*;
-import static com.gregtechceu.gtceu.common.data.models.GTMachineModels.createBasicMachineModel;
 import static com.gregtechceu.gtceu.utils.FormattingUtil.toEnglishName;
 import static com.gtt.gttcore.common.registry.GTTRegistration.REGISTRATE;
 
@@ -67,15 +61,31 @@ public class GTTMachines {
 
 
     public static final MachineDefinition ULV_BENDER = registerULVMachines("bender", GTRecipeTypes.BENDER_RECIPES);
+    public static final MachineDefinition ULV_COMPRESSOR = registerULVMachines("compressor", GTRecipeTypes.COMPRESSOR_RECIPES);
     public static final MachineDefinition ULV_ELECTRIC_FURNACE = registerULVMachines("electric_furnace", GTRecipeTypes.FURNACE_RECIPES);
     public static final MachineDefinition ULV_ALLOY_SMELTER = registerULVMachines("alloy_smelter", GTRecipeTypes.ALLOY_SMELTER_RECIPES);
-    public static final MachineDefinition ULV_HEATER = registerULVMachines("fluid_heater", GTRecipeTypes.FLUID_HEATER_RECIPES, hvCappedTankSizeFunction);
+    public static final MachineDefinition ULV_FLUID_HEATER = registerULVMachines("fluid_heater", GTRecipeTypes.FLUID_HEATER_RECIPES, hvCappedTankSizeFunction);
     public static final MachineDefinition ULV_FORGE_HAMMER = registerULVMachines("forge_hammer", GTRecipeTypes.FORGE_HAMMER_RECIPES);
     public static final MachineDefinition ULV_ORE_WASHER = registerULVMachines("ore_washer", GTRecipeTypes.ORE_WASHER_RECIPES);
     public static final MachineDefinition ULV_CHEMICAL_REACTOR = registerULVMachines("chemical_reactor", GTRecipeTypes.CHEMICAL_RECIPES);
+    public static final MachineDefinition ULV_CHEMICAL_BATH = registerULVMachines("chemical_bath", GTRecipeTypes.CHEMICAL_BATH_RECIPES);
+    public static final MachineDefinition ULV_CENTRIFUGE = registerULVMachines("centrifuge", GTRecipeTypes.CENTRIFUGE_RECIPES);
     public static final MachineDefinition ULV_CUTTER = registerULVMachines("cutter", GTRecipeTypes.CUTTER_RECIPES);
     public static final MachineDefinition ULV_MIXER = registerULVMachines("mixer", GTRecipeTypes.MIXER_RECIPES, hvCappedTankSizeFunction);
     public static final MachineDefinition ULV_WIREMILL = registerULVMachines("wiremill", GTRecipeTypes.WIREMILL_RECIPES);
+    public static final MachineDefinition ULV_MACERATOR = registerULVMachines("macerator", GTRecipeTypes.MACERATOR_RECIPES);
+    public static final MachineDefinition ULV_LATHE = registerULVMachines("lathe", GTRecipeTypes.LATHE_RECIPES);
+    public static final MachineDefinition ULV_EXTRACTOR = registerULVMachines("extractor", GTRecipeTypes.EXTRACTOR_RECIPES);
+    public static final MachineDefinition ULV_FLUID_SOLIDIFIER = registerULVMachines("fluid_solidifier", GTRecipeTypes.FLUID_SOLIDFICATION_RECIPES);
+    public static final MachineDefinition ULV_BREWERY = registerULVMachines("brewery", GTRecipeTypes.BREWING_RECIPES);
+    public static final MachineDefinition ULV_FERMENTER = registerULVMachines("fermenter", GTRecipeTypes.FERMENTING_RECIPES);
+    public static final MachineDefinition ULV_FORMING_PRESS = registerULVMachines("forming_press", GTRecipeTypes.FORMING_PRESS_RECIPES);
+    public static final MachineDefinition ULV_POLARIZER = registerULVMachines("polarizer", GTRecipeTypes.POLARIZER_RECIPES);
+    public static final MachineDefinition ULV_SIFTER = registerULVMachines("sifter", GTRecipeTypes.SIFTER_RECIPES);
+    public static final MachineDefinition ULV_DISTILLERY = registerULVMachines("distillery", GTRecipeTypes.DISTILLERY_RECIPES, hvCappedTankSizeFunction);
+    public static final MachineDefinition ULV_ELECTROLYZER = registerULVMachines("electrolyzer", GTRecipeTypes.ELECTROLYZER_RECIPES, largeTankSizeFunction);
+    public static final MachineDefinition ULV_ELECTROMAGNETIC_SEPARATOR = registerULVMachines("electromagnetic_separator", GTRecipeTypes.ELECTROMAGNETIC_SEPARATOR_RECIPES);
+    public static final MachineDefinition ULV_AUTOCLAVE = registerULVMachines("autoclave", GTRecipeTypes.AUTOCLAVE_RECIPES);
 
     public static final MachineDefinition[] CULTIVATOR = registerSimpleMachines("cultivator", GTTRecipeTypes.CULTIVATOR_RECIPES, GTCEu.id("block/machines/fermenter" ));
 

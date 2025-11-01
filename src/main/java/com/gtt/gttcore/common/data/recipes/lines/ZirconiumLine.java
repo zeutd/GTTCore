@@ -17,14 +17,14 @@ public class ZirconiumLine {
                 .inputItems(dust, Carbon)
                 .outputItems(dust, ZirconiumCarbide)
                 .blastFurnaceTemp(900)
-                .EUt(V[HV])
+                .EUt(VA[HV])
                 .duration(60)
                 .save(provider);
         CHEMICAL_RECIPES.recipeBuilder("zirconium_tetrachloride")
                 .inputItems(dust, ZirconiumCarbide)
                 .inputFluids(Chlorine.getFluid(500))
                 .outputItems(dust, ZirconiumTetrachloride)
-                .EUt(V[HV])
+                .EUt(VA[HV])
                 .duration(40)
                 .save(provider);
         BLAST_RECIPES.recipeBuilder("zirconium_from_tetrachloride").duration(800).EUt(VA[HV])

@@ -1,5 +1,6 @@
 package com.gtt.gttcore.common.data;
 
+import appeng.core.definitions.AEItems;
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags;
 import com.gregtechceu.gtceu.api.data.chemical.material.properties.*;
@@ -31,6 +32,7 @@ public class GTTMaterials {
             Hematite
     };
     public static Material
+            FluixCrystal,
             RawBeer, Beer,
             AndesiteAlloy,
             Desh, Ostrum, Calorite, IceShard,
@@ -40,16 +42,24 @@ public class GTTMaterials {
             DepletedUranium238, DepletedPlutonium239, DepletedThorium,
             SupercriticalSteam,
             AtomicSteel,
-            PlatinumGroupSolution, PlatinumPalladiumSolution, AmmoniumHexachloroplatinate, PalladiumSolution, Diamminedichloropalladium, InertMetalSodiumBisulfate, RhodiumSulfateSolution, RhodiumHydroxide, ChlororhodicAcid, AmmoniumHexachlororhodate, AmmoniumHexanitrorhodium, SodiumPeroxide, RutheniumOsmiumIridiumMixture, RutheniumOsmiumIridiumMixtureSodiumPeroxide, RutheniumOsmiumSaltSolution, IridiumOxide, AmmoniumHexachloroiridate, RutheniumOsmiumOxide, RutheniumOxide, RutheniumSolution, OsmiumSolution, AmmoniumHexachlororuthenate, Tetraamminedioxidoosmiumdichloride
-       ;
+            PlatinumGroupSolution, PlatinumPalladiumSolution, AmmoniumHexachloroplatinate, PalladiumSolution, Diamminedichloropalladium, InertMetalSodiumBisulfate, RhodiumSulfateSolution, RhodiumHydroxide, ChlororhodicAcid, AmmoniumHexachlororhodate, AmmoniumHexanitrorhodium, SodiumPeroxide, RutheniumOsmiumIridiumMixture, RutheniumOsmiumIridiumMixtureSodiumPeroxide, RutheniumOsmiumSaltSolution, IridiumOxide, AmmoniumHexachloroiridate, RutheniumOsmiumOxide, RutheniumOxide, RutheniumSolution, OsmiumSolution, AmmoniumHexachlororuthenate, Tetraamminedioxidoosmiumdichloride,
+            HotBrine, HotChlorinatedBrominatedBrine, HotDebrominatedBrine, HotAlkalineDebrominatedBrine, AcidicBromineSolution, ConcentratedBromineSolution, HydrogenIodide, RawBrine, DebrominatedBrine, BrominatedChlorineVapor, AcidicBromineExhaust
+            ;
     public static void init() {
+        FluixCrystal = new Material.Builder(GTTCore.id("fluix_crystal"))
+                .gem()
+                .dust()
+                .color(0x993376).iconSet(CERTUS)
+                .appendFlags(EXT_METAL, NO_SMELTING, NO_SMASHING, CRYSTALLIZABLE, DISABLE_DECOMPOSITION)
+                .components(CertusQuartz, 1, Redstone, 1, NetherQuartz, 1)
+                .buildAndRegister();
         Desh = new Material.Builder(GTTCore.id("desh"))
                 .ingot()
                 .dust()
                 .liquid()
                 .element(De)
                 .ore()
-                .color(0xFF8D57).secondaryColor(0xFFAF67).iconSet(METALLIC)
+                .color(0xDF5D07).secondaryColor(0xFF8D37).iconSet(METALLIC)
                 .flags(MaterialFlags.GENERATE_PLATE, GENERATE_ROD)
                 .fluidPipeProperties(1900, 100, true, true, true, false)
                 .buildAndRegister();
@@ -59,7 +69,7 @@ public class GTTMaterials {
                 .liquid()
                 .element(Ct)
                 .ore()
-                .color(0xD45267).secondaryColor(0xEE6688).iconSet(SHINY)
+                .color(0xD44267).secondaryColor(0xEE6688).iconSet(SHINY)
                 .flags(MaterialFlags.GENERATE_PLATE, GENERATE_ROD)
                 .fluidPipeProperties(2900, 200, true, true, true, true)
                 .buildAndRegister();
@@ -69,7 +79,7 @@ public class GTTMaterials {
                 .liquid()
                 .element(Om)
                 .ore()
-                .color(0xA96685).secondaryColor(0xCB7799).iconSet(METALLIC)
+                .color(0xA95675).secondaryColor(0xCB7799).iconSet(METALLIC)
                 .flags(MaterialFlags.GENERATE_PLATE, GENERATE_ROD)
                 .fluidPipeProperties(2400, 150, true, true, true, false)
                 .buildAndRegister();
@@ -213,7 +223,7 @@ public class GTTMaterials {
                 .components(Hydrogen, 2, Oxygen, 1)
                 .buildAndRegister();
         AtomicSteel = new Material.Builder(GTTCore.id("atomic_steel"))
-                .color(0x211560)
+                .color(0x262560)
                 .ingot()
                 .components(Trinium, 5, Iron, 3, Zirconium, 2, Naquadah, 3)
                 .flags(GENERATE_FRAME, GENERATE_PLATE)
@@ -366,7 +376,73 @@ public class GTTMaterials {
                 .liquid()
                 .buildAndRegister();
 
+        //region brine
+        AcidicBromineSolution = new Material.Builder(GTTCore.id("acidic_bromine_solution"))
+                .liquid()
+                .color(0xc49b52)
+                .components(Chlorine, 1, Bromine, 1)
+                .flags(DISABLE_DECOMPOSITION)
+                .buildAndRegister();
 
+        ConcentratedBromineSolution = new Material.Builder(GTTCore.id("concentrated_bromine_solution"))
+                .liquid()
+                .color(0x91481e)
+                .components(Bromine, 2, Chlorine, 1)
+                .flags(DISABLE_DECOMPOSITION)
+                .buildAndRegister();
+
+        HydrogenIodide = new Material.Builder(GTTCore.id("hydrogen_iodide"))
+                .gas()
+                .color(0x8187a6)
+                .components(Hydrogen, 1, Iodine, 1)
+                .flags(DISABLE_DECOMPOSITION)
+                .buildAndRegister();
+        HotBrine = new Material.Builder(GTTCore.id("hot_brine"))
+                .liquid(320)
+                .color(0xbe6026)
+                .buildAndRegister();
+
+        HotChlorinatedBrominatedBrine = new Material.Builder(GTTCore.id("hot_chlorinated_brominated_brine"))
+                .liquid(320)
+                .color(0xab765d)
+                .components(HotBrine, 1, Chlorine, 1)
+                .flags(DISABLE_DECOMPOSITION)
+                .buildAndRegister();
+
+        HotDebrominatedBrine = new Material.Builder(GTTCore.id("hot_debrominated_brine"))
+                .liquid(320)
+                .color(0xab896d)
+                .buildAndRegister();
+
+        HotAlkalineDebrominatedBrine = new Material.Builder(GTTCore.id("hot_alkaline_debrominated_brine"))
+                .liquid(320)
+                .color(0xbe8938)
+                .components(HotDebrominatedBrine, 2, Chlorine, 1)
+                .flags(DISABLE_DECOMPOSITION)
+                .buildAndRegister();
+        RawBrine = new Material.Builder(GTTCore.id("raw_brine"))
+                .liquid()
+                .color(0x9f6b26)
+                .buildAndRegister();
+
+        DebrominatedBrine = new Material.Builder(GTTCore.id("debrominated_brine"))
+                .liquid()
+                .color(0xab8c6d)
+                .buildAndRegister();
+
+        BrominatedChlorineVapor = new Material.Builder(GTTCore.id("brominated_chlorine_vapor"))
+                .gas()
+                .color(0xbb9b72)
+                .components(Chlorine, 1, Bromine, 1, Steam, 1)
+                .flags(DISABLE_DECOMPOSITION)
+                .buildAndRegister();
+
+        AcidicBromineExhaust = new Material.Builder(GTTCore.id("acidic_bromine_exhaust"))
+                .gas()
+                .color(0x8f681e)
+                .components(Steam, 3, Chlorine, 1)
+                .buildAndRegister();
+        //endregion brine
 
         ingot.setIgnored(AndesiteAlloy, (Supplier<? extends ItemLike>) AllItems.ANDESITE_ALLOY);
         ingot.setIgnored(Desh, ModItems.DESH_INGOT);
@@ -394,6 +470,8 @@ public class GTTMaterials {
         oreDeepslate.setIgnored(Desh, ModItems.DEEPSLATE_ICE_SHARD_ORE);*/
         gem.setIgnored(IceShard, ModItems.ICE_SHARD);
         //block.setIgnored(AndesiteAlloy, AllBlocks.ANDESITE_ALLOY_BLOCK.asItem());
+        gem.setIgnored(FluixCrystal, AEItems.FLUIX_CRYSTAL);
+        dust.setIgnored(FluixCrystal, AEItems.FLUIX_DUST);
     }
     public static void modify() {
 

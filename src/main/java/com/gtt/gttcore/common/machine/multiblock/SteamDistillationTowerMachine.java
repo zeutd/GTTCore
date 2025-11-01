@@ -56,8 +56,8 @@ public class SteamDistillationTowerMachine extends DistillationTowerMachine {
     }
 
     public static ModifierFunction recipeModifier(@NotNull MetaMachine machine, @NotNull GTRecipe recipe) {
-        if (!(machine instanceof SteamParallelMultiblockMachine steamMachine)) {
-            return RecipeModifier.nullWrongType(SteamParallelMultiblockMachine.class, machine);
+        if (!(machine instanceof SteamDistillationTowerMachine steamMachine)) {
+            return RecipeModifier.nullWrongType(SteamDistillationTowerMachine.class, machine);
         }
         if (RecipeHelper.getRecipeEUtTier(recipe) > GTValues.MV) return ModifierFunction.NULL;
         return ModifierFunction.builder().outputModifier(ContentModifier.multiplier(0.8)).durationMultiplier(1.5).eutMultiplier(0.8).build();

@@ -6,6 +6,7 @@ import dev.latvian.mods.kubejs.bindings.event.ServerEvents;
 import dev.latvian.mods.kubejs.recipe.RecipesEventJS;
 import dev.latvian.mods.kubejs.recipe.filter.ConstantFilter;
 import dev.latvian.mods.kubejs.recipe.filter.IDFilter;
+import dev.latvian.mods.kubejs.recipe.filter.ModFilter;
 import dev.latvian.mods.kubejs.recipe.filter.RecipeFilter;
 import dev.latvian.mods.kubejs.script.ScriptType;
 import net.minecraft.server.packs.resources.CloseableResourceManager;
@@ -16,6 +17,8 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.Objects;
+
+import static com.gtt.gttcore.GTTCore.LOGGER;
 
 @Mixin(dev.latvian.mods.kubejs.server.ServerScriptManager.class)
 public class ServerScriptManagerMixin {
@@ -30,6 +33,14 @@ public class ServerScriptManagerMixin {
             });
             GTTRecipes.remove(filter -> {
                 RecipesEventJS.instance.remove(filter);
+            });
+            RecipesEventJS.instance.forEachRecipe(new ConstantFilter(true), recipe -> {
+                try { //
+                    int newDuration = ((Integer)recipe.get("duration"));
+                    recipe.set("duration", newDuration/2);
+                } catch (Exception err) { //
+                    LOGGER.info(recipe.id + " has no duration field, skipped.");
+                }
             });
             return null;
         });

@@ -66,5 +66,15 @@ public class AdAstraRecipeRemoval {
         provider.accept(new IDFilter(new ResourceLocation("ad_astra:raw_ostrum_block")));
         provider.accept(new IDFilter(new ResourceLocation("ad_astra:raw_calorite_block")));
         provider.accept(new IDFilter(new ResourceLocation("ad_astra:raw_steel_block")));
+        provider.accept(new IDFilter(new ResourceLocation("ad_astra:desh_ingot")));
+        provider.accept(new IDFilter(new ResourceLocation("ad_astra:desh_ingot_from_desh_block")));
+        provider.accept(new IDFilter(new ResourceLocation("ad_astra:desh_nugget")));
+        provider.accept(new IDFilter(new ResourceLocation("ad_astra:ostrum_ingot")));
+        provider.accept(new IDFilter(new ResourceLocation("ad_astra:ostrum_ingot_from_ostrum_block")));
+        provider.accept(new IDFilter(new ResourceLocation("ad_astra:ostrum_nugget")));
+        provider.accept(new IDFilter(new ResourceLocation("ad_astra:calorite_ingot")));
+        provider.accept(new IDFilter(new ResourceLocation("ad_astra:calorite_ingot_from_calorite_block")));
+        provider.accept(new IDFilter(new ResourceLocation("ad_astra:calorite_nugget")));
+        provider.accept(new IDFilter(new ResourceLocation("ad_astra:etrionic_blast_furnace")));
     }
 }

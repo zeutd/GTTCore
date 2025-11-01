@@ -35,7 +35,11 @@ public class CreateRecipeRemoval {
         provider.accept(new IDFilter(Create.asResource("mixing/chocolate")));
         provider.accept(new IDFilter(Create.asResource("mixing/tea")));
         provider.accept(new IDFilter(Create.asResource("mixing/andesite_alloy")));
-        provider.accept(createTypeFilter(AllRecipeTypes.COMPACTING.getId()));
+        provider.accept(new IDFilter(Create.asResource("create/mixing/compat/ae2/fluix_crystal")));
+        provider.accept(createTypeFilter(AllRecipeTypes.CRUSHING.getId()));
+        provider.accept(createTypeFilter(AllRecipeTypes.MILLING.getId()));
+        provider.accept(createTypeFilter(AllRecipeTypes.CUTTING.getId()));
+        provider.accept(createTypeFilter(AllRecipeTypes.CUTTING.getId()));
 //        provider.accept(new IDFilter(Create.asResource("")));
 //        provider.accept(new IDFilter(Create.asResource("")));
 //        provider.accept(new IDFilter(Create.asResource("")));

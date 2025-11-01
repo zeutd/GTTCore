@@ -67,8 +67,8 @@ public class GTTGTAddon implements IGTAddon {
     // If you have custom ingredient types, uncomment this & change to match your capability.
     // KubeJS WILL REMOVE YOUR RECIPES IF THESE ARE NOT REGISTERED.
 
-    public static final ContentJS<Long> HIGH_ENERGY_LASER_IN = new ContentJS<>(NumberComponent.ANY_LONG, GTTRecipeCapabilities.HIGH_ENERGY_LASER, false);
-    public static final ContentJS<Long> HIGH_ENERGY_LASER_OUT = new ContentJS<>(NumberComponent.ANY_LONG, GTTRecipeCapabilities.HIGH_ENERGY_LASER, true);
+    public static final ContentJS<Integer> HIGH_ENERGY_LASER_IN = new ContentJS<>(NumberComponent.ANY_INT, GTTRecipeCapabilities.HIGH_ENERGY_LASER, false);
+    public static final ContentJS<Integer> HIGH_ENERGY_LASER_OUT = new ContentJS<>(NumberComponent.ANY_INT, GTTRecipeCapabilities.HIGH_ENERGY_LASER, true);
 
     @Override
     public void registerRecipeKeys(KJSRecipeKeyEvent event) {

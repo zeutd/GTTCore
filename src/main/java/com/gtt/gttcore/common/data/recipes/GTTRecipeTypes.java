@@ -13,8 +13,6 @@ import com.gtt.gttcore.GTTCore;
 import com.gtt.gttcore.common.data.GTTMaterials;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.item.crafting.RecipeType;
-import net.minecraftforge.data.event.GatherDataEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,12 +28,6 @@ public class GTTRecipeTypes {
     public static List<GTRecipeBuilder> toReRegisterCreateMilling;
     //public static List<GTRecipeBuilder> toReRegisterCreate;
     public static void init(){
-
-    }
-    public static void gatherData(){
-        toReRegisterCreatePressing = new ArrayList<>();
-        toReRegisterCreateMixing = new ArrayList<>();
-        toReRegisterCreateMilling = new ArrayList<>();
         CHEMICAL_RECIPES.onRecipeBuild((recipeBuilder, provider) -> {
             CHEMICAL_PLANT_RECIPES
                     .copyFrom(recipeBuilder)
@@ -64,6 +56,11 @@ public class GTTRecipeTypes {
                     .outputFluids((FluidIngredient) recipeBuilder.output.get(GTRecipeCapabilities.FLUID).get(0).content)
                     .save(provider);
         });
+    }
+    public static void gatherData(){
+        toReRegisterCreatePressing = new ArrayList<>();
+        toReRegisterCreateMixing = new ArrayList<>();
+        toReRegisterCreateMilling = new ArrayList<>();
         FORGE_HAMMER_RECIPES.onRecipeBuild((recipeBuilder, provider) -> {
             if (recipeBuilder.EUt().voltage() > GTValues.V[ULV]) return;
             if (toReRegisterCreatePressing.stream().noneMatch(rb -> rb.id.getPath().equals(recipeBuilder.id.getPath())))toReRegisterCreatePressing.add(recipeBuilder);
@@ -148,9 +145,14 @@ public class GTTRecipeTypes {
             .setMaxTooltips(4)
             .setSound(GTSoundEntries.ELECTROLYZER);
     public static final GTRecipeType HIGH_ENERGY_LASER_PIPE_COOLANT = register("high_energy_laser_pipe_coolant", MULTIBLOCK)
-            .setMaxIOSize(0, 0, 1, 0).setEUIO(IO.IN)
+            .setMaxIOSize(0, 0, 1, 0)
             .setSlotOverlay(false, true, false, GuiTextures.ATOMIC_OVERLAY_1)
-            .setProgressBar(GuiTextures.PROGRESS_BAR_RESEARCH_STATION_1, LEFT_TO_RIGHT)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_BATH, LEFT_TO_RIGHT)
             .setMaxTooltips(4)
             .setSound(GTSoundEntries.REPLICATOR);
+    public static final GTRecipeType EVAPORATION_RECIPES = register("evaporation", ELECTRIC)
+            .setMaxIOSize(0, 1, 1, 6)
+            .setEUIO(IO.IN)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE, LEFT_TO_RIGHT)
+            .setSound(GTSoundEntries.MOTOR);
 }

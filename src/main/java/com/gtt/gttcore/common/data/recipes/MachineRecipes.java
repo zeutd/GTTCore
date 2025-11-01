@@ -3,18 +3,10 @@ package com.gtt.gttcore.common.data.recipes;
 import com.gregtechceu.gtceu.api.machine.multiblock.CleanroomType;
 import com.gtt.gttcore.GTTCore;
 import com.gtt.gttcore.api.capability.recipe.HighEnergyLaserRecipeCapability;
-import com.simibubi.create.AllBlocks;
-import com.simibubi.create.AllTags;
-import com.simibubi.create.foundation.data.recipe.CreateRecipeProvider;
 import net.minecraft.data.recipes.FinishedRecipe;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraftforge.common.Tags;
 
 import java.util.function.Consumer;
-import java.util.stream.Stream;
 
 import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
@@ -146,7 +138,7 @@ public class MachineRecipes {
                 .input(HighEnergyLaserRecipeCapability.CAP, 1000)
                 .save(provider);
         HIGH_ENERGY_LASER_PIPE_COOLANT.recipeBuilder(GTTCore.id("high_energy_laser_pipe_coolant"))
-                .duration(300)
+                .duration(400)
                 .inputFluids(PCBCoolant.getFluid(1000))
                 .save(provider);
     }

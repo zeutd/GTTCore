@@ -5,8 +5,15 @@ import com.gregtechceu.gtceu.api.data.chemical.material.event.MaterialEvent;
 import com.gregtechceu.gtceu.api.data.chemical.material.event.MaterialRegistryEvent;
 import com.gregtechceu.gtceu.api.data.chemical.material.event.PostMaterialEvent;
 import com.gregtechceu.gtceu.api.machine.MachineDefinition;
+import com.gregtechceu.gtceu.api.machine.steam.SteamMachine;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
+import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
+import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
+import com.gregtechceu.gtceu.api.recipe.modifier.RecipeModifier;
+import com.gregtechceu.gtceu.api.recipe.modifier.RecipeModifierList;
+import com.gregtechceu.gtceu.api.registry.GTRegistries;
 import com.gregtechceu.gtceu.common.data.GTCovers;
+import com.gregtechceu.gtceu.common.machine.multiblock.steam.SteamParallelMultiblockMachine;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
 import com.gtt.gttcore.common.data.*;
 import com.gtt.gttcore.common.data.recipes.GTTRecipeTypes;
@@ -105,5 +112,22 @@ public class GTTCore {
     private void registerMachines(GTCEuAPI.RegisterEvent<ResourceLocation, MachineDefinition> event) {
         GTTMultiMachines.init();
         GTTMachines.init();
+//        GTRegistries.MACHINES.forEach(machineDefinition -> {
+//
+//            RecipeModifier recipeModifier = machineDefinition.getRecipeModifier();
+//            if (recipeModifier == null) return;
+//            if (recipeModifier instanceof RecipeModifierList rml) {
+//                RecipeModifier[] list = new RecipeModifier[rml.getModifiers().length + 1];
+//                System.arraycopy(rml.getModifiers(), 0, list, 0, rml.getModifiers().length);
+//                list[list.length - 1] = (m, r) -> ModifierFunction.builder().durationMultiplier(0.5).build();
+//                machineDefinition.setRecipeModifier(new RecipeModifierList(list));
+//            }
+//            else {
+//                RecipeModifier[] list = new RecipeModifier[2];
+//                list[0] = recipeModifier;
+//                list[1] = (m, r) -> ModifierFunction.builder().durationMultiplier(0.5).build();
+//                machineDefinition.setRecipeModifier(new RecipeModifierList(list));
+//            }
+//        });
     }
 }
