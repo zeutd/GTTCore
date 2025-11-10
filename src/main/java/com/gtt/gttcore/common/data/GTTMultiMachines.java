@@ -16,18 +16,22 @@ import com.gregtechceu.gtceu.api.pattern.FactoryBlockPattern;
 import com.gregtechceu.gtceu.api.pattern.Predicates;
 import com.gregtechceu.gtceu.api.pattern.TraceabilityPredicate;
 import com.gregtechceu.gtceu.api.pattern.predicates.SimplePredicate;
+import com.gregtechceu.gtceu.api.pattern.util.RelativeDirection;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
 import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
 import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
 import com.gregtechceu.gtceu.api.registry.registrate.MultiblockMachineBuilder;
+import com.gregtechceu.gtceu.client.renderer.machine.DynamicRenderHelper;
 import com.gregtechceu.gtceu.common.data.*;
 import com.gregtechceu.gtceu.common.data.machines.GTAEMachines;
 import com.gregtechceu.gtceu.common.machine.multiblock.electric.AssemblyLineMachine;
 import com.gregtechceu.gtceu.common.machine.multiblock.electric.FusionReactorMachine;
 import com.gregtechceu.gtceu.common.machine.multiblock.generator.LargeTurbineMachine;
+import com.gregtechceu.gtceu.common.machine.multiblock.primitive.PrimitiveBlastFurnaceMachine;
 import com.gregtechceu.gtceu.common.machine.multiblock.steam.SteamParallelMultiblockMachine;
 import com.gregtechceu.gtceu.common.registry.GTRegistration;
 import com.gregtechceu.gtceu.config.ConfigHolder;
+import com.gregtechceu.gtceu.utils.GTUtil;
 import com.gtt.gttcore.GTTCore;
 import com.gtt.gttcore.common.data.recipes.GTTRecipeTypes;
 import com.gtt.gttcore.common.machine.multiblock.*;
@@ -56,6 +60,7 @@ import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 import static com.gregtechceu.gtceu.common.data.GTRecipeModifiers.*;
 import static com.gregtechceu.gtceu.common.data.GTRecipeModifiers.OC_NON_PERFECT;
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.*;
+import static com.gregtechceu.gtceu.common.data.models.GTMachineModels.createWorkableCasingMachineModel;
 import static com.gregtechceu.gtceu.utils.FormattingUtil.toRomanNumeral;
 import static com.gtt.gttcore.common.registry.GTTRegistration.REGISTRATE;
 import static com.gtt.gttcore.common.data.GTTBlocks.*;
@@ -168,7 +173,7 @@ public class GTTMultiMachines {
             .multiblock("high_energy_laser_pipe", HighEnergyLaserPipeMachine::new)
             .rotationState(RotationState.ALL)
             .recipeType(HIGH_ENERGY_LASER_PIPE_COOLANT)
-            .appearanceBlock(CASING_STEEL_SOLID)
+            .appearanceBlock(CASING_ATOMIC)
             .pattern(definition -> FactoryBlockPattern.start(BACK, UP, RIGHT)
                     .aisle(" A ", "~IA", " A ")
                     .aisle(" A ", "APA", " A ").setRepeatable(1, 15)
@@ -180,8 +185,7 @@ public class GTTMultiMachines {
                     .where('I', Predicates.abilities(GTTPartAbility.IMPORT_HIGH_ENERGY_LASER))
                     .where('O', Predicates.abilities(GTTPartAbility.EXPORT_HIGH_ENERGY_LASER))
                     .build())
-            .partSorter(AssemblyLineMachine::partSorter)
-            .workableCasingModel(GTCEu.id("block/casings/solid/machine_casing_solid_steel"),
+            .workableCasingModel(GTCEu.id("block/casings/gcym/atomic_casing"),
                     GTCEu.id("block/multiblock/assembly_line"))
             .register();
     public final static MultiblockMachineDefinition ROCKET_ASSEMBLER = REGISTRATE.multiblock("rocket_assembler", WorkableElectricMultiblockMachine::new)
@@ -223,8 +227,9 @@ public class GTTMultiMachines {
                     .aisle("   BBBBB   ","   DD~DD   ","   DDDDD   ","     C     ","     C     ","           ","           ")
                     .where("~", Predicates.controller(Predicates.blocks(definition.get())))
                     .where("B", Predicates.blocks(ForgeRegistries.BLOCKS.getValue(new ResourceLocation("gtceu:steam_machine_casing")))
-                            .or(autoAbilities(definition.getRecipeTypes()))
-                            .or(autoAbilities(true, false, true)))
+                            .or(autoAbilities(true, false, false)
+                            .or(abilities(PartAbility.STEAM))
+                            .or(autoAbilities(definition.getRecipeTypes(), false, false, true, true, true, true))))
                     .where("C", frames(Bronze))
                     .where("D", Predicates.blocks(ForgeRegistries.BLOCKS.getValue(new ResourceLocation("gtceu:industrial_steam_casing"))))
                     .where("E", Predicates.blocks(ForgeRegistries.BLOCKS.getValue(new ResourceLocation("gtceu:bronze_pipe_casing"))))
@@ -251,8 +256,9 @@ public class GTTMultiMachines {
                     .aisle("         ","   A~A   ","   AAA   ","         ")
                     .where("~", Predicates.controller(Predicates.blocks(definition.get())))
                     .where("A", Predicates.blocks(ForgeRegistries.BLOCKS.getValue(new ResourceLocation("gtceu:industrial_steam_casing")))
-                            .or(autoAbilities(definition.getRecipeTypes()))
-                            .or(autoAbilities(true, false, true)))
+                            .or(autoAbilities(true, false, false)
+                                    .or(abilities(PartAbility.STEAM))
+                                    .or(autoAbilities(definition.getRecipeTypes(), false, false, true, true, true, true))))
                     .where("B", Predicates.blocks(ForgeRegistries.BLOCKS.getValue(new ResourceLocation("gtceu:bronze_pipe_casing"))))
                     .where("C", Predicates.blocks(ForgeRegistries.BLOCKS.getValue(new ResourceLocation("gtceu:bronze_gearbox"))))
                     .where(" ", any())
@@ -278,7 +284,10 @@ public class GTTMultiMachines {
                     .aisle("AAAAAAA","BBB~BBB","BBBBBBB","BBBBBBB")
                     .where("~", Predicates.controller(Predicates.blocks(definition.get())))
                     .where("A", Predicates.blocks(ForgeRegistries.BLOCKS.getValue(new ResourceLocation("gtceu:steam_machine_casing"))))
-                    .where("B", Predicates.blocks(ForgeRegistries.BLOCKS.getValue(new ResourceLocation("gtceu:industrial_steam_casing"))))
+                    .where("B", Predicates.blocks(ForgeRegistries.BLOCKS.getValue(new ResourceLocation("gtceu:industrial_steam_casing")))
+                            .or(autoAbilities(true, false, false)
+                            .or(abilities(PartAbility.STEAM))
+                            .or(autoAbilities(definition.getRecipeTypes(), false, false, true, true, true, true))))
                     .where("C", Predicates.blocks(ForgeRegistries.BLOCKS.getValue(new ResourceLocation("gtceu:bronze_pipe_casing"))))
                     .where(" ", any())
                     .build())
@@ -300,8 +309,9 @@ public class GTTMultiMachines {
                     .aisle("AAAAAAA","BBBBBBB","BBB~BBB","BBBBBBB","BBBBBBB")
                     .where("~", Predicates.controller(Predicates.blocks(definition.get())))
                     .where("A", Predicates.blocks(ForgeRegistries.BLOCKS.getValue(new ResourceLocation("gtceu:steam_machine_casing")))
-                            .or(autoAbilities(definition.getRecipeTypes()))
-                            .or(autoAbilities(true, false, true)))
+                            .or(autoAbilities(true, false, false)
+                            .or(abilities(PartAbility.STEAM))
+                            .or(autoAbilities(definition.getRecipeTypes(), false, false, true, true, true, true))))
                     .where("B", Predicates.blocks(ForgeRegistries.BLOCKS.getValue(new ResourceLocation("gtceu:industrial_steam_casing"))))
                     .where("C", Predicates.blocks(ForgeRegistries.BLOCKS.getValue(new ResourceLocation("gttcore:steam_crushing_wheels"))))
                     .where(" ", any())
@@ -361,7 +371,7 @@ public class GTTMultiMachines {
                     .aisle("AAAAA"," AAA ","     ","     ","     ","     ")
                     .aisle(" A~A ","     ","     ","     ","     ","     ")
                     .where("~", Predicates.controller(Predicates.blocks(definition.get())))
-                    .where("A", Predicates.blocks(ForgeRegistries.BLOCKS.getValue(new ResourceLocation("gtceu:steam_machine_casing"))))
+                    .where("A", Predicates.blocks(ForgeRegistries.BLOCKS.getValue(new ResourceLocation("gtceu:steam_machine_casing"))).or(abilities(PartAbility.STEAM)).or(autoAbilities(definition.getRecipeTypes(), false, false, true, true, true, true)))
                     .where("C", Predicates.blocks(ForgeRegistries.BLOCKS.getValue(new ResourceLocation("gtceu:wrought_iron_block"))))
                     .where("D", Predicates.blocks(ForgeRegistries.BLOCKS.getValue(new ResourceLocation("minecraft:piston"))))
                     .where("E", Predicates.blocks(ForgeRegistries.BLOCKS.getValue(new ResourceLocation("gtceu:bronze_gearbox"))))
@@ -820,6 +830,99 @@ public class GTTMultiMachines {
             .workableCasingModel(GTCEu.id("block/casings/solid/machine_casing_inert_ptfe"),
                     GTCEu.id("block/multiblock/large_chemical_reactor"))
             .register();
+
+    public static final MultiblockMachineDefinition LARGE_PRIMITIVE_BLAST_FURNACE = GTRegistration.REGISTRATE
+            .multiblock("large_primitive_blast_furnace", WorkableElectricMultiblockMachine::new)
+            .rotationState(RotationState.ALL)
+            .recipeType(GTRecipeTypes.PRIMITIVE_BLAST_FURNACE_RECIPES)
+            .model(createWorkableCasingMachineModel(GTCEu.id("block/casings/solid/machine_primitive_bricks"),
+                    GTCEu.id("block/multiblock/primitive_blast_furnace"))
+                    .andThen(b -> b.addDynamicRenderer(DynamicRenderHelper::createPBFLavaRender)))
+            .hasBER(true)
+            .appearanceBlock(CASING_PRIMITIVE_BRICKS)
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle("  AAAAA  ","  ABBBA  ","  ABBBA  ","  AAAAA  ","  ABBBA  ","  ABBBA  ","  AAAAA  ","  ABBBA  ","  AAAAA  ","         ","         ","         ","         ","         ","         ","         ","         ","         ","         ","         ","         ")
+                    .aisle("  AAAAA  ","  B   B  ","  B   B  ","  A   A  ","  B   B  ","  B   B  ","  A   A  ","  B   B  ","  ABBBA  ","         ","         ","         ","         ","         ","         ","         ","         ","         ","         ","         ","         ")
+                    .aisle("  AAAAA  ","  B   B  ","  B   B  ","  A   A  ","  B   B  ","  B   B  ","  A   A  ","  B   B  ","  ABBBA  ","         ","         ","         ","         ","         ","         ","         ","         ","         ","         ","         ","         ")
+                    .aisle("  AAAAA  ","  B   B  ","  B   B  ","  A   A  ","  B   B  ","  B   B  ","  A   A  ","  B   B  ","  ABBBA  ","         ","         ","         ","         ","         ","         ","         ","         ","         ","         ","         ","         ")
+                    .aisle("  AAAAA  ","  AACAA  ","  ACCCA  ","  AACAA  ","  AAAAA  ","  AAAAA  ","  AAAAA  ","  AAAAA  ","  AAAAA  ","         ","         ","         ","         ","         ","         ","         ","         ","         ","         ","         ","         ")
+                    .aisle("         ","    C    ","   CCC   ","    C    ","         ","         ","         ","         ","         ","         ","         ","         ","         ","         ","         ","         ","         ","         ","         ","         ","         ")
+                    .aisle("  DDDDD  ","  DDCDD  ","  ACCCA  ","  AACAA  ","  AAAAA  ","  AAAAA  ","    A    ","    A    ","    A    ","         ","         ","         ","         ","         ","         ","         ","         ","         ","         ","         ","         ")
+                    .aisle(" DDDDDDD "," DDDDDDD "," A     A "," A     A "," A     A "," A     A ","  AAAAA  ","  AAAAA  ","  AAAAA  ","   AAA   ","   AAA   ","   AAA   ","   AAA   ","   AAA   ","         ","         ","         ","         ","         ","         ","         ")
+                    .aisle("DDDDDDDDD","DDDDDDDDD","A       A","A       A","A       A","A       A"," AA   AA "," AA   AA "," AA   AA ","  A   A  ","  A   A  ","  A   A  ","  A   A  ","  A   A  ","   AAA   ","   AAA   ","   AAA   ","   AAA   ","   AAA   ","   AAA   ","   AAA   ")
+                    .aisle("DDDDDDDDD","DDDDDDDDD","A       A","A       A","A       A","A       A"," A     A "," A     A "," A     A "," A     A "," A     A "," A     A "," A     A "," A     A ","  A   A  ","  A   A  ","  A   A  ","  A   A  ","  A   A  ","  A   A  ","  A   A  ")
+                    .aisle("DDDDDDDDD","DDDDDDDDD","A       A","A       ~","A       A","A       A","AA     AA","AA     AA","AA     AA"," A     A "," A     A "," A     A "," A     A "," A     A ","  A   A  ","  A   A  ","  A   A  ","  A   A  ","  A   A  ","  A   A  ","  A   A  ")
+                    .aisle("DDDDDDDDD","DDDDDDDDD","A       A","A       A","A       A","A       A"," A     A "," A     A "," A     A "," A     A "," A     A "," A     A "," A     A "," A     A ","  A   A  ","  A   A  ","  A   A  ","  A   A  ","  A   A  ","  A   A  ","  A   A  ")
+                    .aisle("DDDDDDDDD","DDDDDDDDD","A       A","A       A","A       A","A       A"," AA   AA "," AA   AA "," AA   AA ","  A   A  ","  A   A  ","  A   A  ","  A   A  ","  A   A  ","   AAA   ","   AAA   ","   AAA   ","   AAA   ","   AAA   ","   AAA   ","   AAA   ")
+                    .aisle(" DDDDDDD "," DDDDDDD "," A     A "," A     A "," A     A "," A     A ","  AAAAA  ","  AAAAA  ","  AAAAA  ","   AAA   ","   AAA   ","   AAA   ","   AAA   ","   AAA   ","         ","         ","         ","         ","         ","         ","         ")
+                    .aisle("  DDDDD  ","  DDCDD  ","  ACCCA  ","  AACAA  ","  AAAAA  ","  AAAAA  ","    A    ","    A    ","    A    ","         ","         ","         ","         ","         ","         ","         ","         ","         ","         ","         ","         ")
+                    .aisle("         ","    C    ","   CCC   ","    C    ","         ","         ","         ","         ","         ","         ","         ","         ","         ","         ","         ","         ","         ","         ","         ","         ","         ")
+                    .aisle("  AAAAA  ","  AACAA  ","  ACCCA  ","  AACAA  ","  AAAAA  ","  AAAAA  ","  AAAAA  ","  AAAAA  ","  AAAAA  ","         ","         ","         ","         ","         ","         ","         ","         ","         ","         ","         ","         ")
+                    .aisle("  AAAAA  ","  B   B  ","  B   B  ","  A   A  ","  B   B  ","  B   B  ","  A   A  ","  B   B  ","  ABBBA  ","         ","         ","         ","         ","         ","         ","         ","         ","         ","         ","         ","         ")
+                    .aisle("  AAAAA  ","  B   B  ","  B   B  ","  A   A  ","  B   B  ","  B   B  ","  A   A  ","  B   B  ","  ABBBA  ","         ","         ","         ","         ","         ","         ","         ","         ","         ","         ","         ","         ")
+                    .aisle("  AAAAA  ","  B   B  ","  B   B  ","  A   A  ","  B   B  ","  B   B  ","  A   A  ","  B   B  ","  ABBBA  ","         ","         ","         ","         ","         ","         ","         ","         ","         ","         ","         ","         ")
+                    .aisle("  AAAAA  ","  ABBBA  ","  ABBBA  ","  AAAAA  ","  ABBBA  ","  ABBBA  ","  AAAAA  ","  ABBBA  ","  AAAAA  ","         ","         ","         ","         ","         ","         ","         ","         ","         ","         ","         ","         ")
+                    .where("~", Predicates.controller(Predicates.blocks(definition.get())))
+                    .where("A", Predicates.blocks(ForgeRegistries.BLOCKS.getValue(new ResourceLocation("gtceu:firebricks")))
+                            .or(autoAbilities(definition.getRecipeTypes()))
+                            .or(autoAbilities(true, false, false))
+                    )
+                    .where("B", Predicates.blocks(ForgeRegistries.BLOCKS.getValue(new ResourceLocation("gtceu:assembly_line_grating"))))
+                    .where("C", Predicates.blocks(ForgeRegistries.BLOCKS.getValue(new ResourceLocation("gtceu:bronze_pipe_casing"))))
+                    .where("D", Predicates.blocks(ForgeRegistries.BLOCKS.getValue(new ResourceLocation("gtceu:bronze_firebox_casing"))))
+                    .where(" ", any())
+                    .build())
+            .register();
+
+    public static final MultiblockMachineDefinition BEDROCK_DRILL = GTRegistration.REGISTRATE
+            .multiblock("bedrock_drill", BedrockDrillMachine::new)
+            .rotationState(RotationState.NON_Y_AXIS)
+            .recipeType(DUMMY_RECIPES)
+            .model(createWorkableCasingMachineModel(GTCEu.id("block/casings/solid/machine_casing_solid_steel"),
+                    GTCEu.id("block/multiblock/multiblock_workable"))
+                    .andThen(b -> b.addDynamicRenderer(DynamicRenderHelper::createPBFLavaRender)))
+            .hasBER(true)
+            .appearanceBlock(CASING_STEEL_SOLID)
+            .pattern(definition -> FactoryBlockPattern.start(RelativeDirection.LEFT, RelativeDirection.UP, RelativeDirection.BACK)
+                    .aisle("       ","  AAA  ","  A~A  ","  AAA  ","       ","       ","       ","       ","       ","       ","       ","       ","       ")
+                    .aisle(" B   B ","AAAAAAA","AAAAAAA","AAAAAAA","       ","       ","       ","       ","       ","       ","       ","       ","       ")
+                    .aisle("B     B","AA   AA","AA   AA","AA   AA","A     A","       ","       ","       ","       ","       ","       ","       ","       ")
+                    .aisle("       ","A     A","A  C  A","A  C  A","A  C  A","A  C  A","   C   ","   C   ","   C   ","   C   ","   C   ","       ","       ")
+                    .aisle("       ","A  C  A","A CDC A","A CDC A","A CDC A","ABCDCBA","ABCDCBA"," BCDCB ","  CDC  ","  CDC  ","  CDC  ","   C   ","       ")
+                    .aisle("B     B","AA   AA","AA C AA","AA C AA","AA C AA","AA C AA","AA C AA","AA C AA","AA C AA","   C   ","   C   ","       ","       ")
+                    .aisle(" B   B "," AA AA "," AA AA "," AA AA "," AA AA "," AABAA "," AABAA "," AABAA "," AABAA "," AABAA "," AABAA ","       ","       ")
+                    .aisle("  B B  ","  AAA  ","  AAA  ","  AAA  ","  AAA  ","  AAA  ","  AAA  ","  AAA  ","  A A  ","  A A  ","  A A  ","  A A  ","  A A  ")
+                    .where("~", Predicates.controller(Predicates.blocks(definition.get())))
+                    .where("A", Predicates.blocks(ForgeRegistries.BLOCKS.getValue(new ResourceLocation("gtceu:solid_machine_casing")))
+                            .or(autoAbilities(definition.getRecipeTypes()))
+                            .or(autoAbilities(true, false, false))
+                    )
+                    .where("B", Predicates.frames(Steel))
+                    .where("C", Predicates.blocks(ForgeRegistries.BLOCKS.getValue(new ResourceLocation("gtceu:stable_machine_casing"))))
+                    .where("D", Predicates.blocks(ForgeRegistries.BLOCKS.getValue(new ResourceLocation("gtceu:titanium_gearbox"))))
+                    .where(" ", any())
+                    .build())
+            .register();
+
+    public static final MultiblockMachineDefinition NETHER_CAPSULE = GTRegistration.REGISTRATE
+            .multiblock("nether_capsule", NetherCapsuleMachine::new)
+            .rotationState(RotationState.NON_Y_AXIS)
+            .recipeType(DUMMY_RECIPES)
+            .model(createWorkableCasingMachineModel(GTCEu.id("block/casings/solid/machine_casing_stable_titanium"),
+                    GTCEu.id("block/multiblock/multiblock_workable"))
+                    .andThen(b -> b.addDynamicRenderer(DynamicRenderHelper::createPBFLavaRender)))
+            .hasBER(true)
+            .appearanceBlock(CASING_TITANIUM_STABLE)
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle("   "," A "," ~ ","   ")
+                    .aisle(" A ","A A","A A"," A ")
+                    .aisle("   ","   ","   ","   ")
+                    .where("~", Predicates.controller(Predicates.blocks(definition.get())))
+                    .where("A", Predicates.blocks(ForgeRegistries.BLOCKS.getValue(new ResourceLocation("gtceu:stable_machine_casing"))))
+                    .where(" ", any())
+                    .build())
+            .register();
+
     public static MultiblockMachineDefinition registerLargeTurbine(String name, int tier, GTRecipeType recipeType,
                                                                    Supplier<? extends Block> casing,
                                                                    Supplier<? extends Block> gear,

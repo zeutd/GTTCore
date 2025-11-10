@@ -35,11 +35,11 @@ public class ServerScriptManagerMixin {
                 RecipesEventJS.instance.remove(filter);
             });
             RecipesEventJS.instance.forEachRecipe(new ConstantFilter(true), recipe -> {
-                try { //
+                try {
                     int newDuration = ((Integer)recipe.get("duration"));
-                    recipe.set("duration", newDuration/2);
-                } catch (Exception err) { //
-                    LOGGER.info(recipe.id + " has no duration field, skipped.");
+                    recipe.set("duration", Math.max(newDuration/2, 1));
+                } catch (Exception err) {
+                    //LOGGER.info(recipe.id + " has no duration field, skipped.");
                 }
             });
             return null;

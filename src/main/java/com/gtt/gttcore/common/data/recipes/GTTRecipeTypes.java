@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.gregtechceu.gtceu.api.GTValues.ULV;
+import static com.gregtechceu.gtceu.api.GTValues.VA;
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.*;
 import static com.lowdragmc.lowdraglib.gui.texture.ProgressTexture.FillDirection.LEFT_TO_RIGHT;
 
@@ -28,6 +29,17 @@ public class GTTRecipeTypes {
     public static List<GTRecipeBuilder> toReRegisterCreateMilling;
     //public static List<GTRecipeBuilder> toReRegisterCreate;
     public static void init(){
+        CHEMICAL_RECIPES.setMaxIOSize(3, 2, 3, 2);
+        BENDER_RECIPES.onRecipeBuild((recipeBuilder, provider) -> {
+            recipeBuilder.EUt(Math.max(recipeBuilder.EUt().voltage() / 4, VA[ULV]), recipeBuilder.EUt().amperage());
+        });
+        DISTILLATION_RECIPES.onRecipeBuild((recipeBuilder, provider) -> {
+            recipeBuilder.duration(Math.max(recipeBuilder.duration / 2, 1));
+        });
+        LATHE_RECIPES.onRecipeBuild((recipeBuilder, provider) -> {
+            recipeBuilder.EUt(Math.max(recipeBuilder.EUt().voltage() / 4, VA[ULV]), recipeBuilder.EUt().amperage());
+        });
+        AUTOCLAVE_RECIPES.setMaxIOSize(3, 2, 1, 1);
         CHEMICAL_RECIPES.onRecipeBuild((recipeBuilder, provider) -> {
             CHEMICAL_PLANT_RECIPES
                     .copyFrom(recipeBuilder)
@@ -43,8 +55,10 @@ public class GTTRecipeTypes {
                         .save(provider)
         );
         ROCK_BREAKER_RECIPES.onRecipeBuild((recipeBuilder, provider) ->
-                LARGE_ROCK_BREAKER_RECIPES
-                        .copyFrom(recipeBuilder)
+                recipeBuilder.copy(recipeBuilder.id)
+                        .onSave(null)
+                        .recipeType(LARGE_ROCK_BREAKER_RECIPES)
+                        .category(LARGE_ROCK_BREAKER_RECIPES.getCategory())
                         .save(provider)
         );
         PLASMA_GENERATOR_FUELS.onRecipeBuild((recipeBuilder, provider) -> {
@@ -117,7 +131,7 @@ public class GTTRecipeTypes {
             .setMaxTooltips(4)
             .setSound(GTSoundEntries.FIRE);
     public final static GTRecipeType CULTIVATOR_RECIPES = register("cultivator", ELECTRIC)
-            .setMaxIOSize(1, 1, 1, 1)
+            .setMaxIOSize(2, 1, 2, 1)
             .setEUIO(IO.IN)
             .setSlotOverlay(false, false, GuiTextures.DUST_OVERLAY)
             .setSlotOverlay(true, false, GuiTextures.BREWER_OVERLAY)
@@ -128,7 +142,7 @@ public class GTTRecipeTypes {
     public static final GTRecipeType CHEMICAL_PLANT_RECIPES = register("chemical_plant", MULTIBLOCK)
             .setMaxIOSize(9, 9, 9, 9).setEUIO(IO.IN)
             .setEUIO(IO.IN)
-            .prepareBuilder(recipeBuilder -> recipeBuilder.EUt(GTValues.VA[GTValues.LV]))
+            .prepareBuilder(recipeBuilder -> recipeBuilder.EUt(VA[GTValues.LV]))
             .setSlotOverlay(false, false, false, GuiTextures.MOLECULAR_OVERLAY_1)
             .setSlotOverlay(false, false, true, GuiTextures.MOLECULAR_OVERLAY_2)
             .setSlotOverlay(false, true, false, GuiTextures.MOLECULAR_OVERLAY_3)

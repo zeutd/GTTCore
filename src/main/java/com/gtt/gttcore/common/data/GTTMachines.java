@@ -18,6 +18,7 @@ import com.gregtechceu.gtceu.common.machine.multiblock.part.ParallelHatchPartMac
 import com.gregtechceu.gtceu.common.machine.multiblock.part.SteamItemBusPartMachine;
 import com.gregtechceu.gtceu.config.ConfigHolder;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
+import com.gtt.gttcore.GTTCore;
 import com.gtt.gttcore.common.data.recipes.GTTRecipeTypes;
 import com.gtt.gttcore.common.machine.CreativeHighEnergyLaserProviderMachine;
 import com.gtt.gttcore.common.machine.multiblock.GTTPartAbility;
@@ -38,6 +39,7 @@ import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.api.capability.recipe.IO.IN;
 import static com.gregtechceu.gtceu.api.capability.recipe.IO.OUT;
 import static com.gregtechceu.gtceu.common.data.machines.GTMachineUtils.*;
+import static com.gregtechceu.gtceu.common.data.machines.GTMachineUtils.registerSimpleMachines;
 import static com.gregtechceu.gtceu.utils.FormattingUtil.toEnglishName;
 import static com.gtt.gttcore.common.registry.GTTRegistration.REGISTRATE;
 
@@ -86,6 +88,11 @@ public class GTTMachines {
     public static final MachineDefinition ULV_ELECTROLYZER = registerULVMachines("electrolyzer", GTRecipeTypes.ELECTROLYZER_RECIPES, largeTankSizeFunction);
     public static final MachineDefinition ULV_ELECTROMAGNETIC_SEPARATOR = registerULVMachines("electromagnetic_separator", GTRecipeTypes.ELECTROMAGNETIC_SEPARATOR_RECIPES);
     public static final MachineDefinition ULV_AUTOCLAVE = registerULVMachines("autoclave", GTRecipeTypes.AUTOCLAVE_RECIPES);
+    public static final MachineDefinition ULV_ASSEMBLER = registerULVMachines("assembler", GTRecipeTypes.ASSEMBLER_RECIPES, hvCappedTankSizeFunction, true);
+    public static final MachineDefinition ULV_GAS_COLLECTOR = registerULVMachines("gas_collector",
+            GTRecipeTypes.GAS_COLLECTOR_RECIPES, largeTankSizeFunction, true);
+
+
 
     public static final MachineDefinition[] CULTIVATOR = registerSimpleMachines("cultivator", GTTRecipeTypes.CULTIVATOR_RECIPES, GTCEu.id("block/machines/fermenter" ));
 
@@ -107,7 +114,7 @@ public class GTTMachines {
             UHV, UEV, UIV);
     public static final Pair<MachineDefinition, MachineDefinition> STEAM_CENTRIFUGE = registerSimpleSteamMachines(
             "centrifuge", GTRecipeTypes.CENTRIFUGE_RECIPES);
-    public static final MachineDefinition ULV_STEAM_TURBINE = registerSimpleGenerator("steam_turbine",
+    public static final MachineDefinition ULV_STEAM_TURBINE = registerSimpleGenerator("steam_engine",
             GTRecipeTypes.STEAM_TURBINE_FUELS, steamGeneratorTankSizeFunction, 0.0f, GTValues.ULV)[0];
     public static final MachineDefinition WOOD_FLUID_IMPORT_HATCH = REGISTRATE
             .machine("wood_input_hatch", holder -> new SteamFluidHatchPartMachine(holder, IN))
@@ -243,7 +250,7 @@ public class GTTMachines {
                         .recipeModifier(SimpleGeneratorMachine::recipeModifier, true)
                         .addOutputLimit(ItemRecipeCapability.CAP, 0)
                         .addOutputLimit(FluidRecipeCapability.CAP, 0)
-                        .simpleGeneratorModel(GTCEu.id("block/generators/" + name))
+                        .simpleGeneratorModel(GTTCore.id("block/generators/" + name))
                         .tooltips(workableTiered(tier, GTValues.V[tier], GTValues.V[tier] * 64, recipeType,
                                 tankScalingFunction.applyAsInt(tier), false))
                         .register(),

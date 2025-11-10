@@ -1,5 +1,6 @@
 package com.gtt.gttcore.common.data;
 
+import appeng.core.definitions.AEBlocks;
 import appeng.core.definitions.AEItems;
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags;
@@ -43,13 +44,14 @@ public class GTTMaterials {
             SupercriticalSteam,
             AtomicSteel,
             PlatinumGroupSolution, PlatinumPalladiumSolution, AmmoniumHexachloroplatinate, PalladiumSolution, Diamminedichloropalladium, InertMetalSodiumBisulfate, RhodiumSulfateSolution, RhodiumHydroxide, ChlororhodicAcid, AmmoniumHexachlororhodate, AmmoniumHexanitrorhodium, SodiumPeroxide, RutheniumOsmiumIridiumMixture, RutheniumOsmiumIridiumMixtureSodiumPeroxide, RutheniumOsmiumSaltSolution, IridiumOxide, AmmoniumHexachloroiridate, RutheniumOsmiumOxide, RutheniumOxide, RutheniumSolution, OsmiumSolution, AmmoniumHexachlororuthenate, Tetraamminedioxidoosmiumdichloride,
-            HotBrine, HotChlorinatedBrominatedBrine, HotDebrominatedBrine, HotAlkalineDebrominatedBrine, AcidicBromineSolution, ConcentratedBromineSolution, HydrogenIodide, RawBrine, DebrominatedBrine, BrominatedChlorineVapor, AcidicBromineExhaust
+            HotBrine, HotChlorinatedBrominatedBrine, HotDebrominatedBrine, HotAlkalineDebrominatedBrine, AcidicBromineSolution, ConcentratedBromineSolution, HydrogenIodide, RawBrine, DebrominatedBrine, BrominatedChlorineVapor, AcidicBromineExhaust,
+            PhenolicResin
             ;
     public static void init() {
         FluixCrystal = new Material.Builder(GTTCore.id("fluix_crystal"))
                 .gem()
                 .dust()
-                .color(0x993376).iconSet(CERTUS)
+                .color(0x791399).secondaryColor(0x995399).iconSet(CERTUS)
                 .appendFlags(EXT_METAL, NO_SMELTING, NO_SMASHING, CRYSTALLIZABLE, DISABLE_DECOMPOSITION)
                 .components(CertusQuartz, 1, Redstone, 1, NetherQuartz, 1)
                 .buildAndRegister();
@@ -444,6 +446,12 @@ public class GTTMaterials {
                 .buildAndRegister();
         //endregion brine
 
+        PhenolicResin = new Material.Builder(GTTCore.id("phenolic_resin"))
+                .color(0x6f381e)
+                .liquid().polymer()
+                .components(Carbon, 7, Hydrogen, 8, Oxygen, 2)
+                .buildAndRegister();
+
         ingot.setIgnored(AndesiteAlloy, (Supplier<? extends ItemLike>) AllItems.ANDESITE_ALLOY);
         ingot.setIgnored(Desh, ModItems.DESH_INGOT);
         ingot.setIgnored(Ostrum, ModItems.OSTRUM_INGOT);
@@ -472,10 +480,12 @@ public class GTTMaterials {
         //block.setIgnored(AndesiteAlloy, AllBlocks.ANDESITE_ALLOY_BLOCK.asItem());
         gem.setIgnored(FluixCrystal, AEItems.FLUIX_CRYSTAL);
         dust.setIgnored(FluixCrystal, AEItems.FLUIX_DUST);
+        block.setIgnored(FluixCrystal, AEBlocks.FLUIX_BLOCK);
     }
     public static void modify() {
+        WroughtIron.addFlags(GENERATE_SMALL_GEAR);
 
-        Netherite.addFlags(GENERATE_PLATE, GENERATE_ROD, GENERATE_LONG_ROD);
+        Netherite.addFlags(GENERATE_PLATE, GENERATE_ROD, GENERATE_LONG_ROD, GENERATE_BOLT_SCREW, GENERATE_GEAR);
         Plutonium239.addFlags(MaterialFlags.GENERATE_ROD);
 
         Zirconium.setMaterialARGB(0x7799a9);

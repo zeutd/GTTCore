@@ -18,6 +18,7 @@ import com.gregtechceu.gtceu.data.recipe.GTCraftingComponents;
 import com.gregtechceu.gtceu.data.recipe.VanillaRecipeHelper;
 import com.gtt.gttcore.GTTCore;
 import com.gtt.gttcore.common.data.GTTBlocks;
+import com.gtt.gttcore.common.data.GTTItems;
 import com.gtt.gttcore.common.data.GTTMultiMachines;
 import com.gtt.gttcore.data.recipe.GTTTags;
 import com.simibubi.create.AllBlocks;
@@ -259,68 +260,13 @@ public class MiscRecipes {
 
 
 
-        registerMachineRecipe(provider, ULV_ALLOY_SMELTER,
-                "ECE", "CMC", "WCW", 'M', HULL, 'E', CIRCUIT, 'W',
-                CABLE, 'C', COIL_HEATING_DOUBLE
-        );
-        registerMachineRecipe(provider, ULV_BENDER, "PBP", "CMC", "EWE", 'M', HULL, 'E', MOTOR, 'P', PISTON, 'C',
-                CIRCUIT, 'W', CABLE, 'B', PLATE);
-        registerMachineRecipe(provider, ULV_COMPRESSOR, " C ", "PMP", "WCW", 'M', HULL, 'P', PISTON, 'C',
-                CIRCUIT, 'W', CABLE);
-        registerMachineRecipe(provider, ULV_CUTTER, "WCG", "VMB", "CWE", 'M', HULL, 'E', MOTOR, 'V', CONVEYOR,
-                'C', CIRCUIT, 'W', CABLE, 'G', GLASS, 'B', SAWBLADE);
-        registerMachineRecipe(provider, ULV_ELECTRIC_FURNACE, "ECE", "CMC", "WCW", 'M', HULL, 'E', CIRCUIT, 'W',
-                CABLE, 'C', COIL_HEATING);
-        registerMachineRecipe(provider, ULV_LATHE, "WCW", "EMD", "CWP", 'M', HULL, 'E', MOTOR, 'P', PISTON, 'C',
-                CIRCUIT, 'W', CABLE, 'D', GRINDER);
-        registerMachineRecipe(provider, ULV_EXTRACTOR, "GCG", "EMP", "WCW", 'M', HULL, 'E', PISTON, 'P', PUMP,
-                'C', CIRCUIT, 'W', CABLE, 'G', GLASS);
-        registerMachineRecipe(provider, ULV_MACERATOR, "PEG", "WWM", "CCW", 'M', HULL, 'E', MOTOR, 'P', PISTON,
-                'C', CIRCUIT, 'W', CABLE, 'G', GRINDER);
-        registerMachineRecipe(provider, ULV_WIREMILL, "EWE", "CMC", "EWE", 'M', HULL, 'E', MOTOR, 'C', CIRCUIT,
-                'W', CABLE);
-        registerMachineRecipe(provider, ULV_CENTRIFUGE, "CEC", "WMW", "CEC", 'M', HULL, 'E', MOTOR, 'C', CIRCUIT,
-                'W', CABLE);
-        registerMachineRecipe(provider, ULV_ORE_WASHER, "RGR", "CEC", "WMW", 'M', HULL, 'R', ROTOR, 'E', MOTOR,
-                'C', CIRCUIT, 'W', CABLE, 'G', GLASS);
-        registerMachineRecipe(provider, ULV_CHEMICAL_REACTOR, "GRG", "WEW", "CMC", 'M', HULL, 'R', ROTOR, 'E',
-                MOTOR, 'C', CIRCUIT, 'W', CABLE, 'G', PIPE_REACTOR);
-        registerMachineRecipe(provider, ULV_BREWERY, "GPG", "WMW", "CBC", 'M', HULL, 'P', PUMP, 'B',
-                ROD_DISTILLATION, 'C', CIRCUIT, 'W', CABLE, 'G', GLASS);
-        registerMachineRecipe(provider, ULV_FERMENTER, "WPW", "GMG", "WCW", 'M', HULL, 'P', PUMP, 'C', CIRCUIT,
-                'W', CABLE, 'G', GLASS);
-        registerMachineRecipe(provider, ULV_DISTILLERY, "GBG", "CMC", "WPW", 'M', HULL, 'P', PUMP, 'B',
-                ROD_DISTILLATION, 'C', CIRCUIT, 'W', CABLE, 'G', GLASS);
-        registerMachineRecipe(provider, ULV_FLUID_SOLIDIFIER, "PGP", "WMW", "CBC", 'M', HULL, 'P', PUMP, 'C',
-                CIRCUIT, 'W', CABLE, 'G', GLASS, 'B', Tags.Items.CHESTS_WOODEN);
-        registerMachineRecipe(provider, ULV_CHEMICAL_BATH, "VGW", "PGV", "CMC", 'M', HULL, 'P', PUMP, 'V',
-                CONVEYOR, 'C', CIRCUIT, 'W', CABLE, 'G', GLASS);
-        registerMachineRecipe(provider, ULV_POLARIZER, "ZSZ", "WMW", "ZSZ", 'M', HULL, 'S',
-                ROD_ELECTROMAGNETIC, 'Z', COIL_ELECTRIC, 'W', CABLE);
-        registerMachineRecipe(provider, ULV_ELECTROMAGNETIC_SEPARATOR, "VWZ", "WMS", "CWZ", 'M', HULL, 'S',
-                ROD_ELECTROMAGNETIC, 'Z', COIL_ELECTRIC, 'V', CONVEYOR, 'C', CIRCUIT, 'W', CABLE);
-        registerMachineRecipe(provider, ULV_AUTOCLAVE, "IGI", "IMI", "CPC", 'M', HULL, 'P', PUMP, 'C', CIRCUIT,
-                'I', PLATE, 'G', GLASS);
-        registerMachineRecipe(provider, ULV_MIXER, "GRG", "GEG", "CMC", 'M', HULL, 'E', MOTOR, 'R', ROTOR, 'C',
-                CIRCUIT, 'G', GLASS);
-        registerMachineRecipe(provider, ULV_FORMING_PRESS, "WPW", "CMC", "WPW", 'M', HULL, 'P', PISTON, 'C',
-                CIRCUIT, 'W', CABLE);
-        registerMachineRecipe(provider, ULV_FORGE_HAMMER, "WPW", "CMC", "WAW", 'M', HULL, 'P', PISTON, 'C',
-                CIRCUIT, 'W', CABLE, 'A', Blocks.ANVIL);
-        registerMachineRecipe(provider, ULV_FLUID_HEATER, "OGO", "PMP", "WCW", 'M', HULL, 'P', PUMP, 'O',
-                COIL_HEATING_DOUBLE, 'C', CIRCUIT, 'W', CABLE, 'G', GLASS);
-        registerMachineRecipe(provider, ULV_SIFTER, "WFW", "PMP", "CFC", 'M', HULL, 'P', PISTON, 'F',
-                GTItems.ITEM_FILTER, 'C', CIRCUIT, 'W', CABLE);
-        registerMachineRecipe(provider, ULV_ELECTROLYZER, "IGI", "IMI", "CWC", 'M', HULL, 'C', CIRCUIT, 'W',
-                CABLE, 'I', WIRE_ELECTRIC, 'G', GLASS);
 
-        //registerMachineRecipe(provider, CULTIVATOR, "ABA", "CDC", "");
 
         VanillaRecipeHelper.addShapedRecipe(provider, true, GTTCore.id("andesite_alloy"),
             AllItems.ANDESITE_ALLOY.asStack(1),
                 "BA",
                 "AB",
-                'A', new MaterialEntry(block, Andesite),
+                'A', new MaterialEntry(dust, Andesite),
                 'B', GTTTags.andesiteAlloyable
         );
 
@@ -361,49 +307,62 @@ public class MiscRecipes {
                 .duration(20 * 10)
                 .outputItems(Items.DIRT)
                 .save(provider);
-    }
 
-    public static void registerMachineRecipe(Consumer<FinishedRecipe> provider, boolean setMaterialInfoData,
-                                             MachineDefinition machine, Object... recipe) {
 
-            // Needed to skip certain tiers if not enabled.
-            // Leaves UHV+ machine recipes to be implemented by addons.
-            if (machine != null) {
-                Object[] prepRecipe = prepareRecipe(machine.getTier(), Arrays.copyOf(recipe, recipe.length));
-                if (prepRecipe == null) {
-                    return;
-                }
-                VanillaRecipeHelper.addShapedRecipe(provider, setMaterialInfoData, machine.getName(), machine.asStack(),
-                        prepRecipe);
-            }
-    }
 
-    public static void registerMachineRecipe(Consumer<FinishedRecipe> provider, MachineDefinition[] machines,
-                                             Object... recipe) {
-        for (MachineDefinition machine : machines) {
-            registerMachineRecipe(provider, true, machine, recipe);
-        }
-    }
 
-    public static void registerMachineRecipe(Consumer<FinishedRecipe> provider, MachineDefinition machine,
-                                             Object... recipe) {
-        registerMachineRecipe(provider, true, machine, recipe);
-    }
 
-    private static Object[] prepareRecipe(int tier, Object... recipe) {
-        for (int i = 3; i < recipe.length; i++) {
-            if (recipe[i] instanceof CraftingComponent) {
-                Object component = ((CraftingComponent) recipe[i]).get(tier);
-                recipe[i] = component;
-            } else if (recipe[i] instanceof Item item) {
-                recipe[i] = new ItemStack(item);
-            } else if (recipe[i] instanceof Block block) {
-                recipe[i] = new ItemStack(block);
-            } else if (recipe[i] instanceof ItemProviderEntry<?> itemEntry) {
-                recipe[i] = itemEntry.asStack();
-            }
-        }
-        return recipe;
+
+
+
+
+        VanillaRecipeHelper.addShapedRecipe(provider, true, GTTCore.id("casing_grate_casing"),
+                GTBlocks.CASING_GRATE.asStack(ConfigHolder.INSTANCE.recipes.casingsPerCraft), "PVP", "PFP", "PMP", 'P',
+                new ItemStack(Blocks.IRON_BARS, 1), 'F', new MaterialEntry(TagPrefix.frameGt, GTMaterials.Steel),
+                'M', GTTItems.ELECTRIC_MOTOR_ULV, 'V', new MaterialEntry(TagPrefix.rotor, GTMaterials.Steel));
+        ASSEMBLER_RECIPES.recipeBuilder(GTTCore.id("casing_grate_casing"))
+                .inputItems(Items.IRON_BARS, 6)
+                .inputItems(frameGt, Steel)
+                .inputItems(ELECTRIC_MOTOR_ULV)
+                .inputItems(rotor, Steel)
+                .outputItems(GTBlocks.CASING_GRATE, ConfigHolder.INSTANCE.recipes.casingsPerCraft)
+                .duration(800)
+                .EUt(VA[ULV])
+                .save(provider);
+
+
+
+
+        MIXER_RECIPES.recipeBuilder(GTTCore.id("tin_alloy")).duration(100).EUt(VA[LV])
+                .inputItems(dust, Tin)
+                .inputItems(dust, Iron)
+                .circuitMeta(1)
+                .outputItems(dust, TinAlloy, 2)
+                .save(provider);
+
+
+
+        DISTILLATION_RECIPES.recipeBuilder(GTTCore.id("distill_fermented_biomass"))
+                .inputFluids(FermentedBiomass.getFluid(1000))
+                .outputItems(FERTILIZER)
+                .outputFluids(AceticAcid.getFluid(25))
+                .outputFluids(Water.getFluid(375))
+                .outputFluids(Ethanol.getFluid(150))
+                .outputFluids(Methanol.getFluid(150))
+                .outputFluids(Ammonia.getFluid(100))
+                .outputFluids(CarbonDioxide.getFluid(400))
+                .outputFluids(Methane.getFluid(600))
+                .duration(75).EUt(VA[MV]).save(provider);
+
+
+
+        CHEMICAL_RECIPES.recipeBuilder(GTTCore.id("phenolic_resin"))
+                .duration(100)
+                .EUt(VA[ULV])
+                .inputFluids(Phenol.getFluid(L))
+                .inputFluids(Formaldehyde.getFluid(L * 2))
+                .outputFluids(PhenolicResin.getFluid(L * 3))
+                .save(provider);
     }
 
     public static void registerAE2Recipes(Consumer<FinishedRecipe> provider){
@@ -412,48 +371,56 @@ public class MiscRecipes {
                 .inputItems(Blocks.IRON_BLOCK.asItem())
                 .outputItems(AEItems.CALCULATION_PROCESSOR_PRESS.asItem())
                 .EUt(VA[LV])
+                .duration(20 * 5)
                 .save(provider);
         FORMING_PRESS_RECIPES.recipeBuilder(GTTCore.id("engineering_processor_press"))
                 .notConsumable(AEItems.ENGINEERING_PROCESSOR_PRESS.asItem())
                 .inputItems(Blocks.IRON_BLOCK.asItem())
                 .outputItems(AEItems.ENGINEERING_PROCESSOR_PRESS.asItem())
                 .EUt(VA[LV])
+                .duration(20 * 5)
                 .save(provider);
         FORMING_PRESS_RECIPES.recipeBuilder(GTTCore.id("logic_processor_press"))
                 .notConsumable(AEItems.LOGIC_PROCESSOR_PRESS.asItem())
                 .inputItems(Blocks.IRON_BLOCK.asItem())
                 .outputItems(AEItems.LOGIC_PROCESSOR_PRESS.asItem())
                 .EUt(VA[LV])
+                .duration(20 * 5)
                 .save(provider);
         FORMING_PRESS_RECIPES.recipeBuilder(GTTCore.id("silicon_processor_press"))
                 .notConsumable(AEItems.SILICON_PRESS.asItem())
                 .inputItems(Blocks.IRON_BLOCK.asItem())
                 .outputItems(AEItems.SILICON_PRESS.asItem())
                 .EUt(VA[LV])
+                .duration(20 * 5)
                 .save(provider);
         FORMING_PRESS_RECIPES.recipeBuilder(GTTCore.id("silicon_print"))
                 .notConsumable(AEItems.SILICON_PRESS.asItem())
                 .inputItems(plate, Silicon)
                 .outputItems(AEItems.SILICON_PRINT.asItem())
                 .EUt(VA[LV])
+                .duration(20)
                 .save(provider);
         FORMING_PRESS_RECIPES.recipeBuilder(GTTCore.id("engineering_processor_print"))
                 .notConsumable(AEItems.ENGINEERING_PROCESSOR_PRESS.asItem())
                 .inputItems(plate, Diamond)
                 .outputItems(AEItems.ENGINEERING_PROCESSOR_PRINT.asItem())
                 .EUt(VA[LV])
+                .duration(20)
                 .save(provider);
         FORMING_PRESS_RECIPES.recipeBuilder(GTTCore.id("logic_processor_print"))
                 .notConsumable(AEItems.LOGIC_PROCESSOR_PRESS.asItem())
                 .inputItems(plate, Gold)
                 .outputItems(AEItems.LOGIC_PROCESSOR_PRINT.asItem())
                 .EUt(VA[LV])
+                .duration(20)
                 .save(provider);
         FORMING_PRESS_RECIPES.recipeBuilder(GTTCore.id("calculation_processor_print"))
                 .notConsumable(AEItems.CALCULATION_PROCESSOR_PRESS.asItem())
                 .inputItems(plate, CertusQuartz)
                 .outputItems(AEItems.CALCULATION_PROCESSOR_PRINT.asItem())
                 .EUt(VA[LV])
+                .duration(20)
                 .save(provider);
         FORMING_PRESS_RECIPES.recipeBuilder(GTTCore.id("calculation_processor"))
                 .inputItems(AEItems.CALCULATION_PROCESSOR_PRINT.asItem())
@@ -461,6 +428,7 @@ public class MiscRecipes {
                 .inputItems(AEItems.SILICON_PRINT.asItem())
                 .outputItems(AEItems.CALCULATION_PROCESSOR.asItem())
                 .EUt(VA[LV])
+                .duration(20)
                 .save(provider);
         FORMING_PRESS_RECIPES.recipeBuilder(GTTCore.id("engineering_processor"))
                 .inputItems(AEItems.ENGINEERING_PROCESSOR_PRINT.asItem())
@@ -468,6 +436,7 @@ public class MiscRecipes {
                 .inputItems(AEItems.SILICON_PRINT.asItem())
                 .outputItems(AEItems.ENGINEERING_PROCESSOR.asItem())
                 .EUt(VA[LV])
+                .duration(20)
                 .save(provider);
         FORMING_PRESS_RECIPES.recipeBuilder(GTTCore.id("logic_processor"))
                 .inputItems(AEItems.LOGIC_PROCESSOR_PRINT.asItem())
@@ -475,40 +444,100 @@ public class MiscRecipes {
                 .inputItems(AEItems.SILICON_PRINT.asItem())
                 .outputItems(AEItems.LOGIC_PROCESSOR.asItem())
                 .EUt(VA[LV])
+                .duration(20)
                 .save(provider);
         ALLOY_SMELTER_RECIPES.recipeBuilder(GTTCore.id("quartz_glass"))
                 .inputItems(gem, CertusQuartz)
                 .inputItems(block, Glass)
-                .outputItems(AEBlocks.QUARTZ_GLASS)
+                .outputItems(AEBlocks.QUARTZ_GLASS.asItem())
                 .EUt(VA[LV])
+                .duration(100)
                 .save(provider);
 
         ALLOY_SMELTER_RECIPES.recipeBuilder(GTTCore.id("quartz_vibrant_glass"))
                 .inputItems(dust, Glowstone)
-                .inputItems(AEBlocks.QUARTZ_GLASS)
-                .outputItems(AEBlocks.QUARTZ_VIBRANT_GLASS)
+                .inputItems(AEBlocks.QUARTZ_GLASS.asItem())
+                .outputItems(AEBlocks.QUARTZ_VIBRANT_GLASS.asItem())
                 .EUt(VA[LV])
+                .duration(100)
                 .save(provider);
         AUTOCLAVE_RECIPES.recipeBuilder(GTTCore.id("fluix_crystal"))
                 .inputItems(dust, Redstone)
                 .inputItems(dust, CertusQuartz)
                 .inputItems(dust, NetherQuartz)
                 .inputFluids(Water.getFluid(250))
-                .outputItems(dust, FluixCrystal, 2)
+                .outputItems(gem, FluixCrystal, 2)
+                .duration(20 * 90)
+                .EUt(VA[LV])
+                .save(provider);
+        AUTOCLAVE_RECIPES.recipeBuilder(GTTCore.id("fluix_crystal_distilled"))
+                .inputItems(dust, Redstone)
+                .inputItems(dust, CertusQuartz)
+                .inputItems(dust, NetherQuartz)
+                .inputFluids(DistilledWater.getFluid(250))
+                .outputItems(gem, FluixCrystal, 2)
+                .duration(20 * 60)
+                .EUt(VA[LV])
+                .save(provider);
+        AUTOCLAVE_RECIPES.recipeBuilder(GTTCore.id("damaged_budding_quartz"))
+                .inputItems(AEItems.CERTUS_QUARTZ_CRYSTAL_CHARGED.asItem())
+                .inputItems(block, CertusQuartz)
+                .inputFluids(DistilledWater.getFluid(250))
+                .outputItems(AEBlocks.DAMAGED_BUDDING_QUARTZ.asItem())
+                .duration(20 * 60)
+                .EUt(VA[LV])
+                .save(provider);
+        AUTOCLAVE_RECIPES.recipeBuilder(GTTCore.id("chipped_budding_quartz"))
+                .inputItems(AEItems.CERTUS_QUARTZ_CRYSTAL_CHARGED.asItem())
+                .inputItems(AEBlocks.DAMAGED_BUDDING_QUARTZ.asItem())
+                .inputFluids(DistilledWater.getFluid(250))
+                .outputItems(AEBlocks.CHIPPED_BUDDING_QUARTZ.asItem())
+                .duration(20 * 60)
+                .EUt(VA[LV])
+                .save(provider);
+        AUTOCLAVE_RECIPES.recipeBuilder(GTTCore.id("flawed_budding_quartz"))
+                .inputItems(AEItems.CERTUS_QUARTZ_CRYSTAL_CHARGED.asItem())
+                .inputItems(AEBlocks.CHIPPED_BUDDING_QUARTZ.asItem())
+                .inputFluids(DistilledWater.getFluid(250))
+                .outputItems(AEBlocks.FLAWED_BUDDING_QUARTZ.asItem())
+                .duration(20 * 60)
+                .EUt(VA[LV])
+                .save(provider);
+        IMPLOSION_RECIPES.recipeBuilder(GTTCore.id("entangled_singularity"))
+                .inputItems(AEItems.SINGULARITY.asItem())
+                .inputItems(dust, EnderPearl)
+                .outputItems(AEItems.QUANTUM_ENTANGLED_SINGULARITY.asItem(), 2)
+                .duration(20)
+                .EUt(VA[LV])
+                .save(provider);
+        IMPLOSION_RECIPES.recipeBuilder(GTTCore.id("entangled_singularity_from_pearl"))
+                .inputItems(AEItems.SINGULARITY.asItem())
+                .inputItems(gem, EnderPearl)
+                .outputItems(AEItems.QUANTUM_ENTANGLED_SINGULARITY.asItem(), 2)
+                .duration(20)
                 .EUt(VA[LV])
                 .save(provider);
         MACERATOR_RECIPES.recipeBuilder(GTTCore.id("sky_dust"))
-                .inputItems(AEBlocks.SKY_STONE_BLOCK)
-                .outputItems(AEItems.SKY_DUST)
+                .inputItems(AEBlocks.SKY_STONE_BLOCK.asItem())
+                .outputItems(AEItems.SKY_DUST.asItem())
                 .EUt(VA[LV])
+                .duration(20 * 20)
                 .save(provider);
         CENTRIFUGE_RECIPES.recipeBuilder(GTTCore.id("sky_dust_separation"))
-                .inputItems(AEItems.SKY_DUST)
+                .inputItems(AEItems.SKY_DUST.asItem())
                 .chancedOutput(dust, CertusQuartz, 700, 0)
                 .chancedOutput(dust, FluixCrystal, 700, 0)
                 .chancedOutput(dust, Tantalite, 700, 0)
                 .chancedOutput(dust, Iron, 2500, 0)
                 .EUt(VA[LV])
+                .duration(20 * 15)
                 .save(provider);
+        ARC_FURNACE_RECIPES.recipeBuilder(GTTCore.id("certus_quartz_charging"))
+                .inputItems(gem, CertusQuartz)
+                .outputItems(AEItems.CERTUS_QUARTZ_CRYSTAL_CHARGED.asItem())
+                .EUt(VA[LV])
+                .duration(20 * 15)
+                .save(provider);
+
     }
 }

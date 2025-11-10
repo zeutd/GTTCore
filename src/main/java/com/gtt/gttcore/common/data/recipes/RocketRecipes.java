@@ -87,7 +87,7 @@ public class RocketRecipes {
                 .EUt(VA[LuV])
                 .inputItems(ModItems.ROCKET_NOSE_CONE)
                 .inputItems(plate, Calorite, 48)
-                .inputItems(frameGt, VanadiumSteel, 3)
+                .inputItems(frameGt, TungstenSteel, 3)
                 .inputItems(pipeSmallFluid, Calorite, 2)
                 .inputItems(ModItems.CALORITE_TANK, 2)
                 .inputItems(ModItems.ROCKET_FIN, 2)

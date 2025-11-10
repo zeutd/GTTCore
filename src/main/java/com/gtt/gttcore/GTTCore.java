@@ -14,6 +14,7 @@ import com.gregtechceu.gtceu.api.recipe.modifier.RecipeModifierList;
 import com.gregtechceu.gtceu.api.registry.GTRegistries;
 import com.gregtechceu.gtceu.common.data.GTCovers;
 import com.gregtechceu.gtceu.common.machine.multiblock.steam.SteamParallelMultiblockMachine;
+import com.gregtechceu.gtceu.data.recipe.event.CraftingComponentModificationEvent;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
 import com.gtt.gttcore.common.data.*;
 import com.gtt.gttcore.common.data.recipes.GTTRecipeTypes;
@@ -31,6 +32,7 @@ import net.minecraft.util.profiling.jfr.event.WorldLoadFinishedEvent;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.AddPackFindersEvent;
+import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.event.level.LevelEvent;
 import net.minecraftforge.event.server.ServerAboutToStartEvent;
 import net.minecraftforge.event.server.ServerStartedEvent;
@@ -62,6 +64,7 @@ public class GTTCore {
         modEventBus.addListener(this::addMaterialRegistries);
         modEventBus.addListener(this::addMaterials);
         modEventBus.addListener(this::modifyMaterials);
+        MinecraftForge.EVENT_BUS.addListener(this::modifyCraftingComponent);
         modEventBus.addGenericListener(GTRecipeType.class, this::registerRecipeTypes);
         modEventBus.addGenericListener(MachineDefinition.class, this::registerMachines);
         modEventBus.addListener(EventPriority.LOWEST, GTTDatagen::gatherData);
@@ -71,6 +74,11 @@ public class GTTCore {
         modEventBus.register(this);
         MinecraftForge.EVENT_BUS.register(this);
         REGISTRATE.registerRegistrate();
+    }
+
+    @SubscribeEvent
+    public static void onPortalIgnition(BlockEvent.PortalSpawnEvent event) {
+        event.setCanceled(true);
     }
 
     public static ResourceLocation id(String path) {
@@ -100,6 +108,10 @@ public class GTTCore {
         GTTMaterials.init();
     }
 
+    private void modifyCraftingComponent(CraftingComponentModificationEvent event){
+        GTTCraftingComponents.init();
+    }
+
     // This is optional, though.
     private void modifyMaterials(PostMaterialEvent event) {
         GTTMaterials.modify();
@@ -112,22 +124,5 @@ public class GTTCore {
     private void registerMachines(GTCEuAPI.RegisterEvent<ResourceLocation, MachineDefinition> event) {
         GTTMultiMachines.init();
         GTTMachines.init();
-//        GTRegistries.MACHINES.forEach(machineDefinition -> {
-//
-//            RecipeModifier recipeModifier = machineDefinition.getRecipeModifier();
-//            if (recipeModifier == null) return;
-//            if (recipeModifier instanceof RecipeModifierList rml) {
-//                RecipeModifier[] list = new RecipeModifier[rml.getModifiers().length + 1];
-//                System.arraycopy(rml.getModifiers(), 0, list, 0, rml.getModifiers().length);
-//                list[list.length - 1] = (m, r) -> ModifierFunction.builder().durationMultiplier(0.5).build();
-//                machineDefinition.setRecipeModifier(new RecipeModifierList(list));
-//            }
-//            else {
-//                RecipeModifier[] list = new RecipeModifier[2];
-//                list[0] = recipeModifier;
-//                list[1] = (m, r) -> ModifierFunction.builder().durationMultiplier(0.5).build();
-//                machineDefinition.setRecipeModifier(new RecipeModifierList(list));
-//            }
-//        });
     }
 }

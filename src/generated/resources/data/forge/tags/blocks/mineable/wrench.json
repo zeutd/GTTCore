@@ -6,6 +6,7 @@
     "gttcore:low_neutron_absorption_casing",
     "gttcore:naquadah_alloy_turbine_casing",
     "gttcore:sealed_casing",
-    "gttcore:lead_glass"
+    "gttcore:lead_glass",
+    "gttcore:stainless_evaporation_casing"
   ]
 }

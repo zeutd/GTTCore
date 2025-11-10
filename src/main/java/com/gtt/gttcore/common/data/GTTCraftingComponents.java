@@ -9,7 +9,7 @@ import static com.gregtechceu.gtceu.data.recipe.GTCraftingComponents.*;
 import static com.gtt.gttcore.common.data.GTTItems.*;
 
 public class GTTCraftingComponents {
-    public void init(){
+    public static void init(){
         ROBOT_ARM.add(ULV, ROBOT_ARM_ULV.asStack());
         PUMP.add(ULV, ELECTRIC_PUMP_ULV.asStack());
         PISTON.add(ULV, ELECTRIC_PISTON_ULV.asStack());

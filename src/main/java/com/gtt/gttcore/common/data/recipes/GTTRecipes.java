@@ -12,6 +12,7 @@ import com.gtt.gttcore.common.data.recipes.lines.ZirconiumLine;
 import com.gtt.gttcore.common.data.recipes.remove.AE2RecipeRemoval;
 import com.gtt.gttcore.common.data.recipes.remove.AdAstraRecipeRemoval;
 import com.gtt.gttcore.common.data.recipes.remove.CreateRecipeRemoval;
+import com.gtt.gttcore.common.data.recipes.remove.GregTechRecipeRemoval;
 import com.simibubi.create.AllItems;
 import com.simibubi.create.Create;
 import com.tterrag.registrate.util.entry.ItemEntry;
@@ -36,6 +37,7 @@ import java.util.function.Supplier;
 
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 import static com.gtt.gttcore.common.data.GTTMaterials.Calorite;
+import static com.gtt.gttcore.common.data.GTTMaterials.FluixCrystal;
 
 public class GTTRecipes {
     public static Map<ReplacementMatch, OutputReplacement>
@@ -92,6 +94,8 @@ public class GTTRecipes {
         replaceOutput(GTItems.WETWARE_MAINFRAME_UHV, GTTItems.UNAWAKENED_WETWARE_MAINFRAME_UHV);
         replaceInput(AllItems.ELECTRON_TUBE, GTItems.VACUUM_TUBE);
         replace(AEBlocks.QUARTZ_BLOCK.asItem(), ChemicalHelper.get(TagPrefix.block, CertusQuartz));
+        replace(AEBlocks.FLUIX_BLOCK.asItem(), ChemicalHelper.get(TagPrefix.block, FluixCrystal));
+        replaceInput(AllItems.WHISK, ChemicalHelper.get(TagPrefix.rotor, Iron));
     }
     public static void init(Consumer<FinishedRecipe> provider) {
         MiscRecipes.init(provider);
@@ -102,11 +106,14 @@ public class GTTRecipes {
         PlatinumGroupLine.init(provider);
         MixerRecipes.init(provider);
         RocketRecipes.init(provider);
+        CircuitRecipes.init(provider);
     }
 
     public static void remove(Consumer<RecipeFilter> provider) {
         CreateRecipeRemoval.init(provider);
         AdAstraRecipeRemoval.init(provider);
         AE2RecipeRemoval.init(provider);
+        GregTechRecipeRemoval.init(provider);
+        provider.accept(new IDFilter(new ResourceLocation("minecraft:ender_eye")));
     }
 }

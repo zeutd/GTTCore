@@ -59,8 +59,10 @@ public class SteamDistillationTowerMachine extends DistillationTowerMachine {
         if (!(machine instanceof SteamDistillationTowerMachine steamMachine)) {
             return RecipeModifier.nullWrongType(SteamDistillationTowerMachine.class, machine);
         }
+        long eut = recipe.getInputEUt().getTotalEU();
+        double eutMultiplier = (eut * 0.8888 <= 32) ? (0.8888) : (32.0 / eut);
         if (RecipeHelper.getRecipeEUtTier(recipe) > GTValues.MV) return ModifierFunction.NULL;
-        return ModifierFunction.builder().outputModifier(ContentModifier.multiplier(0.8)).durationMultiplier(1.5).eutMultiplier(0.8).build();
+        return ModifierFunction.builder().outputModifier(ContentModifier.multiplier(0.8)).durationMultiplier(1.5).eutMultiplier(eutMultiplier).build();
     }
 
     @Override

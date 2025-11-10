@@ -75,7 +75,6 @@ public class NotifiableHighEnergyLaserContainer extends NotifiableRecipeHandlerT
     @Override
     public void setLaserAmount(int amount) {
         laserAmount = amount;
-        checkOutputSubscription();
     }
 
     @Override
@@ -86,16 +85,16 @@ public class NotifiableHighEnergyLaserContainer extends NotifiableRecipeHandlerT
     @Override
     public void onMachineLoad() {
         super.onMachineLoad();
-        checkOutputSubscription();
+        outputSubs = getMachine().subscribeServerTick(outputSubs, this::outputTick);
     }
 
-    public void checkOutputSubscription() {
-            if (getLaserAmount() >= 0) {
-                outputSubs = getMachine().subscribeServerTick(outputSubs, this::outputTick);
-            } else if (outputSubs != null) {
-                outputSubs.unsubscribe();
-                outputSubs = null;
-            }
+    @Override
+    public void onMachineUnLoad() {
+        super.onMachineUnLoad();
+        if (outputSubs != null) {
+            outputSubs.unsubscribe();
+            outputSubs = null;
+        }
     }
 
     public void outputTick() {

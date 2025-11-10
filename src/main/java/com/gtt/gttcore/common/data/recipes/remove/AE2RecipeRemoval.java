@@ -37,5 +37,16 @@ public class AE2RecipeRemoval {
         provider.accept(new IDFilter(new ResourceLocation("ae2:network/blocks/controller")));
         provider.accept(new IDFilter(new ResourceLocation("ae2:smelting/silicon_from_certus_quartz_dust")));
         provider.accept(new IDFilter(new ResourceLocation("ae2:decorative/quartz_block")));
+        provider.accept(new IDFilter(new ResourceLocation("ae2:decorative/fluix_block")));
+        provider.accept(new IDFilter(new ResourceLocation("ae2:misc/fluixpearl")));
+
+        provider.accept(new IDFilter(new ResourceLocation("ae2:transform/damaged_budding_quartz")));
+        provider.accept(new IDFilter(new ResourceLocation("ae2:transform/fluix_crystals")));
+        provider.accept(new IDFilter(new ResourceLocation("ae2:transform/flawed_budding_quartz")));
+        provider.accept(new IDFilter(new ResourceLocation("ae2:transform/certus_quartz_crystals")));
+        provider.accept(new IDFilter(new ResourceLocation("ae2:transform/fluix_crystal")));
+        provider.accept(new IDFilter(new ResourceLocation("ae2:transform/chipped_budding_quartz")));
+        provider.accept(new IDFilter(new ResourceLocation("ae2:transform/entangled_singularity")));
+        provider.accept(new IDFilter(new ResourceLocation("ae2:transform/entangled_singularity_from_pearl")));
     }
 }

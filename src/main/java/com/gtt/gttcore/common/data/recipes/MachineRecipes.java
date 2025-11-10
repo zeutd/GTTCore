@@ -1,11 +1,30 @@
 package com.gtt.gttcore.common.data.recipes;
 
+import com.gregtechceu.gtceu.api.GTValues;
+import com.gregtechceu.gtceu.api.data.chemical.material.Material;
+import com.gregtechceu.gtceu.api.data.chemical.material.stack.MaterialEntry;
+import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
+import com.gregtechceu.gtceu.api.machine.MachineDefinition;
 import com.gregtechceu.gtceu.api.machine.multiblock.CleanroomType;
+import com.gregtechceu.gtceu.common.data.GTItems;
+import com.gregtechceu.gtceu.common.data.GTMachines;
+import com.gregtechceu.gtceu.common.data.GTMaterials;
+import com.gregtechceu.gtceu.data.recipe.CraftingComponent;
+import com.gregtechceu.gtceu.data.recipe.CustomTags;
+import com.gregtechceu.gtceu.data.recipe.VanillaRecipeHelper;
 import com.gtt.gttcore.GTTCore;
 import com.gtt.gttcore.api.capability.recipe.HighEnergyLaserRecipeCapability;
+import com.tterrag.registrate.util.entry.ItemProviderEntry;
+import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import net.minecraft.data.recipes.FinishedRecipe;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraftforge.common.Tags;
 
+import java.util.Arrays;
+import java.util.Map;
 import java.util.function.Consumer;
 
 import static com.gregtechceu.gtceu.api.GTValues.*;
@@ -14,11 +33,15 @@ import static com.gregtechceu.gtceu.common.data.GTBlocks.*;
 import static com.gregtechceu.gtceu.common.data.GTItems.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.*;
+import static com.gregtechceu.gtceu.data.recipe.GTCraftingComponents.*;
+import static com.gregtechceu.gtceu.data.recipe.GTCraftingComponents.CABLE;
+import static com.gregtechceu.gtceu.data.recipe.GTCraftingComponents.PISTON;
 import static com.gtt.gttcore.common.data.GTTItems.*;
+import static com.gtt.gttcore.common.data.GTTMachines.*;
 import static com.gtt.gttcore.common.data.GTTMaterials.*;
 import static com.gtt.gttcore.common.data.recipes.GTTRecipeTypes.*;
-import static com.simibubi.create.AllItems.ZINC_NUGGET;
 import static net.minecraft.world.item.Items.*;
+import static net.minecraft.world.item.Items.GLASS;
 
 public class MachineRecipes {
     public static void init(Consumer<FinishedRecipe> provider) {
@@ -26,9 +49,212 @@ public class MachineRecipes {
         registerGreenhouseRecipes(provider);
         registerCultivatorRecipes(provider);
         registerHighEnergyLaserRecipes(provider);
+        registerMachineRecipes(provider);
     }
+    private static void registerMachineRecipes(Consumer<FinishedRecipe> provider){
+        VanillaRecipeHelper.addShapedRecipe(provider, true, GTTCore.id("steam_turbine_ulv"), ULV_STEAM_TURBINE.asStack(),
+                "PCP", "RMR", "EWE", 'M', GTMachines.HULL[GTValues.LV].asStack(), 'E', ELECTRIC_MOTOR_ULV, 'R',
+                new MaterialEntry(TagPrefix.rotor, Lead), 'C', CustomTags.ULV_CIRCUITS, 'W',
+                new MaterialEntry(TagPrefix.cableGtSingle, RedAlloy), 'P',
+                new MaterialEntry(TagPrefix.pipeNormalFluid, Lead));
+
+
+
+
+
+        registerMachineRecipe(provider, ULV_ALLOY_SMELTER,
+                "ECE", "CMC", "WCW", 'M', HULL, 'E', CIRCUIT, 'W',
+                CABLE, 'C', COIL_HEATING_DOUBLE
+        );
+        registerMachineRecipe(provider, ULV_BENDER, "PBP", "CMC", "EWE", 'M', HULL, 'E', MOTOR, 'P', PISTON, 'C',
+                CIRCUIT, 'W', CABLE, 'B', PLATE);
+        registerMachineRecipe(provider, ULV_COMPRESSOR, " C ", "PMP", "WCW", 'M', HULL, 'P', PISTON, 'C',
+                CIRCUIT, 'W', CABLE);
+        registerMachineRecipe(provider, ULV_CUTTER, "WCG", "VMB", "CWE", 'M', HULL, 'E', MOTOR, 'V', CONVEYOR,
+                'C', CIRCUIT, 'W', CABLE, 'G', GLASS, 'B', SAWBLADE);
+        registerMachineRecipe(provider, ULV_ELECTRIC_FURNACE, "ECE", "CMC", "WCW", 'M', HULL, 'E', CIRCUIT, 'W',
+                CABLE, 'C', COIL_HEATING);
+        registerMachineRecipe(provider, ULV_LATHE, "WCW", "EMD", "CWP", 'M', HULL, 'E', MOTOR, 'P', PISTON, 'C',
+                CIRCUIT, 'W', CABLE, 'D', GRINDER);
+        registerMachineRecipe(provider, ULV_EXTRACTOR, "GCG", "EMP", "WCW", 'M', HULL, 'E', PISTON, 'P', PUMP,
+                'C', CIRCUIT, 'W', CABLE, 'G', GLASS);
+        registerMachineRecipe(provider, ULV_MACERATOR, "PEG", "WWM", "CCW", 'M', HULL, 'E', MOTOR, 'P', PISTON,
+                'C', CIRCUIT, 'W', CABLE, 'G', GRINDER);
+        registerMachineRecipe(provider, ULV_WIREMILL, "EWE", "CMC", "EWE", 'M', HULL, 'E', MOTOR, 'C', CIRCUIT,
+                'W', CABLE);
+        registerMachineRecipe(provider, ULV_CENTRIFUGE, "CEC", "WMW", "CEC", 'M', HULL, 'E', MOTOR, 'C', CIRCUIT,
+                'W', CABLE);
+        registerMachineRecipe(provider, ULV_ORE_WASHER, "RGR", "CEC", "WMW", 'M', HULL, 'R', ROTOR, 'E', MOTOR,
+                'C', CIRCUIT, 'W', CABLE, 'G', GLASS);
+        registerMachineRecipe(provider, ULV_CHEMICAL_REACTOR, "GRG", "WEW", "CMC", 'M', HULL, 'R', ROTOR, 'E',
+                MOTOR, 'C', CIRCUIT, 'W', CABLE, 'G', PIPE_REACTOR);
+        registerMachineRecipe(provider, ULV_BREWERY, "GPG", "WMW", "CBC", 'M', HULL, 'P', PUMP, 'B',
+                ROD_DISTILLATION, 'C', CIRCUIT, 'W', CABLE, 'G', GLASS);
+        registerMachineRecipe(provider, ULV_FERMENTER, "WPW", "GMG", "WCW", 'M', HULL, 'P', PUMP, 'C', CIRCUIT,
+                'W', CABLE, 'G', GLASS);
+        registerMachineRecipe(provider, ULV_DISTILLERY, "GBG", "CMC", "WPW", 'M', HULL, 'P', PUMP, 'B',
+                ROD_DISTILLATION, 'C', CIRCUIT, 'W', CABLE, 'G', GLASS);
+        registerMachineRecipe(provider, ULV_FLUID_SOLIDIFIER, "PGP", "WMW", "CBC", 'M', HULL, 'P', PUMP, 'C',
+                CIRCUIT, 'W', CABLE, 'G', GLASS, 'B', Tags.Items.CHESTS_WOODEN);
+        registerMachineRecipe(provider, ULV_CHEMICAL_BATH, "VGW", "PGV", "CMC", 'M', HULL, 'P', PUMP, 'V',
+                CONVEYOR, 'C', CIRCUIT, 'W', CABLE, 'G', GLASS);
+        registerMachineRecipe(provider, ULV_POLARIZER, "ZSZ", "WMW", "ZSZ", 'M', HULL, 'S',
+                ROD_ELECTROMAGNETIC, 'Z', COIL_ELECTRIC, 'W', CABLE);
+        registerMachineRecipe(provider, ULV_ELECTROMAGNETIC_SEPARATOR, "VWZ", "WMS", "CWZ", 'M', HULL, 'S',
+                ROD_ELECTROMAGNETIC, 'Z', COIL_ELECTRIC, 'V', CONVEYOR, 'C', CIRCUIT, 'W', CABLE);
+        registerMachineRecipe(provider, ULV_AUTOCLAVE, "IGI", "IMI", "CPC", 'M', HULL, 'P', PUMP, 'C', CIRCUIT,
+                'I', PLATE, 'G', GLASS);
+        registerMachineRecipe(provider, ULV_MIXER, "GRG", "GEG", "CMC", 'M', HULL, 'E', MOTOR, 'R', ROTOR, 'C',
+                CIRCUIT, 'G', GLASS);
+        registerMachineRecipe(provider, ULV_FORMING_PRESS, "WPW", "CMC", "WPW", 'M', HULL, 'P', PISTON, 'C',
+                CIRCUIT, 'W', CABLE);
+        registerMachineRecipe(provider, ULV_FORGE_HAMMER, "WPW", "CMC", "WAW", 'M', HULL, 'P', PISTON, 'C',
+                CIRCUIT, 'W', CABLE, 'A', Blocks.ANVIL);
+        registerMachineRecipe(provider, ULV_FLUID_HEATER, "OGO", "PMP", "WCW", 'M', HULL, 'P', PUMP, 'O',
+                COIL_HEATING_DOUBLE, 'C', CIRCUIT, 'W', CABLE, 'G', GLASS);
+        registerMachineRecipe(provider, ULV_SIFTER, "WFW", "PMP", "CFC", 'M', HULL, 'P', PISTON, 'F',
+                GTItems.ITEM_FILTER, 'C', CIRCUIT, 'W', CABLE);
+        registerMachineRecipe(provider, ULV_ELECTROLYZER, "IGI", "IMI", "CWC", 'M', HULL, 'C', CIRCUIT, 'W',
+                CABLE, 'I', WIRE_ELECTRIC, 'G', GLASS);
+        registerMachineRecipe(provider, ULV_ASSEMBLER, "ACA", "VMV", "WCW", 'M', HULL, 'V', CONVEYOR, 'A',
+                ROBOT_ARM, 'C', CIRCUIT, 'W', CABLE);
+        registerMachineRecipe(provider, ULV_GAS_COLLECTOR, "WFW", "PHP", "WCW", 'W', Blocks.IRON_BARS, 'F',
+                GTItems.FLUID_FILTER, 'P', PUMP, 'H', HULL, 'C', CIRCUIT);
+
+
+        registerMachineRecipe(provider, CULTIVATOR, "CEC", "PHP", "WCW", 'C', CIRCUIT, 'E', PETRI_DISH, 'P', PUMP, 'H', HULL, 'W', CABLE);
+
+
+
+
+
+
+
+
+        VanillaRecipeHelper.addShapedRecipe(provider, true, GTTCore.id("electric_piston_ulv"), ELECTRIC_PISTON_ULV.asStack(), "PPP",
+                "CRR", "CMG", 'P', new MaterialEntry(plate, WroughtIron), 'C', new MaterialEntry(cableGtSingle, Tin),
+                'R', new MaterialEntry(rod, WroughtIron), 'G', new MaterialEntry(gearSmall, WroughtIron), 'M',
+                ELECTRIC_MOTOR_ULV.asStack());
+        ASSEMBLER_RECIPES.recipeBuilder(GTTCore.id("electric_piston_ulv"))
+                .inputItems(rod, WroughtIron, 2)
+                .inputItems(cableGtSingle, RedAlloy, 2)
+                .inputItems(plate, WroughtIron, 3)
+                .inputItems(gearSmall, WroughtIron)
+                .inputItems(ELECTRIC_MOTOR_ULV)
+                .outputItems(ELECTRIC_PISTON_ULV)
+                .duration(100).EUt(VA[LV]).save(provider);
+        VanillaRecipeHelper.addShapedRecipe(provider, true, "electric_motor_ulv", ELECTRIC_MOTOR_ULV.asStack(),
+                "CWR", "WMW", "RWC", 'C', new MaterialEntry(cableGtSingle, Tin), 'W',
+                new MaterialEntry(wireGtSingle, Tin), 'R', new MaterialEntry(rod, Iron), 'M',
+                new MaterialEntry(rod, IronMagnetic));
+        ASSEMBLER_RECIPES.recipeBuilder("electric_motor_ulv")
+                .inputItems(cableGtSingle, Tin, 2)
+                .inputItems(rod, Iron, 2)
+                .inputItems(rod, IronMagnetic)
+                .inputItems(wireGtSingle, Tin, 4)
+                .outputItems(ELECTRIC_MOTOR_ULV)
+                .duration(100).EUt(VA[LV]).save(provider);
+
+        final Map<String, Material> rubberMaterials = new Object2ObjectOpenHashMap<>();
+        rubberMaterials.put("rubber", Rubber);
+        rubberMaterials.put("silicone_rubber", SiliconeRubber);
+        rubberMaterials.put("styrene_butadiene_rubber", StyreneButadieneRubber);
+
+        for (Map.Entry<String, Material> materialEntry : rubberMaterials.entrySet()) {
+            Material material = materialEntry.getValue();
+            String name = materialEntry.getKey();
+            VanillaRecipeHelper.addShapedRecipe(provider, material.equals(Rubber),
+                    String.format("conveyor_module_ulv_%s", name), CONVEYOR_MODULE_ULV.asStack(), "RRR", "MCM", "RRR",
+                    'R', new MaterialEntry(plate, material), 'C', new MaterialEntry(cableGtSingle, RedAlloy), 'M',
+                    ELECTRIC_MOTOR_ULV.asStack());
+            ASSEMBLER_RECIPES.recipeBuilder("conveyor_module_ulv_" + name)
+                    .inputItems(cableGtSingle, RedAlloy)
+                    .inputItems(ELECTRIC_MOTOR_ULV, 2)
+                    .inputFluids(materialEntry.getValue().getFluid(L * 6))
+                    .circuitMeta(1)
+                    .outputItems(CONVEYOR_MODULE_ULV)
+                    .duration(100).EUt(VA[LV]).save(provider);
+            VanillaRecipeHelper.addShapedRecipe(provider, material.equals(Rubber),
+                    String.format("electric_pump_ulv_%s", name), ELECTRIC_PUMP_ULV.asStack(), "SXR", "dPw", "RMC", 'S',
+                    new MaterialEntry(screw, Tin), 'X', new MaterialEntry(rotor, Tin), 'P',
+                    new MaterialEntry(pipeNormalFluid, Bronze), 'R', new MaterialEntry(ring, material), 'C',
+                    new MaterialEntry(cableGtSingle, RedAlloy), 'M', ELECTRIC_MOTOR_ULV.asStack());
+            ASSEMBLER_RECIPES.recipeBuilder("electric_pump_ulv_" + name)
+                    .inputItems(cableGtSingle, RedAlloy)
+                    .inputItems(pipeNormalFluid, Bronze)
+                    .inputItems(screw, Tin)
+                    .inputItems(rotor, Tin)
+                    .inputItems(ring, materialEntry.getValue(), 2)
+                    .inputItems(ELECTRIC_MOTOR_ULV)
+                    .outputItems(ELECTRIC_PUMP_ULV)
+                    .duration(100).EUt(VA[LV]).save(provider);
+        }
+        ASSEMBLER_RECIPES.recipeBuilder("fluid_regulator_ulv")
+                .inputItems(ELECTRIC_PUMP_ULV)
+                .inputItems(CustomTags.ULV_CIRCUITS, 2)
+                .circuitMeta(1)
+                .outputItems(FLUID_REGULATOR_ULV)
+                .EUt(VA[LV])
+                .duration(400)
+                .save(provider);
+        VanillaRecipeHelper.addShapedRecipe(provider, true, "robot_arm_ulv", ROBOT_ARM_ULV.asStack(), "CCC", "MRM", "PXR",
+                'C', new MaterialEntry(cableGtSingle, RedAlloy), 'R', new MaterialEntry(rod, WroughtIron), 'M',
+                ELECTRIC_MOTOR_ULV.asStack(), 'P', ELECTRIC_PISTON_ULV.asStack(), 'X', CustomTags.ULV_CIRCUITS);
+        ASSEMBLER_RECIPES.recipeBuilder("robot_arm_ulv")
+                .inputItems(cableGtSingle, RedAlloy, 3)
+                .inputItems(rod, WroughtIron, 2)
+                .inputItems(ELECTRIC_MOTOR_ULV, 2)
+                .inputItems(ELECTRIC_PISTON_ULV)
+                .inputItems(CustomTags.ULV_CIRCUITS)
+                .outputItems(ROBOT_ARM_ULV)
+                .duration(100).EUt(VA[LV]).save(provider);
+    }
+
+    public static void registerMachineRecipe(Consumer<FinishedRecipe> provider, boolean setMaterialInfoData,
+                                             MachineDefinition machine, Object... recipe) {
+
+        // Needed to skip certain tiers if not enabled.
+        // Leaves UHV+ machine recipes to be implemented by addons.
+        if (machine != null) {
+            Object[] prepRecipe = prepareRecipe(machine.getTier(), Arrays.copyOf(recipe, recipe.length));
+            if (prepRecipe == null) {
+                return;
+            }
+            VanillaRecipeHelper.addShapedRecipe(provider, setMaterialInfoData, machine.getName(), machine.asStack(),
+                    prepRecipe);
+        }
+    }
+
+    public static void registerMachineRecipe(Consumer<FinishedRecipe> provider, MachineDefinition[] machines,
+                                             Object... recipe) {
+        for (MachineDefinition machine : machines) {
+            registerMachineRecipe(provider, true, machine, recipe);
+        }
+    }
+
+    public static void registerMachineRecipe(Consumer<FinishedRecipe> provider, MachineDefinition machine,
+                                             Object... recipe) {
+        registerMachineRecipe(provider, true, machine, recipe);
+    }
+
+    private static Object[] prepareRecipe(int tier, Object... recipe) {
+        for (int i = 3; i < recipe.length; i++) {
+            if (recipe[i] instanceof CraftingComponent) {
+                Object component = ((CraftingComponent) recipe[i]).get(tier);
+                recipe[i] = component;
+            } else if (recipe[i] instanceof Item item) {
+                recipe[i] = new ItemStack(item);
+            } else if (recipe[i] instanceof Block block) {
+                recipe[i] = new ItemStack(block);
+            } else if (recipe[i] instanceof ItemProviderEntry<?> itemEntry) {
+                recipe[i] = itemEntry.asStack();
+            }
+        }
+        return recipe;
+    }
+
     private static void registerCultivatorRecipes(Consumer<FinishedRecipe> provider){
-        CULTIVATOR_RECIPES.recipeBuilder("fermented_biomass")
+        CULTIVATOR_RECIPES.recipeBuilder(GTTCore.id("fermented_biomass"))
                 .inputFluids(Biomass.getFluid(100))
                 .outputFluids(FermentedBiomass.getFluid(100))
                 .duration(75).EUt(2).save(provider);
@@ -71,7 +297,7 @@ public class MachineRecipes {
                 .EUt(VA[EV])
                 .cleanroom(CleanroomType.STERILE_CLEANROOM)
                 .save(provider);
-        CULTIVATOR_RECIPES.recipeBuilder("stem_cells").EUt(VA[LuV]).duration(300)
+        CULTIVATOR_RECIPES.recipeBuilder(GTTCore.id("stem_cells")).EUt(VA[LuV]).duration(300)
                 .inputItems(dust, Osmiridium)
                 .inputFluids(Bacteria.getFluid(500))
                 .inputFluids(SterileGrowthMedium.getFluid(500))
@@ -79,21 +305,21 @@ public class MachineRecipes {
                 .outputFluids(BacterialSludge.getFluid(500))
                 .cleanroom(CleanroomType.STERILE_CLEANROOM)
                 .save(provider);
-        CULTIVATOR_RECIPES.recipeBuilder("enriched_bacterial_sludge_from_u238").EUt(4).duration(64)
+        CULTIVATOR_RECIPES.recipeBuilder(GTTCore.id("enriched_bacterial_sludge_from_u238")).EUt(4).duration(64)
                 .inputItems(dust, Uranium238)
                 .inputFluids(BacterialSludge.getFluid(1000))
                 .outputFluids(EnrichedBacterialSludge.getFluid(1000))
                 .cleanroom(CleanroomType.STERILE_CLEANROOM)
                 .save(provider);
 
-        CULTIVATOR_RECIPES.recipeBuilder("enriched_bacterial_sludge_from_u235").EUt(4).duration(64)
+        CULTIVATOR_RECIPES.recipeBuilder(GTTCore.id("enriched_bacterial_sludge_from_u235")).EUt(4).duration(64)
                 .inputItems(dustTiny, Uranium235)
                 .inputFluids(BacterialSludge.getFluid(1000))
                 .outputFluids(EnrichedBacterialSludge.getFluid(1000))
                 .cleanroom(CleanroomType.STERILE_CLEANROOM)
                 .save(provider);
 
-        CULTIVATOR_RECIPES.recipeBuilder("enriched_bacterial_sludge_from_naquadria").EUt(4).duration(64)
+        CULTIVATOR_RECIPES.recipeBuilder(GTTCore.id("enriched_bacterial_sludge_from_naquadria")).EUt(4).duration(64)
                 .inputItems(dustTiny, Naquadria)
                 .inputFluids(BacterialSludge.getFluid(1000))
                 .outputFluids(EnrichedBacterialSludge.getFluid(2000))

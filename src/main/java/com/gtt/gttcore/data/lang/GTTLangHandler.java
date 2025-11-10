@@ -7,5 +7,7 @@ public class GTTLangHandler {
         provider.add("gttcore.machine.high_energy_laser_amount", "Laser Amount: %s");
         provider.add("gttcore.machine.high_energy_laser_amount_input", "Laser Amount Input: %s");
         provider.add("gttcore.machine.high_energy_laser_amount_output", "Laser Amount Output: %s");
+        provider.add("gttcore.go_to_nether", "Go to nether");
+        provider.add("gttcore.back_to_overworld", "Back to overworld");
     }
 }
