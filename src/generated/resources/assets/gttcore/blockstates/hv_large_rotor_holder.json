@@ -1,0 +1,28 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "gttcore:block/machine/hv_large_rotor_holder",
+      "x": 90
+    },
+    "facing=east": {
+      "model": "gttcore:block/machine/hv_large_rotor_holder",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "gttcore:block/machine/hv_large_rotor_holder"
+    },
+    "facing=south": {
+      "model": "gttcore:block/machine/hv_large_rotor_holder",
+      "y": 180
+    },
+    "facing=up": {
+      "gtceu:z": 180,
+      "model": "gttcore:block/machine/hv_large_rotor_holder",
+      "x": 270
+    },
+    "facing=west": {
+      "model": "gttcore:block/machine/hv_large_rotor_holder",
+      "y": 270
+    }
+  }
+}

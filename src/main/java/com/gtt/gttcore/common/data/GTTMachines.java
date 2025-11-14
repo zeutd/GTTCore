@@ -7,7 +7,9 @@ import com.gregtechceu.gtceu.api.capability.recipe.ItemRecipeCapability;
 import com.gregtechceu.gtceu.api.data.RotationState;
 import com.gregtechceu.gtceu.api.machine.*;
 import com.gregtechceu.gtceu.api.machine.multiblock.PartAbility;
+import com.gregtechceu.gtceu.api.machine.property.GTMachineModelProperties;
 import com.gregtechceu.gtceu.api.machine.steam.SimpleSteamMachine;
+import com.gregtechceu.gtceu.api.machine.trait.RecipeLogic;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
 import com.gregtechceu.gtceu.api.registry.registrate.MachineBuilder;
 import com.gregtechceu.gtceu.client.util.TooltipHelper;
@@ -15,10 +17,14 @@ import com.gregtechceu.gtceu.common.data.GTMedicalConditions;
 import com.gregtechceu.gtceu.common.data.GTRecipeModifiers;
 import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
 import com.gregtechceu.gtceu.common.machine.multiblock.part.ParallelHatchPartMachine;
+import com.gregtechceu.gtceu.common.machine.multiblock.part.RotorHolderPartMachine;
 import com.gregtechceu.gtceu.common.machine.multiblock.part.SteamItemBusPartMachine;
 import com.gregtechceu.gtceu.config.ConfigHolder;
+import com.gregtechceu.gtceu.data.lang.LangHandler;
+import com.gregtechceu.gtceu.data.model.builder.MachineModelBuilder;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
 import com.gtt.gttcore.GTTCore;
+import com.gtt.gttcore.client.LargeRotorHolderRenderer;
 import com.gtt.gttcore.common.data.recipes.GTTRecipeTypes;
 import com.gtt.gttcore.common.machine.CreativeHighEnergyLaserProviderMachine;
 import com.gtt.gttcore.common.machine.multiblock.GTTPartAbility;
@@ -29,6 +35,8 @@ import it.unimi.dsi.fastutil.ints.Int2IntFunction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.client.model.generators.BlockModelBuilder;
+import net.minecraftforge.client.model.generators.BlockModelProvider;
 
 import java.util.List;
 import java.util.Locale;
@@ -38,12 +46,31 @@ import java.util.function.BiFunction;
 import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.api.capability.recipe.IO.IN;
 import static com.gregtechceu.gtceu.api.capability.recipe.IO.OUT;
+import static com.gregtechceu.gtceu.api.machine.property.GTMachineModelProperties.*;
+import static com.gregtechceu.gtceu.api.machine.property.GTMachineModelProperties.IS_EMISSIVE_ROTOR;
 import static com.gregtechceu.gtceu.common.data.machines.GTMachineUtils.*;
-import static com.gregtechceu.gtceu.common.data.machines.GTMachineUtils.registerSimpleMachines;
+import static com.gregtechceu.gtceu.common.data.models.GTMachineModels.*;
 import static com.gregtechceu.gtceu.utils.FormattingUtil.toEnglishName;
 import static com.gtt.gttcore.common.registry.GTTRegistration.REGISTRATE;
 
 public class GTTMachines {
+    public static final MachineDefinition[] LARGE_ROTOR_HOLDER = registerTieredMachines("large_rotor_holder",
+            RotorHolderPartMachine::new,
+            (tier, builder) -> builder
+                    .langValue("%s Large Rotor Holder".formatted(VNF[tier]))
+                    .rotationState(RotationState.ALL)
+                    .abilities(GTTPartAbility.LARGE_ROTOR_HOLDER)
+                    .modelProperty(GTMachineModelProperties.IS_FORMED, false)
+                    .model(
+                            createOverlayTieredHullMachineModel(GTCEu.id("block/machine/template/rotor_holder/block"))
+                                    .andThen(b -> b.addDynamicRenderer(LargeRotorHolderRenderer::new))
+                    )
+                    .hasBER(true)
+                    .tooltips(LangHandler.getMultiLang("gtceu.machine.rotor_holder.tooltip"))
+                    .tooltips(Component.translatable("gtceu.part_sharing.disabled"))
+                    .register(),
+            GTValues.tiersBetween(HV, OpV));
+
     public static final MachineDefinition HIGH_ENERGY_LASER_EXPORT_HATCH = REGISTRATE
             .machine("high_energy_laser_export_hatch", holder -> new HighEnergyLaserHatchPartMachine(holder, true))
             .rotationState(RotationState.ALL)
@@ -337,5 +364,41 @@ public class GTTMachines {
                             .register();
                 },
                 ULV)[0];
+    }
+
+    public static final ResourceLocation LARGE_ROTOR_HOLDER_BLOCK = GTTCore.id("block/large_rotor_holder/block");
+    public static final ResourceLocation LARGE_ROTOR_HOLDER_OVERLAY = GTTCore.id("block/large_rotor_holder/overlay");
+    public static final ResourceLocation LARGE_ROTOR_HOLDER_ROTOR_IDLE = GTTCore.id("block/large_rotor_holder/rotor_idle");
+    public static final ResourceLocation LARGE_ROTOR_HOLDER_ROTOR_SPINNING = GTTCore.id("block/large_rotor_holder/rotor_spinning");
+
+    // WHY IS THERE AN 3X3 LIMIT AAAAAAAAAAAAAAA (*angry*)
+    public static MachineBuilder.ModelInitializer createLargeRotorHolderModel() {
+        return (ctx, prov, builder) -> {
+            BlockModelProvider models = prov.models();
+            var blockModel = prov.models().nested()
+                    .parent(prov.models().getExistingFile(LARGE_ROTOR_HOLDER_BLOCK));
+            tieredHullTextures(blockModel, builder.getOwner().getTier());
+
+            builder.part(blockModel).end();
+            builder.part(LARGE_ROTOR_HOLDER_OVERLAY).condition(IS_FORMED, true).end();
+
+            makeRotorHolderState(builder, models, LARGE_ROTOR_HOLDER_ROTOR_IDLE, false, false);
+            makeRotorHolderState(builder, models, LARGE_ROTOR_HOLDER_ROTOR_IDLE.withSuffix(EMISSIVE_SUFFIX), false, true);
+            makeRotorHolderState(builder, models, LARGE_ROTOR_HOLDER_ROTOR_SPINNING, true, false);
+            makeRotorHolderState(builder, models, LARGE_ROTOR_HOLDER_ROTOR_SPINNING.withSuffix(EMISSIVE_SUFFIX), true, true);
+
+            builder.addReplaceableTextures("bottom", "top", "side");
+        };
+    }
+
+    private static void makeRotorHolderState(MachineModelBuilder<BlockModelBuilder> builder,
+                                             BlockModelProvider provider, ResourceLocation model,
+                                             boolean spinning, boolean emissive) {
+        builder.partialState()
+                .with(IS_FORMED, true)
+                .with(HAS_ROTOR, true)
+                .with(IS_ROTOR_SPINNING, spinning)
+                .with(IS_EMISSIVE_ROTOR, emissive)
+                .setModel(provider.getExistingFile(model));
     }
 }

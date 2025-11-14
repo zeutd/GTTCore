@@ -182,7 +182,9 @@ public class CustomNetherTeleporter extends PortalForcer {
         BlockPos blockpos1 = worldborder.clampToBounds(entity.getX() * scale, entity.getY(), entity.getZ() * scale);
         return findPortalAround(blockpos1, destWorld.dimension() == ServerLevel.NETHER, worldborder)
                 .map(rect -> PortalShape.createPortalInfo(destWorld, rect, Direction.Axis.X, Vec3.ZERO, entity, entity.getDeltaMovement(), entity.getYRot(), entity.getXRot()))
-                .orElseGet(() -> createPortal(blockpos1, Direction.Axis.X).map(rect -> PortalShape.createPortalInfo(destWorld, rect, Direction.Axis.X, Vec3.ZERO, entity, entity.getDeltaMovement(), entity.getYRot(), entity.getXRot()))
-                .orElse(null));
+                .orElseGet(() -> createPortal(blockpos1, Direction.Axis.X)
+                        .map(rect -> PortalShape.createPortalInfo(destWorld, rect, Direction.Axis.X, Vec3.ZERO, entity, entity.getDeltaMovement(), entity.getYRot(), entity.getXRot()))
+                        .orElse(null)
+                );
     }
 }

@@ -216,6 +216,7 @@ tasks.withType(JavaCompile).configureEach {
     options.release.set(17)
 }
 
+//The executeGame.bat was hidden
 tasks.register('runModpack') {
     dependsOn jar
     doLast {

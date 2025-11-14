@@ -1,7 +1,10 @@
 package com.gtt.gttcore.data;
 
+import com.gregtechceu.gtceu.client.renderer.machine.DynamicRenderManager;
 import com.gregtechceu.gtceu.data.lang.LangHandler;
 import com.gregtechceu.gtceu.data.tags.ItemTagLoader;
+import com.gtt.gttcore.GTTCore;
+import com.gtt.gttcore.client.LargeRotorHolderRenderer;
 import com.gtt.gttcore.common.data.recipes.GTTRecipeTypes;
 import com.gtt.gttcore.data.lang.GTTLangHandler;
 import com.gtt.gttcore.data.recipe.GTTRecipeProvider;
