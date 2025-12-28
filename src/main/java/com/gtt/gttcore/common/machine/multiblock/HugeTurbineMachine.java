@@ -21,6 +21,8 @@ import javax.annotation.ParametersAreNonnullByDefault;
 @MethodsReturnNonnullByDefault
 public class HugeTurbineMachine extends LargeTurbineMachine{
 
+
+
     public HugeTurbineMachine(IMachineBlockEntity holder, int tier) {
         super(holder, tier);
     }
@@ -37,16 +39,6 @@ public class HugeTurbineMachine extends LargeTurbineMachine{
     /**
      * @return EUt multiplier that should be applied to the turbine's output
      */
-    protected double productionBoost() {
-        var rotorHolder = getRotorHolder();
-        if (rotorHolder != null && rotorHolder.hasRotor()) {
-            int maxSpeed = rotorHolder.getMaxRotorHolderSpeed();
-            int currentSpeed = rotorHolder.getRotorSpeed();
-            if (currentSpeed >= maxSpeed) return 1;
-            return Math.pow(1.0 * currentSpeed / maxSpeed, 2);
-        }
-        return 0;
-    }
 
     public static ModifierFunction recipeModifier(@NotNull MetaMachine machine, @NotNull GTRecipe recipe) {
         if (!(machine instanceof HugeTurbineMachine turbineMachine)) {
@@ -59,7 +51,7 @@ public class HugeTurbineMachine extends LargeTurbineMachine{
         double holderEfficiency = rotorHolder.getTotalEfficiency() / 100.0;
         if (EUt <= 0 || turbineMaxVoltage <= EUt || holderEfficiency <= 0) return ModifierFunction.NULL;
         // get the amount of parallel required to match the desired output voltage
-        int maxParallel = (int) (turbineMaxVoltage / EUt) * 16;
+        int maxParallel = (int) (turbineMaxVoltage / EUt) * 32;
         int actualParallel = ParallelLogic.getParallelAmountFast(turbineMachine, recipe, maxParallel);
         double eutMultiplier = turbineMachine.productionBoost() * actualParallel;
         return ModifierFunction.builder().inputModifier(ContentModifier.multiplier(actualParallel)).outputModifier(ContentModifier.multiplier(actualParallel)).eutMultiplier(eutMultiplier).parallels(actualParallel).durationMultiplier(holderEfficiency).build();

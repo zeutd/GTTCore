@@ -216,12 +216,22 @@ tasks.withType(JavaCompile).configureEach {
     options.release.set(17)
 }
 
-//The executeGame.bat was hidden
+//The executeGame.bat and copyJar.bat was hidden
 tasks.register('runModpack') {
     dependsOn jar
     doLast {
         exec {
+            commandLine "copyJar.bat", "${mod_id}-${mod_version}.jar"
             commandLine "executeGame.bat", "${mod_id}-${mod_version}.jar"
+        }
+    }
+}
+
+tasks.register('copyJar') {
+    dependsOn jar
+    doLast {
+        exec {
+            commandLine "copyJar.bat", "${mod_id}-${mod_version}.jar"
         }
     }
 }

@@ -9,7 +9,6 @@ import com.gregtechceu.gtceu.api.machine.*;
 import com.gregtechceu.gtceu.api.machine.multiblock.PartAbility;
 import com.gregtechceu.gtceu.api.machine.property.GTMachineModelProperties;
 import com.gregtechceu.gtceu.api.machine.steam.SimpleSteamMachine;
-import com.gregtechceu.gtceu.api.machine.trait.RecipeLogic;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
 import com.gregtechceu.gtceu.api.registry.registrate.MachineBuilder;
 import com.gregtechceu.gtceu.client.util.TooltipHelper;
@@ -49,6 +48,7 @@ import static com.gregtechceu.gtceu.api.capability.recipe.IO.OUT;
 import static com.gregtechceu.gtceu.api.machine.property.GTMachineModelProperties.*;
 import static com.gregtechceu.gtceu.api.machine.property.GTMachineModelProperties.IS_EMISSIVE_ROTOR;
 import static com.gregtechceu.gtceu.common.data.machines.GTMachineUtils.*;
+import static com.gregtechceu.gtceu.common.data.machines.GTMachineUtils.registerSimpleSteamMachines;
 import static com.gregtechceu.gtceu.common.data.models.GTMachineModels.*;
 import static com.gregtechceu.gtceu.utils.FormattingUtil.toEnglishName;
 import static com.gtt.gttcore.common.registry.GTTRegistration.REGISTRATE;
@@ -141,6 +141,10 @@ public class GTTMachines {
             UHV, UEV, UIV);
     public static final Pair<MachineDefinition, MachineDefinition> STEAM_CENTRIFUGE = registerSimpleSteamMachines(
             "centrifuge", GTRecipeTypes.CENTRIFUGE_RECIPES);
+    public static final Pair<MachineDefinition, MachineDefinition> STEAM_MIXER = registerSimpleSteamMachines(
+            "mixer", GTRecipeTypes.MIXER_RECIPES);
+
+
     public static final MachineDefinition ULV_STEAM_TURBINE = registerSimpleGenerator("steam_engine",
             GTRecipeTypes.STEAM_TURBINE_FUELS, steamGeneratorTankSizeFunction, 0.0f, GTValues.ULV)[0];
     public static final MachineDefinition WOOD_FLUID_IMPORT_HATCH = REGISTRATE
@@ -364,41 +368,5 @@ public class GTTMachines {
                             .register();
                 },
                 ULV)[0];
-    }
-
-    public static final ResourceLocation LARGE_ROTOR_HOLDER_BLOCK = GTTCore.id("block/large_rotor_holder/block");
-    public static final ResourceLocation LARGE_ROTOR_HOLDER_OVERLAY = GTTCore.id("block/large_rotor_holder/overlay");
-    public static final ResourceLocation LARGE_ROTOR_HOLDER_ROTOR_IDLE = GTTCore.id("block/large_rotor_holder/rotor_idle");
-    public static final ResourceLocation LARGE_ROTOR_HOLDER_ROTOR_SPINNING = GTTCore.id("block/large_rotor_holder/rotor_spinning");
-
-    // WHY IS THERE AN 3X3 LIMIT AAAAAAAAAAAAAAA (*angry*)
-    public static MachineBuilder.ModelInitializer createLargeRotorHolderModel() {
-        return (ctx, prov, builder) -> {
-            BlockModelProvider models = prov.models();
-            var blockModel = prov.models().nested()
-                    .parent(prov.models().getExistingFile(LARGE_ROTOR_HOLDER_BLOCK));
-            tieredHullTextures(blockModel, builder.getOwner().getTier());
-
-            builder.part(blockModel).end();
-            builder.part(LARGE_ROTOR_HOLDER_OVERLAY).condition(IS_FORMED, true).end();
-
-            makeRotorHolderState(builder, models, LARGE_ROTOR_HOLDER_ROTOR_IDLE, false, false);
-            makeRotorHolderState(builder, models, LARGE_ROTOR_HOLDER_ROTOR_IDLE.withSuffix(EMISSIVE_SUFFIX), false, true);
-            makeRotorHolderState(builder, models, LARGE_ROTOR_HOLDER_ROTOR_SPINNING, true, false);
-            makeRotorHolderState(builder, models, LARGE_ROTOR_HOLDER_ROTOR_SPINNING.withSuffix(EMISSIVE_SUFFIX), true, true);
-
-            builder.addReplaceableTextures("bottom", "top", "side");
-        };
-    }
-
-    private static void makeRotorHolderState(MachineModelBuilder<BlockModelBuilder> builder,
-                                             BlockModelProvider provider, ResourceLocation model,
-                                             boolean spinning, boolean emissive) {
-        builder.partialState()
-                .with(IS_FORMED, true)
-                .with(HAS_ROTOR, true)
-                .with(IS_ROTOR_SPINNING, spinning)
-                .with(IS_EMISSIVE_ROTOR, emissive)
-                .setModel(provider.getExistingFile(model));
     }
 }

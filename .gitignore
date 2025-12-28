@@ -31,4 +31,5 @@ run/
 run-data/
 mods/
 executeGame.bat
+copyJar.bat
 /src/main/resources/multiblocks.txt

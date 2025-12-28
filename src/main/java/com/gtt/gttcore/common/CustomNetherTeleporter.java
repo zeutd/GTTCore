@@ -6,6 +6,7 @@ import com.gtt.gttcore.common.data.GTTPoiTypes;
 import net.minecraft.BlockUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.TicketType;
 import net.minecraft.util.Mth;
@@ -29,6 +30,8 @@ import java.util.Comparator;
 import java.util.Optional;
 import java.util.function.Function;
 
+import static com.gtt.gttcore.GTTCore.LOGGER;
+
 @SuppressWarnings("deprecated")
 public class CustomNetherTeleporter extends PortalForcer {
     public CustomNetherTeleporter(ServerLevel pLevel) {
@@ -39,8 +42,9 @@ public class CustomNetherTeleporter extends PortalForcer {
         PoiManager poimanager = this.level.getPoiManager();
         int i = pIsNether ? 16 : 128;
         poimanager.ensureLoadedAndValid(this.level, pPos, i);
-        Optional<PoiRecord> optional = poimanager.getInSquare((p_230634_) -> {
-            return p_230634_.is(GTTPoiTypes.NETHER_TRAVELLER);
+        LOGGER.info("asdaaa");
+        Optional<PoiRecord> optional = poimanager.getInSquare((holder) -> {
+            return holder.get() == GTTPoiTypes.NETHER_TRAVELLER;
         }, pPos, i, PoiManager.Occupancy.ANY).filter((p_192981_) -> {
             return pWorldBorder.isWithinBounds(p_192981_.getPos());
         }).min(Comparator.<PoiRecord>comparingDouble((p_192984_) -> {

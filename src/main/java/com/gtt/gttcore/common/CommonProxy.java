@@ -10,13 +10,17 @@ import com.gregtechceu.gtceu.data.recipe.event.CraftingComponentModificationEven
 import com.gtt.gttcore.GTTCore;
 import com.gtt.gttcore.common.data.*;
 import com.gtt.gttcore.common.data.recipes.GTTRecipeTypes;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLConstructModEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.registries.RegisterEvent;
 
 import static com.gtt.gttcore.GTTCore.LOGGER;
 import static com.gtt.gttcore.common.registry.GTTRegistration.REGISTRATE;
@@ -25,18 +29,23 @@ public class CommonProxy {
     public CommonProxy() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         modEventBus.register(this);
-//        GTTPoiTypes.bootstrap(BuiltInRegistries.POINT_OF_INTEREST_TYPE);
         MinecraftForge.EVENT_BUS.addListener(this::modifyCraftingComponent);
         modEventBus.addGenericListener(GTRecipeType.class, this::registerRecipeTypes);
         modEventBus.addGenericListener(MachineDefinition.class, this::registerMachines);
         REGISTRATE.registerEventListeners(modEventBus);
-
         // Most other events are fired on Forge"s bus.
         // If we want to use annotations to register event listeners,
         // we need to register our object like this!
         modEventBus.register(this);
         MinecraftForge.EVENT_BUS.register(this);
         REGISTRATE.registerRegistrate();
+
+        modEventBus.addListener(EventPriority.LOWEST, (RegisterEvent event) -> {
+            if (!event.getRegistryKey().equals(Registries.BLOCK)) {
+                return;
+            }
+            GTTPoiTypes.init();
+        });
     }
 
     public static void init(){
@@ -52,6 +61,8 @@ public class CommonProxy {
     public void commonSetup(final FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
             LOGGER.info("GTT Common Setup");
+            //GTTRegistration.POI_TYPES.register(FMLJavaModLoadingContext.get().getModEventBus());
+            BuiltInRegistries.POINT_OF_INTEREST_TYPE.stream().forEach(LOGGER::info);
             //LOGGER.info("Look, I found a {}!", Items.DIAMOND);
         });
     }

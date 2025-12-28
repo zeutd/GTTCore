@@ -14,9 +14,9 @@ import java.util.function.Consumer;
 
 import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
-import static com.gregtechceu.gtceu.common.data.GTCovers.PUMPS;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.*;
+import static com.gregtechceu.gtceu.data.recipe.GTCraftingComponents.PUMP;
 import static com.gtt.gttcore.common.data.GTTMaterials.*;
 import static com.gtt.gttcore.common.data.recipes.GTTRecipeTypes.*;
 
@@ -105,7 +105,7 @@ public class RocketRecipes {
         ASSEMBLER_RECIPES.recipeBuilder("steel_engine")
                 .EUt(VA[HV])
                 .inputItems(plate, Steel, 12)
-                .inputItems(GTCraftingComponents.PUMP.get(HV))
+                .inputItems(PUMP.get(HV))
                 .inputItems(GTCraftingComponents.ROTOR.get(HV))
                 .inputItems(GTCraftingComponents.MOTOR.get(HV))
                 .outputItems(ModItems.STEEL_ENGINE)
@@ -113,7 +113,7 @@ public class RocketRecipes {
         ASSEMBLER_RECIPES.recipeBuilder("desh_engine")
                 .EUt(VA[HV])
                 .inputItems(plate, Desh, 12)
-                .inputItems(GTCraftingComponents.PUMP.get(EV))
+                .inputItems(PUMP.get(EV))
                 .inputItems(GTCraftingComponents.ROTOR.get(EV))
                 .inputItems(GTCraftingComponents.MOTOR.get(EV))
                 .outputItems(ModItems.DESH_ENGINE)
@@ -121,7 +121,7 @@ public class RocketRecipes {
         ASSEMBLER_RECIPES.recipeBuilder("ostrum_engine")
                 .EUt(VA[EV])
                 .inputItems(plate, Ostrum, 12)
-                .inputItems(GTCraftingComponents.PUMP.get(IV))
+                .inputItems(PUMP.get(IV))
                 .inputItems(GTCraftingComponents.ROTOR.get(IV))
                 .inputItems(GTCraftingComponents.MOTOR.get(IV))
                 .outputItems(ModItems.OSTRUM_ENGINE)
@@ -129,7 +129,7 @@ public class RocketRecipes {
         ASSEMBLER_RECIPES.recipeBuilder("calorite_engine")
                 .EUt(VA[IV])
                 .inputItems(plate, Calorite, 12)
-                .inputItems(GTCraftingComponents.PUMP.get(LuV))
+                .inputItems(PUMP.get(LuV))
                 .inputItems(GTCraftingComponents.ROTOR.get(LuV))
                 .inputItems(GTCraftingComponents.MOTOR.get(LuV))
                 .outputItems(ModItems.CALORITE_ENGINE)
@@ -139,33 +139,33 @@ public class RocketRecipes {
             "SWS",
             "SPS",
             "CRC",
-                "S", new MaterialEntry(plate, Steel),
-                "W", BlockTags.WOOL,
-                "P", PUMPS[HV],
-                "C", GTItems.FLUID_CELL_LARGE_STEEL,
-                "R", new MaterialEntry(rotor, StainlessSteel)
+                'S', new MaterialEntry(plate, Steel),
+                'W', BlockTags.WOOL,
+                'P', PUMP.get(HV),
+                'C', GTItems.FLUID_CELL_LARGE_STEEL,
+                'R', new MaterialEntry(rotor, StainlessSteel)
         );
         VanillaRecipeHelper.addShapedRecipe(provider, false, GTTCore.id("netherite_space_suit"),
                 ModItems.NETHERITE_SPACE_SUIT.get().getDefaultInstance(),
                 "S S",
                 "SPS",
                 "CRC",
-                "S", new MaterialEntry(plate, Netherite),
-                "P", PUMPS[HV],
-                "C", GTItems.FLUID_CELL_LARGE_STEEL,
-                "R", new MaterialEntry(rotor, StainlessSteel)
+                'S', new MaterialEntry(plate, Netherite),
+                'P', PUMP.get(EV),
+                'C', GTItems.FLUID_CELL_LARGE_STEEL,
+                'R', new MaterialEntry(rotor, StainlessSteel)
         );
         VanillaRecipeHelper.addShapedRecipe(provider, false, GTTCore.id("jet_suit"),
                 ModItems.JET_SUIT.get().getDefaultInstance(),
                 "AWA",
                 "PSP",
                 "CRC",
-                "A", new MaterialEntry(plate, Calorite),
-                "S", ModItems.JET_SUIT,
-                "W", ModItems.OSTRUM_ENGINE,
-                "P", PUMPS[HV],
-                "C", GTItems.LAPOTRON_CRYSTAL,
-                "R", new MaterialEntry(rotor, StainlessSteel)
+                'A', new MaterialEntry(plate, Calorite),
+                'S', ModItems.NETHERITE_SPACE_SUIT,
+                'W', ModItems.OSTRUM_ENGINE,
+                'P', PUMP.get(IV),
+                'C', GTItems.LAPOTRON_CRYSTAL,
+                'R', new MaterialEntry(rotor, StainlessSteel)
         );
         ASSEMBLER_RECIPES.recipeBuilder("zip_gun")
                 .EUt(VA[MV])

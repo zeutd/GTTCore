@@ -9,10 +9,8 @@ import com.gregtechceu.gtceu.api.data.chemical.material.stack.MaterialEntry;
 
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.api.data.tag.TagUtil;
-import com.gregtechceu.gtceu.api.machine.MachineDefinition;
 import com.gregtechceu.gtceu.common.data.*;
 import com.gregtechceu.gtceu.config.ConfigHolder;
-import com.gregtechceu.gtceu.data.recipe.CraftingComponent;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
 import com.gregtechceu.gtceu.data.recipe.GTCraftingComponents;
 import com.gregtechceu.gtceu.data.recipe.VanillaRecipeHelper;
@@ -24,17 +22,13 @@ import com.gtt.gttcore.data.recipe.GTTTags;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.AllItems;
 import com.simibubi.create.AllTags;
-import com.tterrag.registrate.util.entry.ItemProviderEntry;
 import net.minecraft.data.recipes.FinishedRecipe;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.Tags;
 
-import java.util.Arrays;
 import java.util.function.Consumer;
 import java.util.stream.Stream;
 
@@ -43,10 +37,11 @@ import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
 import static com.gregtechceu.gtceu.common.data.GCYMBlocks.*;
 import static com.gregtechceu.gtceu.common.data.GTBlocks.*;
 import static com.gregtechceu.gtceu.common.data.GTItems.*;
+import static com.gregtechceu.gtceu.common.data.GTMachines.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.*;
+import static com.gregtechceu.gtceu.common.data.machines.GTMultiMachines.PRIMITIVE_BLAST_FURNACE;
 import static com.gregtechceu.gtceu.data.recipe.GTCraftingComponents.*;
-import static com.gregtechceu.gtceu.data.recipe.GTCraftingComponents.COIL_HEATING_DOUBLE;
 import static com.gtt.gttcore.common.data.GTTBlocks.*;
 import static com.gtt.gttcore.common.data.GTTItems.*;
 import static com.gtt.gttcore.common.data.GTTMachines.*;
@@ -89,11 +84,6 @@ public class MiscRecipes {
                 .inputItems(frameGt, Zirconium).circuitMeta(6)
                 .outputItems(CASING_LOW_NEUTRON_ABSORPTION.asStack(ConfigHolder.INSTANCE.recipes.casingsPerCraft))
                 .duration(50).save(provider);
-        ASSEMBLER_RECIPES.recipeBuilder("casing_tungsteensteel_robust").EUt(16).inputItems(plate, Zirconium, 6)
-                .inputItems(frameGt, Zirconium).circuitMeta(6)
-                .outputItems(
-                        CASING_LOW_NEUTRON_ABSORPTION.asStack(ConfigHolder.INSTANCE.recipes.casingsPerCraft))
-                .duration(50).save(provider);
         VanillaRecipeHelper.addShapedRecipe(provider, true, GTTCore.id("casing_zirconium_pipe"),
                 GTTBlocks.CASING_ZIRCONIUM_PIPE.asStack(ConfigHolder.INSTANCE.recipes.casingsPerCraft), "PIP", "IFI",
                 "PIP", 'P', new MaterialEntry(TagPrefix.plate, Zirconium), 'F',
@@ -132,16 +122,6 @@ public class MiscRecipes {
                 .save(provider);
     }
     public static void registerMachineRecipes(Consumer<FinishedRecipe> provider){
-        VanillaRecipeHelper.addShapedRecipe(provider, true, GTTCore.id("greenhouse_machine"),
-                GREENHOUSE.asStack(),
-                "AWA",
-                "GSG",
-                "WAW",
-                'A', CustomTags.LV_CIRCUITS,
-                'W', new MaterialEntry(cableGtSingle, Copper),
-                'G', Tags.Blocks.GLASS,
-                'S', CASING_STEEL_SOLID.asStack()
-        );
         ASSEMBLER_RECIPES.recipeBuilder("fission_reactor_machine")
                 .inputItems(CASING_LEAD_RADIATION_PROOF)
                 .inputItems(CustomTags.LuV_CIRCUITS, 5)
@@ -289,7 +269,7 @@ public class MiscRecipes {
                 "TTT", "UCU",
                 "UMU", 'T', new MaterialEntry(gearSmall, WroughtIron), 'U', ChemicalHelper.get(gear, Steel),
                 'C', CASING_INDUSTRIAL_STEAM.asStack(), 'M', ChemicalHelper.get(pipeLargeFluid, Bronze));
-        VanillaRecipeHelper.addShapedRecipe(provider, GTTCore.id("greenhouse"), GREENHOUSE.asStack(),
+        VanillaRecipeHelper.addShapedRecipe(provider, true, GTTCore.id("greenhouse"), GREENHOUSE.asStack(),
                 "CGC",
                 "RAR",
                 "BPB",
@@ -300,6 +280,162 @@ public class MiscRecipes {
                 'A', CASING_STEEL_SOLID,
                 'P', ELECTRIC_PUMP_ULV
                 );
+        VanillaRecipeHelper.addShapedRecipe(provider, true, GTTCore.id("large_greenhouse"), LARGE_GREENHOUSE.asStack(),
+                "PCP",
+                "RMR",
+                "EWE",
+                'M', CASING_STAINLESS_CLEAN,
+                'E', ROBOT_ARM.get(HV),
+                'R', new MaterialEntry(gear, Aluminium),
+                'C', CustomTags.HV_CIRCUITS,
+                'W', Items.BONE_MEAL,
+                'P', new MaterialEntry(TagPrefix.pipeLargeFluid, Steel));
+        VanillaRecipeHelper.addShapedRecipe(provider, true, GTTCore.id("rocket_assembler"), ROCKET_ASSEMBLER.asStack(),
+                "AGM",
+                "MSC",
+                "CCA",
+                'A', ROBOT_ARM.get(HV),
+                'G', new MaterialEntry(gear, BlueSteel),
+                'M', MOTOR.get(HV),
+                'C', CustomTags.HV_CIRCUITS,
+                'S', CASING_STEEL_SOLID
+        );
+
+        VanillaRecipeHelper.addShapedRecipe(provider, true, GTTCore.id("large_steam_mixer"), LARGE_STEAM_MIXER.asStack(),
+                "RGR",
+                "CSC",
+                "BBB",
+                'R', ROTOR.get(ULV),
+                'G', new MaterialEntry(gear, Steel),
+                'C', CustomTags.ULV_CIRCUITS,
+                'S', STEAM_MIXER.right().asStack(),
+                'B', CASING_INDUSTRIAL_STEAM
+        );
+
+        VanillaRecipeHelper.addShapedRecipe(provider, true, GTTCore.id("large_steam_centrifuge"), LARGE_STEAM_CENTRIFUGE.asStack(),
+                "GGG",
+                "CSC",
+                "CBC",
+                'R', ROTOR.get(ULV),
+                'G', new MaterialEntry(gear, Bronze),
+                'C', CustomTags.ULV_CIRCUITS,
+                'S', STEAM_CENTRIFUGE.right().asStack(),
+                'B', CASING_INDUSTRIAL_STEAM
+        );
+
+        VanillaRecipeHelper.addShapedRecipe(provider, true, GTTCore.id("large_steam_centrifuge"), LARGE_STEAM_CENTRIFUGE.asStack(),
+                "GGG",
+                "CSC",
+                "CBC",
+                'G', new MaterialEntry(gear, Bronze),
+                'C', CustomTags.ULV_CIRCUITS,
+                'S', STEAM_CENTRIFUGE.right().asStack(),
+                'B', CASING_INDUSTRIAL_STEAM
+        );
+
+        VanillaRecipeHelper.addShapedRecipe(provider, true, GTTCore.id("large_steam_ore_washer"), LARGE_STEAM_ORE_WASHER.asStack(),
+                "PPP",
+                "CSC",
+                "GBG",
+                'P', new MaterialEntry(pipeNormalFluid, Bronze),
+                'G', new MaterialEntry(gear, BismuthBronze),
+                'C', CustomTags.ULV_CIRCUITS,
+                'S', Items.CAULDRON,
+                'B', CASING_INDUSTRIAL_STEAM
+        );
+
+        VanillaRecipeHelper.addShapedRecipe(provider, true, GTTCore.id("large_steam_macerator"), LARGE_STEAM_MACERATOR.asStack(),
+                "GGG",
+                "CSC",
+                "GBG",
+                'G', new MaterialEntry(gear, Steel),
+                'C', CustomTags.ULV_CIRCUITS,
+                'S', STEAM_MACERATOR.right().asStack(),
+                'B', CASING_INDUSTRIAL_STEAM
+        );
+
+        VanillaRecipeHelper.addShapedRecipe(provider, true, GTTCore.id("steam_distillation_tower"), STEAM_DISTILLATION_TOWER.asStack(),
+                "CPC",
+                "FSF",
+                "PCP",
+                'P', new MaterialEntry(pipeNormalFluid, Steel),
+                'C', CustomTags.ULV_CIRCUITS,
+                'S', CASING_STEEL_SEALED,
+                'F', FIREBOX_STEEL
+        );
+
+        VanillaRecipeHelper.addShapedRecipe(provider, true, GTTCore.id("large_steam_forge_hammer"), LARGE_STEAM_FORGE_HAMMER.asStack(),
+                "IPI",
+                "CSC",
+                "WAW",
+                'I', Items.PISTON,
+                'P', new MaterialEntry(pipeLargeFluid, Steel),
+                'C', CustomTags.ULV_CIRCUITS,
+                'S', STEAM_HAMMER.right().asStack(),
+                'W', new MaterialEntry(block, WroughtIron),
+                'A', CASING_BRONZE_BRICKS
+        );
+        VanillaRecipeHelper.addShapedRecipe(provider, true, GTTCore.id("primitive_fermenter"), PRIMITIVE_FERMENTER.asStack(),
+                "RhR",
+                "SWS",
+                "OdO",
+                'W', CASING_WOOD_WALL,
+                'R', new MaterialEntry(ring, Copper),
+                'S', new MaterialEntry(screw, Iron),
+                'O', new MaterialEntry(rod, Copper)
+        );
+        VanillaRecipeHelper.addShapedRecipe(provider, true, GTTCore.id("primitive_brewery"), PRIMITIVE_BREWERY.asStack(),
+                "OhO",
+                "SWS",
+                "RdR",
+                'W', CASING_WOOD_WALL,
+                'R', new MaterialEntry(ring, Copper),
+                'S', new MaterialEntry(screw, Iron),
+                'O', new MaterialEntry(rod, Copper)
+        );
+        VanillaRecipeHelper.addShapedRecipe(provider, true, GTTCore.id("large_primitive_blast_furnace"), LARGE_PRIMITIVE_BLAST_FURNACE.asStack(),
+                "PRP",
+                "PSP",
+                "PCP",
+                'P', new MaterialEntry(plate, Steel),
+                'R', new MaterialEntry(rotor, Steel),
+                'S', PRIMITIVE_BLAST_FURNACE.asStack(),
+                'C', CustomTags.ULV_CIRCUITS
+        );
+
+        VanillaRecipeHelper.addShapedRecipe(provider, true, GTTCore.id("bedrock_drill"), BEDROCK_DRILL.asStack(),
+                "CPC",
+                "MSM",
+                "DDD",
+                'S', CASING_STEEL_SOLID,
+                'D', new MaterialEntry(toolHeadDrill, Ultimet),
+                'M', MOTOR.get(EV),
+                'C', CustomTags.EV_CIRCUITS,
+                'P', PISTON.get(EV)
+        );
+        VanillaRecipeHelper.addShapedRecipe(provider, true, GTTCore.id("large_gas_collector"), LARGE_GAS_COLLECTOR.asStack(),
+                "MRM",
+                "SCS",
+                "CWC",
+                'M', MOTOR.get(IV),
+                'R', ROTOR.get(IV),
+                'S', GAS_COLLECTOR[IV].asStack(),
+                'C', CustomTags.IV_CIRCUITS,
+                'W', new MaterialEntry(cableGtSingle, Platinum)
+        );
+
+
+        VanillaRecipeHelper.addShapedRecipe(provider, true, GTTCore.id("casing_industrial_steam"), CASING_INDUSTRIAL_STEAM.asStack(ConfigHolder.INSTANCE.recipes.casingsPerCraft),
+                "PhP", "PBP", "PwP", 'P', new MaterialEntry(TagPrefix.plate, GTMaterials.Brass), 'B',
+                new MaterialEntry(frameGt, Bronze)
+        );
+        ASSEMBLER_RECIPES.recipeBuilder("casing_lead_radiation_proof").EUt(16).inputItems(plate, Brass, 6)
+                .inputItems(frameGt, Bronze).circuitMeta(6)
+                .outputItems(CASING_INDUSTRIAL_STEAM.asStack(ConfigHolder.INSTANCE.recipes.casingsPerCraft))
+                .duration(50).save(provider);
+
+
+
 
         SIFTER_RECIPES.recipeBuilder(GTTCore.id("dirt_from_coarse_dirt"))
                 .EUt(VA[ULV])

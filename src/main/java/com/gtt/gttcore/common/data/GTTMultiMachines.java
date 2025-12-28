@@ -2,7 +2,6 @@ package com.gtt.gttcore.common.data;
 
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.GTValues;
-import com.gregtechceu.gtceu.api.capability.IMiner;
 import com.gregtechceu.gtceu.api.data.RotationState;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
@@ -22,21 +21,18 @@ import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
 import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
 import com.gregtechceu.gtceu.api.registry.registrate.MultiblockMachineBuilder;
 import com.gregtechceu.gtceu.client.renderer.machine.DynamicRenderHelper;
+import com.gregtechceu.gtceu.common.block.BoilerFireboxType;
 import com.gregtechceu.gtceu.common.data.*;
 import com.gregtechceu.gtceu.common.data.machines.GTAEMachines;
-import com.gregtechceu.gtceu.common.machine.multiblock.electric.AssemblyLineMachine;
+import com.gregtechceu.gtceu.common.data.machines.GTMachineUtils;
 import com.gregtechceu.gtceu.common.machine.multiblock.electric.FusionReactorMachine;
 import com.gregtechceu.gtceu.common.machine.multiblock.generator.LargeTurbineMachine;
-import com.gregtechceu.gtceu.common.machine.multiblock.primitive.PrimitiveBlastFurnaceMachine;
 import com.gregtechceu.gtceu.common.machine.multiblock.steam.SteamParallelMultiblockMachine;
-import com.gregtechceu.gtceu.common.registry.GTRegistration;
-import com.gregtechceu.gtceu.config.ConfigHolder;
-import com.gregtechceu.gtceu.utils.GTUtil;
+import com.gregtechceu.gtceu.utils.FormattingUtil;
 import com.gtt.gttcore.GTTCore;
 import com.gtt.gttcore.common.data.recipes.GTTRecipeTypes;
 import com.gtt.gttcore.common.machine.multiblock.*;
 import com.lowdragmc.lowdraglib.utils.BlockInfo;
-import com.mojang.realmsclient.dto.BackupList;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.ItemLike;
@@ -55,10 +51,8 @@ import static com.gregtechceu.gtceu.api.pattern.Predicates.*;
 import static com.gregtechceu.gtceu.api.pattern.util.RelativeDirection.*;
 import static com.gregtechceu.gtceu.common.data.GCYMBlocks.*;
 import static com.gregtechceu.gtceu.common.data.GTBlocks.*;
-import static com.gregtechceu.gtceu.common.data.GTMachines.ITEM_IMPORT_BUS;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 import static com.gregtechceu.gtceu.common.data.GTRecipeModifiers.*;
-import static com.gregtechceu.gtceu.common.data.GTRecipeModifiers.OC_NON_PERFECT;
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.*;
 import static com.gregtechceu.gtceu.common.data.models.GTMachineModels.createWorkableCasingMachineModel;
 import static com.gregtechceu.gtceu.utils.FormattingUtil.toRomanNumeral;
@@ -356,8 +350,11 @@ public class GTTMultiMachines {
             })
             .allowExtendedFacing(false)
             .partSorter(Comparator.comparingInt(p -> p.self().getPos().getY()))
-            .workableCasingModel(GTTCore.id("block/casings/machine_casing_sealed_steel"),
+            .model(createWorkableCasingMachineModel(GTTCore.id("block/casings/machine_casing_sealed_steel"),
                     GTCEu.id("block/multiblock/generator/large_steel_boiler"))
+                    .andThen(b -> b.addDynamicRenderer(
+                            () -> DynamicRenderHelper.makeBoilerPartRender(
+                                    BoilerFireboxType.STEEL_FIREBOX, CASING_STEEL_SEALED))))
             .register();
     public final static MultiblockMachineDefinition LARGE_STEAM_FORGE_HAMMER = REGISTRATE.multiblock("large_steam_forge_hammer", SteamParallelMultiblockMachine::new)
             .langValue("Large Steam Forge Hammer")
@@ -724,7 +721,7 @@ public class GTTMultiMachines {
                     .hasBER(true)
                     .register(),
             LuV, ZPM, UV);
-    public final static MultiblockMachineDefinition LARGE_SUPERCRITICAL_STEAM_TURBINE = registerLargeTurbine("supercritical_steam_large_turbine",
+    public final static MultiblockMachineDefinition LARGE_SUPERCRITICAL_STEAM_TURBINE = GTMachineUtils.registerLargeTurbine(REGISTRATE, "supercritical_steam_large_turbine",
             LuV,
             SUPERCRITICAL_STEAM_TURBINE_FUELS,
             CASING_NAQUADAH_ALLOY_TURBINE, CASING_TUNGSTENSTEEL_GEARBOX,
@@ -831,7 +828,7 @@ public class GTTMultiMachines {
                     GTCEu.id("block/multiblock/large_chemical_reactor"))
             .register();
 
-    public static final MultiblockMachineDefinition LARGE_PRIMITIVE_BLAST_FURNACE = GTRegistration.REGISTRATE
+    public static final MultiblockMachineDefinition LARGE_PRIMITIVE_BLAST_FURNACE = REGISTRATE
             .multiblock("large_primitive_blast_furnace", WorkableElectricMultiblockMachine::new)
             .rotationState(RotationState.ALL)
             .recipeType(GTRecipeTypes.PRIMITIVE_BLAST_FURNACE_RECIPES)
@@ -864,7 +861,6 @@ public class GTTMultiMachines {
                     .where("~", Predicates.controller(Predicates.blocks(definition.get())))
                     .where("A", Predicates.blocks(ForgeRegistries.BLOCKS.getValue(new ResourceLocation("gtceu:firebricks")))
                             .or(autoAbilities(definition.getRecipeTypes()))
-                            .or(autoAbilities(true, false, false))
                     )
                     .where("B", Predicates.blocks(ForgeRegistries.BLOCKS.getValue(new ResourceLocation("gtceu:assembly_line_grating"))))
                     .where("C", Predicates.blocks(ForgeRegistries.BLOCKS.getValue(new ResourceLocation("gtceu:bronze_pipe_casing"))))
@@ -873,12 +869,20 @@ public class GTTMultiMachines {
                     .build())
             .register();
 
-    public static final MultiblockMachineDefinition BEDROCK_DRILL = GTRegistration.REGISTRATE
-            .multiblock("bedrock_drill", BedrockDrillMachine::new)
+    public static final MultiblockMachineDefinition BEDROCK_DRILL = REGISTRATE
+            .multiblock("bedrock_drill", holder -> new BedrockDrillMachine(holder, HV))
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(DUMMY_RECIPES)
-            .model(createWorkableCasingMachineModel(GTCEu.id("block/casings/solid/machine_casing_solid_steel"),
-                    GTCEu.id("block/multiblock/multiblock_workable")))
+            .tooltips(
+                    Component.translatable("gtceu.machine.bedrock_ore_miner.description"),
+                    Component.translatable("gtceu.universal.tooltip.energy_tier_range",
+                            GTValues.VNF[HV], GTValues.VNF[HV + 1]),
+                    Component.translatable("gtceu.machine.bedrock_ore_miner.production", 1,
+                            FormattingUtil.formatNumbers(
+                                    1 * 1.5))
+            )
+            .workableCasingModel(GTCEu.id("block/casings/solid/machine_casing_solid_steel"),
+                    GTCEu.id("block/multiblock/multiblock_workable"))
             .appearanceBlock(CASING_STEEL_SOLID)
             .pattern(definition -> FactoryBlockPattern.start(RelativeDirection.LEFT, RelativeDirection.UP, RelativeDirection.BACK)
                     .aisle("       ","  AAA  ","  A~A  ","  AAA  ","       ","       ","       ","       ","       ","       ","       ","       ","       ")
@@ -901,12 +905,12 @@ public class GTTMultiMachines {
                     .build())
             .register();
 
-    public static final MultiblockMachineDefinition NETHER_CAPSULE = GTRegistration.REGISTRATE
+    public static final MultiblockMachineDefinition NETHER_CAPSULE = REGISTRATE
             .multiblock("nether_capsule", NetherCapsuleMachine::new)
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(DUMMY_RECIPES)
-            .model(createWorkableCasingMachineModel(GTCEu.id("block/casings/solid/machine_casing_stable_titanium"),
-                    GTCEu.id("block/multiblock/multiblock_workable")))
+            .workableCasingModel(GTCEu.id("block/casings/solid/machine_casing_stable_titanium"),
+                    GTCEu.id("block/multiblock/multiblock_workable"))
             .appearanceBlock(CASING_TITANIUM_STABLE)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("   "," A "," ~ ","   ")
@@ -918,54 +922,6 @@ public class GTTMultiMachines {
                     .build())
             .register();
 
-    public static MultiblockMachineDefinition registerLargeTurbine(String name, int tier, GTRecipeType recipeType,
-                                                                   Supplier<? extends Block> casing,
-                                                                   Supplier<? extends Block> gear,
-                                                                   ResourceLocation casingTexture,
-                                                                   ResourceLocation overlayModel,
-                                                                   boolean needsMuffler) {
-        return REGISTRATE.multiblock(name, holder -> new LargeTurbineMachine(holder, tier))
-                .rotationState(RotationState.ALL)
-                .recipeType(recipeType)
-                .generator(true)
-                .recipeModifier(LargeTurbineMachine::recipeModifier, true)
-                .appearanceBlock(casing)
-                .pattern(definition -> FactoryBlockPattern.start()
-                        .aisle("CCCC", "CHHC", "CCCC")
-                        .aisle("CHHC", "RGGR", "CHHC")
-                        .aisle("CCCC", "CSHC", "CCCC")
-                        .where('S', controller(blocks(definition.getBlock())))
-                        .where('G', blocks(gear.get()))
-                        .where('C', blocks(casing.get()))
-                        .where('R',
-                                new TraceabilityPredicate(
-                                        new SimplePredicate(
-                                                state -> MetaMachine.getMachine(state.getWorld(),
-                                                        state.getPos()) instanceof IRotorHolderMachine rotorHolder &&
-                                                        state.getWorld()
-                                                                .getBlockState(state.getPos()
-                                                                        .relative(rotorHolder.self().getFrontFacing()))
-                                                                .isAir(),
-                                                () -> PartAbility.ROTOR_HOLDER.getAllBlocks().stream()
-                                                        .map(BlockInfo::fromBlock).toArray(BlockInfo[]::new)))
-                                        .addTooltips(Component.translatable("gtceu.multiblock.pattern.clear_amount_3"))
-                                        .addTooltips(Component.translatable("gtceu.multiblock.pattern.error.limited.1",
-                                                VN[tier]))
-                                        .setExactLimit(1)
-                                        .or(abilities(PartAbility.OUTPUT_ENERGY)).setExactLimit(1))
-                        .where('H', blocks(casing.get())
-                                .or(autoAbilities(definition.getRecipeTypes(), false, false, true, true, true, true))
-                                .or(autoAbilities(true, needsMuffler, false)))
-                        .build())
-                .recoveryItems(
-                        () -> new ItemLike[] {
-                                GTMaterialItems.MATERIAL_ITEMS.get(TagPrefix.dustTiny, GTMaterials.Ash).get() })
-                .workableCasingModel(casingTexture, overlayModel)
-                .tooltips(
-                        Component.translatable("gtceu.universal.tooltip.base_production_eut", V[tier] * 2),
-                        Component.translatable("gtceu.multiblock.turbine.efficiency_tooltip", VNF[tier]))
-                .register();
-    }
 
     public static MultiblockMachineDefinition registerHugeTurbine(String name, int tier, GTRecipeType recipeType,
                                                                    Supplier<? extends Block> casing,
@@ -999,7 +955,7 @@ public class GTTMultiMachines {
                                                                 .isAir(),
                                                 () -> GTTPartAbility.LARGE_ROTOR_HOLDER.getAllBlocks().stream()
                                                         .map(BlockInfo::fromBlock).toArray(BlockInfo[]::new)))
-                                        .addTooltips(Component.translatable("gtceu.multiblock.pattern.clear_amount_5"))
+                                        .addTooltips(Component.translatable("gttcore.multiblock.pattern.clear_amount_5"))
                                         .addTooltips(Component.translatable("gtceu.multiblock.pattern.error.limited.1",
                                                 VN[tier]))
                                         .setExactLimit(1)
@@ -1013,7 +969,7 @@ public class GTTMultiMachines {
                                 GTMaterialItems.MATERIAL_ITEMS.get(TagPrefix.dustTiny, GTMaterials.Ash).get() })
                 .workableCasingModel(casingTexture, overlayModel)
                 .tooltips(
-                        Component.translatable("gtceu.universal.tooltip.base_production_eut", V[tier] * 2),
+                        Component.translatable("gtceu.universal.tooltip.base_production_eut", V[tier] * 2 * 64),
                         Component.translatable("gtceu.multiblock.turbine.efficiency_tooltip", VNF[tier]))
                 .register();
     }

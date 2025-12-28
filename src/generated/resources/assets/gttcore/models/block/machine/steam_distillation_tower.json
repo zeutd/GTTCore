@@ -1,5 +1,25 @@
 {
   "parent": "minecraft:block/block",
+  "dynamic_renders": [
+    {
+      "type": "gtceu:boiler_multi_parts",
+      "casing_block": {
+        "Name": "gttcore:sealed_casing"
+      },
+      "firebox_active": {
+        "Name": "gtceu:steel_firebox_casing",
+        "Properties": {
+          "active": "true"
+        }
+      },
+      "firebox_idle": {
+        "Name": "gtceu:steel_firebox_casing",
+        "Properties": {
+          "active": "false"
+        }
+      }
+    }
+  ],
   "loader": "gtceu:machine",
   "machine": "gttcore:steam_distillation_tower",
   "texture_overrides": {
