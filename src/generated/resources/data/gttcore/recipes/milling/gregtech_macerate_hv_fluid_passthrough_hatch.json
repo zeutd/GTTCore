@@ -1,0 +1,30 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:hv_fluid_passthrough_hatch"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 12,
+      "item": "gtceu:stainless_steel_dust"
+    },
+    {
+      "count": 55,
+      "item": "gtceu:tiny_steel_dust"
+    },
+    {
+      "count": 22,
+      "item": "gtceu:small_rubber_dust"
+    },
+    {
+      "count": 4,
+      "item": "gtceu:electrum_dust"
+    }
+  ]
+}

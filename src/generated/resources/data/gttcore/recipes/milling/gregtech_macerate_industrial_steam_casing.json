@@ -1,0 +1,21 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:industrial_steam_casing"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 3,
+      "item": "gtceu:brass_dust"
+    },
+    {
+      "item": "gtceu:bronze_dust"
+    }
+  ]
+}

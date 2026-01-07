@@ -1,0 +1,18 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "create:belt_connector"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 6,
+      "item": "gtceu:small_silicone_rubber_dust"
+    }
+  ]
+}

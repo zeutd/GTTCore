@@ -1,0 +1,30 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:ev_chemical_bath"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 28,
+      "item": "gtceu:rubber_dust"
+    },
+    {
+      "count": 20,
+      "item": "gtceu:kanthal_dust"
+    },
+    {
+      "count": 16,
+      "item": "gtceu:titanium_dust"
+    },
+    {
+      "count": 13,
+      "item": "gtceu:aluminium_dust"
+    }
+  ]
+}

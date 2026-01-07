@@ -1,0 +1,18 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:vanadium_steel_rod"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 2,
+      "item": "gtceu:small_vanadium_steel_dust"
+    }
+  ]
+}

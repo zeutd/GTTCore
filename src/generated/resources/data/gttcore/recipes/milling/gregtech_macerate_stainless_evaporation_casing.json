@@ -1,0 +1,22 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gttcore:stainless_evaporation_casing"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 2,
+      "item": "gtceu:annealed_copper_dust"
+    },
+    {
+      "count": 2,
+      "item": "gtceu:stainless_steel_dust"
+    }
+  ]
+}

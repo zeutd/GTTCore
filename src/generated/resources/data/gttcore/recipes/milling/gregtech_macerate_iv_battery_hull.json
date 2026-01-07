@@ -1,0 +1,18 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:iv_battery_hull"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 6,
+      "item": "gtceu:rose_gold_dust"
+    }
+  ]
+}

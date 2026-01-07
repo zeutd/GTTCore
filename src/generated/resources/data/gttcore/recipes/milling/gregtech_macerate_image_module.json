@@ -1,0 +1,21 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:image_module"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:electrum_dust"
+    },
+    {
+      "count": 2,
+      "item": "gtceu:small_silver_dust"
+    }
+  ]
+}

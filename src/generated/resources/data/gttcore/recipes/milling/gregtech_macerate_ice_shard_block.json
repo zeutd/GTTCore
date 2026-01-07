@@ -1,0 +1,18 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gttcore:ice_shard_block"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 9,
+      "item": "gttcore:ice_shard_dust"
+    }
+  ]
+}

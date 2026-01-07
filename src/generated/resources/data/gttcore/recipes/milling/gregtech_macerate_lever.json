@@ -1,0 +1,21 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:lever"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 2,
+      "item": "gtceu:small_wood_dust"
+    },
+    {
+      "item": "gtceu:tiny_stone_dust"
+    }
+  ]
+}

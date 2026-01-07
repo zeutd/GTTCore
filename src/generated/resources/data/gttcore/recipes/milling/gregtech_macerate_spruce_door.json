@@ -1,0 +1,18 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:spruce_door"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 2,
+      "item": "gtceu:wood_dust"
+    }
+  ]
+}

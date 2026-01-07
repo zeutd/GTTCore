@@ -1,0 +1,30 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:lv_extruder"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 13,
+      "item": "gtceu:steel_dust"
+    },
+    {
+      "count": 10,
+      "item": "gtceu:copper_dust"
+    },
+    {
+      "count": 6,
+      "item": "gtceu:rubber_dust"
+    },
+    {
+      "count": 3,
+      "item": "gtceu:tin_dust"
+    }
+  ]
+}

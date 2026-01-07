@@ -1,0 +1,21 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:deepslate"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:deepslate_dust"
+    },
+    {
+      "chance": 0.015,
+      "item": "gtceu:thorium_dust"
+    }
+  ]
+}

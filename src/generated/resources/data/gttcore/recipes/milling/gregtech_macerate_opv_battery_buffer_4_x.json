@@ -1,0 +1,18 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:opv_battery_buffer_4x"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 8,
+      "item": "gtceu:lead_dust"
+    }
+  ]
+}

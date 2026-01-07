@@ -1,0 +1,22 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:max_energy_output_hatch_4a"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 4,
+      "item": "gtceu:lead_dust"
+    },
+    {
+      "count": 2,
+      "item": "gtceu:iron_dust"
+    }
+  ]
+}

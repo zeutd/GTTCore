@@ -1,0 +1,24 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "type": "forge:nbt",
+        "count": 1,
+        "item": "minecraft:stone_shovel",
+        "nbt": "{Damage:0}"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:stone_dust"
+    },
+    {
+      "count": 2,
+      "item": "gtceu:small_wood_dust"
+    }
+  ]
+}

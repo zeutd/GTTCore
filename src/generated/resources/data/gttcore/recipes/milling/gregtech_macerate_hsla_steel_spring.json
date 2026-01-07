@@ -1,0 +1,17 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:hsla_steel_spring"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:hsla_steel_dust"
+    }
+  ]
+}

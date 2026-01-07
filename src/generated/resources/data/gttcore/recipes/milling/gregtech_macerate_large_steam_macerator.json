@@ -1,0 +1,30 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gttcore:large_steam_macerator"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 21,
+      "item": "gtceu:steel_dust"
+    },
+    {
+      "count": 12,
+      "item": "gtceu:bronze_dust"
+    },
+    {
+      "count": 5,
+      "item": "gtceu:wrought_iron_dust"
+    },
+    {
+      "count": 2,
+      "item": "gtceu:diamond_dust"
+    }
+  ]
+}

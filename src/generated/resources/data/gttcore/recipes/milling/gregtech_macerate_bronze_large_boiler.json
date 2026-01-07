@@ -1,0 +1,26 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:bronze_large_boiler"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 4,
+      "item": "gtceu:rubber_dust"
+    },
+    {
+      "count": 13,
+      "item": "gtceu:small_bronze_dust"
+    },
+    {
+      "count": 2,
+      "item": "gtceu:tin_dust"
+    }
+  ]
+}

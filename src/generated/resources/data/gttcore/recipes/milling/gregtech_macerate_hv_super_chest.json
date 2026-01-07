@@ -1,0 +1,29 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:hv_super_chest"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 11,
+      "item": "gtceu:stainless_steel_dust"
+    },
+    {
+      "count": 8,
+      "item": "gtceu:manganese_phosphide_dust"
+    },
+    {
+      "count": 2,
+      "item": "gtceu:steel_dust"
+    },
+    {
+      "item": "gtceu:ender_pearl_dust"
+    }
+  ]
+}

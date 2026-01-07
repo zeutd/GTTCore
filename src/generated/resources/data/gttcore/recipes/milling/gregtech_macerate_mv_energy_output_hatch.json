@@ -1,0 +1,26 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:mv_energy_output_hatch"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 2,
+      "item": "gtceu:aluminium_dust"
+    },
+    {
+      "count": 2,
+      "item": "gtceu:copper_dust"
+    },
+    {
+      "count": 2,
+      "item": "gtceu:small_steel_dust"
+    }
+  ]
+}

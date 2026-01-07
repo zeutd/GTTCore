@@ -1,0 +1,22 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:lp_steam_furnace"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 12,
+      "item": "gtceu:bronze_dust"
+    },
+    {
+      "count": 12,
+      "item": "gtceu:brick_dust"
+    }
+  ]
+}

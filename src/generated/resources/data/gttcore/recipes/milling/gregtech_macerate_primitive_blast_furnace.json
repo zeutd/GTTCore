@@ -1,0 +1,18 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:primitive_blast_furnace"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 24,
+      "item": "gtceu:tiny_iron_dust"
+    }
+  ]
+}

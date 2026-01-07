@@ -1,0 +1,29 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:item_voiding_cover"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 3,
+      "item": "gtceu:brass_dust"
+    },
+    {
+      "count": 2,
+      "item": "gtceu:gold_dust"
+    },
+    {
+      "item": "gtceu:iron_dust"
+    },
+    {
+      "count": 2,
+      "item": "gtceu:tiny_steel_dust"
+    }
+  ]
+}

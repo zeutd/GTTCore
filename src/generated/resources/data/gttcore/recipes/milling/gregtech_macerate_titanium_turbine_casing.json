@@ -1,0 +1,26 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:titanium_turbine_casing"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 3,
+      "item": "gtceu:titanium_dust"
+    },
+    {
+      "count": 6,
+      "item": "gtceu:small_magnalium_dust"
+    },
+    {
+      "count": 2,
+      "item": "gtceu:small_blue_steel_dust"
+    }
+  ]
+}

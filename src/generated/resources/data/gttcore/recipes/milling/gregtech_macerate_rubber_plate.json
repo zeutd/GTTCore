@@ -1,0 +1,17 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:rubber_plate"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:rubber_dust"
+    }
+  ]
+}

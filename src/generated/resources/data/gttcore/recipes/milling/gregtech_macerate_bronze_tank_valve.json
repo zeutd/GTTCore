@@ -1,0 +1,22 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:bronze_tank_valve"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 29,
+      "item": "gtceu:small_bronze_dust"
+    },
+    {
+      "count": 2,
+      "item": "gtceu:brick_dust"
+    }
+  ]
+}

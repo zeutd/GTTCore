@@ -1,0 +1,21 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:corrosion_proof_casing"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 3,
+      "item": "gtceu:cobalt_brass_dust"
+    },
+    {
+      "item": "gtceu:hsla_steel_dust"
+    }
+  ]
+}

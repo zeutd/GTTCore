@@ -1,0 +1,18 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gttcore:exquisite_fluix_crystal_gem"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 4,
+      "item": "ae2:fluix_dust"
+    }
+  ]
+}

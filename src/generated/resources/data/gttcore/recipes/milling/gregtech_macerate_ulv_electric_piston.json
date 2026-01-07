@@ -1,0 +1,25 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gttcore:ulv_electric_piston"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 5,
+      "item": "gtceu:wrought_iron_dust"
+    },
+    {
+      "count": 2,
+      "item": "gtceu:rubber_dust"
+    },
+    {
+      "item": "gtceu:tin_dust"
+    }
+  ]
+}

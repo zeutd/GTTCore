@@ -1,0 +1,21 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:basalt"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:basalt_dust"
+    },
+    {
+      "chance": 0.15,
+      "item": "gtceu:basalt_dust"
+    }
+  ]
+}

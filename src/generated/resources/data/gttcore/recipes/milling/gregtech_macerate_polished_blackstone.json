@@ -1,0 +1,17 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:polished_blackstone"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:blackstone_dust"
+    }
+  ]
+}

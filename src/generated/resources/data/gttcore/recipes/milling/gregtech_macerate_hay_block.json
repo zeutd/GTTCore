@@ -1,0 +1,18 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:hay_block"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 9,
+      "item": "gtceu:wheat_dust"
+    }
+  ]
+}

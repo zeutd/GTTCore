@@ -1,0 +1,30 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:lv_fermenter"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 38,
+      "item": "gtceu:small_rubber_dust"
+    },
+    {
+      "count": 34,
+      "item": "gtceu:small_tin_dust"
+    },
+    {
+      "count": 8,
+      "item": "gtceu:steel_dust"
+    },
+    {
+      "count": 3,
+      "item": "gtceu:bronze_dust"
+    }
+  ]
+}

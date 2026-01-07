@@ -1,0 +1,17 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gttcore:chipped_ice_shard_gem"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gttcore:small_ice_shard_dust"
+    }
+  ]
+}

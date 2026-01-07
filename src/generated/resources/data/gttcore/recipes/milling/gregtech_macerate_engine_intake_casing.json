@@ -1,0 +1,18 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:engine_intake_casing"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 12,
+      "item": "gtceu:titanium_dust"
+    }
+  ]
+}

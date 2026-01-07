@@ -1,0 +1,30 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:ev_fermenter"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 12,
+      "item": "gtceu:titanium_dust"
+    },
+    {
+      "count": 38,
+      "item": "gtceu:small_rubber_dust"
+    },
+    {
+      "count": 22,
+      "item": "gtceu:small_aluminium_dust"
+    },
+    {
+      "count": 37,
+      "item": "gtceu:tiny_stainless_steel_dust"
+    }
+  ]
+}

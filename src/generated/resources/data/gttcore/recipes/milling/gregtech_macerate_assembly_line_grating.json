@@ -1,0 +1,22 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:assembly_line_grating"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 3,
+      "item": "gtceu:steel_dust"
+    },
+    {
+      "count": 10,
+      "item": "gtceu:tiny_iron_dust"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gttcore:lv_cultivator"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 52,
+      "item": "gtceu:small_tin_dust"
+    },
+    {
+      "count": 11,
+      "item": "gtceu:rubber_dust"
+    },
+    {
+      "count": 8,
+      "item": "gtceu:steel_dust"
+    },
+    {
+      "count": 6,
+      "item": "gtceu:bronze_dust"
+    }
+  ]
+}

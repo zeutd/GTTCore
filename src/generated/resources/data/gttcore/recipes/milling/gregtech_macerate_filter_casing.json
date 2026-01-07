@@ -1,0 +1,26 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:filter_casing"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 9,
+      "item": "gtceu:steel_dust"
+    },
+    {
+      "count": 6,
+      "item": "gtceu:zinc_dust"
+    },
+    {
+      "count": 10,
+      "item": "gtceu:tiny_iron_dust"
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:advanced_power_thruster"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 4,
+      "item": "gtceu:chromium_dust"
+    },
+    {
+      "count": 2,
+      "item": "gtceu:rubber_dust"
+    },
+    {
+      "item": "gtceu:stainless_steel_dust"
+    },
+    {
+      "item": "gtceu:gold_dust"
+    }
+  ]
+}

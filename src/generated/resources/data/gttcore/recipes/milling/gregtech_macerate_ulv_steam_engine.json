@@ -1,0 +1,29 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gttcore:ulv_steam_engine"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 14,
+      "item": "gtceu:lead_dust"
+    },
+    {
+      "count": 8,
+      "item": "gtceu:steel_dust"
+    },
+    {
+      "count": 3,
+      "item": "gtceu:rubber_dust"
+    },
+    {
+      "item": "gtceu:tin_dust"
+    }
+  ]
+}

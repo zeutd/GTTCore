@@ -1,0 +1,17 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:fine_annealed_copper_wire"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:tiny_annealed_copper_dust"
+    }
+  ]
+}

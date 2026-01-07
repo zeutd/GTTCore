@@ -1,0 +1,22 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:uev_muffler_hatch"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 4,
+      "item": "gtceu:tin_dust"
+    },
+    {
+      "count": 3,
+      "item": "gtceu:bronze_dust"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:end_stone_bricks"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:endstone_dust"
+    }
+  ]
+}

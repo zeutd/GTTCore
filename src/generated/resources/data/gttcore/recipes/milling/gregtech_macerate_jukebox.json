@@ -1,0 +1,21 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:jukebox"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 8,
+      "item": "gtceu:wood_dust"
+    },
+    {
+      "item": "gtceu:diamond_dust"
+    }
+  ]
+}

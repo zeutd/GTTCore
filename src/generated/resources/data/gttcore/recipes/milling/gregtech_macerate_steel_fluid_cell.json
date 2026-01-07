@@ -1,0 +1,22 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:steel_fluid_cell"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 4,
+      "item": "gtceu:steel_dust"
+    },
+    {
+      "count": 2,
+      "item": "gtceu:small_bronze_dust"
+    }
+  ]
+}

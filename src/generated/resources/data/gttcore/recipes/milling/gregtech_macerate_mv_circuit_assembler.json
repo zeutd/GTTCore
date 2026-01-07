@@ -1,0 +1,30 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:mv_circuit_assembler"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 39,
+      "item": "gtceu:rubber_dust"
+    },
+    {
+      "count": 28,
+      "item": "gtceu:cupronickel_dust"
+    },
+    {
+      "count": 21,
+      "item": "gtceu:aluminium_dust"
+    },
+    {
+      "count": 54,
+      "item": "gtceu:small_copper_dust"
+    }
+  ]
+}

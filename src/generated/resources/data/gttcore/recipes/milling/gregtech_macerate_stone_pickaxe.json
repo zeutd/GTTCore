@@ -1,0 +1,25 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "type": "forge:nbt",
+        "count": 1,
+        "item": "minecraft:stone_pickaxe",
+        "nbt": "{Damage:0}"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 3,
+      "item": "gtceu:stone_dust"
+    },
+    {
+      "count": 2,
+      "item": "gtceu:small_wood_dust"
+    }
+  ]
+}

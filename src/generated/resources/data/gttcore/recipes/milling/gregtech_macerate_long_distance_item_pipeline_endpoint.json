@@ -1,0 +1,22 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:long_distance_item_pipeline_endpoint"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 8,
+      "item": "gtceu:steel_dust"
+    },
+    {
+      "count": 6,
+      "item": "gtceu:tin_dust"
+    }
+  ]
+}

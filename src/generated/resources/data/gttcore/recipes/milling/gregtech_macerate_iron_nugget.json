@@ -1,0 +1,17 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:iron_nugget"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:tiny_iron_dust"
+    }
+  ]
+}

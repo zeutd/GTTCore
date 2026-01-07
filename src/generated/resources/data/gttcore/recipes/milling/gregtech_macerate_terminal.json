@@ -1,0 +1,26 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:terminal"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 38,
+      "item": "gtceu:tiny_wrought_iron_dust"
+    },
+    {
+      "count": 3,
+      "item": "gtceu:paper_dust"
+    },
+    {
+      "count": 2,
+      "item": "gtceu:small_red_alloy_dust"
+    }
+  ]
+}

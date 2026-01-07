@@ -1,0 +1,22 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:bronze_multiblock_tank"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 14,
+      "item": "gtceu:small_bronze_dust"
+    },
+    {
+      "count": 2,
+      "item": "gtceu:brick_dust"
+    }
+  ]
+}

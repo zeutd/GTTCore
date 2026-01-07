@@ -1,0 +1,22 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:opv_gas_collector"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 2,
+      "item": "gtceu:zinc_dust"
+    },
+    {
+      "count": 6,
+      "item": "gtceu:small_iron_dust"
+    }
+  ]
+}

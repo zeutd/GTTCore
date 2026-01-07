@@ -1,0 +1,18 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:red_garnet_block"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 9,
+      "item": "gtceu:red_garnet_dust"
+    }
+  ]
+}

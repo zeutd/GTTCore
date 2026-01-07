@@ -1,0 +1,18 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:jungle_boat"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 5,
+      "item": "gtceu:wood_dust"
+    }
+  ]
+}

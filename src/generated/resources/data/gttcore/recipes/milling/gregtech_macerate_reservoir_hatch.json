@@ -1,0 +1,30 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:reservoir_hatch"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 48,
+      "item": "gtceu:small_stainless_steel_dust"
+    },
+    {
+      "count": 42,
+      "item": "gtceu:small_rubber_dust"
+    },
+    {
+      "count": 32,
+      "item": "gtceu:small_steel_dust"
+    },
+    {
+      "count": 8,
+      "item": "gtceu:electrum_dust"
+    }
+  ]
+}

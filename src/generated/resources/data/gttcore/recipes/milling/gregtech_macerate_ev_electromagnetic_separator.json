@@ -1,0 +1,30 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:ev_electromagnetic_separator"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 16,
+      "item": "gtceu:rubber_dust"
+    },
+    {
+      "count": 10,
+      "item": "gtceu:titanium_dust"
+    },
+    {
+      "count": 8,
+      "item": "gtceu:kanthal_dust"
+    },
+    {
+      "count": 7,
+      "item": "gtceu:aluminium_dust"
+    }
+  ]
+}

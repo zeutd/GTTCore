@@ -1,0 +1,24 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "type": "forge:nbt",
+        "count": 1,
+        "item": "minecraft:flint_and_steel",
+        "nbt": "{Damage:0}"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 5,
+      "item": "gtceu:small_steel_dust"
+    },
+    {
+      "item": "gtceu:flint_dust"
+    }
+  ]
+}

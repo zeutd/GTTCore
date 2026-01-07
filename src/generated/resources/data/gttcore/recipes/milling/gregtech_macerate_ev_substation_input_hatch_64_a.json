@@ -1,0 +1,30 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:ev_substation_input_hatch_64a"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 49,
+      "item": "gtceu:aluminium_dust"
+    },
+    {
+      "count": 30,
+      "item": "gtceu:rubber_dust"
+    },
+    {
+      "count": 12,
+      "item": "gtceu:titanium_dust"
+    },
+    {
+      "count": 10,
+      "item": "gtceu:platinum_dust"
+    }
+  ]
+}

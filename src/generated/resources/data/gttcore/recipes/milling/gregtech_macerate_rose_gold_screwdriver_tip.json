@@ -1,0 +1,17 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:rose_gold_screwdriver_tip"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:rose_gold_dust"
+    }
+  ]
+}

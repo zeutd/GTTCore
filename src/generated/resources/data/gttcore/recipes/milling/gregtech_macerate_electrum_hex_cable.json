@@ -1,0 +1,22 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:electrum_hex_cable"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 8,
+      "item": "gtceu:electrum_dust"
+    },
+    {
+      "count": 5,
+      "item": "gtceu:rubber_dust"
+    }
+  ]
+}

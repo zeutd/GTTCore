@@ -1,0 +1,18 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gttcore:desh_rod"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 2,
+      "item": "gttcore:small_desh_dust"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:redstone_torch"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "minecraft:redstone"
+    },
+    {
+      "count": 2,
+      "item": "gtceu:small_wood_dust"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "forge:intersection",
+      "children": [
+        {
+          "tag": "forge:ores/sphalerite"
+        },
+        {
+          "tag": "forge:ores_in_ground/stone"
+        }
+      ]
+    }
+  ],
+  "results": [
+    {
+      "count": 2,
+      "item": "gtceu:crushed_sphalerite_ore"
+    },
+    {
+      "chance": 0.14,
+      "item": "gtceu:yellow_garnet_gem"
+    },
+    {
+      "chance": 0.67,
+      "item": "gtceu:stone_dust"
+    }
+  ]
+}

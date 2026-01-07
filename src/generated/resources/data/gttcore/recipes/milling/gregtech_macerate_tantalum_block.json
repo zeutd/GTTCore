@@ -1,0 +1,18 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:tantalum_block"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 9,
+      "item": "gtceu:tantalum_dust"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:enchanting_table"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 3,
+      "item": "gtceu:paper_dust"
+    },
+    {
+      "count": 2,
+      "item": "gtceu:diamond_dust"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:compressed_coke_clay"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:clay_dust"
+    }
+  ]
+}

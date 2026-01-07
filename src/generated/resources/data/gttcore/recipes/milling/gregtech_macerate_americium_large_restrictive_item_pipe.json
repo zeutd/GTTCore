@@ -1,0 +1,22 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:americium_large_restrictive_item_pipe"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 6,
+      "item": "gtceu:americium_dust"
+    },
+    {
+      "count": 2,
+      "item": "gtceu:small_iron_dust"
+    }
+  ]
+}

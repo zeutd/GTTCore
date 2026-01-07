@@ -1,0 +1,17 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:mossy_cobblestone_wall"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:stone_dust"
+    }
+  ]
+}

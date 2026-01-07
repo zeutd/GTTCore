@@ -1,0 +1,30 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:hp_steam_miner"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 19,
+      "item": "gtceu:bronze_dust"
+    },
+    {
+      "count": 12,
+      "item": "gtceu:brick_dust"
+    },
+    {
+      "count": 12,
+      "item": "gtceu:tin_alloy_dust"
+    },
+    {
+      "count": 4,
+      "item": "gtceu:diamond_dust"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:uiv_16a_energy_converter"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 40,
+      "item": "gtceu:red_alloy_dust"
+    },
+    {
+      "count": 25,
+      "item": "gtceu:rubber_dust"
+    }
+  ]
+}

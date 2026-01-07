@@ -1,0 +1,17 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:small_iron_gear"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:iron_dust"
+    }
+  ]
+}

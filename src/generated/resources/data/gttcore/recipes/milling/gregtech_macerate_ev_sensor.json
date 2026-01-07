@@ -1,0 +1,22 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:ev_sensor"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 4,
+      "item": "gtceu:titanium_dust"
+    },
+    {
+      "count": 2,
+      "item": "gtceu:small_platinum_dust"
+    }
+  ]
+}

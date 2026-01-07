@@ -1,0 +1,17 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:small_gold_spring"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:small_gold_dust"
+    }
+  ]
+}

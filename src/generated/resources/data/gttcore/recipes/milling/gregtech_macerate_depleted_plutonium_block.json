@@ -1,0 +1,18 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gttcore:depleted_plutonium_block"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 9,
+      "item": "gttcore:depleted_plutonium_dust"
+    }
+  ]
+}

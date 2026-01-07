@@ -1,0 +1,20 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:white_large_metal_sheet"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:tiny_concrete_dust"
+    },
+    {
+      "item": "gtceu:tiny_iron_dust"
+    }
+  ]
+}

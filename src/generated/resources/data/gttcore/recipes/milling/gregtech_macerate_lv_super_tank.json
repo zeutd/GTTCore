@@ -1,0 +1,30 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:lv_super_tank"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 11,
+      "item": "gtceu:steel_dust"
+    },
+    {
+      "count": 6,
+      "item": "gtceu:polyethylene_dust"
+    },
+    {
+      "count": 50,
+      "item": "gtceu:tiny_tin_dust"
+    },
+    {
+      "count": 14,
+      "item": "gtceu:small_rubber_dust"
+    }
+  ]
+}

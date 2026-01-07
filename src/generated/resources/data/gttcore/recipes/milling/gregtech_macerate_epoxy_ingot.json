@@ -1,0 +1,17 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:epoxy_ingot"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:epoxy_dust"
+    }
+  ]
+}

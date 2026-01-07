@@ -1,0 +1,21 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:advanced_activity_detector_cover"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:aluminium_dust"
+    },
+    {
+      "count": 2,
+      "item": "gtceu:small_gold_dust"
+    }
+  ]
+}

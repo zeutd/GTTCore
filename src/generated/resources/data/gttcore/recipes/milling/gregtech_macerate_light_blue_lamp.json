@@ -1,0 +1,21 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:light_blue_lamp"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 6,
+      "item": "gtceu:glass_dust"
+    },
+    {
+      "item": "minecraft:glowstone_dust"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:hv_bender"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 23,
+      "item": "gtceu:stainless_steel_dust"
+    },
+    {
+      "count": 16,
+      "item": "gtceu:electrum_dust"
+    },
+    {
+      "count": 15,
+      "item": "gtceu:rubber_dust"
+    },
+    {
+      "count": 8,
+      "item": "gtceu:silver_dust"
+    }
+  ]
+}

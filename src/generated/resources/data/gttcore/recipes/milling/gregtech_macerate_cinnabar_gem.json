@@ -1,0 +1,17 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:cinnabar_gem"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:cinnabar_dust"
+    }
+  ]
+}

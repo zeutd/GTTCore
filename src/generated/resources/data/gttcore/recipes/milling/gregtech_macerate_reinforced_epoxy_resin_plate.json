@@ -1,0 +1,17 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:reinforced_epoxy_resin_plate"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:reinforced_epoxy_resin_dust"
+    }
+  ]
+}

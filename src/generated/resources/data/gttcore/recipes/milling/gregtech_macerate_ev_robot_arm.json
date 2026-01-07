@@ -1,0 +1,30 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:ev_robot_arm"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 12,
+      "item": "gtceu:kanthal_dust"
+    },
+    {
+      "count": 11,
+      "item": "gtceu:rubber_dust"
+    },
+    {
+      "count": 9,
+      "item": "gtceu:titanium_dust"
+    },
+    {
+      "count": 34,
+      "item": "gtceu:small_aluminium_dust"
+    }
+  ]
+}

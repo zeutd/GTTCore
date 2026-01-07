@@ -1,0 +1,30 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:hp_steam_forge_hammer"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 31,
+      "item": "gtceu:iron_dust"
+    },
+    {
+      "count": 14,
+      "item": "gtceu:bronze_dust"
+    },
+    {
+      "count": 5,
+      "item": "gtceu:wrought_iron_dust"
+    },
+    {
+      "count": 2,
+      "item": "gtceu:tin_alloy_dust"
+    }
+  ]
+}

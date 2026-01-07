@@ -1,0 +1,17 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:radium_nugget"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:tiny_radium_dust"
+    }
+  ]
+}

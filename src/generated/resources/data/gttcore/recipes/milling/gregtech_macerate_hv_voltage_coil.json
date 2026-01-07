@@ -1,0 +1,22 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:hv_voltage_coil"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 2,
+      "item": "gtceu:black_steel_dust"
+    },
+    {
+      "count": 2,
+      "item": "gtceu:small_steel_dust"
+    }
+  ]
+}

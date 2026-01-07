@@ -1,0 +1,30 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:mv_thermal_centrifuge"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 12,
+      "item": "gtceu:cupronickel_dust"
+    },
+    {
+      "count": 10,
+      "item": "gtceu:aluminium_dust"
+    },
+    {
+      "count": 8,
+      "item": "gtceu:rubber_dust"
+    },
+    {
+      "count": 4,
+      "item": "gtceu:copper_dust"
+    }
+  ]
+}

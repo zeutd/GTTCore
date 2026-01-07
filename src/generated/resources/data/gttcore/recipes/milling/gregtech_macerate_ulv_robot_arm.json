@@ -1,0 +1,30 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gttcore:ulv_robot_arm"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 9,
+      "item": "gtceu:rubber_dust"
+    },
+    {
+      "count": 7,
+      "item": "gtceu:tin_dust"
+    },
+    {
+      "count": 6,
+      "item": "gtceu:wrought_iron_dust"
+    },
+    {
+      "count": 2,
+      "item": "gtceu:iron_dust"
+    }
+  ]
+}

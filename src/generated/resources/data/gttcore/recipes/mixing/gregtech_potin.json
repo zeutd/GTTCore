@@ -1,0 +1,32 @@
+{
+  "type": "create:mixing",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 6,
+      "ingredient": {
+        "tag": "forge:dusts/copper"
+      }
+    },
+    {
+      "type": "gtceu:sized",
+      "count": 2,
+      "ingredient": {
+        "tag": "forge:dusts/tin"
+      }
+    },
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:dusts/lead"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 9,
+      "item": "gtceu:potin_dust"
+    }
+  ]
+}

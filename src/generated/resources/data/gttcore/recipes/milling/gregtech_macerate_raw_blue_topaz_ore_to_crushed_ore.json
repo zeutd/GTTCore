@@ -1,0 +1,26 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:raw_materials/blue_topaz"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 4,
+      "item": "gtceu:crushed_blue_topaz_ore"
+    },
+    {
+      "chance": 0.14,
+      "item": "gtceu:topaz_gem"
+    },
+    {
+      "chance": 0.67,
+      "item": "gtceu:stone_dust"
+    }
+  ]
+}

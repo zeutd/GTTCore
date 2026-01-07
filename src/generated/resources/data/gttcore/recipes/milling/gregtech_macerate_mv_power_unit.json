@@ -1,0 +1,18 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:mv_power_unit"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 37,
+      "item": "gtceu:tiny_aluminium_dust"
+    }
+  ]
+}

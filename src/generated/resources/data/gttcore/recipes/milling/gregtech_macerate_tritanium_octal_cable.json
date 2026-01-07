@@ -1,0 +1,22 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:tritanium_octal_cable"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 4,
+      "item": "gtceu:tritanium_dust"
+    },
+    {
+      "count": 3,
+      "item": "gtceu:rubber_dust"
+    }
+  ]
+}

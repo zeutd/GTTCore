@@ -1,0 +1,17 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:lv_battery_hull"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:battery_alloy_dust"
+    }
+  ]
+}

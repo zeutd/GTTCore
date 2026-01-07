@@ -1,0 +1,18 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:nan_certificate"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 64,
+      "item": "gtceu:neutronium_dust"
+    }
+  ]
+}

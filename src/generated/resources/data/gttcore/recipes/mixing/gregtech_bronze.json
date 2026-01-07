@@ -1,0 +1,25 @@
+{
+  "type": "create:mixing",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 3,
+      "ingredient": {
+        "tag": "forge:dusts/copper"
+      }
+    },
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:dusts/tin"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 4,
+      "item": "gtceu:bronze_dust"
+    }
+  ]
+}

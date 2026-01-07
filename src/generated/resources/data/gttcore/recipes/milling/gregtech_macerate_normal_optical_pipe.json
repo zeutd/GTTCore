@@ -1,0 +1,21 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:normal_optical_pipe"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 2,
+      "item": "gtceu:silver_dust"
+    },
+    {
+      "item": "gtceu:borosilicate_glass_dust"
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gttcore:primitive_brewery"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 4,
+      "item": "gtceu:wood_dust"
+    },
+    {
+      "count": 10,
+      "item": "gtceu:small_copper_dust"
+    },
+    {
+      "count": 2,
+      "item": "gtceu:tiny_iron_dust"
+    }
+  ]
+}

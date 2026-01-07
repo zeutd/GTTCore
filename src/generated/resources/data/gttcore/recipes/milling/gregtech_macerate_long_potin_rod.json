@@ -1,0 +1,17 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:long_potin_rod"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:potin_dust"
+    }
+  ]
+}

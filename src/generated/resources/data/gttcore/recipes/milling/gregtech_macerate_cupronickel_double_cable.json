@@ -1,0 +1,20 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:cupronickel_double_cable"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:rubber_dust"
+    },
+    {
+      "item": "gtceu:cupronickel_dust"
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gttcore:steam_distillation_tower"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 62,
+      "item": "gtceu:small_steel_dust"
+    }
+  ]
+}

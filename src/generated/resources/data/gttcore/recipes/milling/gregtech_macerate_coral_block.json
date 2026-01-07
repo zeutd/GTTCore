@@ -1,0 +1,17 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:coral_blocks"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:calcite_dust"
+    }
+  ]
+}

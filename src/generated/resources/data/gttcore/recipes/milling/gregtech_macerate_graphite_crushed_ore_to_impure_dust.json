@@ -1,0 +1,21 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:crushed_ores/graphite"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:impure_graphite_dust"
+    },
+    {
+      "chance": 0.14,
+      "item": "gtceu:carbon_dust"
+    }
+  ]
+}

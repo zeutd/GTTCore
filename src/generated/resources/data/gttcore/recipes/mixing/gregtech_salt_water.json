@@ -1,0 +1,18 @@
+{
+  "type": "create:mixing",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 2,
+      "ingredient": {
+        "tag": "forge:dusts/salt"
+      }
+    }
+  ],
+  "results": [
+    {
+      "amount": 1000,
+      "fluid": "gtceu:salt_water"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:mv_rock_crusher"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 15,
+      "item": "gtceu:aluminium_dust"
+    },
+    {
+      "count": 10,
+      "item": "gtceu:rubber_dust"
+    },
+    {
+      "count": 8,
+      "item": "gtceu:cupronickel_dust"
+    },
+    {
+      "count": 5,
+      "item": "gtceu:copper_dust"
+    }
+  ]
+}

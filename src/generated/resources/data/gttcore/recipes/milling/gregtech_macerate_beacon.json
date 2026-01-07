@@ -1,0 +1,25 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:beacon"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 5,
+      "item": "gtceu:glass_dust"
+    },
+    {
+      "count": 3,
+      "item": "gtceu:obsidian_dust"
+    },
+    {
+      "item": "gtceu:nether_star_dust"
+    }
+  ]
+}

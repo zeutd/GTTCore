@@ -1,0 +1,30 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:mv_wiremill"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 16,
+      "item": "gtceu:cupronickel_dust"
+    },
+    {
+      "count": 12,
+      "item": "gtceu:rubber_dust"
+    },
+    {
+      "count": 12,
+      "item": "gtceu:aluminium_dust"
+    },
+    {
+      "count": 6,
+      "item": "gtceu:copper_dust"
+    }
+  ]
+}

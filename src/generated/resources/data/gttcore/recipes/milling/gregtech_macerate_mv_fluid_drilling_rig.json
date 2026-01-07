@@ -1,0 +1,22 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:mv_fluid_drilling_rig"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 16,
+      "item": "gtceu:vanadium_steel_dust"
+    },
+    {
+      "count": 8,
+      "item": "gtceu:steel_dust"
+    }
+  ]
+}

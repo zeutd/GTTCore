@@ -1,0 +1,21 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:diorite"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:diorite_dust"
+    },
+    {
+      "chance": 0.0025,
+      "item": "gtceu:stone_dust"
+    }
+  ]
+}

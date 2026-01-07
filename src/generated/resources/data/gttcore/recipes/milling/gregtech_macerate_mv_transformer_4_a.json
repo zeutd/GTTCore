@@ -1,0 +1,26 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:mv_transformer_4a"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 15,
+      "item": "gtceu:rubber_dust"
+    },
+    {
+      "count": 10,
+      "item": "gtceu:copper_dust"
+    },
+    {
+      "count": 10,
+      "item": "gtceu:small_gold_dust"
+    }
+  ]
+}

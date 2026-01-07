@@ -1,0 +1,30 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:lv_world_accelerator"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 32,
+      "item": "gtceu:manganese_phosphide_dust"
+    },
+    {
+      "count": 24,
+      "item": "gtceu:steel_dust"
+    },
+    {
+      "count": 6,
+      "item": "gtceu:rubber_dust"
+    },
+    {
+      "count": 5,
+      "item": "gtceu:brass_dust"
+    }
+  ]
+}

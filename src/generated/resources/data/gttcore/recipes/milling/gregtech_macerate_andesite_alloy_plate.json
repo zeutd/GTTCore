@@ -1,0 +1,17 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gttcore:andesite_alloy_plate"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gttcore:andesite_alloy_dust"
+    }
+  ]
+}

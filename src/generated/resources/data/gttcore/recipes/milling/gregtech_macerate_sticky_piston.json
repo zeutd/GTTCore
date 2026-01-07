@@ -1,0 +1,22 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:sticky_piston"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 4,
+      "item": "gtceu:stone_dust"
+    },
+    {
+      "count": 3,
+      "item": "gtceu:wood_dust"
+    }
+  ]
+}

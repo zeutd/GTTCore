@@ -1,0 +1,17 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:long_tin_alloy_rod"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:tin_alloy_dust"
+    }
+  ]
+}

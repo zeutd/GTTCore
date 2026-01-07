@@ -1,0 +1,30 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:mv_forge_hammer"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 31,
+      "item": "gtceu:iron_dust"
+    },
+    {
+      "count": 14,
+      "item": "gtceu:aluminium_dust"
+    },
+    {
+      "count": 10,
+      "item": "gtceu:rubber_dust"
+    },
+    {
+      "count": 5,
+      "item": "gtceu:copper_dust"
+    }
+  ]
+}

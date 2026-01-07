@@ -1,0 +1,18 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:weathered_cut_copper_slab"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 10,
+      "item": "gtceu:tiny_copper_dust"
+    }
+  ]
+}

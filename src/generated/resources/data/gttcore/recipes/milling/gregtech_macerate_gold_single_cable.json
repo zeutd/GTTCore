@@ -1,0 +1,21 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:gold_single_cable"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:rubber_dust"
+    },
+    {
+      "count": 2,
+      "item": "gtceu:small_gold_dust"
+    }
+  ]
+}

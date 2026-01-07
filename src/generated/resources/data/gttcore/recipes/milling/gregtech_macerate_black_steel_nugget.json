@@ -1,0 +1,17 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:black_steel_nugget"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:tiny_black_steel_dust"
+    }
+  ]
+}

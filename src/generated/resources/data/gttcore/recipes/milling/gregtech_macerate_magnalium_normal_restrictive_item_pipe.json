@@ -1,0 +1,22 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:magnalium_normal_restrictive_item_pipe"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 3,
+      "item": "gtceu:magnalium_dust"
+    },
+    {
+      "count": 2,
+      "item": "gtceu:small_iron_dust"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:red_alloy_bolt"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:tiny_red_alloy_dust"
+    }
+  ]
+}

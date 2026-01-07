@@ -1,0 +1,26 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:mv_charger_4x"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 10,
+      "item": "gtceu:copper_dust"
+    },
+    {
+      "count": 8,
+      "item": "gtceu:aluminium_dust"
+    },
+    {
+      "count": 4,
+      "item": "gtceu:rubber_dust"
+    }
+  ]
+}

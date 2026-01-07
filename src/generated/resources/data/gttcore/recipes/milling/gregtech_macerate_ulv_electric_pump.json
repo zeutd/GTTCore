@@ -1,0 +1,29 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gttcore:ulv_electric_pump"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 64,
+      "item": "gtceu:tiny_tin_dust"
+    },
+    {
+      "count": 14,
+      "item": "gtceu:small_rubber_dust"
+    },
+    {
+      "count": 3,
+      "item": "gtceu:bronze_dust"
+    },
+    {
+      "item": "gtceu:iron_dust"
+    }
+  ]
+}

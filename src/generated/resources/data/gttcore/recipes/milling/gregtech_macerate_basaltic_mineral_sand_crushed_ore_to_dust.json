@@ -1,0 +1,21 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:purified_ores/basaltic_mineral_sand"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:pure_basaltic_mineral_sand_dust"
+    },
+    {
+      "chance": 0.14,
+      "item": "gtceu:magnetite_dust"
+    }
+  ]
+}

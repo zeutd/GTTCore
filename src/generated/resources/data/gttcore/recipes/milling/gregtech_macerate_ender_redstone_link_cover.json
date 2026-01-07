@@ -1,0 +1,22 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:ender_redstone_link_cover"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 4,
+      "item": "gtceu:ender_pearl_dust"
+    },
+    {
+      "count": 2,
+      "item": "gtceu:aluminium_dust"
+    }
+  ]
+}

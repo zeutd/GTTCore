@@ -1,0 +1,30 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:hv_fluid_heater"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 16,
+      "item": "gtceu:stainless_steel_dust"
+    },
+    {
+      "count": 11,
+      "item": "gtceu:rubber_dust"
+    },
+    {
+      "count": 32,
+      "item": "gtceu:small_steel_dust"
+    },
+    {
+      "count": 8,
+      "item": "gtceu:electrum_dust"
+    }
+  ]
+}

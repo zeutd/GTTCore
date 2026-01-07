@@ -1,0 +1,30 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:steam_oven"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 30,
+      "item": "gtceu:bronze_dust"
+    },
+    {
+      "count": 20,
+      "item": "gtceu:brick_dust"
+    },
+    {
+      "count": 8,
+      "item": "gtceu:invar_dust"
+    },
+    {
+      "count": 5,
+      "item": "gtceu:tin_alloy_dust"
+    }
+  ]
+}

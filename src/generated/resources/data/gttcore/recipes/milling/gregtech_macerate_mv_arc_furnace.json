@@ -1,0 +1,29 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:mv_arc_furnace"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 11,
+      "item": "gtceu:aluminium_dust"
+    },
+    {
+      "count": 6,
+      "item": "gtceu:rubber_dust"
+    },
+    {
+      "count": 5,
+      "item": "gtceu:copper_dust"
+    },
+    {
+      "item": "gtceu:graphite_dust"
+    }
+  ]
+}

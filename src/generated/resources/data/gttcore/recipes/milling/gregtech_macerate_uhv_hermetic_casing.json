@@ -1,0 +1,22 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:uhv_hermetic_casing"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 8,
+      "item": "gtceu:neutronium_dust"
+    },
+    {
+      "count": 6,
+      "item": "gtceu:duranium_dust"
+    }
+  ]
+}

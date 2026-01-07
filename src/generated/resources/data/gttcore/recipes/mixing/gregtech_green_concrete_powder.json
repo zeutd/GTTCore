@@ -1,0 +1,25 @@
+{
+  "type": "create:mixing",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 4,
+      "ingredient": {
+        "tag": "forge:sand"
+      }
+    },
+    {
+      "type": "gtceu:sized",
+      "count": 4,
+      "ingredient": {
+        "tag": "forge:gravel"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 8,
+      "item": "minecraft:green_concrete_powder"
+    }
+  ]
+}

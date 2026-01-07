@@ -1,0 +1,17 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:chipped_lazurite_gem"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:small_lazurite_dust"
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:hp_steam_alloy_smelter"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 12,
+      "item": "gtceu:brick_dust"
+    },
+    {
+      "count": 11,
+      "item": "gtceu:bronze_dust"
+    },
+    {
+      "count": 6,
+      "item": "gtceu:wrought_iron_dust"
+    },
+    {
+      "item": "gtceu:steel_dust"
+    }
+  ]
+}

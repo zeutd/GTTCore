@@ -1,0 +1,17 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:ruby_gem"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:ruby_dust"
+    }
+  ]
+}

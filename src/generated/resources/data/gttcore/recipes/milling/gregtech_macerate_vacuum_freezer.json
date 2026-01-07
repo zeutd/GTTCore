@@ -1,0 +1,30 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:vacuum_freezer"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 50,
+      "item": "gtceu:small_rubber_dust"
+    },
+    {
+      "count": 49,
+      "item": "gtceu:small_steel_dust"
+    },
+    {
+      "count": 12,
+      "item": "gtceu:stainless_steel_dust"
+    },
+    {
+      "count": 12,
+      "item": "gtceu:electrum_dust"
+    }
+  ]
+}

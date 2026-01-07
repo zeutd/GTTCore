@@ -1,0 +1,29 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:ulv_battery_buffer_16x"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 32,
+      "item": "gtceu:lead_dust"
+    },
+    {
+      "count": 8,
+      "item": "gtceu:wrought_iron_dust"
+    },
+    {
+      "count": 2,
+      "item": "gtceu:rubber_dust"
+    },
+    {
+      "item": "gtceu:red_alloy_dust"
+    }
+  ]
+}

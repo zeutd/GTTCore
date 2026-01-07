@@ -1,0 +1,22 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:titanium_fluid_cell"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 6,
+      "item": "gtceu:titanium_dust"
+    },
+    {
+      "count": 3,
+      "item": "gtceu:small_rose_gold_dust"
+    }
+  ]
+}

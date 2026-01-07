@@ -1,0 +1,25 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:hv_sensor"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 4,
+      "item": "gtceu:stainless_steel_dust"
+    },
+    {
+      "item": "gtceu:ender_eye_dust"
+    },
+    {
+      "count": 2,
+      "item": "gtceu:small_chromium_dust"
+    }
+  ]
+}

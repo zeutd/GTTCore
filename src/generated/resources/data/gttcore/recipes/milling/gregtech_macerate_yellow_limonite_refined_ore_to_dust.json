@@ -1,0 +1,21 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:refined_ores/yellow_limonite"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:yellow_limonite_dust"
+    },
+    {
+      "chance": 0.14,
+      "item": "gtceu:cobalt_oxide_dust"
+    }
+  ]
+}

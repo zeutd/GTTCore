@@ -1,0 +1,17 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:salt_gem"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:salt_dust"
+    }
+  ]
+}

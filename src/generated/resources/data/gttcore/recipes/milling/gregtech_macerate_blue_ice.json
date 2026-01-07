@@ -1,0 +1,22 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:blue_ice"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 64,
+      "item": "gtceu:ice_dust"
+    },
+    {
+      "count": 17,
+      "item": "gtceu:ice_dust"
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:pump_hatch"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 8,
+      "item": "gtceu:wood_dust"
+    },
+    {
+      "item": "gtceu:stone_dust"
+    },
+    {
+      "count": 5,
+      "item": "gtceu:tiny_iron_dust"
+    }
+  ]
+}

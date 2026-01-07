@@ -1,0 +1,17 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:cut_sandstone"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:quartz_sand_dust"
+    }
+  ]
+}

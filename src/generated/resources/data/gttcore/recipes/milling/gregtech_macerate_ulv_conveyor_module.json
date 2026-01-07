@@ -1,0 +1,29 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gttcore:ulv_conveyor_module"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 11,
+      "item": "gtceu:rubber_dust"
+    },
+    {
+      "count": 6,
+      "item": "gtceu:tin_dust"
+    },
+    {
+      "count": 2,
+      "item": "gtceu:iron_dust"
+    },
+    {
+      "item": "gtceu:iron_dust"
+    }
+  ]
+}

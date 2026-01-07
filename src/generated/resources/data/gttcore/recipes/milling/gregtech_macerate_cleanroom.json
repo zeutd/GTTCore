@@ -1,0 +1,30 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:cleanroom"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 18,
+      "item": "gtceu:stainless_steel_dust"
+    },
+    {
+      "count": 8,
+      "item": "gtceu:electrum_dust"
+    },
+    {
+      "count": 6,
+      "item": "gtceu:zinc_dust"
+    },
+    {
+      "count": 6,
+      "item": "gtceu:rubber_dust"
+    }
+  ]
+}

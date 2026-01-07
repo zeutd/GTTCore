@@ -1,0 +1,17 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:polycaprolactam_foil"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:small_polycaprolactam_dust"
+    }
+  ]
+}

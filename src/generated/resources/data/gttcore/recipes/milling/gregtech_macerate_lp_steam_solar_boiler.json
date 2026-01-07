@@ -1,0 +1,30 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:lp_steam_solar_boiler"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 12,
+      "item": "gtceu:brick_dust"
+    },
+    {
+      "count": 7,
+      "item": "gtceu:bronze_dust"
+    },
+    {
+      "count": 3,
+      "item": "gtceu:silver_dust"
+    },
+    {
+      "count": 3,
+      "item": "gtceu:glass_dust"
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:raw_materials/glauconite_sand"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 6,
+      "item": "gtceu:crushed_glauconite_sand_ore"
+    },
+    {
+      "chance": 0.14,
+      "item": "gtceu:sodium_dust"
+    },
+    {
+      "chance": 0.67,
+      "item": "gtceu:stone_dust"
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:pump_deck"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 2,
+      "item": "gtceu:small_wood_dust"
+    },
+    {
+      "item": "gtceu:small_stone_dust"
+    },
+    {
+      "item": "gtceu:tiny_iron_dust"
+    }
+  ]
+}

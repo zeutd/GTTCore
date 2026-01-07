@@ -1,0 +1,24 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:opv_bender"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:iron_dust"
+    },
+    {
+      "item": "gtceu:rubber_dust"
+    },
+    {
+      "count": 2,
+      "item": "gtceu:small_red_alloy_dust"
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:uiv_1024a_laser_target_hatch"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 4,
+      "item": "gtceu:rubber_dust"
+    },
+    {
+      "count": 4,
+      "item": "gtceu:red_alloy_dust"
+    },
+    {
+      "count": 6,
+      "item": "gtceu:small_diamond_dust"
+    }
+  ]
+}

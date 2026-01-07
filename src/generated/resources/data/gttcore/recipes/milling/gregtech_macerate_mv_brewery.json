@@ -1,0 +1,30 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:mv_brewery"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 9,
+      "item": "gtceu:aluminium_dust"
+    },
+    {
+      "count": 30,
+      "item": "gtceu:small_rubber_dust"
+    },
+    {
+      "count": 5,
+      "item": "gtceu:cupronickel_dust"
+    },
+    {
+      "count": 37,
+      "item": "gtceu:tiny_bronze_dust"
+    }
+  ]
+}

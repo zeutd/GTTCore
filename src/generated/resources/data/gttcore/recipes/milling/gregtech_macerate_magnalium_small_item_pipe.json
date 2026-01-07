@@ -1,0 +1,17 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:magnalium_small_item_pipe"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:magnalium_dust"
+    }
+  ]
+}

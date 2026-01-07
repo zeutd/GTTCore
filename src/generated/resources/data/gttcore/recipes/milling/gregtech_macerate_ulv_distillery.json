@@ -1,0 +1,30 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gttcore:ulv_distillery"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 8,
+      "item": "gtceu:wrought_iron_dust"
+    },
+    {
+      "count": 30,
+      "item": "gtceu:small_rubber_dust"
+    },
+    {
+      "count": 50,
+      "item": "gtceu:tiny_tin_dust"
+    },
+    {
+      "count": 4,
+      "item": "minecraft:blaze_powder"
+    }
+  ]
+}

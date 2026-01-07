@@ -1,0 +1,30 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:distillation_tower"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 28,
+      "item": "gtceu:stainless_steel_dust"
+    },
+    {
+      "count": 9,
+      "item": "gtceu:rubber_dust"
+    },
+    {
+      "count": 32,
+      "item": "gtceu:small_steel_dust"
+    },
+    {
+      "count": 8,
+      "item": "gtceu:electrum_dust"
+    }
+  ]
+}

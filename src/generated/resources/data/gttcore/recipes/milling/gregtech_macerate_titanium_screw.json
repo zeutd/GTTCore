@@ -1,0 +1,17 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:titanium_screw"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:tiny_titanium_dust"
+    }
+  ]
+}

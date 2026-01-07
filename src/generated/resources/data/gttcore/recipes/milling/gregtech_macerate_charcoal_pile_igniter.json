@@ -1,0 +1,26 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:charcoal_pile_igniter"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 12,
+      "item": "gtceu:brick_dust"
+    },
+    {
+      "count": 9,
+      "item": "gtceu:bronze_dust"
+    },
+    {
+      "count": 4,
+      "item": "gtceu:iron_dust"
+    }
+  ]
+}

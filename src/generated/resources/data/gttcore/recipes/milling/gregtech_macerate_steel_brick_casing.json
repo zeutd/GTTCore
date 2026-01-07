@@ -1,0 +1,22 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:steel_brick_casing"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 12,
+      "item": "gtceu:brick_dust"
+    },
+    {
+      "count": 5,
+      "item": "gtceu:wrought_iron_dust"
+    }
+  ]
+}

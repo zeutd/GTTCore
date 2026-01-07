@@ -1,0 +1,10 @@
+{
+  "type": "create:mixing",
+  "ingredients": [],
+  "results": [
+    {
+      "amount": 2000,
+      "fluid": "gtceu:nitration_mixture"
+    }
+  ]
+}

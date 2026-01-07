@@ -1,0 +1,18 @@
+{
+  "type": "create:pressing",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:storage_blocks/raw_apatite"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 9,
+      "item": "gtceu:raw_apatite"
+    }
+  ]
+}

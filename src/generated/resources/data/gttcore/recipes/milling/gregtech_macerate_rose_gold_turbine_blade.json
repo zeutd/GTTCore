@@ -1,0 +1,18 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:rose_gold_turbine_blade"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 10,
+      "item": "gtceu:rose_gold_dust"
+    }
+  ]
+}

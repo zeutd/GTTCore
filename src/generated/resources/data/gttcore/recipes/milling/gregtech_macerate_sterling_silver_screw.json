@@ -1,0 +1,17 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:sterling_silver_screw"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:tiny_sterling_silver_dust"
+    }
+  ]
+}

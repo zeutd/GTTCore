@@ -1,0 +1,22 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:ev_voltage_coil"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 2,
+      "item": "gtceu:platinum_dust"
+    },
+    {
+      "count": 2,
+      "item": "gtceu:small_neodymium_dust"
+    }
+  ]
+}

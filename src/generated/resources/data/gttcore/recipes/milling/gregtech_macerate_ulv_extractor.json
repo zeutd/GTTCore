@@ -1,0 +1,30 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gttcore:ulv_extractor"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 46,
+      "item": "gtceu:small_rubber_dust"
+    },
+    {
+      "count": 8,
+      "item": "gtceu:wrought_iron_dust"
+    },
+    {
+      "count": 64,
+      "item": "gtceu:tiny_tin_dust"
+    },
+    {
+      "count": 5,
+      "item": "gtceu:steel_dust"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:hopper_minecart"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 10,
+      "item": "gtceu:iron_dust"
+    },
+    {
+      "count": 8,
+      "item": "gtceu:wood_dust"
+    }
+  ]
+}

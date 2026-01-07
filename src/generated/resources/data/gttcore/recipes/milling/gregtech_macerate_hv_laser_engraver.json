@@ -1,0 +1,30 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:hv_laser_engraver"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 20,
+      "item": "gtceu:stainless_steel_dust"
+    },
+    {
+      "count": 14,
+      "item": "gtceu:rubber_dust"
+    },
+    {
+      "count": 8,
+      "item": "gtceu:electrum_dust"
+    },
+    {
+      "count": 5,
+      "item": "gtceu:gold_dust"
+    }
+  ]
+}

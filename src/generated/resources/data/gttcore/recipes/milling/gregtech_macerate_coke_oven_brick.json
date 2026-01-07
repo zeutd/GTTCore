@@ -1,0 +1,17 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:coke_oven_brick"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:clay_dust"
+    }
+  ]
+}

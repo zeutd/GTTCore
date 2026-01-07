@@ -1,0 +1,17 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gttcore:fluix_crystal_plate"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "ae2:fluix_dust"
+    }
+  ]
+}

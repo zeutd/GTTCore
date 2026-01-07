@@ -1,0 +1,30 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gttcore:large_greenhouse"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 24,
+      "item": "gtceu:electrum_dust"
+    },
+    {
+      "count": 22,
+      "item": "gtceu:rubber_dust"
+    },
+    {
+      "count": 22,
+      "item": "gtceu:stainless_steel_dust"
+    },
+    {
+      "count": 12,
+      "item": "gtceu:silver_dust"
+    }
+  ]
+}

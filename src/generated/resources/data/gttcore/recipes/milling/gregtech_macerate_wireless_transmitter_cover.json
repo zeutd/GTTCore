@@ -1,0 +1,23 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:wireless_transmitter_cover"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:ender_pearl_dust"
+    },
+    {
+      "item": "gtceu:small_annealed_copper_dust"
+    },
+    {
+      "item": "gtceu:tiny_platinum_dust"
+    }
+  ]
+}

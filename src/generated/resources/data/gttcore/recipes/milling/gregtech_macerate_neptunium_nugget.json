@@ -1,0 +1,17 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:neptunium_nugget"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:tiny_neptunium_dust"
+    }
+  ]
+}

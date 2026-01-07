@@ -1,0 +1,17 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:silicone_rubber_ring"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:small_silicone_rubber_dust"
+    }
+  ]
+}

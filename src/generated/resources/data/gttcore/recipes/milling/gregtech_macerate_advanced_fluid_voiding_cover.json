@@ -1,0 +1,26 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:advanced_fluid_voiding_cover"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 3,
+      "item": "gtceu:bronze_dust"
+    },
+    {
+      "count": 3,
+      "item": "gtceu:iron_dust"
+    },
+    {
+      "count": 2,
+      "item": "gtceu:tiny_steel_dust"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:tritanium_round"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:tiny_tritanium_dust"
+    }
+  ]
+}

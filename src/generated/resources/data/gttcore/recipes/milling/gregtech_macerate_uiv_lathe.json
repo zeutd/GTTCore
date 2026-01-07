@@ -1,0 +1,25 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:uiv_lathe"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 3,
+      "item": "gtceu:rubber_dust"
+    },
+    {
+      "count": 6,
+      "item": "gtceu:small_red_alloy_dust"
+    },
+    {
+      "item": "gtceu:diamond_dust"
+    }
+  ]
+}

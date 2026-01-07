@@ -1,0 +1,17 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:fine_tin_wire"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:tiny_tin_dust"
+    }
+  ]
+}

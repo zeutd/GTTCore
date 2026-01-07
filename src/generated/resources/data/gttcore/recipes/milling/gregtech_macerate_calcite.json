@@ -1,0 +1,21 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:calcite"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:calcite_dust"
+    },
+    {
+      "chance": 0.0025,
+      "item": "gtceu:stone_dust"
+    }
+  ]
+}

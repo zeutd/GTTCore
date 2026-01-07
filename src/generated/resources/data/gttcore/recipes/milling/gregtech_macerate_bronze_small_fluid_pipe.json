@@ -1,0 +1,17 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:bronze_small_fluid_pipe"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:bronze_dust"
+    }
+  ]
+}

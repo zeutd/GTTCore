@@ -1,0 +1,22 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:cupronickel_coil_block"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 8,
+      "item": "gtceu:cupronickel_dust"
+    },
+    {
+      "count": 2,
+      "item": "gtceu:bronze_dust"
+    }
+  ]
+}

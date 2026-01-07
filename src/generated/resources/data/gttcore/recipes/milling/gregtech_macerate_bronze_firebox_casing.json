@@ -1,0 +1,18 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:bronze_firebox_casing"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 13,
+      "item": "gtceu:small_bronze_dust"
+    }
+  ]
+}

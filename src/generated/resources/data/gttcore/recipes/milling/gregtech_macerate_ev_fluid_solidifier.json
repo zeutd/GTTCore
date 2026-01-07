@@ -1,0 +1,30 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:ev_fluid_solidifier"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 16,
+      "item": "gtceu:titanium_dust"
+    },
+    {
+      "count": 11,
+      "item": "gtceu:rubber_dust"
+    },
+    {
+      "count": 32,
+      "item": "gtceu:small_stainless_steel_dust"
+    },
+    {
+      "count": 8,
+      "item": "gtceu:kanthal_dust"
+    }
+  ]
+}

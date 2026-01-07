@@ -1,0 +1,30 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:hv_alloy_smelter"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 8,
+      "item": "gtceu:stainless_steel_dust"
+    },
+    {
+      "count": 8,
+      "item": "gtceu:kanthal_dust"
+    },
+    {
+      "count": 4,
+      "item": "gtceu:rubber_dust"
+    },
+    {
+      "count": 2,
+      "item": "gtceu:gold_dust"
+    }
+  ]
+}

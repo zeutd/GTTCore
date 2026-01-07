@@ -1,0 +1,22 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:mask_filter"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 4,
+      "item": "gtceu:polyethylene_dust"
+    },
+    {
+      "count": 2,
+      "item": "gtceu:activated_carbon_dust"
+    }
+  ]
+}

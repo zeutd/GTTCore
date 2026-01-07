@@ -1,0 +1,26 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:raw_materials/cobaltite"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 2,
+      "item": "gtceu:crushed_cobaltite_ore"
+    },
+    {
+      "chance": 0.14,
+      "item": "gtceu:sulfur_dust"
+    },
+    {
+      "chance": 0.67,
+      "item": "gtceu:stone_dust"
+    }
+  ]
+}

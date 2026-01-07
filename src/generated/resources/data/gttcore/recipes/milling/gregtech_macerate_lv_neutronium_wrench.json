@@ -1,0 +1,25 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "type": "forge:nbt",
+        "count": 1,
+        "item": "gtceu:lv_neutronium_wrench",
+        "nbt": "{Damage:0,GT.Tool:{}}"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 4,
+      "item": "gtceu:neutronium_dust"
+    },
+    {
+      "count": 4,
+      "item": "gtceu:tiny_steel_dust"
+    }
+  ]
+}

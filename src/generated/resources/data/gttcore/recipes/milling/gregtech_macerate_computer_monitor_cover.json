@@ -1,0 +1,24 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:computer_monitor_cover"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:aluminium_dust"
+    },
+    {
+      "item": "gtceu:glass_dust"
+    },
+    {
+      "count": 2,
+      "item": "gtceu:small_copper_dust"
+    }
+  ]
+}

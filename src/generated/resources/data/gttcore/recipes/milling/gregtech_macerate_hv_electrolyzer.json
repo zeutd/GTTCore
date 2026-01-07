@@ -1,0 +1,30 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:hv_electrolyzer"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 8,
+      "item": "gtceu:stainless_steel_dust"
+    },
+    {
+      "count": 3,
+      "item": "gtceu:rubber_dust"
+    },
+    {
+      "count": 2,
+      "item": "gtceu:electrum_dust"
+    },
+    {
+      "count": 6,
+      "item": "gtceu:small_gold_dust"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:stone_button"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:tiny_stone_dust"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:mangrove_planks"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:wood_dust"
+    }
+  ]
+}

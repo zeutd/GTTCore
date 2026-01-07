@@ -1,0 +1,26 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:hv_diode"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 10,
+      "item": "gtceu:stainless_steel_dust"
+    },
+    {
+      "count": 6,
+      "item": "gtceu:rubber_dust"
+    },
+    {
+      "count": 5,
+      "item": "gtceu:gold_dust"
+    }
+  ]
+}

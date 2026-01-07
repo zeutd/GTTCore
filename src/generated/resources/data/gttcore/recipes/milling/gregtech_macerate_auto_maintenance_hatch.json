@@ -1,0 +1,30 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:auto_maintenance_hatch"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 28,
+      "item": "gtceu:rubber_dust"
+    },
+    {
+      "count": 26,
+      "item": "gtceu:stainless_steel_dust"
+    },
+    {
+      "count": 24,
+      "item": "gtceu:electrum_dust"
+    },
+    {
+      "count": 16,
+      "item": "gtceu:steel_dust"
+    }
+  ]
+}

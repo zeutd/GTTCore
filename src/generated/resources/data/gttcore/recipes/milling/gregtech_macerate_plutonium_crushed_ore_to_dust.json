@@ -1,0 +1,21 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:purified_ores/plutonium"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:pure_plutonium_dust"
+    },
+    {
+      "chance": 0.14,
+      "item": "gtceu:lead_dust"
+    }
+  ]
+}

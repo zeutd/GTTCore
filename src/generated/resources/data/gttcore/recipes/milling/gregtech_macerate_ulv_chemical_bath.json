@@ -1,0 +1,30 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gttcore:ulv_chemical_bath"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 28,
+      "item": "gtceu:rubber_dust"
+    },
+    {
+      "count": 42,
+      "item": "gtceu:small_tin_dust"
+    },
+    {
+      "count": 10,
+      "item": "gtceu:copper_dust"
+    },
+    {
+      "count": 8,
+      "item": "gtceu:wrought_iron_dust"
+    }
+  ]
+}

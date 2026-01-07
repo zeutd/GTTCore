@@ -1,0 +1,20 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:mutton"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:meat_dust"
+    },
+    {
+      "item": "gtceu:tiny_bone_dust"
+    }
+  ]
+}

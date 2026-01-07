@@ -1,0 +1,29 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:hp_steam_liquid_boiler"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 12,
+      "item": "gtceu:brick_dust"
+    },
+    {
+      "count": 7,
+      "item": "gtceu:steel_dust"
+    },
+    {
+      "count": 5,
+      "item": "gtceu:wrought_iron_dust"
+    },
+    {
+      "item": "gtceu:glass_dust"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:hv_autoclave"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 16,
+      "item": "gtceu:stainless_steel_dust"
+    },
+    {
+      "count": 22,
+      "item": "gtceu:small_rubber_dust"
+    },
+    {
+      "count": 37,
+      "item": "gtceu:tiny_steel_dust"
+    },
+    {
+      "count": 4,
+      "item": "gtceu:electrum_dust"
+    }
+  ]
+}

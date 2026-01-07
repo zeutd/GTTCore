@@ -1,0 +1,21 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "tag": "forge:purified_ores/calcite"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:pure_calcite_dust"
+    },
+    {
+      "chance": 0.14,
+      "item": "gtceu:calcium_dust"
+    }
+  ]
+}

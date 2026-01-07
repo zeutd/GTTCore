@@ -1,0 +1,17 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:bronze_bolt"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:tiny_bronze_dust"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:hv_super_tank"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 14,
+      "item": "gtceu:stainless_steel_dust"
+    },
+    {
+      "count": 8,
+      "item": "gtceu:manganese_phosphide_dust"
+    },
+    {
+      "count": 55,
+      "item": "gtceu:tiny_steel_dust"
+    },
+    {
+      "count": 6,
+      "item": "gtceu:polytetrafluoroethylene_dust"
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:lv_sensor"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 4,
+      "item": "gtceu:steel_dust"
+    },
+    {
+      "item": "gtceu:quartzite_dust"
+    },
+    {
+      "count": 2,
+      "item": "gtceu:small_brass_dust"
+    }
+  ]
+}

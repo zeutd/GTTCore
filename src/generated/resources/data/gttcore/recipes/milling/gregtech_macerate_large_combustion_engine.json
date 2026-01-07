@@ -1,0 +1,30 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:large_combustion_engine"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 30,
+      "item": "gtceu:titanium_dust"
+    },
+    {
+      "count": 16,
+      "item": "gtceu:kanthal_dust"
+    },
+    {
+      "count": 15,
+      "item": "gtceu:rubber_dust"
+    },
+    {
+      "count": 46,
+      "item": "gtceu:small_aluminium_dust"
+    }
+  ]
+}

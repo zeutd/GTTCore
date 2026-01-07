@@ -1,0 +1,22 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:diamond_wire_cutter_head"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 4,
+      "item": "gtceu:diamond_dust"
+    },
+    {
+      "count": 4,
+      "item": "gtceu:tiny_steel_dust"
+    }
+  ]
+}
