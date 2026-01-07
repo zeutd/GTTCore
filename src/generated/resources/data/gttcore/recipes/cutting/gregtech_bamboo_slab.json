@@ -1,0 +1,18 @@
+{
+  "type": "create:cutting",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:bamboo_planks"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 2,
+      "item": "minecraft:bamboo_slab"
+    }
+  ]
+}

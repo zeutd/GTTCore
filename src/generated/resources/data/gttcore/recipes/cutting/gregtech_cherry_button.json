@@ -1,0 +1,18 @@
+{
+  "type": "create:cutting",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:cherry_pressure_plate"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 12,
+      "item": "minecraft:cherry_button"
+    }
+  ]
+}

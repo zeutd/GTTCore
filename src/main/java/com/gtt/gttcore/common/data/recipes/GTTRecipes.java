@@ -5,10 +5,7 @@ import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.common.data.GTItems;
 import com.gtt.gttcore.common.data.GTTItems;
-import com.gtt.gttcore.common.data.recipes.lines.BrineLine;
-import com.gtt.gttcore.common.data.recipes.lines.PlatinumGroupLine;
-import com.gtt.gttcore.common.data.recipes.lines.ZieglerNattaLine;
-import com.gtt.gttcore.common.data.recipes.lines.ZirconiumLine;
+import com.gtt.gttcore.common.data.recipes.lines.*;
 import com.gtt.gttcore.common.data.recipes.remove.AE2RecipeRemoval;
 import com.gtt.gttcore.common.data.recipes.remove.AdAstraRecipeRemoval;
 import com.gtt.gttcore.common.data.recipes.remove.CreateRecipeRemoval;
@@ -93,8 +90,6 @@ public class GTTRecipes {
         replaceOutput(GTItems.WETWARE_SUPER_COMPUTER_UV, GTTItems.UNAWAKENED_WETWARE_SUPER_COMPUTER_UV);
         replaceOutput(GTItems.WETWARE_MAINFRAME_UHV, GTTItems.UNAWAKENED_WETWARE_MAINFRAME_UHV);
         replaceInput(AllItems.ELECTRON_TUBE, GTItems.VACUUM_TUBE);
-        replace(AEBlocks.QUARTZ_BLOCK.asItem(), ChemicalHelper.get(TagPrefix.block, CertusQuartz));
-        replace(AEBlocks.FLUIX_BLOCK.asItem(), ChemicalHelper.get(TagPrefix.block, FluixCrystal));
         replaceInput(AllItems.WHISK, ChemicalHelper.get(TagPrefix.rotor, Iron));
     }
     public static void init(Consumer<FinishedRecipe> provider) {
@@ -107,6 +102,7 @@ public class GTTRecipes {
         MixerRecipes.init(provider);
         RocketRecipes.init(provider);
         CircuitRecipes.init(provider);
+        LanthanideGroupLine.init(provider);
     }
 
     public static void remove(Consumer<RecipeFilter> provider) {

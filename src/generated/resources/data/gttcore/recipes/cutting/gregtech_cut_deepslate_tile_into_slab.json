@@ -1,0 +1,18 @@
+{
+  "type": "create:cutting",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:deepslate_tiles"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 2,
+      "item": "minecraft:deepslate_tile_slab"
+    }
+  ]
+}

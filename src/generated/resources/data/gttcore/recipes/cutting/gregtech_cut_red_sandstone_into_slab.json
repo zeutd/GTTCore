@@ -1,0 +1,18 @@
+{
+  "type": "create:cutting",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:red_sandstone"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 2,
+      "item": "minecraft:red_sandstone_slab"
+    }
+  ]
+}

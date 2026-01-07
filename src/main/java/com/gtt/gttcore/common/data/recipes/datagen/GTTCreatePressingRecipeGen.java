@@ -26,7 +26,7 @@ public class GTTCreatePressingRecipeGen extends PressingRecipeGen {
                 if (recipeBuilder.input.containsKey(ItemRecipeCapability.CAP))
                     recipeBuilder.input.get(ItemRecipeCapability.CAP).forEach(item -> b.require((Ingredient) item.content));
                 if (recipeBuilder.output.containsKey(ItemRecipeCapability.CAP))
-                    recipeBuilder.output.get(ItemRecipeCapability.CAP).forEach(content -> Arrays.stream(((SizedIngredient) content.content).getItems()).toList().forEach(i -> b.output((float) content.chance / content.maxChance, i)));
+                    recipeBuilder.output.get(ItemRecipeCapability.CAP).forEach(content -> Arrays.stream(((SizedIngredient) content.content).getItems()).forEach(i -> b.output((float) content.chance / content.maxChance, i)));
                 return b;
             });
         }

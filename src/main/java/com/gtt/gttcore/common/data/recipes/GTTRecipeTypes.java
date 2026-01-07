@@ -1,6 +1,7 @@
 package com.gtt.gttcore.common.data.recipes;
 
 import com.gregtechceu.gtceu.api.GTValues;
+import com.gregtechceu.gtceu.api.capability.recipe.FluidRecipeCapability;
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.gui.GuiTextures;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeSerializer;
@@ -13,13 +14,18 @@ import com.gtt.gttcore.GTTCore;
 import com.gtt.gttcore.common.data.GTTMaterials;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraftforge.fluids.FluidStack;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import static com.gregtechceu.gtceu.api.GTValues.ULV;
 import static com.gregtechceu.gtceu.api.GTValues.VA;
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.*;
+import static com.gtt.gttcore.common.data.GTTMaterials.P204;
+import static com.gtt.gttcore.common.data.GTTMaterials.P507;
 import static com.lowdragmc.lowdraglib.gui.texture.ProgressTexture.FillDirection.LEFT_TO_RIGHT;
 
 @SuppressWarnings("deprecation")
@@ -27,6 +33,7 @@ public class GTTRecipeTypes {
     public static List<GTRecipeBuilder> toReRegisterCreatePressing;
     public static List<GTRecipeBuilder> toReRegisterCreateMixing;
     public static List<GTRecipeBuilder> toReRegisterCreateMilling;
+    public static List<GTRecipeBuilder> toReRegisterCreateCutting;
     //public static List<GTRecipeBuilder> toReRegisterCreate;
     public static void init(){
         CHEMICAL_RECIPES.setMaxIOSize(3, 2, 3, 2);
@@ -75,6 +82,7 @@ public class GTTRecipeTypes {
         toReRegisterCreatePressing = new ArrayList<>();
         toReRegisterCreateMixing = new ArrayList<>();
         toReRegisterCreateMilling = new ArrayList<>();
+        toReRegisterCreateCutting = new ArrayList<>();
         FORGE_HAMMER_RECIPES.onRecipeBuild((recipeBuilder, provider) -> {
             if (recipeBuilder.EUt().voltage() > GTValues.V[ULV]) return;
             if (toReRegisterCreatePressing.stream().noneMatch(rb -> rb.id.getPath().equals(recipeBuilder.id.getPath())))toReRegisterCreatePressing.add(recipeBuilder);
@@ -86,6 +94,10 @@ public class GTTRecipeTypes {
         MACERATOR_RECIPES.onRecipeBuild((recipeBuilder, provider) -> {
             if (recipeBuilder.EUt().voltage() > GTValues.V[ULV]) return;
             if (toReRegisterCreateMilling.stream().noneMatch(rb -> rb.id.getPath().equals(recipeBuilder.id.getPath())))toReRegisterCreateMilling.add(recipeBuilder);
+        });
+        CUTTER_RECIPES.onRecipeBuild((recipeBuilder, provider) -> {
+            if (recipeBuilder.EUt().voltage() > GTValues.V[ULV]) return;
+            if (toReRegisterCreateCutting.stream().noneMatch(rb -> rb.id.getPath().equals(recipeBuilder.id.getPath())))toReRegisterCreateCutting.add(recipeBuilder);
         });
     }
     public static GTRecipeType register(String name, String group, RecipeType<?>... proxyRecipes) {
@@ -169,4 +181,27 @@ public class GTTRecipeTypes {
             .setEUIO(IO.IN)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE, LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.MOTOR);
+    public static final GTRecipeType EXTRACTION_TANK_RECIPE = register("extraction_tank", ELECTRIC)
+            .setMaxIOSize(0, 0, 2, 6)
+            .setEUIO(IO.IN)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE, LEFT_TO_RIGHT)
+            .setSound(GTSoundEntries.CHEMICAL)
+            .onRecipeBuild((recipeBuilder, provider) -> {
+                if (recipeBuilder.input.getOrDefault(FluidRecipeCapability.CAP, Collections.emptyList()).isEmpty()) {
+                    recipeBuilder.copy(recipeBuilder.id + "_p204")
+                            .inputFluids(P204.getFluid(10000))
+                            .duration(recipeBuilder.duration * 2)
+                            .inputFluids(recipeBuilder.input.get(FluidRecipeCapability.CAP).stream()
+                                    .map(content -> ((FluidIngredient) content.content).getStacks())
+                                    .flatMap(Arrays::stream)
+                                    .peek(s -> s.setAmount((int) (s.getAmount() * 1.25))).toArray(FluidStack[]::new))
+                            .save(provider);
+                    recipeBuilder.inputFluids(P507.getFluid(10000));
+                }
+            });
+    public static final GTRecipeType PH_PURIFICATION_RECIPE = register("ph_purification", ELECTRIC)
+            .setMaxIOSize(3, 6, 1, 1)
+            .setEUIO(IO.IN)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE, LEFT_TO_RIGHT)
+            .setSound(GTSoundEntries.CHEMICAL);
 }

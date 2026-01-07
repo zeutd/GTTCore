@@ -1,0 +1,18 @@
+{
+  "type": "create:cutting",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:warped_planks"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 2,
+      "item": "minecraft:warped_slab"
+    }
+  ]
+}

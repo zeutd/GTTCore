@@ -1,0 +1,22 @@
+{
+  "type": "create:cutting",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "tag": "minecraft:mangrove_logs"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 6,
+      "item": "minecraft:mangrove_planks"
+    },
+    {
+      "count": 2,
+      "item": "gtceu:wood_dust"
+    }
+  ]
+}

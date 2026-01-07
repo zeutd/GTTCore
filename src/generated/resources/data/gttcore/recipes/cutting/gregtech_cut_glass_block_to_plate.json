@@ -1,0 +1,18 @@
+{
+  "type": "create:cutting",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 3,
+      "ingredient": {
+        "item": "minecraft:glass"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 8,
+      "item": "minecraft:glass_pane"
+    }
+  ]
+}

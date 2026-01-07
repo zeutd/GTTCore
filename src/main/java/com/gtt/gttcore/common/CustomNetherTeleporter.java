@@ -42,7 +42,6 @@ public class CustomNetherTeleporter extends PortalForcer {
         PoiManager poimanager = this.level.getPoiManager();
         int i = pIsNether ? 16 : 128;
         poimanager.ensureLoadedAndValid(this.level, pPos, i);
-        LOGGER.info("asdaaa");
         Optional<PoiRecord> optional = poimanager.getInSquare((holder) -> {
             return holder.get() == GTTPoiTypes.NETHER_TRAVELLER;
         }, pPos, i, PoiManager.Occupancy.ANY).filter((p_192981_) -> {

@@ -61,9 +61,6 @@ public class CommonProxy {
     public void commonSetup(final FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
             LOGGER.info("GTT Common Setup");
-            //GTTRegistration.POI_TYPES.register(FMLJavaModLoadingContext.get().getModEventBus());
-            BuiltInRegistries.POINT_OF_INTEREST_TYPE.stream().forEach(LOGGER::info);
-            //LOGGER.info("Look, I found a {}!", Items.DIAMOND);
         });
     }
 

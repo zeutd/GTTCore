@@ -36,9 +36,9 @@ public class CreateRecipeRemoval {
         provider.accept(new IDFilter(Create.asResource("mixing/tea")));
         provider.accept(new IDFilter(Create.asResource("mixing/andesite_alloy")));
         provider.accept(new IDFilter(Create.asResource("mixing/compat/ae2/fluix_crystal")));
+        provider.accept(new IDFilter(Create.asResource("mixing/lava_from_cobble")));
         provider.accept(createTypeFilter(AllRecipeTypes.CRUSHING.getId()));
         provider.accept(createTypeFilter(AllRecipeTypes.MILLING.getId()));
-        provider.accept(createTypeFilter(AllRecipeTypes.CUTTING.getId()));
         provider.accept(createTypeFilter(AllRecipeTypes.CUTTING.getId()));
         provider.accept(new IDFilter(Create.asResource("crafting/materials/andesite_alloy_block")));
         provider.accept(new IDFilter(Create.asResource("crafting/kinetics/whisk")));

@@ -1,0 +1,18 @@
+{
+  "type": "create:cutting",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 3,
+      "ingredient": {
+        "item": "minecraft:yellow_stained_glass"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 8,
+      "item": "minecraft:yellow_stained_glass_pane"
+    }
+  ]
+}

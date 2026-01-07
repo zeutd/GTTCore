@@ -1,0 +1,22 @@
+{
+  "type": "create:cutting",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "tag": "minecraft:dark_oak_logs"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 6,
+      "item": "minecraft:dark_oak_planks"
+    },
+    {
+      "count": 2,
+      "item": "gtceu:wood_dust"
+    }
+  ]
+}

@@ -2,10 +2,7 @@ package com.gtt.gttcore.data.recipe;
 
 import com.gregtechceu.gtceu.common.data.GTRecipes;
 import com.gregtechceu.gtceu.data.recipe.GTCraftingComponents;
-import com.gtt.gttcore.common.data.recipes.datagen.GTTCreateFillingRecipeGen;
-import com.gtt.gttcore.common.data.recipes.datagen.GTTCreateMillingRecipeGen;
-import com.gtt.gttcore.common.data.recipes.datagen.GTTCreateMixingRecipeGen;
-import com.gtt.gttcore.common.data.recipes.datagen.GTTCreatePressingRecipeGen;
+import com.gtt.gttcore.common.data.recipes.datagen.*;
 import com.simibubi.create.api.data.recipe.BaseRecipeProvider;
 import net.minecraft.data.CachedOutput;
 import net.minecraft.data.DataGenerator;
@@ -39,6 +36,7 @@ public class GTTRecipeProvider extends RecipeProvider {
         GENERATORS.add(new GTTCreateMixingRecipeGen(output));
         GENERATORS.add(new GTTCreateFillingRecipeGen(output));
         GENERATORS.add(new GTTCreateMillingRecipeGen(output));
+        GENERATORS.add(new GTTCreateCuttingRecipeGen(output));
         gen.addProvider(true, new DataProvider() {
 
             @Override

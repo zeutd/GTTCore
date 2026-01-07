@@ -1,0 +1,18 @@
+{
+  "type": "create:cutting",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "minecraft:stone_slab"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 3,
+      "item": "minecraft:stone_button"
+    }
+  ]
+}

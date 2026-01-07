@@ -1,0 +1,22 @@
+{
+  "type": "create:cutting",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "tag": "minecraft:spruce_logs"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 6,
+      "item": "minecraft:spruce_planks"
+    },
+    {
+      "count": 2,
+      "item": "gtceu:wood_dust"
+    }
+  ]
+}

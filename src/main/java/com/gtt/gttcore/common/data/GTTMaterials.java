@@ -10,7 +10,6 @@ import com.gregtechceu.gtceu.api.fluids.FluidState;
 import com.gregtechceu.gtceu.api.fluids.store.FluidStorageKeys;
 import com.gregtechceu.gtceu.common.data.GTElements;
 import com.gtt.gttcore.GTTCore;
-import com.simibubi.create.AllBlocks;
 import com.simibubi.create.AllItems;
 import earth.terrarium.adastra.common.registry.ModItems;
 import net.minecraft.world.level.ItemLike;
@@ -40,18 +39,39 @@ public class GTTMaterials {
             UltraHighMolecularWeightPolyethylene, Fullerene,
             WetDibutylMagnesium, DibutylMagnesium, Bromobutane, SodiumBromide, Butanol, CultivateProducts, SodiumSulfate, Octanol, OctanolMagnesium, PhosphorusTrichloride, PhthaloylChlorine, DiisooctylPhthalate, MicrocrystalMagnesiumChloride, ZieglerNattaCatalyst,
             Zircon, ZirconiumCarbide, ZirconiumTetrachloride,
+
             DepletedUranium238, DepletedPlutonium239, DepletedThorium,
+
             SupercriticalSteam,
             AtomicSteel,
+
             PlatinumGroupSolution, PlatinumPalladiumSolution, AmmoniumHexachloroplatinate, PalladiumSolution, Diamminedichloropalladium, InertMetalSodiumBisulfate, RhodiumSulfateSolution, RhodiumHydroxide, ChlororhodicAcid, AmmoniumHexachlororhodate, AmmoniumHexanitrorhodium, SodiumPeroxide, RutheniumOsmiumIridiumMixture, RutheniumOsmiumIridiumMixtureSodiumPeroxide, RutheniumOsmiumSaltSolution, IridiumOxide, AmmoniumHexachloroiridate, RutheniumOsmiumOxide, RutheniumOxide, RutheniumSolution, OsmiumSolution, AmmoniumHexachlororuthenate, Tetraamminedioxidoosmiumdichloride,
             HotBrine, HotChlorinatedBrominatedBrine, HotDebrominatedBrine, HotAlkalineDebrominatedBrine, AcidicBromineSolution, ConcentratedBromineSolution, HydrogenIodide, RawBrine, DebrominatedBrine, BrominatedChlorineVapor, AcidicBromineExhaust,
-            PhenolicResin
-            ;
+            PhenolicResin,
+
+            OxalicAcid, EthyleneGlycol, EthyleneOxide, SodiumSulfite, AluminiumChloride, AluminiumFluoride, PotassiumManganate, PotassiumPermanganate, SodiumChlorate,
+            RoastedRareEarth, LowCeriumContentRareEarthChlorideSolution, CeriumContainingResidue, CeriumSolution, DefluorinatedCeriumSolution, OxidizedCeriumSolution, RawCeriumOxide, WashedCeriumOxide, CeriumOxide, CeriumWaste, PurifiedRareEarthChlorideSolution, HeavyMetalsRemovedRareEarthChlorideSolution, HeavyRareEarthSolution, MediumRareEarthSolution, LightRareEarthSolution,
+            LanthanumSolution, LanthanumOxalateHydrate,
+            NeodymiumSolution, NeodymiumOxalateHydrate,
+            SamariumSolution, SamariumOxalateHydrate,
+            EuropiumSolution, EuropiumOxalateHydrate,
+            LutetiumSolution, LutetiumOxalateHydrate,
+            YttriumSolution, YttriumOxalateHydrate,
+//            LanthanumSolution, LanthanumOxalateHydrate,
+//            LanthanumSolution, LanthanumOxalateHydrate,
+//            LanthanumSolution, LanthanumOxalateHydrate,
+//            LanthanumSolution, LanthanumOxalateHydrate,
+//            LanthanumSolution, LanthanumOxalateHydrate,
+//            LanthanumSolution, LanthanumOxalateHydrate,
+//            LanthanumSolution, LanthanumOxalateHydrate,
+            IronHydroxide, LeadHydroxide, ThoriumHydroxide, AluminiumHydroxide, CopperSulfide, LeadSulfide,
+            P507, RawP507, P204, PhosphorusOxychloride, Di2EthylhexylPhosphorylChloride, Bis2EthylhexylPhosphite, Chlorooctane
+                    ;
     public static void init() {
         FluixCrystal = new Material.Builder(GTTCore.id("fluix_crystal"))
                 .gem()
                 .dust()
-                .color(0x791399).secondaryColor(0x995399).iconSet(CERTUS)
+                .color(0x995399).secondaryColor(0xb67eb7).iconSet(CERTUS)
                 .appendFlags(EXT_METAL, NO_SMELTING, NO_SMASHING, CRYSTALLIZABLE, DISABLE_DECOMPOSITION)
                 .components(CertusQuartz, 1, Redstone, 1, NetherQuartz, 1)
                 .buildAndRegister();
@@ -370,15 +390,15 @@ public class GTTMaterials {
                 .flags(GENERATE_PLATE, GENERATE_ROD)
                 .buildAndRegister();
         RawBeer = new Material.Builder(GTTCore.id("raw_beer"))
-                .color(0xa9a979).secondaryColor(0x595939)
+                .color(0xc9c979).secondaryColor(0xa9a969)
                 .liquid()
                 .buildAndRegister();
         Beer = new Material.Builder(GTTCore.id("beer"))
-                .color(0xc9c979).secondaryColor(0x999979)
+                .color(0xe9e979).secondaryColor(0xa9a969)
                 .liquid()
                 .buildAndRegister();
 
-        //region brine
+        //region Brine Line
         AcidicBromineSolution = new Material.Builder(GTTCore.id("acidic_bromine_solution"))
                 .liquid()
                 .color(0xc49b52)
@@ -452,6 +472,268 @@ public class GTTMaterials {
                 .components(Carbon, 7, Hydrogen, 8, Oxygen, 2)
                 .buildAndRegister();
 
+        //region Lanthanide Group Line
+        SodiumSulfite = new Material.Builder(GTTCore.id("sodium_sulfite"))
+                .dust()
+                .components(Sodium, 2, Sulfur, 1, Oxygen, 3)
+                .buildAndRegister();
+        OxalicAcid = new Material.Builder(GTTCore.id("oxalic_acid"))
+                .color(0xa7ffd1)
+                .liquid()
+                .components(Hydrogen, 2, Carbon, 2, Oxygen, 4)
+                .buildAndRegister();
+        EthyleneGlycol = new Material.Builder(GTTCore.id("ethylene_glycol"))
+                .color(0xffc3b3)
+                .liquid()
+                .components(Hydrogen, 2, Carbon, 2, Oxygen, 4)
+                .buildAndRegister();
+        EthyleneOxide = new Material.Builder(GTTCore.id("ethylene_oxide"))
+                .color(0xc8d1ff)
+                .liquid()
+                .components(Carbon, 2, Hydrogen, 4, Oxygen, 1)
+                .buildAndRegister();
+        RoastedRareEarth = new Material.Builder(GTTCore.id("roasted_rare_earth"))
+                .dust()
+                .color(0xc6ab67).secondaryColor(0xba775d)
+                .flags(DISABLE_DECOMPOSITION)
+                .components(RareEarth, 1)
+                .buildAndRegister();
+        LowCeriumContentRareEarthChlorideSolution = new Material.Builder(GTTCore.id("low_cerium_content_rare_earth_chloride_solution"))
+                .color(0xa9da72)
+                .liquid()
+                .flags(DISABLE_DECOMPOSITION)
+                .components(RareEarth, 1, Chlorine, 1)
+                .buildAndRegister();
+        CeriumSolution = new Material.Builder(GTTCore.id("cerium_solution"))
+                .color(0xd9484f)
+                .liquid()
+                .flags(DISABLE_DECOMPOSITION)
+                .buildAndRegister();
+        DefluorinatedCeriumSolution = new Material.Builder(GTTCore.id("defluorinated_cerium_solution"))
+                .color(0xd96d4f)
+                .liquid()
+                .flags(DISABLE_DECOMPOSITION)
+                .buildAndRegister();
+        OxidizedCeriumSolution = new Material.Builder(GTTCore.id("oxidized_cerium_solution"))
+                .color(0xd98c52)
+                .liquid()
+                .flags(DISABLE_DECOMPOSITION)
+                .buildAndRegister();
+        RawCeriumOxide = new Material.Builder(GTTCore.id("raw_cerium_oxide"))
+                .color(0xb6932c)
+                .dust()
+                .flags(DISABLE_DECOMPOSITION)
+                .components(Cerium, 1, Oxygen, 2)
+                .buildAndRegister();
+        WashedCeriumOxide = new Material.Builder(GTTCore.id("washed_cerium_oxide"))
+                .color(0xcda630)
+                .dust()
+                .flags(DISABLE_DECOMPOSITION)
+                .components(Cerium, 1, Oxygen, 2)
+                .buildAndRegister();
+        CeriumOxide = new Material.Builder(GTTCore.id("cerium_oxide"))
+                .color(0xe8dd3c)
+                .dust()
+                .components(Cerium, 1, Oxygen, 2)
+                .buildAndRegister();
+        CeriumWaste = new Material.Builder(GTTCore.id("cerium_waste"))
+                .color(0x494d6e)
+                .liquid()
+                .components()
+                .buildAndRegister();
+        CeriumContainingResidue = new Material.Builder(GTTCore.id("cerium_containing_residue"))
+                .color(0x6e4047)
+                .dust()
+                .flags(DISABLE_DECOMPOSITION)
+                .buildAndRegister();
+        PurifiedRareEarthChlorideSolution = new Material.Builder(GTTCore.id("purified_rare_earth_chloride_solution"))
+                .color(0x6fd983)
+                .liquid()
+                .flags(DISABLE_DECOMPOSITION)
+                .buildAndRegister();
+        HeavyMetalsRemovedRareEarthChlorideSolution = new Material.Builder(GTTCore.id("heavy_metals_removed_rare_earth_chloride_solution"))
+                .color(0x87ff9b)
+                .liquid()
+                .flags(DISABLE_DECOMPOSITION)
+                .buildAndRegister();
+        AluminiumChloride = new Material.Builder(GTTCore.id("aluminum_chloride"))
+                .color(0x74caff)
+                .dust()
+                .components(Aluminium, 1, Chlorine, 3)
+                .buildAndRegister();
+        AluminiumFluoride = new Material.Builder(GTTCore.id("aluminium_fluoride"))
+                .color(0xd698ff)
+                .dust()
+                .components(Aluminium, 1, Fluorine, 3)
+                .buildAndRegister();
+        PotassiumManganate = new Material.Builder(GTTCore.id("potassium_manganate"))
+                .color(0xffb5b2)
+                .dust()
+                .components(Potassium, 2, Manganese, 1, Oxygen, 4)
+                .buildAndRegister();
+        PotassiumPermanganate = new Material.Builder(GTTCore.id("potassium_permanganate"))
+                .color(0xa442b3)
+                .dust()
+                .components(Potassium, 1, Manganese, 1, Oxygen, 4)
+                .buildAndRegister();
+        SodiumChlorate = new Material.Builder(GTTCore.id("sodium_chlorate"))
+                .color(0xa0b300)
+                .dust()
+                .components(Sodium, 1, Chlorine, 1, Oxygen, 3)
+                .buildAndRegister();
+        IronHydroxide = new Material.Builder(GTTCore.id("iron_hydroxide"))
+                .color(0xcf7c64)
+                .dust()
+                .components(Iron, 1, Hydrogen, 3, Oxygen, 3)
+                .buildAndRegister()
+                .setFormula("Fe(OH)3");
+        LeadHydroxide = new Material.Builder(GTTCore.id("lead_hydroxide"))
+                .color(0x817ccf)
+                .dust()
+                .components(Lead, 1, Hydrogen, 2, Oxygen, 2)
+                .buildAndRegister()
+                .setFormula("Pb(OH)2");
+        ThoriumHydroxide = new Material.Builder(GTTCore.id("thorium_hydroxide"))
+                .color(0x578c74)
+                .dust()
+                .components(Thorium, 1, Hydrogen, 4, Oxygen, 4)
+                .buildAndRegister()
+                .setFormula("Th(OH)4");
+        AluminiumHydroxide = new Material.Builder(GTTCore.id("aluminium_sulfide"))
+                .color(0xbbc353)
+                .dust()
+                .components(Aluminium, 1, Hydrogen, 3, Oxygen, 3)
+                .buildAndRegister()
+                .setFormula("Th(OH)3");
+        CopperSulfide = new Material.Builder(GTTCore.id("copper_sulfide"))
+                .color(0xc27500)
+                .dust()
+                .components(Copper, 1, Sulfur, 1)
+                .buildAndRegister();
+        LeadSulfide = new Material.Builder(GTTCore.id("zinc_hydroxide"))
+                .color(0xc281bd)
+                .dust()
+                .components(Lead, 1, Sulfur, 1)
+                .buildAndRegister();
+        RawP507 = new Material.Builder(GTTCore.id("raw_p_507"))
+                .color(0xaea34e)
+                .liquid()
+                .components(Carbon, 16, Hydrogen, 35, Oxygen, 3, Phosphorus, 1)
+                .buildAndRegister();
+        P507 = new Material.Builder(GTTCore.id("p_507"))
+                .color(0xd4c75f)
+                .liquid()
+                .components(Carbon, 16, Hydrogen, 35, Oxygen, 3, Phosphorus, 1)
+                .buildAndRegister();
+        P204 = new Material.Builder(GTTCore.id("p_204"))
+                .color(0xb68cd4)
+                .liquid()
+                .components(Carbon, 16, Hydrogen, 35, Oxygen, 4, Phosphorus, 1)
+                .buildAndRegister();
+        Bis2EthylhexylPhosphite = new Material.Builder(GTTCore.id("bis_2_ethylhexyl_phosphite"))
+                .color(0x600200)
+                .liquid()
+                .components(Carbon, 16, Hydrogen, 35, Oxygen, 3, Phosphorus, 1)
+                .buildAndRegister();
+        Chlorooctane = new Material.Builder(GTTCore.id("chlorooctane"))
+                .color(0x485e00)
+                .liquid()
+                .components(Carbon, 8, Hydrogen, 17, Chlorine, 1)
+                .buildAndRegister();
+        PhosphorusOxychloride = new Material.Builder(GTTCore.id("phosphorus_oxychloride"))
+                .color(0x49c09e)
+                .liquid()
+                .components(Phosphorus, 1, Oxygen, 1, Chlorine, 3)
+                .buildAndRegister();
+        Di2EthylhexylPhosphorylChloride = new Material.Builder(GTTCore.id("di_2_ethylhexyl_phosphoryl_chloride"))
+                .color(0x5c69bf)
+                .liquid()
+                .components(Carbon, 16, Hydrogen, 34, Oxygen, 3, Phosphorus, 1, Chlorine, 1)
+                .buildAndRegister();
+        HeavyRareEarthSolution = new Material.Builder(GTTCore.id("heavy_rare_earth_solution"))
+                .color(0xb4ff86)
+                .liquid()
+                .flags(DISABLE_DECOMPOSITION)
+                .buildAndRegister();
+        MediumRareEarthSolution = new Material.Builder(GTTCore.id("medium_rare_earth_solution"))
+                .color(0x74ffa6)
+                .liquid()
+                .flags(DISABLE_DECOMPOSITION)
+                .buildAndRegister();
+        LightRareEarthSolution = new Material.Builder(GTTCore.id("light_rare_earth_solution"))
+                .color(0x87ffeb)
+                .liquid()
+                .flags(DISABLE_DECOMPOSITION)
+                .buildAndRegister();
+
+
+        LanthanumSolution = new Material.Builder(GTTCore.id("lanthanum_solution"))
+               .color(0xd17d50)
+               .liquid()
+               .flags(DISABLE_DECOMPOSITION)
+               .buildAndRegister();
+        LanthanumOxalateHydrate = new Material.Builder(GTTCore.id("lanthanum_oxalate_hydrate"))
+               .color(0xd17d50)
+               .dust()
+               .components(Lanthanum, 2, Carbon, 6, Oxygen, 12)
+               .buildAndRegister();
+        NeodymiumSolution = new Material.Builder(GTTCore.id("neodymium_solution"))
+               .color(0x6c5863)
+               .liquid()
+               .flags(DISABLE_DECOMPOSITION)
+               .buildAndRegister();
+        NeodymiumOxalateHydrate = new Material.Builder(GTTCore.id("neodymium_oxalate_hydrate"))
+               .color(0x6c5863)
+               .dust()
+               .components(Neodymium, 2, Carbon, 6, Oxygen, 12)
+               .buildAndRegister();
+        SamariumSolution = new Material.Builder(GTTCore.id("samarium_solution"))
+               .color(0xc2c289)
+               .liquid()
+               .flags(DISABLE_DECOMPOSITION)
+               .buildAndRegister();
+        SamariumOxalateHydrate = new Material.Builder(GTTCore.id("samarium_oxalate_hydrate"))
+                .color(0xc2c289)
+                .dust()
+                .components(Samarium, 2, Carbon, 6, Oxygen, 12)
+                .buildAndRegister();
+        EuropiumSolution = new Material.Builder(GTTCore.id("samarium_solution"))
+                .color(0x20FFFF)
+                .liquid()
+                .flags(DISABLE_DECOMPOSITION)
+                .buildAndRegister();
+        EuropiumOxalateHydrate = new Material.Builder(GTTCore.id("europium_oxalate_hydrate"))
+                .color(0x20FFFF)
+                .dust()
+                .components(Europium, 2, Carbon, 6, Oxygen, 12)
+                .buildAndRegister();
+        LutetiumSolution = new Material.Builder(GTTCore.id("lutetium_solution"))
+                .color(0x00ccff)
+                .liquid()
+                .flags(DISABLE_DECOMPOSITION)
+                .buildAndRegister();
+        LutetiumOxalateHydrate = new Material.Builder(GTTCore.id("lutetium_oxalate_hydrate"))
+                .color(0x00ccff)
+                .dust()
+                .components(Lutetium, 2, Carbon, 6, Oxygen, 12)
+                .buildAndRegister();
+        YttriumSolution = new Material.Builder(GTTCore.id("yttrium_solution"))
+                .color(0x7d8072)
+                .liquid()
+                .flags(DISABLE_DECOMPOSITION)
+                .buildAndRegister();
+        YttriumOxalateHydrate = new Material.Builder(GTTCore.id("yttrium_oxalate_hydrate"))
+                .color(0x7d8072)
+                .dust()
+                .components(Yttrium, 2, Carbon, 6, Oxygen, 12)
+                .buildAndRegister();
+
+
+
+
+
+        //endregion
+
         ingot.setIgnored(AndesiteAlloy, (Supplier<? extends ItemLike>) AllItems.ANDESITE_ALLOY);
         ingot.setIgnored(Desh, ModItems.DESH_INGOT);
         ingot.setIgnored(Ostrum, ModItems.OSTRUM_INGOT);
@@ -468,16 +750,10 @@ public class GTTMaterials {
         rawOre.setIgnored(Desh, ModItems.RAW_DESH);
         rawOre.setIgnored(Ostrum, ModItems.RAW_OSTRUM);
         rawOre.setIgnored(Calorite, ModItems.RAW_CALORITE);
-        /*oreDeepslate.setIgnored(Desh, ModItems.DEEPSLATE_DESH_ORE);
-        oreDeepslate.setIgnored(Desh, ModItems.DEEPSLATE_OSTRUM_ORE);
-        oreDeepslate.setIgnored(Desh, ModItems.DEEPSLATE_CALORITE_ORE);
-        oreDeepslate.setIgnored(Desh, ModItems.DEEPSLATE_ICE_SHARD_ORE);
-        ore.setIgnored(Desh, ModItems.ORE);
-        oreDeepslate.setIgnored(Desh, ModItems.DEEPSLATE_OSTRUM_ORE);
-        oreDeepslate.setIgnored(Desh, ModItems.DEEPSLATE_CALORITE_ORE);
-        oreDeepslate.setIgnored(Desh, ModItems.DEEPSLATE_ICE_SHARD_ORE);*/
         gem.setIgnored(IceShard, ModItems.ICE_SHARD);
-        //block.setIgnored(AndesiteAlloy, AllBlocks.ANDESITE_ALLOY_BLOCK.asItem());
+        gem.setIgnored(CertusQuartz, AEItems.CERTUS_QUARTZ_CRYSTAL);
+        dust.setIgnored(CertusQuartz, AEItems.CERTUS_QUARTZ_DUST);
+        block.setIgnored(CertusQuartz, AEBlocks.QUARTZ_BLOCK);
         gem.setIgnored(FluixCrystal, AEItems.FLUIX_CRYSTAL);
         dust.setIgnored(FluixCrystal, AEItems.FLUIX_DUST);
         block.setIgnored(FluixCrystal, AEBlocks.FLUIX_BLOCK);

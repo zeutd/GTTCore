@@ -17,10 +17,6 @@ import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 public class GregTechRecipeRemoval {
     public static void init(Consumer<RecipeFilter> provider) {
         provider.accept(createOutputFilter(GTItems.RESISTOR));
-        provider.accept(createInputFilter(ChemicalHelper.get(dust, InertMetalMixture).getItem()));
-        provider.accept(createInputFilter(ChemicalHelper.get(dust, RutheniumTetroxide).getItem()));
-        provider.accept(createInputFilter(ChemicalHelper.get(dust, IridiumMetalResidue).getItem()));
-        provider.accept(createOutputFilter(ChemicalHelper.get(dust, IridiumChloride).getItem()));
     }
     public static void initID(Consumer<ResourceLocation> provider) {
         provider.accept(new ResourceLocation("gtceu:shapeless/dust_brass"));
@@ -47,13 +43,36 @@ public class GregTechRecipeRemoval {
         provider.accept(new ResourceLocation("gtceu:assembler/phenolic_board"));
         provider.accept(new ResourceLocation("gtceu:shaped/basic_circuit_board"));
         provider.accept(new ResourceLocation("gtceu:mixer/tin_alloy"));
+
+
+
+
+
+
         provider.accept(new ResourceLocation("gtceu:centrifuge/pgs_separation"));
-        provider.accept(new ResourceLocation("gtceu:centrifuge/iridium_metal_residue_separation"));
         provider.accept(new ResourceLocation("gtceu:centrifuge/decomposition_centrifuging__platinum_sludge_residue"));
         provider.accept(new ResourceLocation("gtceu:electrolyzer/raw_platinum_separation"));
+        removeChemical(provider, "raw_palladium_separation");
+        removeChemical(provider, "inert_metal_mixture_separation");
+        removeChemical(provider, "ruthenium_tetroxide_separation");
         provider.accept(new ResourceLocation("gtceu:electrolyzer/rhodium_sulfate_separation"));
-        provider.accept(new ResourceLocation("gtceu:distillation_tower/distill_fermented_biomass"));
+        removeChemical(provider, "rarest_metal_mixture_separation");
+        provider.accept(new ResourceLocation("gtceu:centrifuge/iridium_metal_residue_separation"));
+        removeChemical(provider, "iridium_chloride_separation");
         provider.accept(new ResourceLocation("gtceu:distillation_tower/acidic_osmium_solution_separation"));
+
+
+
+
+
+
+        provider.accept(new ResourceLocation("gtceu:centrifuge/rare_earth_separation"));
+    }
+
+    private static void removeChemical(Consumer<ResourceLocation> provider, String location){
+        provider.accept(new ResourceLocation("gtceu:chemical_reactor/%s".formatted(location)));
+        provider.accept(new ResourceLocation("gtceu:large_chemical_reactor/%s".formatted(location)));
+        provider.accept(new ResourceLocation("gtceu:chemical_plant/%s".formatted(location)));
     }
 
     private static RecipeFilter createOutputFilter(ItemLike output){
@@ -77,9 +96,4 @@ public class GregTechRecipeRemoval {
         filter.list.add(new InputFilter(new IngredientMatch(Ingredient.of(input), false)));
         return filter;
     }
-//
-//    private static final String[] chemicalReactors = new String[]{"chemical_reactor", "large_chemical_reactor", "chemical_plant"};
-//    private static void removeChemicalRecipe(Consumer<ResourceLocation> provider, String id){
-//
-//    }
 }

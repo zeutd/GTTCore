@@ -23,9 +23,6 @@ import static com.gregtechceu.gtceu.api.GTValues.ULV;
 
 public class GTTCovers {
 
-    static{
-
-    }
     public static CoverDefinition register(ResourceLocation id, CoverDefinition.CoverBehaviourProvider behaviorCreator,
                                            Supplier<Supplier<ICoverRenderer>> coverRenderer) {
         var definition = new CoverDefinition(id, behaviorCreator, coverRenderer);
