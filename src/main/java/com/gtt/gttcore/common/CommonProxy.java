@@ -7,10 +7,10 @@ import com.gregtechceu.gtceu.api.data.chemical.material.event.PostMaterialEvent;
 import com.gregtechceu.gtceu.api.machine.MachineDefinition;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
 import com.gregtechceu.gtceu.data.recipe.event.CraftingComponentModificationEvent;
+import com.gtt.gttcore.GTTConfigHolder;
 import com.gtt.gttcore.GTTCore;
 import com.gtt.gttcore.common.data.*;
 import com.gtt.gttcore.common.data.recipes.GTTRecipeTypes;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
@@ -33,6 +33,7 @@ public class CommonProxy {
         modEventBus.addGenericListener(GTRecipeType.class, this::registerRecipeTypes);
         modEventBus.addGenericListener(MachineDefinition.class, this::registerMachines);
         REGISTRATE.registerEventListeners(modEventBus);
+        GTTConfigHolder.init();
         // Most other events are fired on Forge"s bus.
         // If we want to use annotations to register event listeners,
         // we need to register our object like this!

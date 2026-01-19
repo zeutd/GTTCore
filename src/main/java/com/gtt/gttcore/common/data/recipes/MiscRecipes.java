@@ -1,12 +1,10 @@
 package com.gtt.gttcore.common.data.recipes;
 
-import appeng.core.definitions.AEBlocks;
-import appeng.core.definitions.AEItems;
+import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.gregtechceu.gtceu.api.data.chemical.material.stack.MaterialEntry;
-
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.api.data.tag.TagUtil;
 import com.gregtechceu.gtceu.common.data.*;
@@ -23,6 +21,7 @@ import com.simibubi.create.AllBlocks;
 import com.simibubi.create.AllItems;
 import com.simibubi.create.AllTags;
 import net.minecraft.data.recipes.FinishedRecipe;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -34,7 +33,8 @@ import java.util.stream.Stream;
 
 import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
-import static com.gregtechceu.gtceu.common.data.GCYMBlocks.*;
+import static com.gregtechceu.gtceu.common.data.GCYMBlocks.CASING_INDUSTRIAL_STEAM;
+import static com.gregtechceu.gtceu.common.data.GCYMBlocks.CRUSHING_WHEELS;
 import static com.gregtechceu.gtceu.common.data.GTBlocks.*;
 import static com.gregtechceu.gtceu.common.data.GTItems.*;
 import static com.gregtechceu.gtceu.common.data.GTMachines.*;
@@ -44,16 +44,16 @@ import static com.gregtechceu.gtceu.common.data.machines.GTMultiMachines.PRIMITI
 import static com.gregtechceu.gtceu.data.recipe.GTCraftingComponents.*;
 import static com.gtt.gttcore.common.data.GTTBlocks.*;
 import static com.gtt.gttcore.common.data.GTTItems.*;
-import static com.gtt.gttcore.common.data.GTTMachines.*;
+import static com.gtt.gttcore.common.data.GTTMachines.STEAM_CENTRIFUGE;
+import static com.gtt.gttcore.common.data.GTTMachines.STEAM_MIXER;
 import static com.gtt.gttcore.common.data.GTTMaterials.*;
 import static com.gtt.gttcore.common.data.GTTMultiMachines.*;
-import static com.gtt.gttcore.common.data.recipes.GTTRecipeTypes.*;
+import static com.gtt.gttcore.common.data.recipes.GTTRecipeTypes.SUPERCRITICAL_STEAM_TURBINE_FUELS;
 
 public class MiscRecipes {
     public static void init(Consumer<FinishedRecipe> provider) {
         registerMachineRecipes(provider);
-        registerAE2Recipes(provider);
-        CHEMICAL_RECIPES.recipeBuilder("ultra_high_molecular_weight_polyethylene")
+        CHEMICAL_RECIPES.recipeBuilder(GTTCore.id("ultra_high_molecular_weight_polyethylene"))
                 .inputFluids(Ethylene.getFluid(144))
                 .notConsumable(dust, ZieglerNattaCatalyst)
                 .outputFluids(UltraHighMolecularWeightPolyethylene.getFluid(216))
@@ -61,26 +61,26 @@ public class MiscRecipes {
                 .EUt(VA[2])
                 .save(provider);
         for(int i = 0; i < PACKAGED_CIRCUITS_ARRAY.length; i++){
-            PACKER_RECIPES.recipeBuilder(PACKAGED_CIRCUITS_ARRAY[i].getId().getPath())
+            PACKER_RECIPES.recipeBuilder(GTTCore.id(PACKAGED_CIRCUITS_ARRAY[i].getId().getPath()))
                     .inputItems(CustomTags.CIRCUITS_ARRAY[i])
                     .outputItems(PACKAGED_CIRCUITS_ARRAY[i].get())
                     .duration(20)
                     .EUt(VH[0])
                     .save(provider);
         }
-        ASSEMBLER_RECIPES.recipeBuilder("casing_iridium_reinforced").EUt(16).inputItems(plate, Iridium, 6)
+        ASSEMBLER_RECIPES.recipeBuilder(GTTCore.id("casing_iridium_reinforced")).EUt(16).inputItems(plate, Iridium, 6)
                 .inputItems(frameGt, Osmiridium).circuitMeta(6)
                 .outputItems(GTTBlocks.CASING_IRIDIUM_REINFORCED.asStack(ConfigHolder.INSTANCE.recipes.casingsPerCraft))
                 .duration(50).save(provider);
-        ASSEMBLER_RECIPES.recipeBuilder("casing_lead_radiation_proof").EUt(16).inputItems(plate, Lead, 6)
+        ASSEMBLER_RECIPES.recipeBuilder(GTTCore.id("casing_lead_radiation_proof")).EUt(16).inputItems(plate, Lead, 6)
                 .inputItems(frameGt, Steel).circuitMeta(6)
                 .outputItems(GTTBlocks.CASING_LEAD_RADIATION_PROOF.asStack(ConfigHolder.INSTANCE.recipes.casingsPerCraft))
                 .duration(50).save(provider);
-        ASSEMBLER_RECIPES.recipeBuilder("casing_atomic").EUt(16).inputItems(plate, AtomicSteel, 6)
+        ASSEMBLER_RECIPES.recipeBuilder(GTTCore.id("casing_atomic")).EUt(16).inputItems(plate, AtomicSteel, 6)
                 .inputItems(frameGt, NaquadahAlloy).circuitMeta(6)
                 .outputItems(GCYMBlocks.CASING_ATOMIC.asStack(ConfigHolder.INSTANCE.recipes.casingsPerCraft))
                 .duration(50).save(provider);
-        ASSEMBLER_RECIPES.recipeBuilder("casing_low_neutron_absorption").EUt(16).inputItems(plate, Zirconium, 6)
+        ASSEMBLER_RECIPES.recipeBuilder(GTTCore.id("casing_low_neutron_absorption")).EUt(16).inputItems(plate, Zirconium, 6)
                 .inputItems(frameGt, Zirconium).circuitMeta(6)
                 .outputItems(CASING_LOW_NEUTRON_ABSORPTION.asStack(ConfigHolder.INSTANCE.recipes.casingsPerCraft))
                 .duration(50).save(provider);
@@ -89,40 +89,62 @@ public class MiscRecipes {
                 "PIP", 'P', new MaterialEntry(TagPrefix.plate, Zirconium), 'F',
                 new MaterialEntry(TagPrefix.frameGt, GTMaterials.Zirconium), 'I',
                 new MaterialEntry(TagPrefix.pipeNormalFluid, GTMaterials.Zirconium));
-        FLUID_SOLIDFICATION_RECIPES.recipeBuilder("lead_glass").EUt(16)
+        FLUID_SOLIDFICATION_RECIPES.recipeBuilder(GTTCore.id("lead_glass")).EUt(16)
                 .inputItems(Tags.Blocks.GLASS)
                 .inputFluids(Lead.getFluid(L * 2))
                 .duration(50).save(provider);
-        CENTRIFUGE_RECIPES.recipeBuilder("depleted_uranium")
+        CENTRIFUGE_RECIPES.recipeBuilder(GTTCore.id("depleted_uranium"))
                 .EUt(VA[EV])
                 .inputItems(dust, DepletedUranium238)
                 .outputItems(dustTiny, Plutonium239, 6)
                 .outputItems(dustTiny, Uranium238, 1)
                 .outputItems(dustTiny, Neptunium, 2)
                 .duration(400).save(provider);
-        CENTRIFUGE_RECIPES.recipeBuilder("depleted_plutonium")
+        CENTRIFUGE_RECIPES.recipeBuilder(GTTCore.id("depleted_plutonium"))
                 .EUt(VA[EV])
                 .inputItems(dust, DepletedPlutonium239)
                 .outputItems(dustTiny, Americium, 6)
                 .outputItems(dustTiny, Plutonium239, 1)
                 .outputItems(dustTiny, Plutonium241, 2)
                 .duration(400).save(provider);
-        CENTRIFUGE_RECIPES.recipeBuilder("depleted_thorium")
+        CENTRIFUGE_RECIPES.recipeBuilder(GTTCore.id("depleted_thorium"))
                 .EUt(VA[EV])
                 .inputItems(dust, DepletedThorium)
                 .outputItems(dustTiny, Polonium, 6)
                 .outputItems(dustTiny, Thorium, 1)
                 .outputItems(dustTiny, Radium, 2)
                 .duration(400).save(provider);
-        SUPERCRITICAL_STEAM_TURBINE_FUELS.recipeBuilder("supercritical_steam")
+        SUPERCRITICAL_STEAM_TURBINE_FUELS.recipeBuilder(GTTCore.id("supercritical_steam"))
                 .inputFluids(SupercriticalSteam.getFluid(64))
                 .outputFluids(DistilledWater.getFluid(4))
                 .duration(5)
                 .EUt(-VA[ZPM])
                 .save(provider);
+
+
+
+
+
+
+
+
+
+
+
+
+
+        GAS_COLLECTOR_RECIPES.recipeBuilder(GTTCore.id("venus_air"))
+                .circuitMeta(4)
+                .outputFluids(VenusAir.getFluid(10000))
+                .dimension(new ResourceLocation("ad_astra:venus"))
+                .duration(200).EUt(64).save(provider);
+        VACUUM_RECIPES.recipeBuilder(GTTCore.id("liquid_venus_air"))
+                .inputFluids(VenusAir.getFluid(4000))
+                .outputFluids(LiquidVenusAir.getFluid(4000))
+                .duration(80).EUt(VA[EV]).save(provider);
     }
     public static void registerMachineRecipes(Consumer<FinishedRecipe> provider){
-        ASSEMBLER_RECIPES.recipeBuilder("fission_reactor_machine")
+        ASSEMBLER_RECIPES.recipeBuilder(GTTCore.id("fission_reactor_machine"))
                 .inputItems(CASING_LEAD_RADIATION_PROOF)
                 .inputItems(CustomTags.LuV_CIRCUITS, 5)
                 .inputItems(NEUTRON_REFLECTOR, 5)
@@ -131,14 +153,14 @@ public class MiscRecipes {
                 .inputItems(ELECTRIC_PISTON_IV, 10)
                 .outputItems(FISSION_REACTOR)
                 .EUt(VA[IV]).duration(200).save(provider);
-        ASSEMBLER_RECIPES.recipeBuilder("huge_steam_turbine_machine")
+        ASSEMBLER_RECIPES.recipeBuilder(GTTCore.id("huge_steam_turbine_machine"))
                 .inputItems(CASING_STEEL_SOLID)
                 .inputItems(gear, StainlessSteel, 5)
                 .inputItems(CustomTags.HV_CIRCUITS, 4)
                 .inputItems(ELECTRIC_PUMP_HV, 2)
                 .outputItems(HUGE_STEAM_TURBINE)
                 .EUt(VA[EV]).duration(200).save(provider);
-        ASSEMBLER_RECIPES.recipeBuilder("huge_gas_turbine_machine")
+        ASSEMBLER_RECIPES.recipeBuilder(GTTCore.id("huge_gas_turbine_machine"))
                 .inputItems(CASING_STEEL_SOLID)
                 .inputItems(CustomTags.EV_CIRCUITS, 2)
                 .inputItems(gear, TungstenSteel, 5)
@@ -146,7 +168,7 @@ public class MiscRecipes {
                 .inputItems(ELECTRIC_PUMP_EV, 2)
                 .outputItems(HUGE_GAS_TURBINE)
                 .EUt(VA[EV]).duration(200).save(provider);
-        ASSEMBLER_RECIPES.recipeBuilder("huge_plasma_turbine_machine")
+        ASSEMBLER_RECIPES.recipeBuilder(GTTCore.id("huge_plasma_turbine_machine"))
                 .inputItems(CASING_STEEL_SOLID)
                 .inputItems(CustomTags.LuV_CIRCUITS, 2)
                 .inputItems(gear, NaquadahAlloy, 5)
@@ -167,7 +189,7 @@ public class MiscRecipes {
                 new MaterialEntry(TagPrefix.gear, NaquadahAlloy), 'P', CustomTags.ZPM_CIRCUITS, 'A',
                 GTMachines.HULL[GTValues.ZPM].asStack(), 'C',
                 new MaterialEntry(TagPrefix.pipeLargeFluid, GTMaterials.NaquadahAlloy));
-        ASSEMBLER_RECIPES.recipeBuilder("fission_reactor_machine")
+        ASSEMBLER_RECIPES.recipeBuilder(GTTCore.id("fission_reactor_machine"))
                 .inputItems(CASING_LEAD_RADIATION_PROOF)
                 .inputItems(CustomTags.LuV_CIRCUITS, 5)
                 .inputItems(NEUTRON_REFLECTOR, 5)
@@ -176,27 +198,57 @@ public class MiscRecipes {
                 .inputItems(ELECTRIC_PISTON_IV, 10)
                 .outputItems(FISSION_REACTOR)
                 .EUt(VA[IV]).duration(200).save(provider);
-        ASSEMBLER_RECIPES.recipeBuilder("create_track")
-                .inputItems(AllTags.AllItemTags.SLEEPERS.tag)
-                .inputItems(Ingredient.fromValues(Stream.of(new Ingredient.TagValue(Tags.Items.NUGGETS_IRON), new Ingredient.TagValue(TagUtil.createItemTag("nuggets/zinc")))))
-                .outputItems(AllBlocks.TRACK, 16)
-                .EUt(VH[ULV])
-                .duration(100)
-                .save(provider);
+        if (GTCEu.Mods.isCreateLoaded()) {
+            ASSEMBLER_RECIPES.recipeBuilder(GTTCore.id("create_track"))
+                    .inputItems(AllTags.AllItemTags.SLEEPERS.tag)
+                    .inputItems(Ingredient.fromValues(Stream.of(new Ingredient.TagValue(Tags.Items.NUGGETS_IRON), new Ingredient.TagValue(TagUtil.createItemTag("nuggets/zinc")))))
+                    .outputItems(AllBlocks.TRACK, 16)
+                    .EUt(VH[ULV])
+                    .duration(100)
+                    .save(provider);
+            VanillaRecipeHelper.addShapedRecipe(provider, true, GTTCore.id("conveyor_from_rubber_plate"),
+                    AllItems.BELT_CONNECTOR.asStack(4),
+                    "SSS",
+                    "SSS",
+                    "   ",
+                    'S', new MaterialEntry(plate, Rubber)
+            );
+            VanillaRecipeHelper.addShapedRecipe(provider, true, GTTCore.id("conveyor_from_styrene_butadiene_rubber_plate"),
+                    AllItems.BELT_CONNECTOR.asStack(4),
+                    "SSS",
+                    "SSS",
+                    "   ",
+                    'S', new MaterialEntry(plate, StyreneButadieneRubber)
+            );
+            VanillaRecipeHelper.addShapedRecipe(provider, true, GTTCore.id("conveyor_from_silicon_rubber_plate"),
+                    AllItems.BELT_CONNECTOR.asStack(4),
+                    "SSS",
+                    "SSS",
+                    "   ",
+                    'S', new MaterialEntry(plate, SiliconeRubber)
+            );
+            VanillaRecipeHelper.addShapedRecipe(provider, true, GTTCore.id("andesite_alloy"),
+                    AllItems.ANDESITE_ALLOY.asStack(1),
+                    "BA",
+                    "AB",
+                    'A', new MaterialEntry(dust, Andesite),
+                    'B', GTTTags.andesiteAlloyable
+            );
+        }
 
 
 
 
-        BREWING_RECIPES.recipeBuilder("raw_beer")
+        BREWING_RECIPES.recipeBuilder(GTTCore.id("raw_beer"))
                 .inputItems(dust, Wheat)
                 .inputFluids(Water.getFluid(1000))
                 .outputFluids(RawBeer.getFluid(1000))
                 .save(provider);
-        FERMENTING_RECIPES.recipeBuilder("beer")
+        FERMENTING_RECIPES.recipeBuilder(GTTCore.id("beer"))
                 .inputFluids(RawBeer.getFluid(1000))
                 .outputFluids(Beer.getFluid(1000))
                 .save(provider);
-        CANNER_RECIPES.recipeBuilder("beer_bottle")
+        CANNER_RECIPES.recipeBuilder(GTTCore.id("beer_bottle"))
                 .inputFluids(Beer.getFluid(250))
                 .inputItems(Items.GLASS_BOTTLE)
                 .outputItems(BEER_BOTTLE)
@@ -207,54 +259,11 @@ public class MiscRecipes {
 
 
 
-
-
-
-
-
-
-
-        VanillaRecipeHelper.addShapedRecipe(provider, true, GTTCore.id("conveyor_from_rubber_plate"),
-                AllItems.BELT_CONNECTOR.asStack(4),
-                "SSS",
-                        "SSS",
-                        "   ",
-                'S', new MaterialEntry(plate, Rubber)
-        );
-        VanillaRecipeHelper.addShapedRecipe(provider, true, GTTCore.id("conveyor_from_styrene_butadiene_rubber_plate"),
-                AllItems.BELT_CONNECTOR.asStack(4),
-                "SSS",
-                "SSS",
-                "   ",
-                'S', new MaterialEntry(plate, StyreneButadieneRubber)
-        );
-        VanillaRecipeHelper.addShapedRecipe(provider, true, GTTCore.id("conveyor_from_silicon_rubber_plate"),
-                AllItems.BELT_CONNECTOR.asStack(4),
-                "SSS",
-                "SSS",
-                "   ",
-                'S', new MaterialEntry(plate, SiliconeRubber)
-        );
-
-
-
-
-
-
-
-        VanillaRecipeHelper.addShapedRecipe(provider, true, GTTCore.id("andesite_alloy"),
-            AllItems.ANDESITE_ALLOY.asStack(1),
-                "BA",
-                "AB",
-                'A', new MaterialEntry(dust, Andesite),
-                'B', GTTTags.andesiteAlloyable
-        );
-
         for (Material material : andesiteAlloyIngredient) {
             VanillaRecipeHelper.addShapedRecipe(provider, String.format("mortar_grind_%s", material.getName()),
                     ChemicalHelper.get(dust, material), "X", "m", 'X', new MaterialEntry(rawOre, material));
         }
-        ASSEMBLER_RECIPES.recipeBuilder("casing_stainless_evaporation")
+        ASSEMBLER_RECIPES.recipeBuilder(GTTCore.id("casing_stainless_evaporation"))
                 .inputItems(GTBlocks.CASING_STAINLESS_CLEAN.asStack(1))
                 .inputItems(wireGtDouble, AnnealedCopper, 4)
                 .inputFluids(PolyvinylChloride, L * 2)
@@ -429,7 +438,7 @@ public class MiscRecipes {
                 "PhP", "PBP", "PwP", 'P', new MaterialEntry(TagPrefix.plate, GTMaterials.Brass), 'B',
                 new MaterialEntry(frameGt, Bronze)
         );
-        ASSEMBLER_RECIPES.recipeBuilder("casing_lead_radiation_proof").EUt(16).inputItems(plate, Brass, 6)
+        ASSEMBLER_RECIPES.recipeBuilder(GTTCore.id("casing_industrial_steam")).EUt(16).inputItems(plate, Brass, 6)
                 .inputItems(frameGt, Bronze).circuitMeta(6)
                 .outputItems(CASING_INDUSTRIAL_STEAM.asStack(ConfigHolder.INSTANCE.recipes.casingsPerCraft))
                 .duration(50).save(provider);
@@ -499,181 +508,5 @@ public class MiscRecipes {
                 .inputFluids(Formaldehyde.getFluid(L * 2))
                 .outputFluids(PhenolicResin.getFluid(L * 3))
                 .save(provider);
-    }
-
-    public static void registerAE2Recipes(Consumer<FinishedRecipe> provider){
-        FORMING_PRESS_RECIPES.recipeBuilder(GTTCore.id("calculation_processor_press"))
-                .notConsumable(AEItems.CALCULATION_PROCESSOR_PRESS.asItem())
-                .inputItems(Blocks.IRON_BLOCK.asItem())
-                .outputItems(AEItems.CALCULATION_PROCESSOR_PRESS.asItem())
-                .EUt(VA[LV])
-                .duration(20 * 5)
-                .save(provider);
-        FORMING_PRESS_RECIPES.recipeBuilder(GTTCore.id("engineering_processor_press"))
-                .notConsumable(AEItems.ENGINEERING_PROCESSOR_PRESS.asItem())
-                .inputItems(Blocks.IRON_BLOCK.asItem())
-                .outputItems(AEItems.ENGINEERING_PROCESSOR_PRESS.asItem())
-                .EUt(VA[LV])
-                .duration(20 * 5)
-                .save(provider);
-        FORMING_PRESS_RECIPES.recipeBuilder(GTTCore.id("logic_processor_press"))
-                .notConsumable(AEItems.LOGIC_PROCESSOR_PRESS.asItem())
-                .inputItems(Blocks.IRON_BLOCK.asItem())
-                .outputItems(AEItems.LOGIC_PROCESSOR_PRESS.asItem())
-                .EUt(VA[LV])
-                .duration(20 * 5)
-                .save(provider);
-        FORMING_PRESS_RECIPES.recipeBuilder(GTTCore.id("silicon_processor_press"))
-                .notConsumable(AEItems.SILICON_PRESS.asItem())
-                .inputItems(Blocks.IRON_BLOCK.asItem())
-                .outputItems(AEItems.SILICON_PRESS.asItem())
-                .EUt(VA[LV])
-                .duration(20 * 5)
-                .save(provider);
-        FORMING_PRESS_RECIPES.recipeBuilder(GTTCore.id("silicon_print"))
-                .notConsumable(AEItems.SILICON_PRESS.asItem())
-                .inputItems(plate, Silicon)
-                .outputItems(AEItems.SILICON_PRINT.asItem())
-                .EUt(VA[LV])
-                .duration(20)
-                .save(provider);
-        FORMING_PRESS_RECIPES.recipeBuilder(GTTCore.id("engineering_processor_print"))
-                .notConsumable(AEItems.ENGINEERING_PROCESSOR_PRESS.asItem())
-                .inputItems(plate, Diamond)
-                .outputItems(AEItems.ENGINEERING_PROCESSOR_PRINT.asItem())
-                .EUt(VA[LV])
-                .duration(20)
-                .save(provider);
-        FORMING_PRESS_RECIPES.recipeBuilder(GTTCore.id("logic_processor_print"))
-                .notConsumable(AEItems.LOGIC_PROCESSOR_PRESS.asItem())
-                .inputItems(plate, Gold)
-                .outputItems(AEItems.LOGIC_PROCESSOR_PRINT.asItem())
-                .EUt(VA[LV])
-                .duration(20)
-                .save(provider);
-        FORMING_PRESS_RECIPES.recipeBuilder(GTTCore.id("calculation_processor_print"))
-                .notConsumable(AEItems.CALCULATION_PROCESSOR_PRESS.asItem())
-                .inputItems(plate, CertusQuartz)
-                .outputItems(AEItems.CALCULATION_PROCESSOR_PRINT.asItem())
-                .EUt(VA[LV])
-                .duration(20)
-                .save(provider);
-        FORMING_PRESS_RECIPES.recipeBuilder(GTTCore.id("calculation_processor"))
-                .inputItems(AEItems.CALCULATION_PROCESSOR_PRINT.asItem())
-                .inputItems(plate, Redstone)
-                .inputItems(AEItems.SILICON_PRINT.asItem())
-                .outputItems(AEItems.CALCULATION_PROCESSOR.asItem())
-                .EUt(VA[LV])
-                .duration(20)
-                .save(provider);
-        FORMING_PRESS_RECIPES.recipeBuilder(GTTCore.id("engineering_processor"))
-                .inputItems(AEItems.ENGINEERING_PROCESSOR_PRINT.asItem())
-                .inputItems(plate, Redstone)
-                .inputItems(AEItems.SILICON_PRINT.asItem())
-                .outputItems(AEItems.ENGINEERING_PROCESSOR.asItem())
-                .EUt(VA[LV])
-                .duration(20)
-                .save(provider);
-        FORMING_PRESS_RECIPES.recipeBuilder(GTTCore.id("logic_processor"))
-                .inputItems(AEItems.LOGIC_PROCESSOR_PRINT.asItem())
-                .inputItems(plate, Redstone)
-                .inputItems(AEItems.SILICON_PRINT.asItem())
-                .outputItems(AEItems.LOGIC_PROCESSOR.asItem())
-                .EUt(VA[LV])
-                .duration(20)
-                .save(provider);
-        ALLOY_SMELTER_RECIPES.recipeBuilder(GTTCore.id("quartz_glass"))
-                .inputItems(gem, CertusQuartz)
-                .inputItems(block, Glass)
-                .outputItems(AEBlocks.QUARTZ_GLASS.asItem())
-                .EUt(VA[LV])
-                .duration(100)
-                .save(provider);
-
-        ALLOY_SMELTER_RECIPES.recipeBuilder(GTTCore.id("quartz_vibrant_glass"))
-                .inputItems(dust, Glowstone)
-                .inputItems(AEBlocks.QUARTZ_GLASS.asItem())
-                .outputItems(AEBlocks.QUARTZ_VIBRANT_GLASS.asItem())
-                .EUt(VA[LV])
-                .duration(100)
-                .save(provider);
-        AUTOCLAVE_RECIPES.recipeBuilder(GTTCore.id("fluix_crystal"))
-                .inputItems(dust, Redstone)
-                .inputItems(dust, CertusQuartz)
-                .inputItems(dust, NetherQuartz)
-                .inputFluids(Water.getFluid(250))
-                .outputItems(gem, FluixCrystal, 2)
-                .duration(20 * 90)
-                .EUt(VA[LV])
-                .save(provider);
-        AUTOCLAVE_RECIPES.recipeBuilder(GTTCore.id("fluix_crystal_distilled"))
-                .inputItems(dust, Redstone)
-                .inputItems(dust, CertusQuartz)
-                .inputItems(dust, NetherQuartz)
-                .inputFluids(DistilledWater.getFluid(250))
-                .outputItems(gem, FluixCrystal, 2)
-                .duration(20 * 60)
-                .EUt(VA[LV])
-                .save(provider);
-        AUTOCLAVE_RECIPES.recipeBuilder(GTTCore.id("damaged_budding_quartz"))
-                .inputItems(AEItems.CERTUS_QUARTZ_CRYSTAL_CHARGED.asItem())
-                .inputItems(block, CertusQuartz)
-                .inputFluids(DistilledWater.getFluid(250))
-                .outputItems(AEBlocks.DAMAGED_BUDDING_QUARTZ.asItem())
-                .duration(20 * 60)
-                .EUt(VA[LV])
-                .save(provider);
-        AUTOCLAVE_RECIPES.recipeBuilder(GTTCore.id("chipped_budding_quartz"))
-                .inputItems(AEItems.CERTUS_QUARTZ_CRYSTAL_CHARGED.asItem())
-                .inputItems(AEBlocks.DAMAGED_BUDDING_QUARTZ.asItem())
-                .inputFluids(DistilledWater.getFluid(250))
-                .outputItems(AEBlocks.CHIPPED_BUDDING_QUARTZ.asItem())
-                .duration(20 * 60)
-                .EUt(VA[LV])
-                .save(provider);
-        AUTOCLAVE_RECIPES.recipeBuilder(GTTCore.id("flawed_budding_quartz"))
-                .inputItems(AEItems.CERTUS_QUARTZ_CRYSTAL_CHARGED.asItem())
-                .inputItems(AEBlocks.CHIPPED_BUDDING_QUARTZ.asItem())
-                .inputFluids(DistilledWater.getFluid(250))
-                .outputItems(AEBlocks.FLAWED_BUDDING_QUARTZ.asItem())
-                .duration(20 * 60)
-                .EUt(VA[LV])
-                .save(provider);
-//        IMPLOSION_RECIPES.recipeBuilder(GTTCore.id("entangled_singularity"))
-//                .inputItems(AEItems.SINGULARITY.asItem())
-//                .inputItems(dust, EnderPearl)
-//                .outputItems(AEItems.QUANTUM_ENTANGLED_SINGULARITY.asItem(), 2)
-//                .duration(20)
-//                .EUt(VA[LV])
-//                .save(provider);
-//        IMPLOSION_RECIPES.recipeBuilder(GTTCore.id("entangled_singularity_from_pearl"))
-//                .inputItems(AEItems.SINGULARITY.asItem())
-//                .inputItems(gem, EnderPearl)
-//                .outputItems(AEItems.QUANTUM_ENTANGLED_SINGULARITY.asItem(), 2)
-//                .duration(20)
-//                .EUt(VA[LV])
-//                .save(provider);
-        MACERATOR_RECIPES.recipeBuilder(GTTCore.id("sky_dust"))
-                .inputItems(AEBlocks.SKY_STONE_BLOCK.asItem())
-                .outputItems(AEItems.SKY_DUST.asItem())
-                .EUt(VA[LV])
-                .duration(20 * 20)
-                .save(provider);
-        CENTRIFUGE_RECIPES.recipeBuilder(GTTCore.id("sky_dust_separation"))
-                .inputItems(AEItems.SKY_DUST.asItem())
-                .chancedOutput(dust, CertusQuartz, 700, 0)
-                .chancedOutput(dust, FluixCrystal, 700, 0)
-                .chancedOutput(dust, Tantalite, 700, 0)
-                .chancedOutput(dust, Iron, 2500, 0)
-                .EUt(VA[LV])
-                .duration(20 * 15)
-                .save(provider);
-        ARC_FURNACE_RECIPES.recipeBuilder(GTTCore.id("certus_quartz_charging"))
-                .inputItems(gem, CertusQuartz)
-                .outputItems(AEItems.CERTUS_QUARTZ_CRYSTAL_CHARGED.asItem())
-                .EUt(VA[LV])
-                .duration(20 * 15)
-                .save(provider);
-
     }
 }

@@ -1,10 +1,8 @@
 package com.gtt.gttcore.common.data.recipes.remove;
 
-import com.simibubi.create.Create;
 import dev.latvian.mods.kubejs.recipe.filter.IDFilter;
 import dev.latvian.mods.kubejs.recipe.filter.RecipeFilter;
 import dev.latvian.mods.kubejs.recipe.filter.TypeFilter;
-import earth.terrarium.adastra.AdAstra;
 import earth.terrarium.adastra.common.registry.ModRecipeTypes;
 import net.minecraft.resources.ResourceLocation;
 

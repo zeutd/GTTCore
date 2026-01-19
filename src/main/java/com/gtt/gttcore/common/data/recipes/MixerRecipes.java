@@ -1,5 +1,6 @@
 package com.gtt.gttcore.common.data.recipes;
 
+import com.gregtechceu.gtceu.GTCEu;
 import com.gtt.gttcore.GTTCore;
 import com.simibubi.create.AllFluids;
 import net.minecraft.data.recipes.FinishedRecipe;
@@ -17,13 +18,15 @@ import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.*;
 
 public class MixerRecipes {
     public static void init(Consumer<FinishedRecipe> provider) {
-        MIXER_RECIPES.recipeBuilder(GTTCore.id("tea"))
-                .duration(100)
-                .EUt(VA[ULV])
-                .inputItems(ItemTags.LEAVES)
-                .inputFluids(Water.getFluid(250))
-                .inputFluids(Milk.getFluid(250))
-                .outputFluids(new FluidStack(AllFluids.TEA.getSource(), 500))
-                .save(provider);
+        if (GTCEu.Mods.isCreateLoaded()) {
+            MIXER_RECIPES.recipeBuilder(GTTCore.id("tea"))
+                    .duration(100)
+                    .EUt(VA[ULV])
+                    .inputItems(ItemTags.LEAVES)
+                    .inputFluids(Water.getFluid(250))
+                    .inputFluids(Milk.getFluid(250))
+                    .outputFluids(new FluidStack(AllFluids.TEA.getSource(), 500))
+                    .save(provider);
+        }
     }
 }

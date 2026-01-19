@@ -3,6 +3,7 @@ package com.gtt.gttcore.common.data.recipes.remove;
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
 import com.gregtechceu.gtceu.common.data.GTItems;
+import com.gtt.gttcore.GTTConfigHolder;
 import dev.latvian.mods.kubejs.recipe.IngredientMatch;
 import dev.latvian.mods.kubejs.recipe.filter.*;
 import net.minecraft.resources.ResourceLocation;
@@ -19,21 +20,23 @@ public class GregTechRecipeRemoval {
         provider.accept(createOutputFilter(GTItems.RESISTOR));
     }
     public static void initID(Consumer<ResourceLocation> provider) {
-        provider.accept(new ResourceLocation("gtceu:shapeless/dust_brass"));
-        provider.accept(new ResourceLocation("gtceu:shaped/mortar_grind_steel"));
-        provider.accept(new ResourceLocation("gtceu:shaped/mortar_grind_wrought_iron"));
-        provider.accept(new ResourceLocation("gtceu:shaped/mortar_grind_iron"));
-        provider.accept(new ResourceLocation("gtceu:shaped/mortar_grind_brass"));
-        provider.accept(new ResourceLocation("gtceu:shaped/mortar_grind_bronze"));
-        provider.accept(new ResourceLocation("gtceu:shaped/mortar_grind_copper"));
-        provider.accept(new ResourceLocation("gtceu:shaped/mortar_grind_electrum"));
-        provider.accept(new ResourceLocation("gtceu:shaped/mortar_grind_lead"));
-        provider.accept(new ResourceLocation("gtceu:shaped/mortar_grind_tin"));
-        provider.accept(new ResourceLocation("gtceu:shaped/mortar_grind_gold"));
-        provider.accept(new ResourceLocation("gtceu:shaped/mortar_grind_zinc"));
-        provider.accept(new ResourceLocation("gtceu:shaped/mortar_grind_invar"));
-        provider.accept(new ResourceLocation("gtceu:shaped/mortar_grind_silver"));
-        provider.accept(new ResourceLocation("gtceu:shaped/mortar_grind_annealed_copper"));
+        if (GTCEu.Mods.isCreateLoaded()) {
+            provider.accept(new ResourceLocation("gtceu:shapeless/dust_brass"));
+            provider.accept(new ResourceLocation("gtceu:shaped/mortar_grind_steel"));
+            provider.accept(new ResourceLocation("gtceu:shaped/mortar_grind_wrought_iron"));
+            provider.accept(new ResourceLocation("gtceu:shaped/mortar_grind_iron"));
+            provider.accept(new ResourceLocation("gtceu:shaped/mortar_grind_brass"));
+            provider.accept(new ResourceLocation("gtceu:shaped/mortar_grind_bronze"));
+            provider.accept(new ResourceLocation("gtceu:shaped/mortar_grind_copper"));
+            provider.accept(new ResourceLocation("gtceu:shaped/mortar_grind_electrum"));
+            provider.accept(new ResourceLocation("gtceu:shaped/mortar_grind_lead"));
+            provider.accept(new ResourceLocation("gtceu:shaped/mortar_grind_tin"));
+            provider.accept(new ResourceLocation("gtceu:shaped/mortar_grind_gold"));
+            provider.accept(new ResourceLocation("gtceu:shaped/mortar_grind_zinc"));
+            provider.accept(new ResourceLocation("gtceu:shaped/mortar_grind_invar"));
+            provider.accept(new ResourceLocation("gtceu:shaped/mortar_grind_silver"));
+            provider.accept(new ResourceLocation("gtceu:shaped/mortar_grind_annealed_copper"));
+        }
         provider.accept(new ResourceLocation("gtceu:shaped/casing_grate_casing"));
         provider.accept(new ResourceLocation("gtceu:assembler/casing_grate_casing"));
         provider.accept(new ResourceLocation("gtceu:shapeless/coated_board_1x"));
@@ -63,7 +66,7 @@ public class GregTechRecipeRemoval {
 
 
 
-
+        //provider.accept(new ResourceLocation("gtceu:centrifuge/red_sand_separation"));
 
 
         provider.accept(new ResourceLocation("gtceu:centrifuge/rare_earth_separation"));

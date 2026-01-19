@@ -1,4 +1,4 @@
-// 1.20.1	2026-01-07T13:22:45.9007135	Registrate Provider for gttcore [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider]
+// 1.20.1	2026-01-07T19:03:45.6165572	Registrate Provider for gttcore [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider]
 307011c930f083bc3f416782a6746fac3e2adda1 assets/gttcore/blockstates/bedrock_drill.json
 c9be24b9d4ad700638f61c95427bd13baf9b85ee assets/gttcore/blockstates/chemical_plant.json
 68276e9758d78ea21aa368e57600d66ae085cb02 assets/gttcore/blockstates/creative_high_energy_laser_provider.json
@@ -110,8 +110,8 @@ e3ab39ea2678af8b2588aae1c4ff6dd4f1baa4b6 assets/gttcore/blockstates/wood_input_h
 7cb177d33e8666afea503a8b035d6c16c4453b82 assets/gttcore/blockstates/zpm_cultivator.json
 6c75aa714df8c7c5370e41888f8a3e47a6701da5 assets/gttcore/blockstates/zpm_large_fusion_reactor.json
 ba8eea4dc2407d09d7b0e71095830cd0e85ac77a assets/gttcore/blockstates/zpm_large_rotor_holder.json
-1a976667884ba91b6c987bf15ab02c298617683e assets/gttcore/lang/en_ud.json
-02da57e3dd738552dab1902a1dafe1d2fdf8abd4 assets/gttcore/lang/en_us.json
+e13502d8d19f30005bf17dbb9bbe03e1aaa3e778 assets/gttcore/lang/en_ud.json
+e26455608f8fa5e12e4fd7921da337389ba47f53 assets/gttcore/lang/en_us.json
 9c266659b005bbd4e6b5497f8088e795907befc3 assets/gttcore/models/block/lead_glass.json
 fd1fe22095a12d613deb3fdf4bc7a61636e8ece5 assets/gttcore/models/block/low_neutron_absorption_casing.json
 c670753a4bd715127934c314b0940c302f051a18 assets/gttcore/models/block/machine/bedrock_drill.json

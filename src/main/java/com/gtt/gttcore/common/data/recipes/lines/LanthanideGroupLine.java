@@ -6,8 +6,7 @@ import net.minecraft.data.recipes.FinishedRecipe;
 import java.util.function.Consumer;
 
 import static com.gregtechceu.gtceu.api.GTValues.*;
-import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.dust;
-import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.dustTiny;
+import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.*;
 import static com.gtt.gttcore.common.data.GTTMaterials.*;
@@ -16,12 +15,29 @@ import static com.gtt.gttcore.common.data.recipes.GTTRecipeTypes.PH_PURIFICATION
 
 public class LanthanideGroupLine {
     public static void init(Consumer<FinishedRecipe> provider) {
+        EXTRACTOR_RECIPES.recipeBuilder(GTTCore.id("xenotime_extraction"))
+                .inputItems(dust, Xenotime)
+                .outputItems(dust, RareEarth)
+                .outputFluids(Helium.getFluid(200))
+                .duration(64).EUt(64).save(provider);
+        EXTRACTOR_RECIPES.recipeBuilder(GTTCore.id("bastnasite_extraction"))
+                .inputItems(dust, Bastnasite)
+                .outputItems(dust, RareEarth)
+                .outputFluids(Helium.getFluid(200))
+                .duration(64).EUt(64).save(provider);
+        EXTRACTOR_RECIPES.recipeBuilder(GTTCore.id("bastnasite_extraction"))
+                .inputItems(dust, Monazite)
+                .outputItems(dust, RareEarth)
+                .outputFluids(Helium.getFluid(200))
+                .duration(64).EUt(64).save(provider);
+
+
         CHEMICAL_RECIPES.recipeBuilder(GTTCore.id("magnesia"))
                 .EUt(VA[LV])
                 .duration(20)
                 .inputFluids(Oxygen.getFluid(1000))
                 .inputItems(dust, Magnesium)
-                .outputItems(dust, Magnesia)
+                .outputItems(dust, Magnesia, 2)
                 .save(provider);
         CHEMICAL_RECIPES.recipeBuilder(GTTCore.id("oxalic_acid"))
                 .duration(20)
@@ -50,7 +66,7 @@ public class LanthanideGroupLine {
                 .inputItems(dust, SodiumHydroxide, 2)
                 .inputFluids(SulfurDioxide.getFluid(1000))
                 .outputFluids(Water.getFluid(1000))
-                .outputItems(dust, SodiumSulfite)
+                .outputItems(dust, SodiumSulfite, 2)
                 .save(provider);
         CHEMICAL_RECIPES.recipeBuilder(GTTCore.id("aluminum_chloride"))
                 .duration(20)
@@ -63,7 +79,7 @@ public class LanthanideGroupLine {
                 .EUt(VA[LV])
                 .inputItems(dust, Manganese)
                 .inputFluids(Oxygen.getFluid(2000))
-                .outputItems(dust, Pyrolusite)
+                .outputItems(dust, Pyrolusite, 3)
                 .save(provider);
         CHEMICAL_RECIPES.recipeBuilder(GTTCore.id("potassium_manganate"))
                 .duration(20)
@@ -71,15 +87,15 @@ public class LanthanideGroupLine {
                 .inputItems(dust, Pyrolusite, 2)
                 .inputItems(dust, PotassiumHydroxide, 4)
                 .inputFluids(Oxygen.getFluid(1000))
-                .outputItems(dust, PotassiumManganate)
+                .outputItems(dust, PotassiumManganate, 7)
                 .save(provider);
         CHEMICAL_RECIPES.recipeBuilder(GTTCore.id("potassium_permanganate"))
                 .duration(20)
                 .EUt(VA[LV])
                 .inputItems(dust, PotassiumManganate, 2)
                 .inputFluids(Water.getFluid(2000))
-                .outputItems(dust, PotassiumPermanganate, 2)
-                .outputItems(dust, PotassiumHydroxide, 4)
+                .outputItems(dust, PotassiumPermanganate, 1)
+                .outputItems(dust, PotassiumHydroxide, 2)
                 .outputFluids(Hydrogen.getFluid(1000))
                 .save(provider);
 
@@ -100,16 +116,16 @@ public class LanthanideGroupLine {
                 .duration(100)
                 .EUt(VA[HV])
                 .inputItems(dust, RoastedRareEarth)
-                .inputFluids(HydrochloricAcid.getFluid(1000))
-                .outputFluids(LowCeriumContentRareEarthChlorideSolution.getFluid(1000))
+                .inputFluids(HydrochloricAcid.getFluid(10000))
+                .outputFluids(LowCeriumContentRareEarthChlorideSolution.getFluid(10000))
                 .outputItems(dust, CeriumContainingResidue)
                 .save(provider);
         PH_PURIFICATION_RECIPE.recipeBuilder(GTTCore.id("rare_earth_solution_purification"))
                 .duration(500)
                 .EUt(VA[HV])
                 .inputItems(dust, Magnesia)
-                .inputFluids(LowCeriumContentRareEarthChlorideSolution.getFluid(3000))
-                .outputFluids(PurifiedRareEarthChlorideSolution.getFluid(3000))
+                .inputFluids(LowCeriumContentRareEarthChlorideSolution.getFluid(5000))
+                .outputFluids(PurifiedRareEarthChlorideSolution.getFluid(5000))
                 .outputItems(dustTiny, IronHydroxide)
                 .outputItems(dustTiny, LeadHydroxide)
                 .outputItems(dustTiny, ThoriumHydroxide)
@@ -120,17 +136,17 @@ public class LanthanideGroupLine {
                 .duration(300)
                 .EUt(VA[HV])
                 .inputItems(dust, SodiumSulfide)
-                .inputFluids(PurifiedRareEarthChlorideSolution.getFluid(3000))
-                .outputFluids(HeavyMetalsRemovedRareEarthChlorideSolution.getFluid(3000))
-                .outputItems(dustTiny, LeadSulfide)
-                .outputItems(dustTiny, CopperSulfide)
-                .outputItems(dustTiny, ZincSulfide)
+                .inputFluids(PurifiedRareEarthChlorideSolution.getFluid(5000))
+                .outputFluids(HeavyMetalsRemovedRareEarthChlorideSolution.getFluid(5000))
+                .outputItems(dustTiny, LeadSulfide, 2)
+                .outputItems(dustTiny, CopperSulfide, 2)
+                .outputItems(dustTiny, ZincSulfide, 2)
                 .outputItems(dust, Salt)
                 .save(provider);
         EXTRACTION_TANK_RECIPE.recipeBuilder(GTTCore.id("rare_earth_solution_extraction"))
                 .duration(500)
                 .EUt(VA[IV])
-                .inputFluids(HeavyMetalsRemovedRareEarthChlorideSolution.getFluid(2000))
+                .inputFluids(HeavyMetalsRemovedRareEarthChlorideSolution.getFluid(3000))
                 .outputFluids(HeavyRareEarthSolution.getFluid(1000))
                 .outputFluids(MediumRareEarthSolution.getFluid(1000))
                 .outputFluids(LightRareEarthSolution.getFluid(1000))
@@ -167,17 +183,10 @@ public class LanthanideGroupLine {
                 .outputItems(dust, RawCeriumOxide)
                 .outputFluids(CeriumWaste.getFluid(1000))
                 .save(provider);
-        CHEMICAL_BATH_RECIPES.recipeBuilder(GTTCore.id("cerium_oxide_washing"))
-                .duration(100)
-                .EUt(VA[HV])
-                .inputFluids(Water.getFluid(1000))
-                .inputItems(dust, RawCeriumOxide)
-                .outputItems(dust, WashedCeriumOxide)
-                .save(provider);
         BLAST_RECIPES.recipeBuilder(GTTCore.id("cerium_oxide_calcination"))
                 .duration(200)
                 .EUt(VA[HV])
-                .inputItems(dust, WashedCeriumOxide)
+                .inputItems(dust, RawCeriumOxide)
                 .outputItems(dust, CeriumOxide)
                 .save(provider);
 
@@ -185,14 +194,14 @@ public class LanthanideGroupLine {
 
 
 
-        CHEMICAL_RECIPES.recipeBuilder(GTTCore.id("bis_2_ethylhexyl_phosphite"))
+        LARGE_CHEMICAL_RECIPES.recipeBuilder(GTTCore.id("bis_2_ethylhexyl_phosphite"))
                 .duration(200)
                 .EUt(VA[HV])
                 .inputFluids(PhosphorusTrichloride.getFluid(1000))
                 .inputFluids(Octanol.getFluid(3000))
                 .outputFluids(Bis2EthylhexylPhosphite.getFluid(1000))
                 .outputFluids(HydrochloricAcid.getFluid(2000))
-                .outputItems(Chlorooctane.getFluid(1000))
+                .outputFluids(Chlorooctane.getFluid(1000))
                 .save(provider);
         CHEMICAL_RECIPES.recipeBuilder(GTTCore.id("raw_p_507"))
                 .duration(200)
@@ -202,7 +211,7 @@ public class LanthanideGroupLine {
                 .inputFluids(HydrochloricAcid.getFluid(250))
                 .outputFluids(RawP507.getFluid(1000))
                 .save(provider);
-        DISTILLATION_RECIPES.recipeBuilder("p_507")
+        DISTILLATION_RECIPES.recipeBuilder(GTTCore.id("p_507"))
                 .duration(200)
                 .EUt(VA[HV])
                 .inputFluids(RawP507.getFluid(10000))
@@ -244,14 +253,14 @@ public class LanthanideGroupLine {
                 .EUt(VA[HV])
                 .inputFluids(CeriumWaste.getFluid(1000))
                 .outputFluids(SulfuricAcid.getFluid(1000))
-                .outputItems(dustTiny, Iron)
-                .outputItems(dustTiny, Aluminium)
-                .outputItems(dustTiny, Lead)
-                .outputItems(dustTiny, Calcium)
-                .outputItems(dustTiny, Magnesium)
-                .outputItems(dustTiny, Barium)
-                .outputItems(dustTiny, Zinc)
-                .outputItems(dustTiny, Manganese)
+                .outputItems(dustTiny, Iron, 2)
+                .outputItems(dustTiny, Aluminium, 2)
+                .outputItems(dustTiny, Lead, 2)
+                .outputItems(dustTiny, Calcium, 2)
+                .outputItems(dustTiny, Magnesium, 2)
+                .outputItems(dustTiny, Barium, 2)
+                .outputItems(dustTiny, Zinc, 2)
+                .outputItems(dustTiny, Manganese, 2)
                 .save(provider);
 
 
@@ -286,7 +295,7 @@ public class LanthanideGroupLine {
                 .EUt(VA[HV])
                 .inputFluids(LanthanumSolution.getFluid(2000))
                 .inputFluids(OxalicAcid.getFluid(3000))
-                .outputItems(dust, LanthanumOxalateHydrate)
+                .outputItems(dust, LanthanumOxalateHydrate, 2)
                 .outputFluids(HydrochloricAcid.getFluid(2000))
                 .save(provider);
         CHEMICAL_RECIPES.recipeBuilder(GTTCore.id("neodymium_oxalate_hydrate"))
@@ -294,7 +303,7 @@ public class LanthanideGroupLine {
                 .EUt(VA[HV])
                 .inputFluids(NeodymiumSolution.getFluid(2000))
                 .inputFluids(OxalicAcid.getFluid(3000))
-                .outputItems(dust, NeodymiumOxalateHydrate)
+                .outputItems(dust, NeodymiumOxalateHydrate, 2)
                 .outputFluids(HydrochloricAcid.getFluid(2000))
                 .save(provider);
         CHEMICAL_RECIPES.recipeBuilder(GTTCore.id("samarium_oxalate_hydrate"))
@@ -302,7 +311,7 @@ public class LanthanideGroupLine {
                 .EUt(VA[HV])
                 .inputFluids(SamariumSolution.getFluid(2000))
                 .inputFluids(OxalicAcid.getFluid(3000))
-                .outputItems(dust, SamariumOxalateHydrate)
+                .outputItems(dust, SamariumOxalateHydrate, 2)
                 .outputFluids(HydrochloricAcid.getFluid(2000))
                 .save(provider);
         CHEMICAL_RECIPES.recipeBuilder(GTTCore.id("europium_oxalate_hydrate"))
@@ -310,7 +319,7 @@ public class LanthanideGroupLine {
                 .EUt(VA[HV])
                 .inputFluids(EuropiumSolution.getFluid(2000))
                 .inputFluids(OxalicAcid.getFluid(3000))
-                .outputItems(dust, EuropiumOxalateHydrate)
+                .outputItems(dust, EuropiumOxalateHydrate, 2)
                 .outputFluids(HydrochloricAcid.getFluid(2000))
                 .save(provider);
         CHEMICAL_RECIPES.recipeBuilder(GTTCore.id("lutetium_oxalate_hydrate"))
@@ -318,7 +327,7 @@ public class LanthanideGroupLine {
                 .EUt(VA[HV])
                 .inputFluids(LutetiumSolution.getFluid(2000))
                 .inputFluids(OxalicAcid.getFluid(3000))
-                .outputItems(dust, LutetiumOxalateHydrate)
+                .outputItems(dust, LutetiumOxalateHydrate, 2)
                 .outputFluids(HydrochloricAcid.getFluid(2000))
                 .save(provider);
         CHEMICAL_RECIPES.recipeBuilder(GTTCore.id("yttrium_oxalate_hydrate"))
@@ -326,7 +335,7 @@ public class LanthanideGroupLine {
                 .EUt(VA[HV])
                 .inputFluids(YttriumSolution.getFluid(2000))
                 .inputFluids(OxalicAcid.getFluid(3000))
-                .outputItems(dust, YttriumOxalateHydrate)
+                .outputItems(dust, YttriumOxalateHydrate, 2)
                 .outputFluids(HydrochloricAcid.getFluid(2000))
                 .save(provider);
     }

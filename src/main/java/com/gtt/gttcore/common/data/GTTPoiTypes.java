@@ -13,10 +13,6 @@ import java.util.Set;
 import static com.gtt.gttcore.GTTCore.LOGGER;
 
 public class GTTPoiTypes {
-
-    static{
-        LOGGER.info(GTTMultiMachines.NETHER_CAPSULE.getBlock());
-    }
     private static final Set<BlockState> NETHER_TRAVELLER_BLOCK_STATES = ImmutableList.of(GTTMultiMachines.NETHER_CAPSULE.getBlock(), GTTMultiMachines.BEDROCK_DRILL.getBlock()).stream().flatMap((p_218097_) -> p_218097_.getStateDefinition().getPossibleStates().stream()).collect(ImmutableSet.toImmutableSet());
 
     public static PoiType NETHER_TRAVELLER = register(GTTCore.id("nether_traveller"), NETHER_TRAVELLER_BLOCK_STATES, 0, 1);

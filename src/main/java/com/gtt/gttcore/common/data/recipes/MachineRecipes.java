@@ -146,7 +146,7 @@ public class MachineRecipes {
                 "CWR", "WMW", "RWC", 'C', new MaterialEntry(cableGtSingle, Tin), 'W',
                 new MaterialEntry(wireGtSingle, Tin), 'R', new MaterialEntry(rod, Iron), 'M',
                 new MaterialEntry(rod, IronMagnetic));
-        ASSEMBLER_RECIPES.recipeBuilder("electric_motor_ulv")
+        ASSEMBLER_RECIPES.recipeBuilder(GTTCore.id("electric_motor_ulv"))
                 .inputItems(cableGtSingle, Tin, 2)
                 .inputItems(rod, Iron, 2)
                 .inputItems(rod, IronMagnetic)
@@ -163,10 +163,10 @@ public class MachineRecipes {
             Material material = materialEntry.getValue();
             String name = materialEntry.getKey();
             VanillaRecipeHelper.addShapedRecipe(provider, material.equals(Rubber),
-                    String.format("conveyor_module_ulv_%s", name), CONVEYOR_MODULE_ULV.asStack(), "RRR", "MCM", "RRR",
+                    GTTCore.id(String.format("conveyor_module_ulv_%s", name)), CONVEYOR_MODULE_ULV.asStack(), "RRR", "MCM", "RRR",
                     'R', new MaterialEntry(plate, material), 'C', new MaterialEntry(cableGtSingle, RedAlloy), 'M',
                     ELECTRIC_MOTOR_ULV.asStack());
-            ASSEMBLER_RECIPES.recipeBuilder("conveyor_module_ulv_" + name)
+            ASSEMBLER_RECIPES.recipeBuilder(GTTCore.id("conveyor_module_ulv_" + name))
                     .inputItems(cableGtSingle, RedAlloy)
                     .inputItems(ELECTRIC_MOTOR_ULV, 2)
                     .inputFluids(materialEntry.getValue().getFluid(L * 6))
@@ -174,11 +174,11 @@ public class MachineRecipes {
                     .outputItems(CONVEYOR_MODULE_ULV)
                     .duration(100).EUt(VA[LV]).save(provider);
             VanillaRecipeHelper.addShapedRecipe(provider, material.equals(Rubber),
-                    String.format("electric_pump_ulv_%s", name), ELECTRIC_PUMP_ULV.asStack(), "SXR", "dPw", "RMC", 'S',
+                    GTTCore.id(String.format("electric_pump_ulv_%s", name)), ELECTRIC_PUMP_ULV.asStack(), "SXR", "dPw", "RMC", 'S',
                     new MaterialEntry(screw, Tin), 'X', new MaterialEntry(rotor, Tin), 'P',
                     new MaterialEntry(pipeNormalFluid, Bronze), 'R', new MaterialEntry(ring, material), 'C',
                     new MaterialEntry(cableGtSingle, RedAlloy), 'M', ELECTRIC_MOTOR_ULV.asStack());
-            ASSEMBLER_RECIPES.recipeBuilder("electric_pump_ulv_" + name)
+            ASSEMBLER_RECIPES.recipeBuilder(GTTCore.id("electric_pump_ulv_" + name))
                     .inputItems(cableGtSingle, RedAlloy)
                     .inputItems(pipeNormalFluid, Bronze)
                     .inputItems(screw, Tin)
@@ -188,7 +188,7 @@ public class MachineRecipes {
                     .outputItems(ELECTRIC_PUMP_ULV)
                     .duration(100).EUt(VA[LV]).save(provider);
         }
-        ASSEMBLER_RECIPES.recipeBuilder("fluid_regulator_ulv")
+        ASSEMBLER_RECIPES.recipeBuilder(GTTCore.id("fluid_regulator_ulv"))
                 .inputItems(ELECTRIC_PUMP_ULV)
                 .inputItems(CustomTags.ULV_CIRCUITS, 2)
                 .circuitMeta(1)
@@ -196,10 +196,10 @@ public class MachineRecipes {
                 .EUt(VA[LV])
                 .duration(400)
                 .save(provider);
-        VanillaRecipeHelper.addShapedRecipe(provider, true, "robot_arm_ulv", ROBOT_ARM_ULV.asStack(), "CCC", "MRM", "PXR",
+        VanillaRecipeHelper.addShapedRecipe(provider, true, GTTCore.id("robot_arm_ulv"), ROBOT_ARM_ULV.asStack(), "CCC", "MRM", "PXR",
                 'C', new MaterialEntry(cableGtSingle, RedAlloy), 'R', new MaterialEntry(rod, WroughtIron), 'M',
                 ELECTRIC_MOTOR_ULV.asStack(), 'P', ELECTRIC_PISTON_ULV.asStack(), 'X', CustomTags.ULV_CIRCUITS);
-        ASSEMBLER_RECIPES.recipeBuilder("robot_arm_ulv")
+        ASSEMBLER_RECIPES.recipeBuilder(GTTCore.id("robot_arm_ulv"))
                 .inputItems(cableGtSingle, RedAlloy, 3)
                 .inputItems(rod, WroughtIron, 2)
                 .inputItems(ELECTRIC_MOTOR_ULV, 2)
@@ -216,10 +216,7 @@ public class MachineRecipes {
         // Leaves UHV+ machine recipes to be implemented by addons.
         if (machine != null) {
             Object[] prepRecipe = prepareRecipe(machine.getTier(), Arrays.copyOf(recipe, recipe.length));
-            if (prepRecipe == null) {
-                return;
-            }
-            VanillaRecipeHelper.addShapedRecipe(provider, setMaterialInfoData, machine.getName(), machine.asStack(),
+            VanillaRecipeHelper.addShapedRecipe(provider, setMaterialInfoData, GTTCore.id(machine.getName()), machine.asStack(),
                     prepRecipe);
         }
     }

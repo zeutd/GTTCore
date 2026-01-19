@@ -97,4 +97,14 @@ public class GTTGTAddon implements IGTAddon {
     public void registerRecipeCapabilities() {
         GTTRecipeCapabilities.init();
     }
+
+    @Override
+    public void registerBedrockOreVeins() {
+        GTTBedrockOres.init();
+    }
+
+    @Override
+    public void registerFluidVeins() {
+        GTTBedrockFluids.init();
+    }
 }

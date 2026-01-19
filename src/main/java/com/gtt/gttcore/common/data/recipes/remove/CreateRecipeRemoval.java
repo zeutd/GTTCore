@@ -1,18 +1,10 @@
 package com.gtt.gttcore.common.data.recipes.remove;
 
-import com.gtt.gttcore.GTTCore;
 import com.simibubi.create.AllRecipeTypes;
 import com.simibubi.create.Create;
-import dev.latvian.mods.kubejs.recipe.ReplacementMatch;
 import dev.latvian.mods.kubejs.recipe.filter.*;
-import earth.terrarium.adastra.common.registry.ModBlocks;
-import earth.terrarium.adastra.common.registry.ModRecipeTypes;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.crafting.Recipe;
 
-import java.util.Map;
-import java.util.Objects;
-import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
 public class CreateRecipeRemoval {
@@ -45,6 +37,7 @@ public class CreateRecipeRemoval {
         provider.accept(new IDFilter(Create.asResource("crafting/materials/andesite_alloy")));
         provider.accept(new IDFilter(Create.asResource("crafting/materials/andesite_alloy_from_zinc")));
         provider.accept(new IDFilter(Create.asResource("crafting/materials/andesite_alloy_from_block")));
+        provider.accept(new IDFilter(Create.asResource("crafting/materials/electron_tube")));
 //        provider.accept(new IDFilter(Create.asResource("")));
 //        provider.accept(new IDFilter(Create.asResource("")));
 //        provider.accept(new IDFilter(Create.asResource("")));

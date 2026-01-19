@@ -2,9 +2,11 @@ package com.gtt.gttcore.common.data;
 
 import appeng.core.definitions.AEBlocks;
 import appeng.core.definitions.AEItems;
+import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags;
 import com.gregtechceu.gtceu.api.data.chemical.material.properties.*;
+import com.gregtechceu.gtceu.api.data.chemical.material.stack.MaterialStack;
 import com.gregtechceu.gtceu.api.fluids.FluidBuilder;
 import com.gregtechceu.gtceu.api.fluids.FluidState;
 import com.gregtechceu.gtceu.api.fluids.store.FluidStorageKeys;
@@ -46,9 +48,13 @@ public class GTTMaterials {
             AtomicSteel,
 
             PlatinumGroupSolution, PlatinumPalladiumSolution, AmmoniumHexachloroplatinate, PalladiumSolution, Diamminedichloropalladium, InertMetalSodiumBisulfate, RhodiumSulfateSolution, RhodiumHydroxide, ChlororhodicAcid, AmmoniumHexachlororhodate, AmmoniumHexanitrorhodium, SodiumPeroxide, RutheniumOsmiumIridiumMixture, RutheniumOsmiumIridiumMixtureSodiumPeroxide, RutheniumOsmiumSaltSolution, IridiumOxide, AmmoniumHexachloroiridate, RutheniumOsmiumOxide, RutheniumOxide, RutheniumSolution, OsmiumSolution, AmmoniumHexachlororuthenate, Tetraamminedioxidoosmiumdichloride,
+
+
             HotBrine, HotChlorinatedBrominatedBrine, HotDebrominatedBrine, HotAlkalineDebrominatedBrine, AcidicBromineSolution, ConcentratedBromineSolution, HydrogenIodide, RawBrine, DebrominatedBrine, BrominatedChlorineVapor, AcidicBromineExhaust,
+
             PhenolicResin,
 
+            Xenotime,
             OxalicAcid, EthyleneGlycol, EthyleneOxide, SodiumSulfite, AluminiumChloride, AluminiumFluoride, PotassiumManganate, PotassiumPermanganate, SodiumChlorate,
             RoastedRareEarth, LowCeriumContentRareEarthChlorideSolution, CeriumContainingResidue, CeriumSolution, DefluorinatedCeriumSolution, OxidizedCeriumSolution, RawCeriumOxide, WashedCeriumOxide, CeriumOxide, CeriumWaste, PurifiedRareEarthChlorideSolution, HeavyMetalsRemovedRareEarthChlorideSolution, HeavyRareEarthSolution, MediumRareEarthSolution, LightRareEarthSolution,
             LanthanumSolution, LanthanumOxalateHydrate,
@@ -57,15 +63,11 @@ public class GTTMaterials {
             EuropiumSolution, EuropiumOxalateHydrate,
             LutetiumSolution, LutetiumOxalateHydrate,
             YttriumSolution, YttriumOxalateHydrate,
-//            LanthanumSolution, LanthanumOxalateHydrate,
-//            LanthanumSolution, LanthanumOxalateHydrate,
-//            LanthanumSolution, LanthanumOxalateHydrate,
-//            LanthanumSolution, LanthanumOxalateHydrate,
-//            LanthanumSolution, LanthanumOxalateHydrate,
-//            LanthanumSolution, LanthanumOxalateHydrate,
-//            LanthanumSolution, LanthanumOxalateHydrate,
             IronHydroxide, LeadHydroxide, ThoriumHydroxide, AluminiumHydroxide, CopperSulfide, LeadSulfide,
-            P507, RawP507, P204, PhosphorusOxychloride, Di2EthylhexylPhosphorylChloride, Bis2EthylhexylPhosphite, Chlorooctane
+            P507, RawP507, P204, PhosphorusOxychloride, Di2EthylhexylPhosphorylChloride, Bis2EthylhexylPhosphite, Chlorooctane,
+
+
+            VenusAir, LiquidVenusAir
                     ;
     public static void init() {
         FluixCrystal = new Material.Builder(GTTCore.id("fluix_crystal"))
@@ -249,8 +251,7 @@ public class GTTMaterials {
                 .ingot()
                 .components(Trinium, 5, Iron, 3, Zirconium, 2, Naquadah, 3)
                 .flags(GENERATE_FRAME, GENERATE_PLATE)
-                .blast(b -> b.temp(7200, BlastProperty.GasTier.HIGHER)
-                        .blastStats(VA[LuV], 1000))
+                .blast(7200, BlastProperty.GasTier.HIGHER)
                 .buildAndRegister();
         //region Platinum Group Line
         PlatinumGroupSolution = new Material.Builder(GTTCore.id("platinum_group_solution"))
@@ -525,12 +526,6 @@ public class GTTMaterials {
                 .flags(DISABLE_DECOMPOSITION)
                 .components(Cerium, 1, Oxygen, 2)
                 .buildAndRegister();
-        WashedCeriumOxide = new Material.Builder(GTTCore.id("washed_cerium_oxide"))
-                .color(0xcda630)
-                .dust()
-                .flags(DISABLE_DECOMPOSITION)
-                .components(Cerium, 1, Oxygen, 2)
-                .buildAndRegister();
         CeriumOxide = new Material.Builder(GTTCore.id("cerium_oxide"))
                 .color(0xe8dd3c)
                 .dust()
@@ -599,7 +594,7 @@ public class GTTMaterials {
                 .components(Thorium, 1, Hydrogen, 4, Oxygen, 4)
                 .buildAndRegister()
                 .setFormula("Th(OH)4");
-        AluminiumHydroxide = new Material.Builder(GTTCore.id("aluminium_sulfide"))
+        AluminiumHydroxide = new Material.Builder(GTTCore.id("aluminium_hydroxide"))
                 .color(0xbbc353)
                 .dust()
                 .components(Aluminium, 1, Hydrogen, 3, Oxygen, 3)
@@ -610,7 +605,7 @@ public class GTTMaterials {
                 .dust()
                 .components(Copper, 1, Sulfur, 1)
                 .buildAndRegister();
-        LeadSulfide = new Material.Builder(GTTCore.id("zinc_hydroxide"))
+        LeadSulfide = new Material.Builder(GTTCore.id("lead_sulfide"))
                 .color(0xc281bd)
                 .dust()
                 .components(Lead, 1, Sulfur, 1)
@@ -697,7 +692,7 @@ public class GTTMaterials {
                 .dust()
                 .components(Samarium, 2, Carbon, 6, Oxygen, 12)
                 .buildAndRegister();
-        EuropiumSolution = new Material.Builder(GTTCore.id("samarium_solution"))
+        EuropiumSolution = new Material.Builder(GTTCore.id("Europium_solution"))
                 .color(0x20FFFF)
                 .liquid()
                 .flags(DISABLE_DECOMPOSITION)
@@ -727,14 +722,33 @@ public class GTTMaterials {
                 .dust()
                 .components(Yttrium, 2, Carbon, 6, Oxygen, 12)
                 .buildAndRegister();
-
-
+        Xenotime = new Material.Builder(GTTCore.id("xenotime"))
+                .dust().ore(2, 1)
+                .color(0x444b2c).secondaryColor(0x867e43).iconSet(FINE)
+                .components(RareEarth, 1, Phosphate, 1)
+                .buildAndRegister();
+        OreProperty oreProp = Xenotime.getProperty(PropertyKey.ORE);
+        oreProp.setOreByProducts(Phosphate, RareEarth);
+        oreProp.setSeparatedInto(RareEarth);
 
 
 
         //endregion
 
-        ingot.setIgnored(AndesiteAlloy, (Supplier<? extends ItemLike>) AllItems.ANDESITE_ALLOY);
+        VenusAir = new Material.Builder(GTTCore.id("venus_air"))
+                .gas()
+                .flags(DISABLE_DECOMPOSITION)
+                .color(0x737300)
+                .components(SulfurTrioxide, 68, Argon, 10)
+                .buildAndRegister();
+        LiquidVenusAir = new Material.Builder(GTTCore.id("liquid_venus_air"))
+                .liquid(new FluidBuilder().temperature(58))
+                .flags(DISABLE_DECOMPOSITION)
+                .components(SulfurTrioxide, 78, Argon, 10, Methane, 7, Ethenone, 5, Tetrafluoroethylene, 5)
+                .color(0xacac00)
+                .buildAndRegister();
+
+        if (GTCEu.Mods.isCreateLoaded()) ingot.setIgnored(AndesiteAlloy, (Supplier<? extends ItemLike>) AllItems.ANDESITE_ALLOY);
         ingot.setIgnored(Desh, ModItems.DESH_INGOT);
         ingot.setIgnored(Ostrum, ModItems.OSTRUM_INGOT);
         ingot.setIgnored(Calorite, ModItems.CALORITE_INGOT);
@@ -757,6 +771,8 @@ public class GTTMaterials {
         gem.setIgnored(FluixCrystal, AEItems.FLUIX_CRYSTAL);
         dust.setIgnored(FluixCrystal, AEItems.FLUIX_DUST);
         block.setIgnored(FluixCrystal, AEBlocks.FLUIX_BLOCK);
+
+        block.modifyMaterialAmount(FluixCrystal, 4);
     }
     public static void modify() {
         WroughtIron.addFlags(GENERATE_SMALL_GEAR);
@@ -790,5 +806,19 @@ public class GTTMaterials {
 
         InertMetalMixture.setComponents();
         InertMetalMixture.setFormula("");
+
+        Neodymium.removeProperty(PropertyKey.ORE);
+        Bastnasite.setComponents(new MaterialStack(Carbon, 1), new MaterialStack(Fluorine, 1), new MaterialStack(Oxygen, 3), new MaterialStack(RareEarth, 1));
+        Bastnasite.setFormula("?CFO3");
+        OreProperty oreProp = Bastnasite.getProperty(PropertyKey.ORE);
+        oreProp.setOreByProducts(Carbon, RareEarth);
+        oreProp.setSeparatedInto(RareEarth);
+        oreProp = Monazite.getProperty(PropertyKey.ORE);
+        oreProp.setOreByProducts(Thorium, Phosphate, RareEarth);
+        oreProp.setSeparatedInto(RareEarth);
+
+        Glowstone.setProperty(PropertyKey.ORE, new OreProperty(5, 1));
+        Glowstone.setComponents(new MaterialStack(Boron, 8), new MaterialStack(Argon, 1), new MaterialStack(Fluorine, 2), new MaterialStack(Uranium238, 2));
+        Glowstone.setFormula("B8F2ArU2");
     }
 }

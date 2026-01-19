@@ -159,7 +159,7 @@ dependencies {
     implementation(fg.deobf("net.createmod.ponder:Ponder-Forge-${minecraft_version}:${ponder_version}"))
     compileOnly(fg.deobf("dev.engine-room.flywheel:flywheel-forge-api-${minecraft_version}:${flywheel_version}"))
     runtimeOnly(fg.deobf("dev.engine-room.flywheel:flywheel-forge-${minecraft_version}:${flywheel_version}"))
-    runtimeOnly fg.deobf("dev.toma.configuration:configuration-forge-${minecraft_version}:${configuration_version}")
+    implementation fg.deobf("dev.toma.configuration:configuration-forge-${minecraft_version}:${configuration_version}")
     runtimeOnly fg.deobf("dev.architectury:architectury-forge:${architectury_version}")
     runtimeOnly fg.deobf("appeng:appliedenergistics2-forge:${ae2_version}")
     compileOnly fg.deobf("appeng:appliedenergistics2-forge:${ae2_version}")
@@ -218,17 +218,16 @@ tasks.withType(JavaCompile).configureEach {
 
 //The executeGame.bat and copyJar.bat was hidden
 tasks.register('runModpack') {
-    dependsOn jar
+    dependsOn copyJar
     doLast {
         exec {
-            commandLine "copyJar.bat", "${mod_id}-${mod_version}.jar"
             commandLine "executeGame.bat", "${mod_id}-${mod_version}.jar"
         }
     }
 }
 
 tasks.register('copyJar') {
-    dependsOn jar
+    dependsOn build
     doLast {
         exec {
             commandLine "copyJar.bat", "${mod_id}-${mod_version}.jar"

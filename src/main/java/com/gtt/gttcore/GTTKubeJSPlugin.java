@@ -1,5 +1,6 @@
 package com.gtt.gttcore;
 
+import com.gregtechceu.gtceu.GTCEu;
 import com.gtt.gttcore.common.data.recipes.GTTRecipes;
 import dev.latvian.mods.kubejs.KubeJSPlugin;
 import dev.latvian.mods.kubejs.bindings.event.ServerEvents;
@@ -48,9 +49,16 @@ public class GTTKubeJSPlugin extends KubeJSPlugin {
                             new ResourceLocation("ad_astra:glacio_deepslate_copper_ore"),
                             new ResourceLocation("ad_astra:glacio_deepslate_iron_ore"),
                             new ResourceLocation("ad_astra:glacio_deepslate_lapis_ore"),
-                            new ResourceLocation("create:zinc_ore")
+
                     }
             );
+            if (GTCEu.Mods.isCreateLoaded()) {
+                removeWorldgenEvent.removeFeatureById(GenerationStep.Decoration.UNDERGROUND_ORES,
+                        new ResourceLocation[]{
+                                new ResourceLocation("create:zinc_ore")
+                        }
+                );
+            }
             return null;
         });
     }
@@ -71,7 +79,7 @@ public class GTTKubeJSPlugin extends KubeJSPlugin {
             RecipesEventJS.instance.forEachRecipe(new ConstantFilter(true), recipe -> {
                 try {
                     int newDuration = ((Integer)recipe.get("duration"));
-                    recipe.set("duration", Math.max(newDuration/2, 1));
+                    recipe.set("duration", (int) Math.max((float) newDuration / 2 * GTTConfigHolder.INSTANCE.recipeDurationMultiplier, 1));
                 } catch (Exception err) {
                     //LOGGER.info(recipe.id + " has no duration field, skipped.");
                 }

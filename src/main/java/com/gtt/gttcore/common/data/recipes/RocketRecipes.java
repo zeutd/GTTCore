@@ -22,31 +22,31 @@ import static com.gtt.gttcore.common.data.recipes.GTTRecipeTypes.*;
 
 public class RocketRecipes {
     public static void init(Consumer<FinishedRecipe> provider) {
-        ASSEMBLER_RECIPES.recipeBuilder("steel_fuel_tank")
+        ASSEMBLER_RECIPES.recipeBuilder(GTTCore.id("steel_fuel_tank"))
                 .EUt(VA[MV])
                 .inputItems(plate, Steel, 16)
                 .inputItems(pipeSmallFluid, Steel, 2)
                 .outputItems(ModItems.STEEL_TANK)
                 .save(provider);
-        ASSEMBLER_RECIPES.recipeBuilder("desh_fuel_tank")
+        ASSEMBLER_RECIPES.recipeBuilder(GTTCore.id("desh_fuel_tank"))
                 .EUt(VA[MV])
                 .inputItems(plate, Desh, 16)
                 .inputItems(pipeSmallFluid, Desh, 2)
                 .outputItems(ModItems.DESH_TANK)
                 .save(provider);
-        ASSEMBLER_RECIPES.recipeBuilder("ostrum_fuel_tank")
+        ASSEMBLER_RECIPES.recipeBuilder(GTTCore.id("ostrum_fuel_tank"))
                 .EUt(VA[HV])
                 .inputItems(plate, Ostrum, 16)
                 .inputItems(pipeSmallFluid, Ostrum, 2)
                 .outputItems(ModItems.OSTRUM_TANK)
                 .save(provider);
-        ASSEMBLER_RECIPES.recipeBuilder("calorite_fuel_tank")
+        ASSEMBLER_RECIPES.recipeBuilder(GTTCore.id("calorite_fuel_tank"))
                 .EUt(VA[EV])
                 .inputItems(plate, Calorite, 16)
                 .inputItems(pipeSmallFluid, Calorite, 2)
                 .outputItems(ModItems.CALORITE_TANK)
                 .save(provider);
-        ROCKET_ASSEMBLER_RECIPES.recipeBuilder("rocket_t1")
+        ROCKET_ASSEMBLER_RECIPES.recipeBuilder(GTTCore.id("rocket_t1"))
                 .EUt(VA[HV])
                 .inputItems(ModItems.ROCKET_NOSE_CONE)
                 .inputItems(plate, Steel, 48)
@@ -58,7 +58,7 @@ public class RocketRecipes {
                 .inputItems(CustomTags.EV_CIRCUITS, 4)
                 .outputItems(ModItems.TIER_1_ROCKET)
                 .save(provider);
-        ROCKET_ASSEMBLER_RECIPES.recipeBuilder("rocket_t2")
+        ROCKET_ASSEMBLER_RECIPES.recipeBuilder(GTTCore.id("rocket_t2"))
                 .EUt(VA[EV])
                 .inputItems(ModItems.ROCKET_NOSE_CONE)
                 .inputItems(plate, Desh, 48)
@@ -70,7 +70,7 @@ public class RocketRecipes {
                 .inputItems(CustomTags.IV_CIRCUITS, 4)
                 .outputItems(ModItems.TIER_2_ROCKET)
                 .save(provider);
-        ROCKET_ASSEMBLER_RECIPES.recipeBuilder("rocket_t3")
+        ROCKET_ASSEMBLER_RECIPES.recipeBuilder(GTTCore.id("rocket_t3"))
                 .EUt(VA[IV])
                 .inputItems(ModItems.ROCKET_NOSE_CONE)
                 .inputItems(plate, Ostrum, 48)
@@ -83,7 +83,7 @@ public class RocketRecipes {
                 .inputItems(CustomTags.LuV_CIRCUITS, 4)
                 .outputItems(ModItems.TIER_3_ROCKET)
                 .save(provider);
-        ROCKET_ASSEMBLER_RECIPES.recipeBuilder("rocket_t4")
+        ROCKET_ASSEMBLER_RECIPES.recipeBuilder(GTTCore.id("rocket_t4"))
                 .EUt(VA[LuV])
                 .inputItems(ModItems.ROCKET_NOSE_CONE)
                 .inputItems(plate, Calorite, 48)
@@ -96,13 +96,13 @@ public class RocketRecipes {
                 .inputItems(CustomTags.ZPM_CIRCUITS, 4)
                 .outputItems(ModItems.TIER_4_ROCKET)
                 .save(provider);
-        ASSEMBLER_RECIPES.recipeBuilder("rocket_nose_cone")
+        ASSEMBLER_RECIPES.recipeBuilder(GTTCore.id("rocket_nose_cone"))
                 .EUt(VA[HV])
                 .inputItems(plate, Steel, 12)
                 .inputItems(gemFlawless, Ruby)
                 .outputItems(ModItems.ROCKET_NOSE_CONE)
                 .save(provider);
-        ASSEMBLER_RECIPES.recipeBuilder("steel_engine")
+        ASSEMBLER_RECIPES.recipeBuilder(GTTCore.id("steel_engine"))
                 .EUt(VA[HV])
                 .inputItems(plate, Steel, 12)
                 .inputItems(PUMP.get(HV))
@@ -110,7 +110,7 @@ public class RocketRecipes {
                 .inputItems(GTCraftingComponents.MOTOR.get(HV))
                 .outputItems(ModItems.STEEL_ENGINE)
                 .save(provider);
-        ASSEMBLER_RECIPES.recipeBuilder("desh_engine")
+        ASSEMBLER_RECIPES.recipeBuilder(GTTCore.id("desh_engine"))
                 .EUt(VA[HV])
                 .inputItems(plate, Desh, 12)
                 .inputItems(PUMP.get(EV))
@@ -118,7 +118,7 @@ public class RocketRecipes {
                 .inputItems(GTCraftingComponents.MOTOR.get(EV))
                 .outputItems(ModItems.DESH_ENGINE)
                 .save(provider);
-        ASSEMBLER_RECIPES.recipeBuilder("ostrum_engine")
+        ASSEMBLER_RECIPES.recipeBuilder(GTTCore.id("ostrum_engine"))
                 .EUt(VA[EV])
                 .inputItems(plate, Ostrum, 12)
                 .inputItems(PUMP.get(IV))
@@ -126,7 +126,7 @@ public class RocketRecipes {
                 .inputItems(GTCraftingComponents.MOTOR.get(IV))
                 .outputItems(ModItems.OSTRUM_ENGINE)
                 .save(provider);
-        ASSEMBLER_RECIPES.recipeBuilder("calorite_engine")
+        ASSEMBLER_RECIPES.recipeBuilder(GTTCore.id("calorite_engine"))
                 .EUt(VA[IV])
                 .inputItems(plate, Calorite, 12)
                 .inputItems(PUMP.get(LuV))
@@ -167,7 +167,7 @@ public class RocketRecipes {
                 'C', GTItems.LAPOTRON_CRYSTAL,
                 'R', new MaterialEntry(rotor, StainlessSteel)
         );
-        ASSEMBLER_RECIPES.recipeBuilder("zip_gun")
+        ASSEMBLER_RECIPES.recipeBuilder(GTTCore.id("zip_gun"))
                 .EUt(VA[MV])
                 .inputFluids(Polyethylene.getFluid(144))
                 .inputItems(pipeSmallFluid, Ostrum, 2)

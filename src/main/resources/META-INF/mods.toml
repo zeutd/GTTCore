@@ -49,12 +49,6 @@ Core mod of GregTech Tiny
         ordering = "AFTER"
         side = "BOTH"
     [[dependencies.${mod_id}]]
-        modId="create"
-        mandatory=true
-        versionRange="[6.0.0,)"
-        ordering="AFTER"
-        side="BOTH"
-    [[dependencies.${mod_id}]]
         modId="kubejs"
         mandatory=true
         versionRange="[2000,)"

@@ -6,11 +6,14 @@ import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.gui.GuiTextures;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeSerializer;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
+import com.gregtechceu.gtceu.api.recipe.RecipeHelper;
+import com.gregtechceu.gtceu.api.recipe.content.Content;
 import com.gregtechceu.gtceu.api.recipe.ingredient.FluidIngredient;
 import com.gregtechceu.gtceu.api.registry.GTRegistries;
 import com.gregtechceu.gtceu.common.data.*;
 import com.gregtechceu.gtceu.data.recipe.builder.GTRecipeBuilder;
 import com.gtt.gttcore.GTTCore;
+import com.gtt.gttcore.api.GTTRecipeHelper;
 import com.gtt.gttcore.common.data.GTTMaterials;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.item.crafting.RecipeType;
@@ -24,6 +27,7 @@ import java.util.List;
 import static com.gregtechceu.gtceu.api.GTValues.ULV;
 import static com.gregtechceu.gtceu.api.GTValues.VA;
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.*;
+import static com.gtt.gttcore.GTTCore.LOGGER;
 import static com.gtt.gttcore.common.data.GTTMaterials.P204;
 import static com.gtt.gttcore.common.data.GTTMaterials.P507;
 import static com.lowdragmc.lowdraglib.gui.texture.ProgressTexture.FillDirection.LEFT_TO_RIGHT;
@@ -36,6 +40,7 @@ public class GTTRecipeTypes {
     public static List<GTRecipeBuilder> toReRegisterCreateCutting;
     //public static List<GTRecipeBuilder> toReRegisterCreate;
     public static void init(){
+        CENTRIFUGE_RECIPES.setMaxIOSize(2, 8, 1, 8);
         CHEMICAL_RECIPES.setMaxIOSize(3, 2, 3, 2);
         BENDER_RECIPES.onRecipeBuild((recipeBuilder, provider) -> {
             recipeBuilder.EUt(Math.max(recipeBuilder.EUt().voltage() / 4, VA[ULV]), recipeBuilder.EUt().amperage());
@@ -187,15 +192,18 @@ public class GTTRecipeTypes {
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE, LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.CHEMICAL)
             .onRecipeBuild((recipeBuilder, provider) -> {
-                if (recipeBuilder.input.getOrDefault(FluidRecipeCapability.CAP, Collections.emptyList()).isEmpty()) {
-                    recipeBuilder.copy(recipeBuilder.id + "_p204")
+                if (recipeBuilder.input.get(FluidRecipeCapability.CAP).size() < 2) {
+                    GTRecipeBuilder copiedBuilder = recipeBuilder.copy(recipeBuilder.id + "_p204");
+                    copiedBuilder.output.remove(FluidRecipeCapability.CAP);
+                    copiedBuilder
                             .inputFluids(P204.getFluid(10000))
                             .duration(recipeBuilder.duration * 2)
-                            .inputFluids(recipeBuilder.input.get(FluidRecipeCapability.CAP).stream()
+                            .outputFluids(recipeBuilder.output.get(FluidRecipeCapability.CAP).stream()
                                     .map(content -> ((FluidIngredient) content.content).getStacks())
                                     .flatMap(Arrays::stream)
                                     .peek(s -> s.setAmount((int) (s.getAmount() * 1.25))).toArray(FluidStack[]::new))
                             .save(provider);
+
                     recipeBuilder.inputFluids(P507.getFluid(10000));
                 }
             });

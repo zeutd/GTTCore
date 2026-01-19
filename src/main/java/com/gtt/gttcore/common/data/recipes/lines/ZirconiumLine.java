@@ -1,5 +1,6 @@
 package com.gtt.gttcore.common.data.recipes.lines;
 
+import com.gtt.gttcore.GTTCore;
 import net.minecraft.data.recipes.FinishedRecipe;
 
 import java.util.function.Consumer;
@@ -12,7 +13,7 @@ import static com.gtt.gttcore.common.data.GTTMaterials.*;
 
 public class ZirconiumLine {
     public static void init(Consumer<FinishedRecipe> provider) {
-        BLAST_RECIPES.recipeBuilder("zirconium_carbide")
+        BLAST_RECIPES.recipeBuilder(GTTCore.id("zirconium_carbide"))
                 .inputItems(dust, Zircon)
                 .inputItems(dust, Carbon)
                 .outputItems(dust, ZirconiumCarbide)
@@ -20,14 +21,14 @@ public class ZirconiumLine {
                 .EUt(VA[HV])
                 .duration(60)
                 .save(provider);
-        CHEMICAL_RECIPES.recipeBuilder("zirconium_tetrachloride")
+        CHEMICAL_RECIPES.recipeBuilder(GTTCore.id("zirconium_tetrachloride"))
                 .inputItems(dust, ZirconiumCarbide)
                 .inputFluids(Chlorine.getFluid(500))
                 .outputItems(dust, ZirconiumTetrachloride)
                 .EUt(VA[HV])
                 .duration(40)
                 .save(provider);
-        BLAST_RECIPES.recipeBuilder("zirconium_from_tetrachloride").duration(800).EUt(VA[HV])
+        BLAST_RECIPES.recipeBuilder(GTTCore.id("zirconium_from_tetrachloride")).duration(800).EUt(VA[HV])
                 .inputItems(dust, Magnesium, 2).inputItems(dust, ZirconiumTetrachloride)
                 .outputItems(ingotHot, Zirconium).outputItems(dust, MagnesiumChloride, 6)
                 .blastFurnaceTemp(1200).save(provider);

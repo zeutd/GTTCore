@@ -1,6 +1,6 @@
 package com.gtt.gttcore.common.data.recipes;
 
-import appeng.core.definitions.AEBlocks;
+import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.common.data.GTItems;
@@ -11,11 +11,12 @@ import com.gtt.gttcore.common.data.recipes.remove.AdAstraRecipeRemoval;
 import com.gtt.gttcore.common.data.recipes.remove.CreateRecipeRemoval;
 import com.gtt.gttcore.common.data.recipes.remove.GregTechRecipeRemoval;
 import com.simibubi.create.AllItems;
-import com.simibubi.create.Create;
-import com.tterrag.registrate.util.entry.ItemEntry;
 import dev.latvian.mods.kubejs.item.InputItem;
 import dev.latvian.mods.kubejs.item.OutputItem;
-import dev.latvian.mods.kubejs.recipe.*;
+import dev.latvian.mods.kubejs.recipe.InputReplacement;
+import dev.latvian.mods.kubejs.recipe.OutputReplacement;
+import dev.latvian.mods.kubejs.recipe.ReplacementMatch;
+import dev.latvian.mods.kubejs.recipe.SingleItemMatch;
 import dev.latvian.mods.kubejs.recipe.filter.IDFilter;
 import dev.latvian.mods.kubejs.recipe.filter.RecipeFilter;
 import earth.terrarium.adastra.common.registry.ModItems;
@@ -26,15 +27,13 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
-import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
-import static com.gtt.gttcore.common.data.GTTMaterials.Calorite;
-import static com.gtt.gttcore.common.data.GTTMaterials.FluixCrystal;
+import static com.gregtechceu.gtceu.common.data.GTMaterials.Iron;
+import static com.gregtechceu.gtceu.common.data.GTMaterials.Steel;
 
 public class GTTRecipes {
     public static Map<ReplacementMatch, OutputReplacement>
@@ -84,13 +83,17 @@ public class GTTRecipes {
     }
     static {
         replaceInput(ModItems.FAN, ChemicalHelper.get(TagPrefix.rotor, Steel));
-        replaceInput(AllItems.PROPELLER, ChemicalHelper.get(TagPrefix.rotor, Iron));
         replaceOutput(GTItems.WETWARE_PROCESSOR_LuV, GTTItems.UNAWAKENED_WETWARE_PROCESSOR_LuV);
         replaceOutput(GTItems.WETWARE_PROCESSOR_ASSEMBLY_ZPM, GTTItems.UNAWAKENED_WETWARE_PROCESSOR_ASSEMBLY_ZPM);
         replaceOutput(GTItems.WETWARE_SUPER_COMPUTER_UV, GTTItems.UNAWAKENED_WETWARE_SUPER_COMPUTER_UV);
         replaceOutput(GTItems.WETWARE_MAINFRAME_UHV, GTTItems.UNAWAKENED_WETWARE_MAINFRAME_UHV);
-        replaceInput(AllItems.ELECTRON_TUBE, GTItems.VACUUM_TUBE);
-        replaceInput(AllItems.WHISK, ChemicalHelper.get(TagPrefix.rotor, Iron));
+        replace(ModItems.IRON_ROD, ChemicalHelper.get(TagPrefix.rod, Iron));
+        replace(ModItems.STEEL_ROD, ChemicalHelper.get(TagPrefix.rod, Steel));
+        if (GTCEu.Mods.isCreateLoaded()) {
+            replaceInput(AllItems.PROPELLER, ChemicalHelper.get(TagPrefix.rotor, Iron));
+            replaceInput(AllItems.ELECTRON_TUBE, GTItems.VACUUM_TUBE);
+            replaceInput(AllItems.WHISK, ChemicalHelper.get(TagPrefix.rotor, Iron));
+        }
     }
     public static void init(Consumer<FinishedRecipe> provider) {
         MiscRecipes.init(provider);
@@ -103,10 +106,13 @@ public class GTTRecipes {
         RocketRecipes.init(provider);
         CircuitRecipes.init(provider);
         LanthanideGroupLine.init(provider);
+        IntegrationRecipes.init(provider);
     }
 
     public static void remove(Consumer<RecipeFilter> provider) {
-        CreateRecipeRemoval.init(provider);
+        if (GTCEu.Mods.isCreateLoaded()) {
+            CreateRecipeRemoval.init(provider);
+        }
         AdAstraRecipeRemoval.init(provider);
         AE2RecipeRemoval.init(provider);
         GregTechRecipeRemoval.init(provider);

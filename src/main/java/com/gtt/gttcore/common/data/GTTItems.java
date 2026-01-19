@@ -1,15 +1,11 @@
 package com.gtt.gttcore.common.data;
 
 import com.gregtechceu.gtceu.api.item.ComponentItem;
-import com.gregtechceu.gtceu.common.data.GTCovers;
 import com.gregtechceu.gtceu.common.item.CoverPlaceBehavior;
 import com.gregtechceu.gtceu.common.item.TooltipBehavior;
-import com.gregtechceu.gtceu.common.registry.GTRegistration;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
 import com.gtt.gttcore.common.item.BeerItem;
-import com.simibubi.create.AllTags;
-import com.simibubi.create.content.equipment.BuildersTeaItem;
 import com.tterrag.registrate.util.entry.ItemEntry;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.effect.MobEffectInstance;
