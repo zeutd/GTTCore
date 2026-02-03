@@ -19,17 +19,21 @@ import com.gregtechceu.gtceu.api.pattern.util.RelativeDirection;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
 import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
 import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
+import com.gregtechceu.gtceu.api.registry.registrate.GTRegistrate;
 import com.gregtechceu.gtceu.api.registry.registrate.MultiblockMachineBuilder;
 import com.gregtechceu.gtceu.client.renderer.machine.DynamicRenderHelper;
 import com.gregtechceu.gtceu.common.block.BoilerFireboxType;
-import com.gregtechceu.gtceu.common.data.*;
+import com.gregtechceu.gtceu.common.data.GTMaterialItems;
+import com.gregtechceu.gtceu.common.data.GTMaterials;
+import com.gregtechceu.gtceu.common.data.GTRecipeModifiers;
+import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
 import com.gregtechceu.gtceu.common.data.machines.GTAEMachines;
 import com.gregtechceu.gtceu.common.data.machines.GTMachineUtils;
 import com.gregtechceu.gtceu.common.machine.multiblock.electric.FusionReactorMachine;
-import com.gregtechceu.gtceu.common.machine.multiblock.generator.LargeTurbineMachine;
 import com.gregtechceu.gtceu.common.machine.multiblock.steam.SteamParallelMultiblockMachine;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
 import com.gtt.gttcore.GTTCore;
+import com.gtt.gttcore.api.LangUtil;
 import com.gtt.gttcore.common.data.recipes.GTTRecipeTypes;
 import com.gtt.gttcore.common.machine.multiblock.*;
 import com.lowdragmc.lowdraglib.utils.BlockInfo;
@@ -46,25 +50,26 @@ import java.util.function.BiFunction;
 import java.util.function.Supplier;
 
 import static com.gregtechceu.gtceu.api.GTValues.*;
-import static com.gregtechceu.gtceu.api.machine.multiblock.PartAbility.*;
+import static com.gregtechceu.gtceu.api.machine.multiblock.PartAbility.INPUT_LASER;
 import static com.gregtechceu.gtceu.api.pattern.Predicates.*;
 import static com.gregtechceu.gtceu.api.pattern.util.RelativeDirection.*;
 import static com.gregtechceu.gtceu.common.data.GCYMBlocks.*;
 import static com.gregtechceu.gtceu.common.data.GTBlocks.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
-import static com.gregtechceu.gtceu.common.data.GTRecipeModifiers.*;
+import static com.gregtechceu.gtceu.common.data.GTRecipeModifiers.OC_NON_PERFECT_SUBTICK;
+import static com.gregtechceu.gtceu.common.data.GTRecipeModifiers.OC_PERFECT_SUBTICK;
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.*;
 import static com.gregtechceu.gtceu.common.data.models.GTMachineModels.createWorkableCasingMachineModel;
 import static com.gregtechceu.gtceu.utils.FormattingUtil.toRomanNumeral;
-import static com.gtt.gttcore.common.registry.GTTRegistration.REGISTRATE;
 import static com.gtt.gttcore.common.data.GTTBlocks.*;
 import static com.gtt.gttcore.common.data.recipes.GTTRecipeTypes.*;
+import static com.gtt.gttcore.common.registry.GTTRegistration.REGISTRATE;
 
 
 public class GTTMultiMachines {
     public static void init(){}
     public static final MultiblockMachineDefinition EVAPORATION_PLANT = REGISTRATE
-            .multiblock("evaporation_plant", WorkableElectricMultiblockMachine::new)
+            .multiblock(LangUtil.createBlockZhTranslation("evaporation_plant", "蒸发塔"), WorkableElectricMultiblockMachine::new)
             .langValue("Evaporation Tower")
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(GTTRecipeTypes.EVAPORATION_RECIPES)
@@ -94,7 +99,7 @@ public class GTTMultiMachines {
             .workableCasingModel(GTCEu.id("block/casings/solid/machine_casing_stainless_evaporation"),
                     GTCEu.id("block/multiblock/evaporation_plant"))
             .register();
-    public final static MultiblockMachineDefinition LARGE_GREENHOUSE = REGISTRATE.multiblock("large_greenhouse", WorkableElectricMultiblockMachine::new)
+    public final static MultiblockMachineDefinition LARGE_GREENHOUSE = REGISTRATE.multiblock(LangUtil.createBlockZhTranslation("large_greenhouse", "大型温室"), WorkableElectricMultiblockMachine::new)
             .langValue("Large Greenhouse")
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(GREENHOUSE_RECIPES)
@@ -120,13 +125,12 @@ public class GTTMultiMachines {
                             .or(autoAbilities(true, false, true)))
                     .where("B", Predicates.blocks(ForgeRegistries.BLOCKS.getValue(new ResourceLocation("gtceu:laminated_glass"))))
                     .where("C", blocks(Blocks.DIRT, Blocks.GRASS_BLOCK, Blocks.MOSS_BLOCK))
-                    .where("D", Predicates.blocks(ForgeRegistries.BLOCKS.getValue(new ResourceLocation("gtceu:industrial_steam_casing"))))
                     .where(" ", any())
                     .build())
             .workableCasingModel(GTCEu.id("block/casings/solid/machine_casing_clean_stainless_steel"),
                     GTCEu.id("block/multiblock/assembly_line"))
             .register();
-    public final static MultiblockMachineDefinition LASER_ENGRAVING_PLANT = REGISTRATE.multiblock("laser_engraving_plant", WorkableElectricMultiblockMachine::new)
+    public final static MultiblockMachineDefinition LASER_ENGRAVING_PLANT = REGISTRATE.multiblock(LangUtil.createBlockZhTranslation("laser_engraving_plant", "高能激光蚀刻厂"), WorkableElectricMultiblockMachine::new)
             .langValue("Laser Engraving Plant")
             .recipeType(LASER_ENGRAVING_PLANT_RECIPES)
             .recipeModifiers(OC_PERFECT_SUBTICK, GTRecipeModifiers.PARALLEL_HATCH)
@@ -164,7 +168,7 @@ public class GTTMultiMachines {
             .register();
 
     public static final MultiblockMachineDefinition HIGH_ENERGY_LASER_PIPE = REGISTRATE
-            .multiblock("high_energy_laser_pipe", HighEnergyLaserPipeMachine::new)
+            .multiblock(LangUtil.createBlockZhTranslation("high_energy_laser_pipe", "高能激光管道"), HighEnergyLaserPipeMachine::new)
             .rotationState(RotationState.ALL)
             .recipeType(HIGH_ENERGY_LASER_PIPE_COOLANT)
             .appearanceBlock(CASING_ATOMIC)
@@ -182,7 +186,7 @@ public class GTTMultiMachines {
             .workableCasingModel(GTCEu.id("block/casings/gcym/atomic_casing"),
                     GTCEu.id("block/multiblock/assembly_line"))
             .register();
-    public final static MultiblockMachineDefinition ROCKET_ASSEMBLER = REGISTRATE.multiblock("rocket_assembler", WorkableElectricMultiblockMachine::new)
+    public final static MultiblockMachineDefinition ROCKET_ASSEMBLER = REGISTRATE.multiblock(LangUtil.createBlockZhTranslation("rocket_assembler", "火箭组装厂"), WorkableElectricMultiblockMachine::new)
             .langValue("Rocket Assembler")
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(ROCKET_ASSEMBLER_RECIPES)
@@ -208,7 +212,7 @@ public class GTTMultiMachines {
             .workableCasingModel(GTCEu.id("block/casings/solid/machine_casing_solid_steel"),
                     GTCEu.id("block/multiblock/assembly_line"))
             .register();
-    public final static MultiblockMachineDefinition EXTRACTION_TANK = REGISTRATE.multiblock("extraction_tank", WorkableElectricMultiblockMachine::new)
+    public final static MultiblockMachineDefinition EXTRACTION_TANK = REGISTRATE.multiblock(LangUtil.createBlockZhTranslation("extraction_tank", "萃取槽"), WorkableElectricMultiblockMachine::new)
             .langValue("Extraction tank")
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(EXTRACTION_TANK_RECIPE)
@@ -237,8 +241,8 @@ public class GTTMultiMachines {
                     GTCEu.id("block/multiblock/gcym/large_chemical_bath"))
                     .andThen(b -> b.addDynamicRenderer(DynamicRenderHelper::makeRecipeFluidAreaRender)))
             .register();
-    public static final MultiblockMachineDefinition PH_PURIFICATION_PLANT = REGISTRATE.multiblock("ph_purification_plant", WorkableElectricMultiblockMachine::new)
-            .langValue("pH Purification Plant")
+    public static final MultiblockMachineDefinition PH_PURIFICATION_PLANT = REGISTRATE.multiblock(LangUtil.createBlockZhTranslation("ph_purification_plant", "pH净化单元"), WorkableElectricMultiblockMachine::new)
+            .langValue("pH Purification Unit")
             .recipeType(PH_PURIFICATION_RECIPE)
             .appearanceBlock(CASING_PTFE_INERT)
             .pattern(definition -> FactoryBlockPattern.start()
@@ -259,7 +263,7 @@ public class GTTMultiMachines {
             .workableCasingModel(GTCEu.id("block/casings/solid/machine_casing_inert_ptfe"),
                     GTCEu.id("block/multiblock/large_chemical_reactor"))
             .register();
-    public final static MultiblockMachineDefinition LARGE_STEAM_MIXER = REGISTRATE.multiblock("large_steam_mixer", (m) -> new SteamParallelMultiblockMachine(m, 128))
+    public final static MultiblockMachineDefinition LARGE_STEAM_MIXER = REGISTRATE.multiblock(LangUtil.createBlockZhTranslation("large_steam_mixer", "大型蒸汽搅拌机"), (m) -> new SteamParallelMultiblockMachine(m, 64))
             .langValue("Large Steam Mixer")
             .recipeType(MIXER_RECIPES)
             .appearanceBlock(CASING_INDUSTRIAL_STEAM)
@@ -290,7 +294,7 @@ public class GTTMultiMachines {
             .workableCasingModel(GTCEu.id("block/casings/gcym/industrial_steam_casing"),
                     GTCEu.id("block/machines/mixer"))
             .register();
-    public final static MultiblockMachineDefinition LARGE_STEAM_CENTRIFUGE = REGISTRATE.multiblock("large_steam_centrifuge", (m) -> new SteamParallelMultiblockMachine(m, 32))
+    public final static MultiblockMachineDefinition LARGE_STEAM_CENTRIFUGE = REGISTRATE.multiblock(LangUtil.createBlockZhTranslation("large_steam_centrifuge", "大型蒸汽离心机"), (m) -> new SteamParallelMultiblockMachine(m, 32))
             .langValue("Large Steam Centrifuge")
             .recipeType(CENTRIFUGE_RECIPES)
             .appearanceBlock(CASING_INDUSTRIAL_STEAM)
@@ -317,7 +321,7 @@ public class GTTMultiMachines {
             .workableCasingModel(GTCEu.id("block/casings/gcym/industrial_steam_casing"),
                     GTCEu.id("block/machines/centrifuge"))
             .register();
-    public final static MultiblockMachineDefinition LARGE_STEAM_ORE_WASHER = REGISTRATE.multiblock("large_steam_ore_washer", (m) -> new SteamParallelMultiblockMachine(m, 64))
+    public final static MultiblockMachineDefinition LARGE_STEAM_ORE_WASHER = REGISTRATE.multiblock(LangUtil.createBlockZhTranslation("large_steam_ore_washer", "大型蒸汽洗矿厂"), (m) -> new SteamParallelMultiblockMachine(m, 64))
             .langValue("Large Steam Ore Washer")
             .recipeType(ORE_WASHER_RECIPES)
             .appearanceBlock(CASING_INDUSTRIAL_STEAM)
@@ -345,7 +349,7 @@ public class GTTMultiMachines {
             .workableCasingModel(GTCEu.id("block/casings/gcym/industrial_steam_casing"),
                     GTCEu.id("block/machines/mixer"))
             .register();
-    public final static MultiblockMachineDefinition LARGE_STEAM_MACERATOR = REGISTRATE.multiblock("large_steam_macerator", (m) -> new SteamParallelMultiblockMachine(m, 64))
+    public final static MultiblockMachineDefinition LARGE_STEAM_MACERATOR = REGISTRATE.multiblock(LangUtil.createBlockZhTranslation("large_steam_macerator", "大型蒸汽研磨机"), (m) -> new SteamParallelMultiblockMachine(m, 64))
             .langValue("Large Steam Macerator")
             .recipeType(MACERATOR_RECIPES)
             .appearanceBlock(CASING_INDUSTRIAL_STEAM)
@@ -368,11 +372,11 @@ public class GTTMultiMachines {
                     .where(" ", any())
                     .build())
             .workableCasingModel(GTCEu.id("block/casings/gcym/industrial_steam_casing"),
-                    GTCEu.id("block/machines/mixer"))
+                    GTCEu.id("block/machines/macerator"))
             .register();
 
     public static final MultiblockMachineDefinition STEAM_DISTILLATION_TOWER = REGISTRATE
-            .multiblock("steam_distillation_tower", SteamDistillationTowerMachine::new)
+            .multiblock(LangUtil.createBlockZhTranslation("steam_distillation_tower", "蒸汽蒸馏塔"), SteamDistillationTowerMachine::new)
             .rotationState(RotationState.NON_Y_AXIS)
             .langValue("Steam Distillation Tower")
             .recipeType(GTRecipeTypes.DISTILLATION_RECIPES)
@@ -413,7 +417,7 @@ public class GTTMultiMachines {
                             () -> DynamicRenderHelper.makeBoilerPartRender(
                                     BoilerFireboxType.STEEL_FIREBOX, CASING_STEEL_SEALED))))
             .register();
-    public final static MultiblockMachineDefinition LARGE_STEAM_FORGE_HAMMER = REGISTRATE.multiblock("large_steam_forge_hammer", SteamParallelMultiblockMachine::new)
+    public final static MultiblockMachineDefinition LARGE_STEAM_FORGE_HAMMER = REGISTRATE.multiblock(LangUtil.createBlockZhTranslation("large_steam_forge_hammer", "大型蒸汽锻造锤"), holder -> new SteamParallelMultiblockMachine(holder, 64))
             .langValue("Large Steam Forge Hammer")
             .recipeType(FORGE_HAMMER_RECIPES)
             .appearanceBlock(CASING_BRONZE_BRICKS)
@@ -434,7 +438,7 @@ public class GTTMultiMachines {
             .workableCasingModel(GTCEu.id("block/casings/solid/machine_casing_bronze_plated_bricks"),
                     GTCEu.id("block/machines/forge_hammer"))
             .register();
-    public final static MultiblockMachineDefinition PRIMITIVE_FERMENTER = REGISTRATE.multiblock("primitive_fermenter", WoodParallelMultiblockMachine::new)
+    public final static MultiblockMachineDefinition PRIMITIVE_FERMENTER = REGISTRATE.multiblock(LangUtil.createBlockZhTranslation("primitive_fermenter", "原始发酵槽"), WoodParallelMultiblockMachine::new)
             .langValue("Primitive Fermenter")
             .recipeType(FERMENTING_RECIPES)
             .appearanceBlock(CASING_WOOD_WALL)
@@ -445,10 +449,10 @@ public class GTTMultiMachines {
                     .aisle("A A", "BBB", "B~B", "BBB", "BBB")
                     .where("~", Predicates.controller(Predicates.blocks(definition.get())))
                     .where("B", Predicates.blocks(CASING_WOOD_WALL.get())
-                            .or(abilities(GTTPartAbility.WOOD_IMPORT_FLUIDS))
-                            .or(abilities(GTTPartAbility.WOOD_EXPORT_FLUIDS))
-                            .or(abilities(GTTPartAbility.WOOD_IMPORT_ITEMS))
-                            .or(abilities(GTTPartAbility.WOOD_EXPORT_ITEMS)))
+                            .or(abilities(PartAbility.IMPORT_ITEMS))
+                            .or(abilities(PartAbility.EXPORT_ITEMS))
+                            .or(abilities(PartAbility.IMPORT_FLUIDS))
+                            .or(abilities(PartAbility.EXPORT_FLUIDS)))
                     .where("A", Predicates.frames(Wood))
                     .where(" ", any())
                     .where("#", air())
@@ -457,7 +461,7 @@ public class GTTMultiMachines {
             .sidedWorkableCasingModel(GTCEu.id("block/casings/wood_wall"),
                     GTCEu.id("block/multiblock/multiblock_tank"))
                             .register();
-    public final static MultiblockMachineDefinition PRIMITIVE_BREWERY = REGISTRATE.multiblock("primitive_brewery", WoodParallelMultiblockMachine::new)
+    public final static MultiblockMachineDefinition PRIMITIVE_BREWERY = REGISTRATE.multiblock(LangUtil.createBlockZhTranslation("primitive_brewery", "原始酿造室"), WoodParallelMultiblockMachine::new)
             .langValue("Primitive Brewery")
             .recipeType(BREWING_RECIPES)
             .appearanceBlock(CASING_WOOD_WALL)
@@ -469,10 +473,10 @@ public class GTTMultiMachines {
                     .aisle("A A", "BBB", "B~B", "BBB")
                     .where("~", Predicates.controller(Predicates.blocks(definition.get())))
                     .where("B", Predicates.blocks(CASING_WOOD_WALL.get())
-                                    .or(abilities(GTTPartAbility.WOOD_IMPORT_FLUIDS))
-                                    .or(abilities(GTTPartAbility.WOOD_EXPORT_FLUIDS))
-                                    .or(abilities(GTTPartAbility.WOOD_IMPORT_ITEMS))
-                                    .or(abilities(GTTPartAbility.WOOD_EXPORT_ITEMS)))
+                            .or(abilities(PartAbility.IMPORT_ITEMS))
+                            .or(abilities(PartAbility.EXPORT_ITEMS))
+                            .or(abilities(PartAbility.IMPORT_FLUIDS))
+                            .or(abilities(PartAbility.EXPORT_FLUIDS)))
                     .where("A", Predicates.frames(Wood))
                     .where(" ", any())
                     .where("#", air())
@@ -482,7 +486,7 @@ public class GTTMultiMachines {
                     GTCEu.id("block/multiblock/multiblock_tank"))
             .register();
     public final static MultiblockMachineDefinition LARGE_GAS_COLLECTOR = REGISTRATE
-            .multiblock("large_gas_collector", WorkableElectricMultiblockMachine::new)
+            .multiblock(LangUtil.createBlockZhTranslation("large_gas_collector", "大型集气室"), WorkableElectricMultiblockMachine::new)
             .langValue("Large Gas Collector")
             .tooltips(Component.translatable("gtceu.multiblock.parallelizable.tooltip"))
             .tooltips(Component.translatable("gtceu.machine.available_recipe_map_1.tooltip",
@@ -507,11 +511,9 @@ public class GTTMultiMachines {
                     GTCEu.id("block/machines/gas_collector"))
             .register();
     public final static MultiblockMachineDefinition FISSION_REACTOR = REGISTRATE
-            .multiblock("fission_reactor", WorkableElectricMultiblockMachine::new)
+            .multiblock(LangUtil.createBlockZhTranslation("fission_reactor", "裂变反应堆"), WorkableElectricMultiblockMachine::new)
             .langValue("Fission Reactor")
             .tooltips(Component.translatable("gtceu.multiblock.parallelizable.tooltip"))
-            .tooltips(Component.translatable("gtceu.machine.available_recipe_map_1.tooltip",
-                    Component.translatable("gttcore.fission_reactor")))
             .rotationState(RotationState.ALL)
             .recipeType(FISSION_RECIPES)
             .recipeModifiers(GTRecipeModifiers.PARALLEL_HATCH)
@@ -541,10 +543,8 @@ public class GTTMultiMachines {
                     GTCEu.id("block/multiblock/fusion_reactor"))
             .register();
     public final static MultiblockMachineDefinition GREENHOUSE = REGISTRATE
-            .multiblock("greenhouse", WorkableElectricMultiblockMachine::new)
+            .multiblock(LangUtil.createBlockZhTranslation("greenhouse", "温室"), WorkableElectricMultiblockMachine::new)
             .langValue("Greenhouse")
-            .tooltips(Component.translatable("gtceu.machine.available_recipe_map_1.tooltip",
-                    Component.translatable("gttcore.greenhouse")))
             .recipeType(GREENHOUSE_RECIPES)
             .recipeModifiers(GTRecipeModifiers.OC_NON_PERFECT_SUBTICK)
             .appearanceBlock(CASING_STEEL_SOLID)
@@ -569,11 +569,11 @@ public class GTTMultiMachines {
                     GTCEu.id(("block/multiblock/gcym/large_assembler")))
             .register();
     public final static MultiblockMachineDefinition LASER_FREEZER = REGISTRATE
-            .multiblock("laser_freezer", WorkableElectricMultiblockMachine::new)
+            .multiblock(LangUtil.createBlockZhTranslation("laser_freezer", "激光冷冻机"), WorkableElectricMultiblockMachine::new)
             .langValue("laser_freezer")
             .tooltips(Component.translatable("gtceu.multiblock.parallelizable.tooltip"))
             .tooltips(Component.translatable("gtceu.machine.available_recipe_map_1.tooltip",
-                    Component.translatable("gttcore.laser_freezer")))
+                    Component.translatable(LangUtil.createEnZhTranslation("gttcore.laser_freezer", "Vacuum Freezer", "真空冷冻"))))
             .rotationState(RotationState.ALL)
             .recipeType(VACUUM_RECIPES)
             .recipeModifiers((m, r) -> ModifierFunction.builder().modifyAllContents(ContentModifier.multiplier(256)).eutMultiplier(256).parallels(256).build(), GTRecipeModifiers.PARALLEL_HATCH, GTRecipeModifiers.OC_NON_PERFECT_SUBTICK)
@@ -612,11 +612,11 @@ public class GTTMultiMachines {
             .register();
 
     public final static MultiblockMachineDefinition LARGE_ROCK_CRUSHER = REGISTRATE
-            .multiblock("large_rock_crusher", WorkableElectricMultiblockMachine::new)
-            .langValue("large_rock_crusher")
+            .multiblock(LangUtil.createBlockZhTranslation("large_rock_crusher", "大型碎岩机"), WorkableElectricMultiblockMachine::new)
+            .langValue("Large Rock Crusher")
             .tooltips(Component.translatable("gtceu.multiblock.parallelizable.tooltip"))
             .tooltips(Component.translatable("gtceu.machine.available_recipe_map_1.tooltip",
-                    Component.translatable("gttcore.large_rock_crusher")))
+                    Component.translatable(LangUtil.createEnZhTranslation("gttcore.large_rock_crusher", "Rock Crusher", "碎岩机"))))
             .rotationState(RotationState.ALL)
             .recipeType(LARGE_ROCK_BREAKER_RECIPES)
             .recipeModifiers(GTRecipeModifiers.PARALLEL_HATCH, GTRecipeModifiers.OC_NON_PERFECT_SUBTICK)
@@ -643,11 +643,9 @@ public class GTTMultiMachines {
                     GTCEu.id("block/machines/rock_crusher"))
             .register();
     public final static MultiblockMachineDefinition PARTICLE_ACCELERATOR = REGISTRATE
-            .multiblock("particle_accelerator", WorkableElectricMultiblockMachine::new)
+            .multiblock(LangUtil.createBlockZhTranslation("particle_accelerator", "粒子加速器"), WorkableElectricMultiblockMachine::new)
             .langValue("Particle Accelerator")
             .tooltips(Component.translatable("gtceu.multiblock.parallelizable.tooltip"))
-            .tooltips(Component.translatable("gtceu.machine.available_recipe_map_1.tooltip",
-                    Component.translatable("gttcore.particle_accelerator")))
             .rotationState(RotationState.ALL)
             .recipeType(PARTICLE_ACCELERATOR_RECIPES)
             .recipeModifiers((m, r) -> ModifierFunction.builder().modifyAllContents(ContentModifier.multiplier(256)).eutMultiplier(256).parallels(256).build(), GTRecipeModifiers.PARALLEL_HATCH, GTRecipeModifiers.OC_NON_PERFECT_SUBTICK)
@@ -727,100 +725,109 @@ public class GTTMultiMachines {
             .register();
 
     public final static MultiblockMachineDefinition[] LARGE_FUSION_REACTOR = registerTieredMultis("large_fusion_reactor",
-            FusionReactorMachine::new, (tier, builder) -> builder
-                    .rotationState(RotationState.ALL)
-                    .langValue("Large Fusion Reactor Computer MK %s".formatted(toRomanNumeral(tier - 5)))
-                    .recipeType(GTRecipeTypes.FUSION_RECIPES)
-                    .recipeModifiers(GTRecipeModifiers.DEFAULT_ENVIRONMENT_REQUIREMENT,
-                            FusionReactorMachine::recipeModifier)
-                    .tooltips(Component.translatable("gtceu.multiblock.parallelizable.tooltip"))
-                    .tooltips(
-                            Component.translatable("gtceu.machine.fusion_reactor.capacity",
-                                    FusionReactorMachine.calculateEnergyStorageFactor(tier, 16) / 1000000L),
-                            Component.translatable("gtceu.machine.fusion_reactor.overclocking"),
-                            Component.translatable("gtceu.multiblock.%s_fusion_reactor.description"
-                                    .formatted(VN[tier].toLowerCase(Locale.ROOT))))
-                    .appearanceBlock(() -> FusionReactorMachine.getCasingState(tier))
-                    .pattern((definition) -> {
-                        var casing = blocks(FusionReactorMachine.getCasingState(tier));
-                        return FactoryBlockPattern.start()
-                                .aisle("                         ","         AAAAAAA         ","       AAAAAAAAAA        ","         AAAAAAA         ","                         ")
-                                .aisle("         AAAAAAA         ","       AA       AA       ","      AA         AA      ","       AA       AA       ","         AAAAAAA         ")
-                                .aisle("       AAAAAAAAAAA       ","     AA           AA     ","    AA             AA    ","     AA           AA     ","       AAAAAAAAAAA       ")
-                                .aisle("     AAAAAAAAAAAAAAA     ","    A               A    ","   A                 A   ","    A               A    ","     AAAAAAAAAAAAAAA     ")
-                                .aisle("    AAAAAA     AAAAAA    ","   A      AAAAA      A   ","  A      AAAAAAA      A  ","   A      AAAAA      A   ","    AAAAAA     AAAAAA    ")
-                                .aisle("   AAAAA         AAAAA   ","  A     AA     AA     A  ","  A    AA       AA    A  ","  A     AA     AA     A  ","   AAAAA         AAAAA   ")
-                                .aisle("   AAAA           AAAA   ","  A    A         A    A  "," A    A           A    A ","  A    A         A    A  ","   AAAA           AAAA   ")
-                                .aisle("  AAAA             AAAA  "," A    A           A    A "," A   A             A   A "," A    A           A    A ","  AAAA             AAAA  ")
-                                .aisle("  AAA               AAA  "," A   A             A   A ","A    A             A    A"," A   A             A   A ","  AAA               AAA  ")
-                                .aisle(" AAAA               AAAA ","A    A             A    A","A   A               A   A","A    A             A    A"," AAAA               AAAA ")
-                                .aisle(" AAA                 AAA ","A   A               A   A","A   A               A   A","A   A               A   A"," AAA                 AAA ")
-                                .aisle(" AAA                 AAA ","A   A               A   A","A   A               A   A","A   A               A   A"," AAA                 AAA ")
-                                .aisle(" AAA                 AAA ","A   A               A   A","A   A               A   A","A   A               A   A"," AAA                 AAA ")
-                                .aisle(" AAA                 AAA ","A   A               A   A","A   A               A   A","A   A               A   A"," AAA                 AAA ")
-                                .aisle(" AAA                 AAA ","A   A               A   A","A   A               A   A","A   A               A   A"," AAA                 AAA ")
-                                .aisle(" AAAA               AAAA ","A    A             A    A","A   A               A   A","A    A             A    A"," AAAA               AAAA ")
-                                .aisle("  AAA               AAA  "," A   A             A   A ","A    A             A    A"," A   A             A   A ","  AAA               AAA  ")
-                                .aisle("  AAAA             AAAA  "," A    A           A    A "," A   A             A   A "," A    A           A    A ","  AAAA             AAAA  ")
-                                .aisle("   AAAA           AAAA   ","  A    A         A    A  "," A    A           A    A ","  A    A         A    A  ","   AAAA           AAAA   ")
-                                .aisle("   AAAAA         AAAAA   ","  A     AA     AA     A  ","  A    AA       AA    A  ","  A     AA     AA     A  ","   AAAAA         AAAAA   ")
-                                .aisle("    AAAAAA     AAAAAA    ","   A      AAAAA      A   ","  A      AAAAAAA      A  ","   A      AAAAA      A   ","    AAAAAA     AAAAAA    ")
-                                .aisle("     AAAAAAAAAAAAAAA     ","    A               A    ","   A                 A   ","    A               A    ","     AAAAAAAAAAAAAAA     ")
-                                .aisle("       AAAAAAAAAAA       ","     AA           AA     ","    AA             AA    ","     AA           AA     ","       AAAAAAAAAAA       ")
-                                .aisle("         AAAAAAA         ","       AA       AA       ","      AA         AA      ","       AA       AA       ","         AAAAAAA         ")
-                                .aisle("                         ","         AAAAAAA         ","        AAAA~AAAA        ","         AAAAAAA         ","                         ")
-                                .where("~", Predicates.controller(Predicates.blocks(definition.get())))
-                                .where("A", casing.setMinGlobalLimited(700).or(autoAbilities(definition.getRecipeTypes())).or(autoAbilities(true, false, true)))
-                                .where(" ", any())
-                                .build();
-                    })
-                    .workableCasingModel(FusionReactorMachine.getCasingType(tier).getTexture(), GTCEu.id("block/multiblock/fusion_reactor"))
-                    .hasBER(true)
-                    .register(),
+            FusionReactorMachine::new, (tier, builder) -> {
+                LangUtil.createBlockZhTranslation(GTValues.VN[tier].toLowerCase(Locale.ROOT) + "_large_fusion_reactor", "大型核聚变反应堆控制电脑 MK-%s".formatted(toRomanNumeral(tier - 5)));
+                return builder
+                        .rotationState(RotationState.ALL)
+                        .langValue("Large Fusion Reactor Computer MK %s".formatted(toRomanNumeral(tier - 5)))
+                        .recipeType(GTRecipeTypes.FUSION_RECIPES)
+                        .recipeModifiers(GTRecipeModifiers.DEFAULT_ENVIRONMENT_REQUIREMENT,
+                                FusionReactorMachine::recipeModifier)
+                        .tooltips(Component.translatable("gtceu.multiblock.parallelizable.tooltip"))
+                        .tooltips(
+                                Component.translatable("gtceu.machine.fusion_reactor.capacity",
+                                        FusionReactorMachine.calculateEnergyStorageFactor(tier, 16) / 1000000L),
+                                Component.translatable("gtceu.machine.fusion_reactor.overclocking"),
+                                Component.translatable("gtceu.multiblock.%s_fusion_reactor.description"
+                                        .formatted(VN[tier].toLowerCase(Locale.ROOT))))
+                        .appearanceBlock(() -> FusionReactorMachine.getCasingState(tier))
+                        .pattern((definition) -> {
+                            var casing = blocks(FusionReactorMachine.getCasingState(tier));
+                            return FactoryBlockPattern.start()
+                                    .aisle("                         ","         AAAAAAA         ","       AAAAAAAAAA        ","         AAAAAAA         ","                         ")
+                                    .aisle("         AAAAAAA         ","       AA       AA       ","      AA         AA      ","       AA       AA       ","         AAAAAAA         ")
+                                    .aisle("       AAAAAAAAAAA       ","     AA           AA     ","    AA             AA    ","     AA           AA     ","       AAAAAAAAAAA       ")
+                                    .aisle("     AAAAAAAAAAAAAAA     ","    A               A    ","   A                 A   ","    A               A    ","     AAAAAAAAAAAAAAA     ")
+                                    .aisle("    AAAAAA     AAAAAA    ","   A      AAAAA      A   ","  A      AAAAAAA      A  ","   A      AAAAA      A   ","    AAAAAA     AAAAAA    ")
+                                    .aisle("   AAAAA         AAAAA   ","  A     AA     AA     A  ","  A    AA       AA    A  ","  A     AA     AA     A  ","   AAAAA         AAAAA   ")
+                                    .aisle("   AAAA           AAAA   ","  A    A         A    A  "," A    A           A    A ","  A    A         A    A  ","   AAAA           AAAA   ")
+                                    .aisle("  AAAA             AAAA  "," A    A           A    A "," A   A             A   A "," A    A           A    A ","  AAAA             AAAA  ")
+                                    .aisle("  AAA               AAA  "," A   A             A   A ","A    A             A    A"," A   A             A   A ","  AAA               AAA  ")
+                                    .aisle(" AAAA               AAAA ","A    A             A    A","A   A               A   A","A    A             A    A"," AAAA               AAAA ")
+                                    .aisle(" AAA                 AAA ","A   A               A   A","A   A               A   A","A   A               A   A"," AAA                 AAA ")
+                                    .aisle(" AAA                 AAA ","A   A               A   A","A   A               A   A","A   A               A   A"," AAA                 AAA ")
+                                    .aisle(" AAA                 AAA ","A   A               A   A","A   A               A   A","A   A               A   A"," AAA                 AAA ")
+                                    .aisle(" AAA                 AAA ","A   A               A   A","A   A               A   A","A   A               A   A"," AAA                 AAA ")
+                                    .aisle(" AAA                 AAA ","A   A               A   A","A   A               A   A","A   A               A   A"," AAA                 AAA ")
+                                    .aisle(" AAAA               AAAA ","A    A             A    A","A   A               A   A","A    A             A    A"," AAAA               AAAA ")
+                                    .aisle("  AAA               AAA  "," A   A             A   A ","A    A             A    A"," A   A             A   A ","  AAA               AAA  ")
+                                    .aisle("  AAAA             AAAA  "," A    A           A    A "," A   A             A   A "," A    A           A    A ","  AAAA             AAAA  ")
+                                    .aisle("   AAAA           AAAA   ","  A    A         A    A  "," A    A           A    A ","  A    A         A    A  ","   AAAA           AAAA   ")
+                                    .aisle("   AAAAA         AAAAA   ","  A     AA     AA     A  ","  A    AA       AA    A  ","  A     AA     AA     A  ","   AAAAA         AAAAA   ")
+                                    .aisle("    AAAAAA     AAAAAA    ","   A      AAAAA      A   ","  A      AAAAAAA      A  ","   A      AAAAA      A   ","    AAAAAA     AAAAAA    ")
+                                    .aisle("     AAAAAAAAAAAAAAA     ","    A               A    ","   A                 A   ","    A               A    ","     AAAAAAAAAAAAAAA     ")
+                                    .aisle("       AAAAAAAAAAA       ","     AA           AA     ","    AA             AA    ","     AA           AA     ","       AAAAAAAAAAA       ")
+                                    .aisle("         AAAAAAA         ","       AA       AA       ","      AA         AA      ","       AA       AA       ","         AAAAAAA         ")
+                                    .aisle("                         ","         AAAAAAA         ","        AAAA~AAAA        ","         AAAAAAA         ","                         ")
+                                    .where("~", Predicates.controller(Predicates.blocks(definition.get())))
+                                    .where("A", casing.setMinGlobalLimited(700).or(autoAbilities(definition.getRecipeTypes())).or(autoAbilities(true, false, true)))
+                                    .where(" ", any())
+                                    .build();
+                        })
+                        .workableCasingModel(FusionReactorMachine.getCasingType(tier).getTexture(), GTCEu.id("block/multiblock/fusion_reactor"))
+                        .hasBER(true)
+                        .register();
+                    },
             LuV, ZPM, UV);
-    public final static MultiblockMachineDefinition LARGE_SUPERCRITICAL_STEAM_TURBINE = GTMachineUtils.registerLargeTurbine(REGISTRATE, "supercritical_steam_large_turbine",
+
+    public final static MultiblockMachineDefinition LARGE_SUPERCRITICAL_STEAM_TURBINE = registerLargeTurbine(REGISTRATE, "supercritical_steam_large_turbine",
             LuV,
             SUPERCRITICAL_STEAM_TURBINE_FUELS,
-            CASING_NAQUADAH_ALLOY_TURBINE, CASING_TUNGSTENSTEEL_GEARBOX,
-            GTTCore.id("block/casings/machine_casing_turbine_naquadah_alloy"),
+            CASING_INCONEL_718_TURBINE, CASING_TUNGSTENSTEEL_GEARBOX,
+            GTTCore.id("block/casings/machine_casing_turbine_inconel_718"),
             GTCEu.id("block/multiblock/generator/large_steam_turbine"),
-            false);
+            false,
+            "大型超临界蒸汽涡轮");
     public final static MultiblockMachineDefinition HUGE_SUPERCRITICAL_STEAM_TURBINE = registerHugeTurbine("supercritical_steam_huge_turbine",
             ZPM,
             SUPERCRITICAL_STEAM_TURBINE_FUELS,
-            CASING_NAQUADAH_ALLOY_TURBINE, CASING_TUNGSTENSTEEL_GEARBOX,
-            GTTCore.id("block/casings/machine_casing_turbine_naquadah_alloy"),
+            CASING_INCONEL_718_TURBINE, CASING_TUNGSTENSTEEL_GEARBOX,
+            GTTCore.id("block/casings/machine_casing_turbine_inconel_718"),
             GTCEu.id("block/multiblock/generator/large_steam_turbine"),
-            false);
+            false,
+            "巨型超临界蒸汽涡轮");
     public final static MultiblockMachineDefinition HUGE_STEAM_TURBINE = registerHugeTurbine("steam_huge_turbine",
             EV,
             STEAM_TURBINE_FUELS,
             CASING_STEEL_TURBINE, CASING_STEEL_GEARBOX,
             GTCEu.id("block/casings/mechanic/machine_casing_turbine_steel"),
             GTCEu.id("block/multiblock/generator/large_steam_turbine"),
-            false);
+            false,
+            "巨型蒸汽涡轮");
     public final static MultiblockMachineDefinition HUGE_GAS_TURBINE = registerHugeTurbine("gas_huge_turbine",
             IV,
             GAS_TURBINE_FUELS,
             CASING_STAINLESS_TURBINE, CASING_STAINLESS_STEEL_GEARBOX,
             GTCEu.id("block/casings/mechanic/machine_casing_turbine_stainless_steel"),
             GTCEu.id("block/multiblock/generator/large_steam_turbine"),
-            true);
+            true,
+            "巨型燃气涡轮");
     public final static MultiblockMachineDefinition HUGE_PLASMA_TURBINE = registerHugeTurbine("plasma_huge_turbine",
             LuV,
             PLASMA_GENERATOR_FUELS,
             CASING_TUNGSTENSTEEL_TURBINE, CASING_TUNGSTENSTEEL_GEARBOX,
             GTCEu.id("block/casings/mechanic/machine_casing_turbine_tungstensteel"),
             GTCEu.id("block/multiblock/generator/large_plasma_turbine"),
-            false);
+            false,
+            "巨型等离子涡轮");
 
-    public final static MultiblockMachineDefinition PLASMA_HEAT_EXCHANGER = REGISTRATE
-            .multiblock("plasma_heat_exchanger", WorkableElectricMultiblockMachine::new)
-            .langValue("plasma_heat_exchanger")
+    public final static MultiblockMachineDefinition HEAT_EXCHANGER = REGISTRATE
+            .multiblock(LangUtil.createBlockZhTranslation("heat_exchanger", "热交换器"), WorkableElectricMultiblockMachine::new)
+            .langValue("Heat Exchanger")
             .tooltips(Component.translatable("gtceu.machine.available_recipe_map_1.tooltip",
                     Component.translatable("gttcore.plasma_heat_exchanger")))
             .rotationState(RotationState.ALL)
-            .recipeType(PLASMA_HEAT_EXCHANGER_RECIPES)
+            .recipeType(HEAT_EXCHANGER_RECIPES)
             .recipeModifiers(OC_PERFECT_SUBTICK)
             .appearanceBlock(CASING_TUNGSTENSTEEL_ROBUST)
             .pattern(definition -> FactoryBlockPattern.start()
@@ -837,7 +844,7 @@ public class GTTMultiMachines {
                     GTCEu.id(("block/multiblock/generator/large_steam_turbine")))
             .register();
     public final static MultiblockMachineDefinition HUGE_CHEMICAL_REACTOR = REGISTRATE
-            .multiblock("huge_chemical_reactor", WorkableElectricMultiblockMachine::new)
+            .multiblock(LangUtil.createBlockZhTranslation("huge_chemical_reactor", "巨型化学反应釜"), WorkableElectricMultiblockMachine::new)
             .rotationState(RotationState.ALL)
             .recipeType(GTRecipeTypes.LARGE_CHEMICAL_RECIPES)
             .recipeModifiers(GTRecipeModifiers.PARALLEL_HATCH, OC_PERFECT_SUBTICK)
@@ -857,7 +864,7 @@ public class GTTMultiMachines {
                     GTCEu.id("block/multiblock/large_chemical_reactor"))
             .register();
     public final static MultiblockMachineDefinition CHEMICAL_PLANT = REGISTRATE
-            .multiblock("chemical_plant", WorkableElectricMultiblockMachine::new)
+            .multiblock(LangUtil.createBlockZhTranslation("chemical_plant", "化工厂"), WorkableElectricMultiblockMachine::new)
             .rotationState(RotationState.ALL)
             .recipeType(CHEMICAL_PLANT_RECIPES)
             .recipeModifiers(GTRecipeModifiers.PARALLEL_HATCH, OC_PERFECT_SUBTICK)
@@ -886,7 +893,7 @@ public class GTTMultiMachines {
             .register();
 
     public static final MultiblockMachineDefinition LARGE_PRIMITIVE_BLAST_FURNACE = REGISTRATE
-            .multiblock("large_primitive_blast_furnace", WorkableElectricMultiblockMachine::new)
+            .multiblock(LangUtil.createBlockZhTranslation("large_primitive_blast_furnace", "大型土高炉"), WorkableElectricMultiblockMachine::new)
             .rotationState(RotationState.ALL)
             .recipeType(GTRecipeTypes.PRIMITIVE_BLAST_FURNACE_RECIPES)
             .model(createWorkableCasingMachineModel(GTCEu.id("block/casings/solid/machine_primitive_bricks"),
@@ -927,7 +934,7 @@ public class GTTMultiMachines {
             .register();
 
     public static final MultiblockMachineDefinition BEDROCK_DRILL = REGISTRATE
-            .multiblock("bedrock_drill", holder -> new BedrockDrillMachine(holder, HV))
+            .multiblock(LangUtil.createBlockZhTranslation("bedrock_drill", "基岩钻机"), holder -> new BedrockDrillMachine(holder, HV))
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(DUMMY_RECIPES)
             .tooltips(
@@ -967,9 +974,10 @@ public class GTTMultiMachines {
             .register();
 
     public static final MultiblockMachineDefinition NETHER_CAPSULE = REGISTRATE
-            .multiblock("nether_capsule", NetherCapsuleMachine::new)
+            .multiblock(LangUtil.createBlockZhTranslation("nether_capsule", "下界电梯胶囊"), NetherCapsuleMachine::new)
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(DUMMY_RECIPES)
+            .langValue("Nether Elevator Capsule")
             .workableCasingModel(GTCEu.id("block/casings/solid/machine_casing_stable_titanium"),
                     GTCEu.id("block/multiblock/multiblock_workable"))
             .appearanceBlock(CASING_TITANIUM_STABLE)
@@ -982,8 +990,27 @@ public class GTTMultiMachines {
                     .where(" ", any())
                     .build())
             .register();
-
-
+    public static MultiblockMachineDefinition registerLargeTurbine(GTRegistrate registrate,
+                                                                   String name, int tier, GTRecipeType recipeType,
+                                                                   Supplier<? extends Block> casing,
+                                                                   Supplier<? extends Block> gear,
+                                                                   ResourceLocation casingTexture,
+                                                                   ResourceLocation overlayModel,
+                                                                   boolean needsMuffler,
+                                                                   String chineseName){
+        LangUtil.createBlockZhTranslation(name, chineseName);
+        return GTMachineUtils.registerLargeTurbine(registrate, name, tier, recipeType, casing, gear, casingTexture, overlayModel, needsMuffler);
+    }
+    public static MultiblockMachineDefinition registerHugeTurbine(String name, int tier, GTRecipeType recipeType,
+                                                                  Supplier<? extends Block> casing,
+                                                                  Supplier<? extends Block> gear,
+                                                                  ResourceLocation casingTexture,
+                                                                  ResourceLocation overlayModel,
+                                                                  boolean needsMuffler,
+                                                                  String chineseName) {
+        LangUtil.createBlockZhTranslation(name, chineseName);
+        return registerHugeTurbine(name, tier, recipeType, casing, gear, casingTexture, overlayModel, needsMuffler);
+    }
     public static MultiblockMachineDefinition registerHugeTurbine(String name, int tier, GTRecipeType recipeType,
                                                                    Supplier<? extends Block> casing,
                                                                    Supplier<? extends Block> gear,

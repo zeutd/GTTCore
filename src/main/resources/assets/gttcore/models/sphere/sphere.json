@@ -1,0 +1,4 @@
+{
+  "loader": "forge:obj",
+  "model": "gttcore:models/sphere/sphere.obj"
+}

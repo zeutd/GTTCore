@@ -1,14 +1,12 @@
 package com.gtt.gttcore.common.data.recipes.lines;
 
-import com.gregtechceu.gtceu.api.recipe.RecipeHelper;
 import com.gtt.gttcore.GTTCore;
 import net.minecraft.data.recipes.FinishedRecipe;
-import net.minecraftforge.common.crafting.CraftingHelper;
 
 import java.util.function.Consumer;
 
 import static com.gregtechceu.gtceu.api.GTValues.*;
-import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
+import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.dust;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.*;
 import static com.gtt.gttcore.common.data.GTTMaterials.*;
@@ -94,13 +92,13 @@ public class PlatinumGroupLine {
                 .inputItems(dust, InertMetalSodiumBisulfate, 1)
                 .inputFluids(Water.getFluid(1000))
                 .outputItems(dust, RutheniumOsmiumIridiumMixture, 1)
-                .outputFluids(RhodiumSulfateSolution.getFluid(1000))
+                .outputFluids(RhodiumSulfate.getFluid(1000))
                 .EUt(VHA[LV])
                 .duration(100)
                 .save(provider);
         CHEMICAL_RECIPES.recipeBuilder(GTTCore.id("platinum_group_rhodium_hydroxide"))
                 .inputItems(dust, SodiumHydroxide, 1)
-                .inputFluids(RhodiumSulfateSolution.getFluid(1000))
+                .inputFluids(RhodiumSulfate.getFluid(1000))
                 .outputItems(dust, RhodiumHydroxide, 1)
                 .EUt(VHA[LV])
                 .duration(100)

@@ -3,18 +3,18 @@ package com.gtt.gttcore.common.data.recipes;
 import appeng.core.definitions.AEBlocks;
 import appeng.core.definitions.AEItems;
 import com.gtt.gttcore.GTTCore;
+import earth.terrarium.adastra.common.registry.ModItems;
 import net.minecraft.data.recipes.FinishedRecipe;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Blocks;
 
 import java.util.function.Consumer;
 
-import static com.gregtechceu.gtceu.api.GTValues.LV;
-import static com.gregtechceu.gtceu.api.GTValues.VA;
+import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
-import static com.gregtechceu.gtceu.common.data.GTMaterials.CertusQuartz;
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.*;
-import static com.gtt.gttcore.common.data.GTTMaterials.FluixCrystal;
+import static com.gtt.gttcore.common.data.GTTMaterials.*;
 
 public class IntegrationRecipes {
     public static void init(Consumer<FinishedRecipe> provider){
@@ -23,7 +23,75 @@ public class IntegrationRecipes {
     }
 
     public static void registerAdAstraRecipes(Consumer<FinishedRecipe> provider) {
-
+        CENTRIFUGE_RECIPES.recipeBuilder(GTTCore.id("moon_sand"))
+                .duration(100).EUt(VA[HV])
+                .inputItems(ModItems.MOON_SAND)
+                .chancedOutput(dust, Ilmenite, 1000, 0)
+                .chancedOutput(dust, Iron, 5000, 0)
+                .chancedOutput(new ItemStack(Blocks.SAND), 8500, 0)
+                .outputFluids(Helium3.getFluid(200))
+                .save(provider);
+        CENTRIFUGE_RECIPES.recipeBuilder(GTTCore.id("venus_sand"))
+                .duration(100).EUt(VA[HV])
+                .inputItems(ModItems.VENUS_SAND)
+                .chancedOutput(dust, Bismuth, 2500, 0)
+                .chancedOutput(dust, Sulfur, 5000, 0)
+                .chancedOutput(dust, Ilmenite, 1000, 0)
+                .chancedOutput(dust, Ilmenite, 500, 0)
+                .chancedOutput(dust, Zinc, 2500, 0)
+                .chancedOutput(new ItemStack(Blocks.SAND), 8500, 0)
+                .outputFluids(SulfurDioxide.getFluid(200))
+                .save(provider);
+        CENTRIFUGE_RECIPES.recipeBuilder(GTTCore.id("mars_sand"))
+                .duration(100).EUt(VA[HV])
+                .inputItems(ModItems.MARS_SAND)
+                .chancedOutput(dust, Hematite, 2500, 0)
+                .chancedOutput(dust, Carbon, 5000, 0)
+                .chancedOutput(dust, Tantalite, 500, 0)
+                .chancedOutput(dust, Tungstate, 1000, 0)
+                .chancedOutput(new ItemStack(Blocks.SAND), 8500, 0)
+                .outputFluids(HydrochloricAcid.getFluid(400))
+                .save(provider);
+        CENTRIFUGE_RECIPES.recipeBuilder(GTTCore.id("moon_stone"))
+                .duration(100).EUt(VA[HV])
+                .inputItems(dust, MoonStone)
+                .chancedOutput(dust, Ilmenite, 1000, 0)
+                .chancedOutput(dust, Iron, 5000, 0)
+                .save(provider);
+        CENTRIFUGE_RECIPES.recipeBuilder(GTTCore.id("venus_stone"))
+                .duration(100).EUt(VA[HV])
+                .inputItems(dust, VenusStone)
+                .chancedOutput(dust, Bismuth, 2500, 0)
+                .chancedOutput(dust, Sulfur, 5000, 0)
+                .chancedOutput(dust, Ilmenite, 1000, 0)
+                .chancedOutput(dust, Ilmenite, 500, 0)
+                .chancedOutput(dust, Zinc, 2500, 0)
+                .save(provider);
+        CENTRIFUGE_RECIPES.recipeBuilder(GTTCore.id("mars_stone"))
+                .duration(100).EUt(VA[HV])
+                .inputItems(dust, MarsStone)
+                .chancedOutput(dust, Hematite, 2500, 0)
+                .chancedOutput(dust, Carbon, 5000, 0)
+                .chancedOutput(dust, Tantalite, 500, 0)
+                .chancedOutput(dust, Tungstate, 1000, 0)
+                .save(provider);
+        CENTRIFUGE_RECIPES.recipeBuilder(GTTCore.id("mercury_stone"))
+                .duration(100).EUt(VA[HV])
+                .inputItems(dust, MercuryStone)
+                .chancedOutput(dust, Platinum, 500, 0)
+                .chancedOutput(dust, Naquadah, 500, 0)
+                .chancedOutput(dust, Tantalum, 500, 0)
+                .chancedOutput(dust, Tungsten, 500, 0)
+                .save(provider);
+        CENTRIFUGE_RECIPES.recipeBuilder(GTTCore.id("infernal_spire"))
+                .duration(100).EUt(VA[HV])
+                .inputItems(dust, InfernalSpire)
+                .chancedOutput(dust, Tungsten, 2500, 0)
+                .chancedOutput(dust, Naquadah, 500, 0)
+                .chancedOutput(dust, Tantalum, 5000, 0)
+                .chancedOutput(dust, Tungsten, 500, 0)
+                .outputFluids(Lava.getFluid(200))
+                .save(provider);
     }
     public static void registerAE2Recipes(Consumer<FinishedRecipe> provider) {
         FORMING_PRESS_RECIPES.recipeBuilder(GTTCore.id("calculation_processor_press"))

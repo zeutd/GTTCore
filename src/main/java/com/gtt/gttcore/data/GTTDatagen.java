@@ -1,18 +1,14 @@
 package com.gtt.gttcore.data;
 
-import com.gregtechceu.gtceu.client.renderer.machine.DynamicRenderManager;
-import com.gregtechceu.gtceu.data.lang.LangHandler;
-import com.gregtechceu.gtceu.data.tags.ItemTagLoader;
-import com.gtt.gttcore.GTTCore;
-import com.gtt.gttcore.client.LargeRotorHolderRenderer;
 import com.gtt.gttcore.common.data.recipes.GTTRecipeTypes;
+import com.gtt.gttcore.data.lang.GTTChineseLanguageProvider;
 import com.gtt.gttcore.data.lang.GTTLangHandler;
 import com.gtt.gttcore.data.recipe.GTTRecipeProvider;
 import com.gtt.gttcore.data.recipe.GTTTags;
-import com.simibubi.create.infrastructure.data.CreateRegistrateTags;
 import com.tterrag.registrate.providers.ProviderType;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
+import net.minecraftforge.common.data.LanguageProvider;
 import net.minecraftforge.data.event.GatherDataEvent;
 
 import static com.gtt.gttcore.GTTCore.LOGGER;
@@ -25,7 +21,10 @@ public class GTTDatagen {
         DataGenerator generator = event.getGenerator();
         PackOutput output = generator.getPackOutput();
         GTTRecipeProvider.registerAllProcessing(generator, output);
+        generator.addProvider(true, new GTTPlanetProvider(output));
         REGISTRATE.addDataGenerator(ProviderType.ITEM_TAGS, GTTTags::addItemTags);
-        REGISTRATE.addDataGenerator(ProviderType.LANG, GTTLangHandler::init);
+        LanguageProvider chineseProvider = new GTTChineseLanguageProvider(output);
+        REGISTRATE.addDataGenerator(ProviderType.LANG, englishProvider -> GTTLangHandler.init(englishProvider, chineseProvider));
+        generator.addProvider(true, chineseProvider);
     }
 }

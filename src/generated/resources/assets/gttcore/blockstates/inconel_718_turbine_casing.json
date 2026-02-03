@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "gttcore:block/inconel_718_turbine_casing"
+    }
+  }
+}

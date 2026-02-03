@@ -1,0 +1,18 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "ad_astra:moon_stone"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 9,
+      "item": "gttcore:moon_stone_dust"
+    }
+  ]
+}

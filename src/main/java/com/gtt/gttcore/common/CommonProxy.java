@@ -1,6 +1,7 @@
 package com.gtt.gttcore.common;
 
 import com.gregtechceu.gtceu.api.GTCEuAPI;
+import com.gregtechceu.gtceu.api.data.DimensionMarker;
 import com.gregtechceu.gtceu.api.data.chemical.material.event.MaterialEvent;
 import com.gregtechceu.gtceu.api.data.chemical.material.event.MaterialRegistryEvent;
 import com.gregtechceu.gtceu.api.data.chemical.material.event.PostMaterialEvent;
@@ -9,6 +10,7 @@ import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
 import com.gregtechceu.gtceu.data.recipe.event.CraftingComponentModificationEvent;
 import com.gtt.gttcore.GTTConfigHolder;
 import com.gtt.gttcore.GTTCore;
+import com.gtt.gttcore.common.data.GTTParticleTypes;
 import com.gtt.gttcore.common.data.*;
 import com.gtt.gttcore.common.data.recipes.GTTRecipeTypes;
 import net.minecraft.core.registries.Registries;
@@ -47,10 +49,12 @@ public class CommonProxy {
             }
             GTTPoiTypes.init();
         });
+        GTTParticleTypes.init(modEventBus);
     }
 
     public static void init(){
         GTTBlocks.init();
+        GTTEntityTypes.init();
     }
 
     @SubscribeEvent
@@ -75,7 +79,7 @@ public class CommonProxy {
     @SubscribeEvent
     // As well as this.
     public void addMaterials(MaterialEvent event) {
-        LOGGER.info("GTT Material");
+        LOGGER.info("GTT material");
         GTTMaterials.init();
     }
 
@@ -87,6 +91,11 @@ public class CommonProxy {
     // This is optional, though.
     public void modifyMaterials(PostMaterialEvent event) {
         GTTMaterials.modify();
+    }
+
+    @SubscribeEvent
+    public void addDimMarkers(GTCEuAPI.RegisterEvent<ResourceLocation, DimensionMarker> event){
+        GTTDimensionMarkers.init();
     }
 
     public void registerRecipeTypes(GTCEuAPI.RegisterEvent<ResourceLocation, GTRecipeType> event) {

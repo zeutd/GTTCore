@@ -34,12 +34,12 @@ import java.util.stream.Stream;
 import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
 import static com.gregtechceu.gtceu.common.data.GCYMBlocks.CASING_INDUSTRIAL_STEAM;
-import static com.gregtechceu.gtceu.common.data.GCYMBlocks.CRUSHING_WHEELS;
 import static com.gregtechceu.gtceu.common.data.GTBlocks.*;
 import static com.gregtechceu.gtceu.common.data.GTItems.*;
 import static com.gregtechceu.gtceu.common.data.GTMachines.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.*;
+import static com.gregtechceu.gtceu.common.data.machines.GTMultiMachines.LARGE_CHEMICAL_REACTOR;
 import static com.gregtechceu.gtceu.common.data.machines.GTMultiMachines.PRIMITIVE_BLAST_FURNACE;
 import static com.gregtechceu.gtceu.data.recipe.GTCraftingComponents.*;
 import static com.gtt.gttcore.common.data.GTTBlocks.*;
@@ -155,40 +155,44 @@ public class MiscRecipes {
                 .EUt(VA[IV]).duration(200).save(provider);
         ASSEMBLER_RECIPES.recipeBuilder(GTTCore.id("huge_steam_turbine_machine"))
                 .inputItems(CASING_STEEL_SOLID)
-                .inputItems(gear, StainlessSteel, 5)
+                .inputItems(gear, Steel, 5)
+                .inputItems(gearSmall, Steel, 3)
                 .inputItems(CustomTags.HV_CIRCUITS, 4)
                 .inputItems(ELECTRIC_PUMP_HV, 2)
                 .outputItems(HUGE_STEAM_TURBINE)
                 .EUt(VA[EV]).duration(200).save(provider);
         ASSEMBLER_RECIPES.recipeBuilder(GTTCore.id("huge_gas_turbine_machine"))
-                .inputItems(CASING_STEEL_SOLID)
+                .inputItems(CASING_STAINLESS_TURBINE)
                 .inputItems(CustomTags.EV_CIRCUITS, 2)
-                .inputItems(gear, TungstenSteel, 5)
+                .inputItems(gear, StainlessSteel, 5)
+                .inputItems(gearSmall, StainlessSteel, 3)
                 .inputItems(CustomTags.HV_CIRCUITS, 2)
                 .inputItems(ELECTRIC_PUMP_EV, 2)
                 .outputItems(HUGE_GAS_TURBINE)
                 .EUt(VA[EV]).duration(200).save(provider);
         ASSEMBLER_RECIPES.recipeBuilder(GTTCore.id("huge_plasma_turbine_machine"))
-                .inputItems(CASING_STEEL_SOLID)
+                .inputItems(CASING_TUNGSTENSTEEL_TURBINE)
                 .inputItems(CustomTags.LuV_CIRCUITS, 2)
-                .inputItems(gear, NaquadahAlloy, 5)
+                .inputItems(gear, TungstenSteel, 5)
+                .inputItems(gearSmall, TungstenSteel, 3)
                 .inputItems(CustomTags.IV_CIRCUITS, 2)
                 .inputItems(ELECTRIC_PUMP_IV, 2)
                 .outputItems(HUGE_PLASMA_TURBINE)
                 .EUt(VA[EV]).duration(200).save(provider);
         ASSEMBLER_RECIPES.recipeBuilder(GTTCore.id("huge_supercritical_steam_turbine_machine"))
-                .inputItems(CASING_STEEL_SOLID)
+                .inputItems(CASING_INCONEL_718_TURBINE)
                 .inputItems(CustomTags.ZPM_CIRCUITS, 2)
-                .inputItems(gear, Neutronium, 5)
+                .inputItems(gear, Inconel718, 5)
+                .inputItems(gearSmall, RhodiumPlatedPalladium, 3)
                 .inputItems(CustomTags.LuV_CIRCUITS, 2)
                 .inputItems(ELECTRIC_PUMP_LuV, 2)
                 .outputItems(HUGE_SUPERCRITICAL_STEAM_TURBINE)
                 .EUt(VA[EV]).duration(200).save(provider);
         VanillaRecipeHelper.addShapedRecipe(provider, true, GTTCore.id("large_supercritical_steam_turbine_machine"),
                 LARGE_SUPERCRITICAL_STEAM_TURBINE.asStack(), "PSP", "SAS", "CSC", 'S',
-                new MaterialEntry(TagPrefix.gear, NaquadahAlloy), 'P', CustomTags.ZPM_CIRCUITS, 'A',
+                new MaterialEntry(TagPrefix.gear, Inconel718), 'P', CustomTags.ZPM_CIRCUITS, 'A',
                 GTMachines.HULL[GTValues.ZPM].asStack(), 'C',
-                new MaterialEntry(TagPrefix.pipeLargeFluid, GTMaterials.NaquadahAlloy));
+                new MaterialEntry(TagPrefix.pipeLargeFluid, Inconel718));
         ASSEMBLER_RECIPES.recipeBuilder(GTTCore.id("fission_reactor_machine"))
                 .inputItems(CASING_LEAD_RADIATION_PROOF)
                 .inputItems(CustomTags.LuV_CIRCUITS, 5)
@@ -274,10 +278,15 @@ public class MiscRecipes {
                 GTTMultiMachines.EVAPORATION_PLANT.asStack(), "CBC", "FMF", "CBC", 'M', GTMachines.HULL[HV].asStack(),
                 'B', new MaterialEntry(TagPrefix.wireGtDouble, GTMaterials.Kanthal), 'C', CustomTags.HV_CIRCUITS,
                 'F', GTItems.ELECTRIC_PUMP_HV);
-        VanillaRecipeHelper.addShapedRecipe(provider, GTTCore.id("steam_crushing_wheels"), CRUSHING_WHEELS.asStack(2),
+        VanillaRecipeHelper.addShapedRecipe(provider, GTTCore.id("steam_crushing_wheels"), STEAM_CRUSHING_WHEELS.asStack(2),
                 "TTT", "UCU",
                 "UMU", 'T', new MaterialEntry(gearSmall, WroughtIron), 'U', ChemicalHelper.get(gear, Steel),
                 'C', CASING_INDUSTRIAL_STEAM.asStack(), 'M', ChemicalHelper.get(pipeLargeFluid, Bronze));
+        ASSEMBLER_RECIPES.recipeBuilder("inconel_718_turbine_casing").EUt(16)
+                .inputItems(GTBlocks.CASING_STEEL_TURBINE.asStack()).inputItems(plate, Inconel718, 6).inputItems(plate, TantalumCarbide, 3).circuitMeta(6)
+                .outputItems(CASING_INCONEL_718_TURBINE.asStack(ConfigHolder.INSTANCE.recipes.casingsPerCraft))
+                .duration(50)
+                .addMaterialInfo(true).save(provider);
         VanillaRecipeHelper.addShapedRecipe(provider, true, GTTCore.id("greenhouse"), GREENHOUSE.asStack(),
                 "CGC",
                 "RAR",
@@ -286,19 +295,25 @@ public class MiscRecipes {
                 'C', CustomTags.ULV_CIRCUITS,
                 'G', ChemicalHelper.get(gear, Steel),
                 'R', GTCraftingComponents.ROBOT_ARM.get(0),
-                'A', CASING_STEEL_SOLID,
+                'A', CASING_STEEL_SOLID.asStack(),
                 'P', ELECTRIC_PUMP_ULV
                 );
         VanillaRecipeHelper.addShapedRecipe(provider, true, GTTCore.id("large_greenhouse"), LARGE_GREENHOUSE.asStack(),
                 "PCP",
                 "RMR",
                 "EWE",
-                'M', CASING_STAINLESS_CLEAN,
-                'E', ROBOT_ARM.get(HV),
-                'R', new MaterialEntry(gear, Aluminium),
-                'C', CustomTags.HV_CIRCUITS,
+                'M', GREENHOUSE.asStack(),
+                'E', ROBOT_ARM.get(IV),
+                'R', new MaterialEntry(gear, Platinum),
+                'C', CustomTags.IV_CIRCUITS,
                 'W', Items.BONE_MEAL,
-                'P', new MaterialEntry(TagPrefix.pipeLargeFluid, Steel));
+                'P', new MaterialEntry(TagPrefix.pipeLargeFluid, TungstenSteel));
+        VanillaRecipeHelper.addShapedRecipe(provider, true, "huge_chemical_reactor",
+                HUGE_CHEMICAL_REACTOR.asStack(), "CRC", "CMP", "HHH", 'C', CustomTags.IV_CIRCUITS, 'R',
+                ChemicalHelper.get(TagPrefix.rotor, TitaniumCarbide), 'P',
+                ChemicalHelper.get(TagPrefix.pipeHugeFluid, GTMaterials.Polytetrafluoroethylene), 'M',
+                GTItems.ELECTRIC_MOTOR_IV.asStack(), 'H', LARGE_CHEMICAL_REACTOR.asStack());
+
         VanillaRecipeHelper.addShapedRecipe(provider, true, GTTCore.id("rocket_assembler"), ROCKET_ASSEMBLER.asStack(),
                 "AGM",
                 "MSC",
@@ -307,7 +322,7 @@ public class MiscRecipes {
                 'G', new MaterialEntry(gear, BlueSteel),
                 'M', MOTOR.get(HV),
                 'C', CustomTags.HV_CIRCUITS,
-                'S', CASING_STEEL_SOLID
+                'S', CASING_STEEL_SOLID.asStack()
         );
 
         VanillaRecipeHelper.addShapedRecipe(provider, true, GTTCore.id("large_steam_mixer"), LARGE_STEAM_MIXER.asStack(),
@@ -318,7 +333,7 @@ public class MiscRecipes {
                 'G', new MaterialEntry(gear, Steel),
                 'C', CustomTags.ULV_CIRCUITS,
                 'S', STEAM_MIXER.right().asStack(),
-                'B', CASING_INDUSTRIAL_STEAM
+                'B', CASING_INDUSTRIAL_STEAM.asStack()
         );
 
         VanillaRecipeHelper.addShapedRecipe(provider, true, GTTCore.id("large_steam_centrifuge"), LARGE_STEAM_CENTRIFUGE.asStack(),
@@ -329,7 +344,7 @@ public class MiscRecipes {
                 'G', new MaterialEntry(gear, Bronze),
                 'C', CustomTags.ULV_CIRCUITS,
                 'S', STEAM_CENTRIFUGE.right().asStack(),
-                'B', CASING_INDUSTRIAL_STEAM
+                'B', CASING_INDUSTRIAL_STEAM.asStack()
         );
 
         VanillaRecipeHelper.addShapedRecipe(provider, true, GTTCore.id("large_steam_centrifuge"), LARGE_STEAM_CENTRIFUGE.asStack(),
@@ -339,7 +354,7 @@ public class MiscRecipes {
                 'G', new MaterialEntry(gear, Bronze),
                 'C', CustomTags.ULV_CIRCUITS,
                 'S', STEAM_CENTRIFUGE.right().asStack(),
-                'B', CASING_INDUSTRIAL_STEAM
+                'B', CASING_INDUSTRIAL_STEAM.asStack()
         );
 
         VanillaRecipeHelper.addShapedRecipe(provider, true, GTTCore.id("large_steam_ore_washer"), LARGE_STEAM_ORE_WASHER.asStack(),
@@ -350,7 +365,7 @@ public class MiscRecipes {
                 'G', new MaterialEntry(gear, BismuthBronze),
                 'C', CustomTags.ULV_CIRCUITS,
                 'S', Items.CAULDRON,
-                'B', CASING_INDUSTRIAL_STEAM
+                'B', CASING_INDUSTRIAL_STEAM.asStack()
         );
 
         VanillaRecipeHelper.addShapedRecipe(provider, true, GTTCore.id("large_steam_macerator"), LARGE_STEAM_MACERATOR.asStack(),
@@ -360,7 +375,7 @@ public class MiscRecipes {
                 'G', new MaterialEntry(gear, Steel),
                 'C', CustomTags.ULV_CIRCUITS,
                 'S', STEAM_MACERATOR.right().asStack(),
-                'B', CASING_INDUSTRIAL_STEAM
+                'B', CASING_INDUSTRIAL_STEAM.asStack()
         );
 
         VanillaRecipeHelper.addShapedRecipe(provider, true, GTTCore.id("steam_distillation_tower"), STEAM_DISTILLATION_TOWER.asStack(),
@@ -369,9 +384,13 @@ public class MiscRecipes {
                 "PCP",
                 'P', new MaterialEntry(pipeNormalFluid, Steel),
                 'C', CustomTags.ULV_CIRCUITS,
-                'S', CASING_STEEL_SEALED,
-                'F', FIREBOX_STEEL
+                'S', CASING_STEEL_SEALED.asStack(),
+                'F', FIREBOX_STEEL.asStack()
         );
+        VanillaRecipeHelper.addShapedRecipe(provider, true, "casing_steel_sealed",
+                CASING_STEEL_SEALED.asStack(ConfigHolder.INSTANCE.recipes.casingsPerCraft), "SPS", "PFP", "SPS",
+                'P', new MaterialEntry(TagPrefix.plate, GTMaterials.Steel), 'F',
+                new MaterialEntry(TagPrefix.frameGt, GTMaterials.Steel), 'S', new MaterialEntry(screw, Steel));
 
         VanillaRecipeHelper.addShapedRecipe(provider, true, GTTCore.id("large_steam_forge_hammer"), LARGE_STEAM_FORGE_HAMMER.asStack(),
                 "IPI",
@@ -382,13 +401,13 @@ public class MiscRecipes {
                 'C', CustomTags.ULV_CIRCUITS,
                 'S', STEAM_HAMMER.right().asStack(),
                 'W', new MaterialEntry(block, WroughtIron),
-                'A', CASING_BRONZE_BRICKS
+                'A', CASING_BRONZE_BRICKS.asStack()
         );
         VanillaRecipeHelper.addShapedRecipe(provider, true, GTTCore.id("primitive_fermenter"), PRIMITIVE_FERMENTER.asStack(),
                 "RhR",
                 "SWS",
                 "OdO",
-                'W', CASING_WOOD_WALL,
+                'W', CASING_WOOD_WALL.asStack(),
                 'R', new MaterialEntry(ring, Copper),
                 'S', new MaterialEntry(screw, Iron),
                 'O', new MaterialEntry(rod, Copper)
@@ -397,14 +416,14 @@ public class MiscRecipes {
                 "OhO",
                 "SWS",
                 "RdR",
-                'W', CASING_WOOD_WALL,
+                'W', CASING_WOOD_WALL.asStack(),
                 'R', new MaterialEntry(ring, Copper),
                 'S', new MaterialEntry(screw, Iron),
                 'O', new MaterialEntry(rod, Copper)
         );
         VanillaRecipeHelper.addShapedRecipe(provider, true, GTTCore.id("large_primitive_blast_furnace"), LARGE_PRIMITIVE_BLAST_FURNACE.asStack(),
                 "PRP",
-                "PSP",
+                "SSS",
                 "PCP",
                 'P', new MaterialEntry(plate, Steel),
                 'R', new MaterialEntry(rotor, Steel),
@@ -416,7 +435,7 @@ public class MiscRecipes {
                 "CPC",
                 "MSM",
                 "DDD",
-                'S', CASING_STEEL_SOLID,
+                'S', CASING_STEEL_SOLID.asStack(),
                 'D', new MaterialEntry(toolHeadDrill, Ultimet),
                 'M', MOTOR.get(EV),
                 'C', CustomTags.EV_CIRCUITS,

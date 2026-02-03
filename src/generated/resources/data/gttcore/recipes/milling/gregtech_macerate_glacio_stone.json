@@ -1,0 +1,18 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "ad_astra:glacio_stone"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 9,
+      "item": "gttcore:glacio_stone_dust"
+    }
+  ]
+}

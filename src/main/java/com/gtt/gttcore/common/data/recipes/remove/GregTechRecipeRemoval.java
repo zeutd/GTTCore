@@ -1,9 +1,7 @@
 package com.gtt.gttcore.common.data.recipes.remove;
 
 import com.gregtechceu.gtceu.GTCEu;
-import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
 import com.gregtechceu.gtceu.common.data.GTItems;
-import com.gtt.gttcore.GTTConfigHolder;
 import dev.latvian.mods.kubejs.recipe.IngredientMatch;
 import dev.latvian.mods.kubejs.recipe.filter.*;
 import net.minecraft.resources.ResourceLocation;
@@ -11,9 +9,6 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 
 import java.util.function.Consumer;
-
-import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.dust;
-import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 
 public class GregTechRecipeRemoval {
     public static void init(Consumer<RecipeFilter> provider) {
@@ -62,6 +57,8 @@ public class GregTechRecipeRemoval {
         removeChemical(provider, "rarest_metal_mixture_separation");
         provider.accept(new ResourceLocation("gtceu:centrifuge/iridium_metal_residue_separation"));
         removeChemical(provider, "iridium_chloride_separation");
+        removeChemical(provider, "qbit_cpu_wafer_radon");
+        removeChemical(provider, "qbit_cpu_wafer_quantum_eye");
         provider.accept(new ResourceLocation("gtceu:distillation_tower/acidic_osmium_solution_separation"));
 
 

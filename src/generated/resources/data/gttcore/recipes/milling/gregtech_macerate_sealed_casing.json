@@ -1,0 +1,18 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gttcore:sealed_casing"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 29,
+      "item": "gtceu:tiny_steel_dust"
+    }
+  ]
+}

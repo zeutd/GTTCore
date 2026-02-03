@@ -327,20 +327,23 @@ public class MachineRecipes {
         FISSION_RECIPES.recipeBuilder(GTTCore.id("fission_uranium"))
                 .inputItems(rod, Uranium238, 16)
                 .outputItems(rod, DepletedUranium238, 16)
-                .EUt(-VA[ZPM])
-                .duration(100)
+                .outputFluids(SupercriticalSteam.getFluid((int) (V[IV])))
+                .inputFluids(Water.getFluid((int) (V[IV] / 100)))
+                .duration(200)
                 .save(provider);
         FISSION_RECIPES.recipeBuilder(GTTCore.id("fission_plutonium"))
                 .inputItems(rod, Plutonium239, 16)
                 .outputItems(rod, DepletedPlutonium239, 16)
-                .EUt(-VA[ZPM] - VA[IV])
-                .duration(100)
+                .outputFluids(SupercriticalSteam.getFluid((int) (V[IV])))
+                .inputFluids(Water.getFluid((int) (V[IV] / 100)))
+                .duration(200)
                 .save(provider);
         FISSION_RECIPES.recipeBuilder(GTTCore.id("fission_thorium"))
                 .inputItems(rod, Thorium, 16)
                 .outputItems(rod, DepletedThorium, 16)
-                .EUt(-VA[ZPM])
-                .duration(100)
+                .outputFluids(SupercriticalSteam.getFluid((int) (V[IV])))
+                .inputFluids(Water.getFluid((int) (V[IV] / 100)))
+                .duration(200)
                 .save(provider);
     }
 

@@ -45,11 +45,6 @@ public class GTTGTAddon implements IGTAddon {
     }
 
     @Override
-    public void registerTagPrefixes() {
-        //CustomTagPrefixes.init();
-    }
-
-    @Override
     public void registerElements(){
         GTTElements.init();
     }
@@ -106,5 +101,15 @@ public class GTTGTAddon implements IGTAddon {
     @Override
     public void registerFluidVeins() {
         GTTBedrockFluids.init();
+    }
+
+    @Override
+    public void registerTagPrefixes() {
+        GTTTagPrefix.init();
+    }
+
+    @Override
+    public void registerWorldgenLayers() {
+        GTTWorldGenLayers.init();
     }
 }

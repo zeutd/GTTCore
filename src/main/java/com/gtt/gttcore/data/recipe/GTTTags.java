@@ -26,7 +26,7 @@ public class GTTTags {
         prov.addTag(GTTTags.andesiteAlloyable)
                 .add(ChemicalHelper.get(dust, Pyrite).getItem())
                 .add(ChemicalHelper.get(dust, Magnetite).getItem())
-                .add(ChemicalHelper.get(dust, YellowLimonite).getItem())
+                .add(ChemicalHelper.get(dust, Limonite).getItem())
                 .add(ChemicalHelper.get(dust, Goethite).getItem())
                 .add(ChemicalHelper.get(dust, Hematite).getItem())
                 .add(ChemicalHelper.get(dust, Iron).getItem());

@@ -16,15 +16,15 @@
     },
     {
       "count": 4,
-      "item": "gtceu:kanthal_dust"
-    },
-    {
-      "count": 4,
       "item": "gtceu:stainless_steel_dust"
     },
     {
       "count": 4,
       "item": "gtceu:rubber_dust"
+    },
+    {
+      "count": 4,
+      "item": "gtceu:kanthal_dust"
     }
   ]
 }

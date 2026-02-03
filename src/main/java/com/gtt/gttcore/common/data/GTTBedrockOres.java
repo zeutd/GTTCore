@@ -4,17 +4,10 @@ import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.gregtechceu.gtceu.api.data.worldgen.bedrockore.BedrockOreDefinition;
 import com.gregtechceu.gtceu.api.registry.GTRegistries;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
-import earth.terrarium.adastra.api.planets.Planet;
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.Level;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
 import java.util.function.Consumer;
-
-import static com.gtt.gttcore.GTTCore.LOGGER;
 
 public class GTTBedrockOres {
     public static void init() {
@@ -23,6 +16,7 @@ public class GTTBedrockOres {
 
     static {
         GTRegistries.ORE_VEINS.forEach(oreDefinition -> {
+            if (oreDefinition.dimensionFilter().contains(Level.END)) return;
             create(GTRegistries.ORE_VEINS.getKey(oreDefinition), bedrockOreDefinition -> {
                 bedrockOreDefinition
                         .dimensions(oreDefinition.dimensionFilter())
@@ -31,7 +25,7 @@ public class GTTBedrockOres {
                         .depletionAmount(4)
                         .depletionChance(100)
                         .depletedYield(1)
-                        .weight(oreDefinition.weight());
+                        .weight(oreDefinition.weight() * 20);
                 oreDefinition.veinGenerator().getAllEntries().forEach(entry -> {
                     Material material = entry.mapToMaterial();
                     if (material != null && material != GTMaterials.NULL) {

@@ -1,7 +1,7 @@
 package com.gtt.gttcore.common.data.recipes;
 
-import com.gregtechceu.gtceu.api.data.chemical.material.stack.MaterialEntry;
-import com.gregtechceu.gtceu.data.recipe.VanillaRecipeHelper;
+import com.gregtechceu.gtceu.api.fluids.store.FluidStorageKeys;
+import com.gregtechceu.gtceu.api.machine.multiblock.CleanroomType;
 import com.gtt.gttcore.GTTCore;
 import net.minecraft.data.recipes.FinishedRecipe;
 
@@ -10,16 +10,35 @@ import java.util.function.Consumer;
 import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
 import static com.gregtechceu.gtceu.common.data.GTItems.*;
-import static com.gregtechceu.gtceu.common.data.GTItems.STICKY_RESIN;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.ASSEMBLER_RECIPES;
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.CHEMICAL_RECIPES;
-import static com.gtt.gttcore.common.data.GTTMaterials.*;
+import static com.gtt.gttcore.common.data.GTTMaterials.PhenolicResin;
 
 public class CircuitRecipes {
     public static void init(Consumer<FinishedRecipe> provider) {
         componentRecipes(provider);
         boardRecipes(provider);
+        waferRecipes(provider);
+    }
+    private static void waferRecipes(Consumer<FinishedRecipe> provider){
+        CHEMICAL_RECIPES.recipeBuilder(GTTCore.id("qbit_cpu_wafer_quantum_eye"))
+                .inputItems(NANO_CENTRAL_PROCESSING_UNIT_WAFER)
+                .inputItems(QUANTUM_EYE, 2)
+                .inputFluids(GalliumArsenide.getFluid(L * 2))
+                .inputFluids(Helium.getFluid(FluidStorageKeys.LIQUID, 100))
+                .outputItems(QUBIT_CENTRAL_PROCESSING_UNIT_WAFER)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .duration(900).EUt(VA[EV]).save(provider);
+
+        CHEMICAL_RECIPES.recipeBuilder(GTTCore.id("qbit_cpu_wafer_radon"))
+                .inputItems(NANO_CENTRAL_PROCESSING_UNIT_WAFER)
+                .inputItems(dust, IndiumGalliumPhosphide)
+                .inputFluids(Radon.getFluid(50))
+                .inputFluids(Helium.getFluid(FluidStorageKeys.LIQUID, 100))
+                .outputItems(QUBIT_CENTRAL_PROCESSING_UNIT_WAFER)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .duration(1200).EUt(VA[EV]).save(provider);
     }
     private static void componentRecipes(Consumer<FinishedRecipe> provider){
         // Resistor

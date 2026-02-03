@@ -15,7 +15,7 @@ import static com.gtt.gttcore.common.data.GTTMaterials.LiquidVenusAir;
 import static com.gtt.gttcore.common.data.GTTMaterials.VenusAir;
 
 public class SeparationRecipes {
-    public void init(Consumer<FinishedRecipe> provider){
+    public static void init(Consumer<FinishedRecipe> provider){
         CENTRIFUGE_RECIPES.recipeBuilder(GTTCore.id("venus_air_separation")).duration(1600).EUt(VA[EV])
                 .inputFluids(VenusAir.getFluid(10000))
                 .outputFluids(SulfurTrioxide.getFluid(7800))
@@ -25,6 +25,7 @@ public class SeparationRecipes {
                 .inputFluids(LiquidVenusAir.getFluid(100000))
                 .outputFluids(SulfurTrioxide.getFluid(78000))
                 .outputFluids(Argon.getFluid(10000))
+                .outputFluids(Methane.getFluid(7000))
                 .outputFluids(Ethenone.getFluid(5000))
                 .outputFluids(Tetrafluoroethylene.getFluid(5000))
                 .chancedOutput(dust, Sulfur, 2250, 0)

@@ -1,0 +1,18 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "ad_astra:infernal_spire_block"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 9,
+      "item": "gttcore:infernal_spire_dust"
+    }
+  ]
+}

@@ -7,12 +7,16 @@
   "mixins": [
     "GCYMMachinesMixin",
     "GravityApiImplMixin",
+    "GTDimensionMarkersMixin",
     "MetaMachineBlockEntityMixin",
     "OxygenApiImplMixin",
+    "ParallelHatchPartMachineMixin",
     "RecipeLogicMixin",
     "RotorHolderPartMachineMixin"
   ],
   "client": [
+  ],
+  "server": [
   ],
   "injectors": {
     "defaultRequire": 1

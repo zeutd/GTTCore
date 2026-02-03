@@ -5,22 +5,22 @@
   "variants": {
     "recipe_logic_status=idle": {
       "model": {
-        "parent": "gtceu:block/casings/voltage/max"
+        "parent": "gtceu:block/casings/voltage/uhv"
       }
     },
     "recipe_logic_status=suspend": {
       "model": {
-        "parent": "gtceu:block/casings/voltage/max"
+        "parent": "gtceu:block/casings/voltage/uhv"
       }
     },
     "recipe_logic_status=waiting": {
       "model": {
-        "parent": "gtceu:block/casings/voltage/max"
+        "parent": "gtceu:block/casings/voltage/uhv"
       }
     },
     "recipe_logic_status=working": {
       "model": {
-        "parent": "gtceu:block/casings/voltage/max"
+        "parent": "gtceu:block/casings/voltage/uhv"
       }
     }
   }

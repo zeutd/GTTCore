@@ -10,14 +10,12 @@ import com.gregtechceu.gtceu.api.data.worldgen.generator.veins.VeinedVeinGenerat
 import com.gregtechceu.gtceu.api.registry.GTRegistries;
 import com.gregtechceu.gtceu.common.data.GTOres;
 import com.gtt.gttcore.GTTCore;
-import com.tterrag.registrate.AbstractRegistrate;
 import earth.terrarium.adastra.common.registry.ModBlocks;
 import earth.terrarium.adastra.common.tags.ModBlockTags;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BiomeTags;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.valueproviders.UniformInt;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.structure.templatesystem.RuleTest;
 import net.minecraft.world.level.levelgen.structure.templatesystem.TagMatchTest;
 
@@ -43,7 +41,7 @@ public class GTTOres {
                     UniformInt.of(40, 52))
                     .density(1.0F)
                     .weight(80)
-                    .layer(AbstractRegistrate.isDevEnvironment() ? WorldGenLayers.STONE : WorldGenLayers.getByName("ad_astra_moon"))
+                    .layer(GTTWorldGenLayers.MOON)
                     .heightRangeUniform(-40, 40)
                     .veinedVeinGenerator(
                             generator -> generator
@@ -64,7 +62,7 @@ public class GTTOres {
                             UniformInt.of(40, 52))
                     .density(1.0F)
                     .weight(80)
-                    .layer(AbstractRegistrate.isDevEnvironment() ? WorldGenLayers.STONE : WorldGenLayers.getByName("ad_astra_moon"))
+                    .layer(GTTWorldGenLayers.MOON)
             .heightRangeUniform(-40, 40)
                     .veinedVeinGenerator(
             generator -> generator
@@ -81,7 +79,7 @@ public class GTTOres {
             .surfaceIndicatorGenerator(indicator -> indicator.surfaceRock(Zircon)));
     public static final GTOreDefinition BAUXITE_VEIN_MOON = create("bauxite_vein_moon", vein -> vein
             .clusterSize(UniformInt.of(32, 40)).density(0.3f).weight(40)
-            .layer(AbstractRegistrate.isDevEnvironment() ? WorldGenLayers.STONE : WorldGenLayers.getByName("ad_astra_moon"))
+            .layer(GTTWorldGenLayers.MOON)
             .heightRangeUniform(10, 80)
             .layeredVeinGenerator(generator -> generator
                     .withLayerPattern(() -> GTLayerPattern.builder(MOON_RULES)
@@ -99,7 +97,7 @@ public class GTTOres {
     public static RuleTest[] MARS_RULES = new RuleTest[]{new TagMatchTest(ModBlockTags.MARS_STONE_REPLACEABLES)};
     public static final GTOreDefinition PITCHBLENDE_VEIN_MARS = create("pitchblende_vein_mars", vein -> vein
             .clusterSize(UniformInt.of(32, 64)).density(0.25f).weight(30)
-            .layer(AbstractRegistrate.isDevEnvironment() ? WorldGenLayers.STONE : WorldGenLayers.getByName("ad_astra_mars"))
+            .layer(GTTWorldGenLayers.MARS)
             .heightRangeUniform(30, 60)
             .cuboidVeinGenerator(generator -> generator
                     .top(b -> b.mat(Pitchblende).size(2))
@@ -111,9 +109,8 @@ public class GTTOres {
                     .placement(SurfaceIndicatorGenerator.IndicatorPlacement.ABOVE)));
     public static final GTOreDefinition THORIUM_VEIN = create("thorium_vein", vein -> vein
             .clusterSize(UniformInt.of(50, 64)).density(0.75f).weight(30)
-            .layer(WorldGenLayers.NETHERRACK)
+            .layer(GTTWorldGenLayers.MARS)
             .heightRangeUniform(5, 30)
-            .biomes(BiomeTags.IS_NETHER)
             .dikeVeinGenerator(generator -> generator
                     .withBlock(new DikeVeinGenerator.DikeBlockDefinition(Glowstone, 3, 5, 30))
                     .withBlock(new DikeVeinGenerator.DikeBlockDefinition(Monazite, 2, 5, 19))
@@ -124,7 +121,7 @@ public class GTTOres {
 
     public static final GTOreDefinition SCHEELITE_VEIN_MARS = create("scheelite_vein_mars", vein -> vein
             .clusterSize(UniformInt.of(50, 64)).density(0.7f).weight(20)
-            .layer(AbstractRegistrate.isDevEnvironment() ? WorldGenLayers.STONE : WorldGenLayers.getByName("ad_astra_mars"))
+            .layer(GTTWorldGenLayers.MARS)
             .heightRangeUniform(20, 60)
             .dikeVeinGenerator(generator -> generator
                     .withBlock(new DikeVeinGenerator.DikeBlockDefinition(Scheelite, 3, 20, 60))
@@ -135,7 +132,7 @@ public class GTTOres {
                     .placement(SurfaceIndicatorGenerator.IndicatorPlacement.ABOVE)));
     public static final GTOreDefinition ALUMINIUM_VEIN_MARS = create("aluminium_vein_mars", vein -> vein
             .clusterSize(UniformInt.of(32, 40)).density(0.3f).weight(40)
-            .layer(AbstractRegistrate.isDevEnvironment() ? WorldGenLayers.STONE : WorldGenLayers.getByName("ad_astra_mars"))
+            .layer(GTTWorldGenLayers.MARS)
             .heightRangeUniform(10, 80)
             .layeredVeinGenerator(generator -> generator
                     .withLayerPattern(() -> GTLayerPattern.builder(MARS_RULES)
@@ -143,7 +140,7 @@ public class GTTOres {
                             .layer(l -> l.weight(2).mat(Aluminium).size(1, 4))
                             .layer(l -> l.weight(1).mat(Ilmenite).size(1, 2))
                             .layer(l -> l.weight(1).mat(Aluminium).size(1, 1))
-                            .layer(l -> l.weight(1).mat(Aluminium).size(1, 3))
+                            .layer(l -> l.weight(1).mat(Ostrum).size(1, 3))
                             .build()))
             .surfaceIndicatorGenerator(indicator -> indicator
                     .surfaceRock(Aluminium)
@@ -155,7 +152,7 @@ public class GTTOres {
 
     public static final GTOreDefinition NAQUADAH_VEIN_VENUS = create("naquadah_vein_venus", vein -> vein
             .clusterSize(UniformInt.of(48, 80)).density(0.25f).weight(30)
-            .layer(AbstractRegistrate.isDevEnvironment() ? WorldGenLayers.STONE : WorldGenLayers.getByName("ad_astra_venus"))
+            .layer(GTTWorldGenLayers.VENUS)
             .heightRangeUniform(10, 90)
             .cuboidVeinGenerator(generator -> generator
                     .top(b -> b.mat(Naquadah).size(2))
@@ -167,7 +164,7 @@ public class GTTOres {
                     .placement(SurfaceIndicatorGenerator.IndicatorPlacement.ABOVE)));
     public static final GTOreDefinition SHELDONITE_VEIN_VENUS = create("sheldonite_vein_venus", vein -> vein
             .clusterSize(UniformInt.of(25, 29)).density(0.2f).weight(10)
-            .layer(AbstractRegistrate.isDevEnvironment() ? WorldGenLayers.STONE : WorldGenLayers.getByName("ad_astra_venus"))
+            .layer(GTTWorldGenLayers.VENUS)
             .heightRangeUniform(5, 50)
             .layeredVeinGenerator(generator -> generator
                     .withLayerPattern(() -> GTLayerPattern.builder(VENUS_RULES)
@@ -178,6 +175,36 @@ public class GTTOres {
                             .build()))
             .surfaceIndicatorGenerator(indicator -> indicator
                     .surfaceRock(Platinum)
+                    .placement(SurfaceIndicatorGenerator.IndicatorPlacement.ABOVE)));
+    //////////////////////////////////////
+    // ******** Mercury Vein *********//
+    //////////////////////////////////////
+    public static RuleTest[] MERCURY_RULES = new RuleTest[]{new TagMatchTest(ModBlockTags.MERCURY_STONE_REPLACEABLES)};
+    public static final GTOreDefinition CALORITE_VEIN_MERCURY = create("calorite_vein_mercury", vein -> vein
+            .clusterSize(UniformInt.of(25, 29)).density(0.2f).weight(10)
+            .layer(GTTWorldGenLayers.MERCURY)
+            .heightRangeUniform(5, 50)
+            .layeredVeinGenerator(generator -> generator
+                    .withLayerPattern(() -> GTLayerPattern.builder(MERCURY_RULES)
+                            .layer(l -> l.weight(3).mat(Calorite).size(2, 4))
+                            .layer(l -> l.weight(2).mat(Tantalum).size(1, 1))
+                            .layer(l -> l.weight(2).mat(Scheelite).size(1, 1))
+                            .layer(l -> l.weight(1).mat(Tungstate).size(1, 1))
+                            .build()))
+            .surfaceIndicatorGenerator(indicator -> indicator
+                    .surfaceRock(Calorite)
+                    .placement(SurfaceIndicatorGenerator.IndicatorPlacement.ABOVE)));
+    public static final GTOreDefinition NAQUADAH_VEIN_MERCURY = create("naquadah_vein_mercury", vein -> vein
+            .clusterSize(UniformInt.of(48, 80)).density(0.25f).weight(30)
+            .layer(GTTWorldGenLayers.MERCURY)
+            .heightRangeUniform(10, 90)
+            .cuboidVeinGenerator(generator -> generator
+                    .top(b -> b.mat(Naquadah).size(2))
+                    .middle(b -> b.mat(Naquadah).size(3))
+                    .bottom(b -> b.mat(Naquadah).size(2))
+                    .spread(b -> b.mat(Plutonium239)))
+            .surfaceIndicatorGenerator(indicator -> indicator
+                    .surfaceRock(Naquadah)
                     .placement(SurfaceIndicatorGenerator.IndicatorPlacement.ABOVE)));
     //////////////////////////////////////
     // ******** End Vein *********//

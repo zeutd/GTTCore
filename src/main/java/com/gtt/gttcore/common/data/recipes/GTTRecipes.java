@@ -107,6 +107,7 @@ public class GTTRecipes {
         CircuitRecipes.init(provider);
         LanthanideGroupLine.init(provider);
         IntegrationRecipes.init(provider);
+        SeparationRecipes.init(provider);
     }
 
     public static void remove(Consumer<RecipeFilter> provider) {

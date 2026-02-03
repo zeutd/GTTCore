@@ -6,14 +6,13 @@ import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.gui.GuiTextures;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeSerializer;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
-import com.gregtechceu.gtceu.api.recipe.RecipeHelper;
-import com.gregtechceu.gtceu.api.recipe.content.Content;
 import com.gregtechceu.gtceu.api.recipe.ingredient.FluidIngredient;
 import com.gregtechceu.gtceu.api.registry.GTRegistries;
-import com.gregtechceu.gtceu.common.data.*;
+import com.gregtechceu.gtceu.common.data.GTMaterials;
+import com.gregtechceu.gtceu.common.data.GTRecipeCapabilities;
+import com.gregtechceu.gtceu.common.data.GTSoundEntries;
 import com.gregtechceu.gtceu.data.recipe.builder.GTRecipeBuilder;
 import com.gtt.gttcore.GTTCore;
-import com.gtt.gttcore.api.GTTRecipeHelper;
 import com.gtt.gttcore.common.data.GTTMaterials;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.item.crafting.RecipeType;
@@ -21,13 +20,11 @@ import net.minecraftforge.fluids.FluidStack;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import static com.gregtechceu.gtceu.api.GTValues.ULV;
 import static com.gregtechceu.gtceu.api.GTValues.VA;
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.*;
-import static com.gtt.gttcore.GTTCore.LOGGER;
 import static com.gtt.gttcore.common.data.GTTMaterials.P204;
 import static com.gtt.gttcore.common.data.GTTMaterials.P507;
 import static com.lowdragmc.lowdraglib.gui.texture.ProgressTexture.FillDirection.LEFT_TO_RIGHT;
@@ -41,7 +38,7 @@ public class GTTRecipeTypes {
     //public static List<GTRecipeBuilder> toReRegisterCreate;
     public static void init(){
         CENTRIFUGE_RECIPES.setMaxIOSize(2, 8, 1, 8);
-        CHEMICAL_RECIPES.setMaxIOSize(3, 2, 3, 2);
+        CHEMICAL_RECIPES.setMaxIOSize(3, 4, 3, 2);
         BENDER_RECIPES.onRecipeBuild((recipeBuilder, provider) -> {
             recipeBuilder.EUt(Math.max(recipeBuilder.EUt().voltage() / 4, VA[ULV]), recipeBuilder.EUt().amperage());
         });
@@ -75,10 +72,10 @@ public class GTTRecipeTypes {
         );
         PLASMA_GENERATOR_FUELS.onRecipeBuild((recipeBuilder, provider) -> {
             int eu = (int) (recipeBuilder.duration * GTValues.V[GTValues.EV]);
-            PLASMA_HEAT_EXCHANGER_RECIPES.recipeBuilder(recipeBuilder.id)
+            HEAT_EXCHANGER_RECIPES.recipeBuilder(recipeBuilder.id)
                     .inputFluids((FluidIngredient) recipeBuilder.input.get(GTRecipeCapabilities.FLUID).get(0).content)
                     .inputFluids(GTMaterials.DistilledWater.getFluid(eu / 100))
-                    .outputFluids(GTTMaterials.SupercriticalSteam.getFluid(eu / 100 * 200))
+                    .outputFluids(GTTMaterials.SupercriticalSteam.getFluid(eu))
                     .outputFluids((FluidIngredient) recipeBuilder.output.get(GTRecipeCapabilities.FLUID).get(0).content)
                     .save(provider);
         });
@@ -131,7 +128,7 @@ public class GTTRecipeTypes {
             .setSlotOverlay(false, false, GuiTextures.TURBINE_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.TURBINE);
-    public final static GTRecipeType PLASMA_HEAT_EXCHANGER_RECIPES  = register("plasma_heat_exchanger", GENERATOR).setMaxIOSize(0, 0, 2, 2)
+    public final static GTRecipeType HEAT_EXCHANGER_RECIPES = register("heat_exchanger", GENERATOR).setMaxIOSize(0, 0, 2, 2)
             .setSlotOverlay(false, false, GuiTextures.MOLECULAR_OVERLAY_1)
             .setProgressBar(GuiTextures.PROGRESS_BAR_BOILER_FUEL.get(true), LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.BOILER);

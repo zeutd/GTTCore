@@ -16,15 +16,15 @@
     },
     {
       "count": 8,
-      "item": "gtceu:electrum_dust"
-    },
-    {
-      "count": 8,
       "item": "gtceu:rubber_dust"
     },
     {
+      "count": 8,
+      "item": "gtceu:electrum_dust"
+    },
+    {
       "count": 4,
-      "item": "gtceu:kanthal_dust"
+      "item": "gtceu:silver_dust"
     }
   ]
 }

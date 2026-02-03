@@ -12,11 +12,11 @@
   "results": [
     {
       "count": 8,
-      "item": "gtceu:wrought_iron_dust"
+      "item": "gtceu:rubber_dust"
     },
     {
       "count": 8,
-      "item": "gtceu:rubber_dust"
+      "item": "gtceu:wrought_iron_dust"
     },
     {
       "count": 4,
@@ -24,7 +24,7 @@
     },
     {
       "count": 2,
-      "item": "gtceu:tin_dust"
+      "item": "gtceu:iron_dust"
     }
   ]
 }

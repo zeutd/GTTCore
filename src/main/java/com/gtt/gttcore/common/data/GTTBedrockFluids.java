@@ -135,6 +135,43 @@ public class GTTBedrockFluids {
 
 
 
+    public static BedrockFluidDefinition Toluene = create(GTCEu.id("toluene_deposit"), builder -> builder
+            .fluid(GTMaterials.Toluene::getFluid)
+            .weight(50)
+            .yield(750, 1000)
+            .depletionAmount(1)
+            .depletionChance(100)
+            .depletedYield(250)
+            .dimensions(mercury()));
+    public static BedrockFluidDefinition TETRAFLUOROETHYLENE = create(GTCEu.id("tetrafluoroethylene_deposit"), builder -> builder
+            .fluid(GTMaterials.Tetrafluoroethylene::getFluid)
+            .weight(40)
+            .yield(500, 750)
+            .depletionAmount(1)
+            .depletionChance(100)
+            .depletedYield(250)
+            .dimensions(mercury()));
+    public static BedrockFluidDefinition NITROBENZENE = create(GTCEu.id("nitrobenzene_deposit"), builder -> builder
+            .fluid(GTMaterials.Nitrobenzene::getFluid)
+            .weight(30)
+            .yield(750, 1000)
+            .depletionAmount(1)
+            .depletionChance(100)
+            .depletedYield(250)
+            .dimensions(mercury()));
+    public static BedrockFluidDefinition WOOD_VINEGAR = create(GTCEu.id("wood_vinegar_deposit"), builder -> builder
+            .fluid(GTMaterials.WoodVinegar::getFluid)
+            .weight(40)
+            .yield(750, 1000)
+            .depletionAmount(1)
+            .depletionChance(100)
+            .depletedYield(250)
+            .dimensions(mercury()));
+
+
+
+
+
 
 
 
@@ -170,6 +207,10 @@ public class GTTBedrockFluids {
 
     public static Set<ResourceKey<Level>> venus() {
         return Set.of(Planet.VENUS);
+    }
+
+    public static Set<ResourceKey<Level>> mercury() {
+        return Set.of(Planet.MERCURY);
     }
 
 }

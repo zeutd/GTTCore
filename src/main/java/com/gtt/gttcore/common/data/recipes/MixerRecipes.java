@@ -1,20 +1,18 @@
 package com.gtt.gttcore.common.data.recipes;
 
 import com.gregtechceu.gtceu.GTCEu;
+import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gtt.gttcore.GTTCore;
 import com.simibubi.create.AllFluids;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.tags.ItemTags;
-import net.minecraftforge.common.Tags;
 import net.minecraftforge.fluids.FluidStack;
 
 import java.util.function.Consumer;
 
-import static com.gregtechceu.gtceu.api.GTValues.ULV;
-import static com.gregtechceu.gtceu.api.GTValues.VA;
-import static com.gregtechceu.gtceu.common.data.GTMaterials.Milk;
-import static com.gregtechceu.gtceu.common.data.GTMaterials.Water;
-import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.*;
+import static com.gregtechceu.gtceu.api.GTValues.*;
+import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
+import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.MIXER_RECIPES;
 
 public class MixerRecipes {
     public static void init(Consumer<FinishedRecipe> provider) {
@@ -28,5 +26,15 @@ public class MixerRecipes {
                     .outputFluids(new FluidStack(AllFluids.TEA.getSource(), 500))
                     .save(provider);
         }
+        MIXER_RECIPES.recipeBuilder(GTTCore.id("nether_star_dust"))
+                .duration(100)
+                .EUt(VA[IV])
+                .inputItems(TagPrefix.dust, Rhodium, 4)
+                .inputItems(TagPrefix.dust, Iridium, 4)
+                .inputItems(TagPrefix.dust, Caesium, 3)
+                .inputItems(TagPrefix.dust, Iodine, 1)
+                .outputItems(TagPrefix.dust, NetherStar, 12)
+                .inputFluids(Helium3.getFluid(250))
+                .save(provider);
     }
 }
