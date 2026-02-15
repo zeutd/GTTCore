@@ -1,0 +1,26 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:sand_lead_ore"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 2,
+      "item": "gtceu:crushed_lead_ore"
+    },
+    {
+      "chance": 0.14,
+      "item": "gtceu:silver_dust"
+    },
+    {
+      "chance": 0.67,
+      "item": "gtceu:silicon_dioxide_dust"
+    }
+  ]
+}

@@ -14,7 +14,7 @@ public class GTTLangHandler {
         GTTLangHandler.enProvider = enProvider;
         GTTLangHandler.zhProvider = zhProvider;
         englishNameMap.forEach(enProvider::add);
-        //Laziness ¯\_(ツ)_/¯
+
         add("gttcore.machine.high_energy_laser_amount", "Laser Amount: %s", "激光能量：%s");
         add("gttcore.machine.high_energy_laser_amount_input", "Laser Amount Input: %s", "输入激光能量：%s");
         add("gttcore.machine.high_energy_laser_amount_output", "Laser Amount Output: %s", "输出激光能量：%s");
@@ -34,6 +34,8 @@ public class GTTLangHandler {
         add("gtceu.machine.parallel_hatch_mk6.tooltip", "Allows to run up to 64 recipes in parallel.", "允许同时处理至多64个配方。");
         add("gtceu.machine.parallel_hatch_mk7.tooltip", "Allows to run up to 256 recipes in parallel.", "允许同时处理至多256个配方。");
         add("gtceu.machine.parallel_hatch_mk8.tooltip", "Allows to run up to 1024 recipes in parallel.", "允许同时处理至多1024个配方。");
+
+        add("gttcore.machine.wireless_energy_monitor.tooltip.0", "Energy Capacity: %s EU", "能源容量：%s EU");
     }
     
     public static void add(String key, String enValue, String zhValue){

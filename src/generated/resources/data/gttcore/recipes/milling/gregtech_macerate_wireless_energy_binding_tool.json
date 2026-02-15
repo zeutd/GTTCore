@@ -1,0 +1,17 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtmthings:wireless_energy_binding_tool"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:paper_dust"
+    }
+  ]
+}

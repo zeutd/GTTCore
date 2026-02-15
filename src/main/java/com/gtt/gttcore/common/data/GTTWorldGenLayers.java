@@ -11,6 +11,7 @@ import net.minecraftforge.fml.ModList;
 
 import java.util.Set;
 
+@SuppressWarnings("removal")
 public class GTTWorldGenLayers {
     private static TagKey<Block> moonstone;
     private static TagKey<Block> marsstone;

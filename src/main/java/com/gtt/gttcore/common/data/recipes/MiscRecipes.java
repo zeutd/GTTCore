@@ -50,16 +50,21 @@ import static com.gtt.gttcore.common.data.GTTMaterials.*;
 import static com.gtt.gttcore.common.data.GTTMultiMachines.*;
 import static com.gtt.gttcore.common.data.recipes.GTTRecipeTypes.SUPERCRITICAL_STEAM_TURBINE_FUELS;
 
+@SuppressWarnings("removal")
 public class MiscRecipes {
     public static void init(Consumer<FinishedRecipe> provider) {
         registerMachineRecipes(provider);
-        CHEMICAL_RECIPES.recipeBuilder(GTTCore.id("ultra_high_molecular_weight_polyethylene"))
-                .inputFluids(Ethylene.getFluid(144))
-                .notConsumable(dust, ZieglerNattaCatalyst)
-                .outputFluids(UltraHighMolecularWeightPolyethylene.getFluid(216))
-                .duration(100)
-                .EUt(VA[2])
-                .save(provider);
+
+
+
+
+
+
+
+
+
+
+
         for(int i = 0; i < PACKAGED_CIRCUITS_ARRAY.length; i++){
             PACKER_RECIPES.recipeBuilder(GTTCore.id(PACKAGED_CIRCUITS_ARRAY[i].getId().getPath()))
                     .inputItems(CustomTags.CIRCUITS_ARRAY[i])
@@ -84,6 +89,17 @@ public class MiscRecipes {
                 .inputItems(frameGt, Zirconium).circuitMeta(6)
                 .outputItems(CASING_LOW_NEUTRON_ABSORPTION.asStack(ConfigHolder.INSTANCE.recipes.casingsPerCraft))
                 .duration(50).save(provider);
+        ASSEMBLER_RECIPES.recipeBuilder(GTTCore.id("casing_processing")).EUt(16).inputItems(plate, AluminiumAlloy6061, 6)
+                .inputItems(frameGt, StainlessSteel).circuitMeta(6)
+                .inputItems(MOTOR.get(MV))
+                .inputItems(PISTON.get(MV))
+                .outputItems(CASING_PROCESSING.asStack(ConfigHolder.INSTANCE.recipes.casingsPerCraft))
+                .duration(50).save(provider);
+        VanillaRecipeHelper.addShapedRecipe(provider, true, "casing_processing",
+                CASING_PROCESSING.asStack(ConfigHolder.INSTANCE.recipes.casingsPerCraft), "PWP", "PFP",
+                "PMP", 'P', new MaterialEntry(TagPrefix.plate, GTMaterials.StainlessSteel), 'F',
+                new MaterialEntry(TagPrefix.frameGt, GTMaterials.StainlessSteel), 'W', PISTON.get(MV),
+                'M', MOTOR.get(MV));
         VanillaRecipeHelper.addShapedRecipe(provider, true, GTTCore.id("casing_zirconium_pipe"),
                 GTTBlocks.CASING_ZIRCONIUM_PIPE.asStack(ConfigHolder.INSTANCE.recipes.casingsPerCraft), "PIP", "IFI",
                 "PIP", 'P', new MaterialEntry(TagPrefix.plate, Zirconium), 'F',
@@ -144,15 +160,15 @@ public class MiscRecipes {
                 .duration(80).EUt(VA[EV]).save(provider);
     }
     public static void registerMachineRecipes(Consumer<FinishedRecipe> provider){
-        ASSEMBLER_RECIPES.recipeBuilder(GTTCore.id("fission_reactor_machine"))
-                .inputItems(CASING_LEAD_RADIATION_PROOF)
-                .inputItems(CustomTags.LuV_CIRCUITS, 5)
-                .inputItems(NEUTRON_REFLECTOR, 5)
-                .inputItems(CustomTags.IV_CIRCUITS, 6)
-                .inputItems(ELECTRIC_PUMP_IV, 10)
-                .inputItems(ELECTRIC_PISTON_IV, 10)
-                .outputItems(FISSION_REACTOR)
-                .EUt(VA[IV]).duration(200).save(provider);
+//        ASSEMBLER_RECIPES.recipeBuilder(GTTCore.id("fission_reactor_machine"))
+//                .inputItems(CASING_LEAD_RADIATION_PROOF)
+//                .inputItems(CustomTags.LuV_CIRCUITS, 5)
+//                .inputItems(NEUTRON_REFLECTOR, 5)
+//                .inputItems(CustomTags.IV_CIRCUITS, 6)
+//                .inputItems(ELECTRIC_PUMP_IV, 10)
+//                .inputItems(ELECTRIC_PISTON_IV, 10)
+//                .outputItems(FISSION_REACTOR)
+//                .EUt(VA[IV]).duration(200).save(provider);
         ASSEMBLER_RECIPES.recipeBuilder(GTTCore.id("huge_steam_turbine_machine"))
                 .inputItems(CASING_STEEL_SOLID)
                 .inputItems(gear, Steel, 5)
@@ -193,15 +209,6 @@ public class MiscRecipes {
                 new MaterialEntry(TagPrefix.gear, Inconel718), 'P', CustomTags.ZPM_CIRCUITS, 'A',
                 GTMachines.HULL[GTValues.ZPM].asStack(), 'C',
                 new MaterialEntry(TagPrefix.pipeLargeFluid, Inconel718));
-        ASSEMBLER_RECIPES.recipeBuilder(GTTCore.id("fission_reactor_machine"))
-                .inputItems(CASING_LEAD_RADIATION_PROOF)
-                .inputItems(CustomTags.LuV_CIRCUITS, 5)
-                .inputItems(NEUTRON_REFLECTOR, 5)
-                .inputItems(CustomTags.IV_CIRCUITS, 6)
-                .inputItems(ELECTRIC_PUMP_IV, 10)
-                .inputItems(ELECTRIC_PISTON_IV, 10)
-                .outputItems(FISSION_REACTOR)
-                .EUt(VA[IV]).duration(200).save(provider);
         if (GTCEu.Mods.isCreateLoaded()) {
             ASSEMBLER_RECIPES.recipeBuilder(GTTCore.id("create_track"))
                     .inputItems(AllTags.AllItemTags.SLEEPERS.tag)
@@ -286,6 +293,7 @@ public class MiscRecipes {
                 .inputItems(GTBlocks.CASING_STEEL_TURBINE.asStack()).inputItems(plate, Inconel718, 6).inputItems(plate, TantalumCarbide, 3).circuitMeta(6)
                 .outputItems(CASING_INCONEL_718_TURBINE.asStack(ConfigHolder.INSTANCE.recipes.casingsPerCraft))
                 .duration(50)
+                .EUt(VA[HV])
                 .addMaterialInfo(true).save(provider);
         VanillaRecipeHelper.addShapedRecipe(provider, true, GTTCore.id("greenhouse"), GREENHOUSE.asStack(),
                 "CGC",
@@ -520,12 +528,6 @@ public class MiscRecipes {
 
 
 
-        CHEMICAL_RECIPES.recipeBuilder(GTTCore.id("phenolic_resin"))
-                .duration(100)
-                .EUt(VA[ULV])
-                .inputFluids(Phenol.getFluid(L))
-                .inputFluids(Formaldehyde.getFluid(L * 2))
-                .outputFluids(PhenolicResin.getFluid(L * 3))
-                .save(provider);
+
     }
 }

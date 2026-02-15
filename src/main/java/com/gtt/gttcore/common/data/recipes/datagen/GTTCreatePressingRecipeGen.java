@@ -1,11 +1,6 @@
 package com.gtt.gttcore.common.data.recipes.datagen;
 
-import com.gregtechceu.gtceu.api.capability.recipe.FluidRecipeCapability;
 import com.gregtechceu.gtceu.api.capability.recipe.ItemRecipeCapability;
-import com.gregtechceu.gtceu.api.recipe.ingredient.FluidIngredient;
-import com.gregtechceu.gtceu.api.recipe.ingredient.SizedIngredient;
-import com.gregtechceu.gtceu.common.data.GTRecipes;
-import com.gregtechceu.gtceu.data.recipe.GTCraftingComponents;
 import com.gregtechceu.gtceu.data.recipe.builder.GTRecipeBuilder;
 import com.gtt.gttcore.GTTCore;
 import com.gtt.gttcore.common.data.recipes.GTTRecipeTypes;
@@ -26,7 +21,7 @@ public class GTTCreatePressingRecipeGen extends PressingRecipeGen {
                 if (recipeBuilder.input.containsKey(ItemRecipeCapability.CAP))
                     recipeBuilder.input.get(ItemRecipeCapability.CAP).forEach(item -> b.require((Ingredient) item.content));
                 if (recipeBuilder.output.containsKey(ItemRecipeCapability.CAP))
-                    recipeBuilder.output.get(ItemRecipeCapability.CAP).forEach(content -> Arrays.stream(((SizedIngredient) content.content).getItems()).forEach(i -> b.output((float) content.chance / content.maxChance, i)));
+                    recipeBuilder.output.get(ItemRecipeCapability.CAP).forEach(content -> Arrays.stream(((Ingredient) content.content).getItems()).forEach(i -> b.output((float) content.chance / content.maxChance, i)));
                 return b;
             });
         }

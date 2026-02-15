@@ -1,0 +1,26 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:basalt_tricalcium_phosphate_ore"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 12,
+      "item": "gtceu:crushed_tricalcium_phosphate_ore"
+    },
+    {
+      "chance": 0.14,
+      "item": "gtceu:apatite_gem"
+    },
+    {
+      "chance": 0.67,
+      "item": "gtceu:basalt_dust"
+    }
+  ]
+}

@@ -6,12 +6,12 @@ import net.minecraft.data.recipes.FinishedRecipe;
 import java.util.function.Consumer;
 
 import static com.gregtechceu.gtceu.api.GTValues.*;
-import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
+import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.dust;
+import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.dustTiny;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.*;
 import static com.gtt.gttcore.common.data.GTTMaterials.*;
 import static com.gtt.gttcore.common.data.recipes.GTTRecipeTypes.EXTRACTION_TANK_RECIPE;
-import static com.gtt.gttcore.common.data.recipes.GTTRecipeTypes.PH_PURIFICATION_RECIPE;
 
 public class LanthanideGroupLine {
     public static void init(Consumer<FinishedRecipe> provider) {
@@ -120,7 +120,7 @@ public class LanthanideGroupLine {
                 .outputFluids(LowCeriumContentRareEarthChlorideSolution.getFluid(10000))
                 .outputItems(dust, CeriumContainingResidue)
                 .save(provider);
-        PH_PURIFICATION_RECIPE.recipeBuilder(GTTCore.id("rare_earth_solution_purification"))
+        CHEMICAL_RECIPES.recipeBuilder(GTTCore.id("rare_earth_solution_purification"))
                 .duration(500)
                 .EUt(VA[HV])
                 .inputItems(dust, Magnesia)
@@ -132,7 +132,7 @@ public class LanthanideGroupLine {
                 .outputItems(dustTiny, AluminiumHydroxide)
                 .outputItems(dust, MagnesiumChloride)
                 .save(provider);
-        CHEMICAL_RECIPES.recipeBuilder(GTTCore.id("rare_earth_solution_heavy_metals_removal"))
+        LARGE_CHEMICAL_RECIPES.recipeBuilder(GTTCore.id("rare_earth_solution_heavy_metals_removal"))
                 .duration(300)
                 .EUt(VA[HV])
                 .inputItems(dust, SodiumSulfide)

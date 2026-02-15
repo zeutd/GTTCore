@@ -1,0 +1,26 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:tuff_tantalite_ore"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 2,
+      "item": "gtceu:crushed_tantalite_ore"
+    },
+    {
+      "chance": 0.14,
+      "item": "gtceu:manganese_dust"
+    },
+    {
+      "chance": 0.67,
+      "item": "gtceu:tuff_dust"
+    }
+  ]
+}

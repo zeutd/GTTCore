@@ -7,6 +7,8 @@
     "gttcore:inconel_718_turbine_casing",
     "gttcore:sealed_casing",
     "gttcore:lead_glass",
+    "gttcore:processing_casing",
+    "gttcore:reinforced_concrete",
     "gttcore:stainless_evaporation_casing"
   ]
 }

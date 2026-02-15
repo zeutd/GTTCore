@@ -1,9 +1,12 @@
 package com.gtt.gttcore.common.data.recipes;
 
 import com.gregtechceu.gtceu.GTCEu;
+import com.gregtechceu.gtceu.api.GTCEuAPI;
 import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
+import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.common.data.GTItems;
+import com.gregtechceu.gtceu.data.recipe.configurable.RecipeRemoval;
 import com.gtt.gttcore.common.data.GTTItems;
 import com.gtt.gttcore.common.data.recipes.lines.*;
 import com.gtt.gttcore.common.data.recipes.remove.AE2RecipeRemoval;
@@ -35,6 +38,7 @@ import java.util.function.Supplier;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.Iron;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.Steel;
 
+@SuppressWarnings("removal")
 public class GTTRecipes {
     public static Map<ReplacementMatch, OutputReplacement>
             replaceOutputMap = new HashMap<>();
@@ -96,6 +100,9 @@ public class GTTRecipes {
         }
     }
     public static void init(Consumer<FinishedRecipe> provider) {
+        for (Material material : GTCEuAPI.materialManager.getRegisteredMaterials()) {
+            GTTPartsRecipeHandler.run(provider, material);
+        }
         MiscRecipes.init(provider);
         MachineRecipes.init(provider);
         ZieglerNattaLine.init(provider);
@@ -108,6 +115,8 @@ public class GTTRecipes {
         LanthanideGroupLine.init(provider);
         IntegrationRecipes.init(provider);
         SeparationRecipes.init(provider);
+        ChemicalRecipes.init(provider);
+        NetheriteLine.init(provider);
     }
 
     public static void remove(Consumer<RecipeFilter> provider) {
@@ -117,6 +126,7 @@ public class GTTRecipes {
         AdAstraRecipeRemoval.init(provider);
         AE2RecipeRemoval.init(provider);
         GregTechRecipeRemoval.init(provider);
-        provider.accept(new IDFilter(new ResourceLocation("minecraft:ender_eye")));
+        RecipeRemoval.init(resourceLocation -> provider.accept(new IDFilter(resourceLocation)));
+        provider.accept(new IDFilter(new ResourceLocation("minecraft:netherite_ingot")));
     }
 }

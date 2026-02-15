@@ -38,7 +38,7 @@ public class GTTRecipeTypes {
     //public static List<GTRecipeBuilder> toReRegisterCreate;
     public static void init(){
         CENTRIFUGE_RECIPES.setMaxIOSize(2, 8, 1, 8);
-        CHEMICAL_RECIPES.setMaxIOSize(3, 4, 3, 2);
+        LARGE_CHEMICAL_RECIPES.setMaxIOSize(3, 6, 5, 4);
         BENDER_RECIPES.onRecipeBuild((recipeBuilder, provider) -> {
             recipeBuilder.EUt(Math.max(recipeBuilder.EUt().voltage() / 4, VA[ULV]), recipeBuilder.EUt().amperage());
         });
@@ -204,9 +204,4 @@ public class GTTRecipeTypes {
                     recipeBuilder.inputFluids(P507.getFluid(10000));
                 }
             });
-    public static final GTRecipeType PH_PURIFICATION_RECIPE = register("ph_purification", ELECTRIC)
-            .setMaxIOSize(3, 6, 1, 1)
-            .setEUIO(IO.IN)
-            .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE, LEFT_TO_RIGHT)
-            .setSound(GTSoundEntries.CHEMICAL);
 }

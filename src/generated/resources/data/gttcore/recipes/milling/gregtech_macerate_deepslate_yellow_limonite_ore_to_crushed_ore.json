@@ -2,15 +2,11 @@
   "type": "create:milling",
   "ingredients": [
     {
-      "type": "forge:intersection",
-      "children": [
-        {
-          "tag": "forge:ores/yellow_limonite"
-        },
-        {
-          "tag": "forge:ores_in_ground/deepslate"
-        }
-      ]
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:deepslate_yellow_limonite_ore"
+      }
     }
   ],
   "results": [

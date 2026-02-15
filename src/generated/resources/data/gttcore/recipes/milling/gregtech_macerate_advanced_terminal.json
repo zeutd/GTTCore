@@ -1,0 +1,26 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtmthings:advanced_terminal"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 38,
+      "item": "gtceu:tiny_steel_dust"
+    },
+    {
+      "count": 3,
+      "item": "gtceu:paper_dust"
+    },
+    {
+      "count": 2,
+      "item": "gtceu:small_tin_dust"
+    }
+  ]
+}

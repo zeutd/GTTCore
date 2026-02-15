@@ -6,7 +6,7 @@ import com.gregtechceu.gtceu.api.data.tag.TagUtil;
 import com.gregtechceu.gtceu.common.data.models.GTModels;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
 import com.gtt.gttcore.GTTCore;
-import com.gtt.gttcore.api.LangUtil;
+import com.gtt.gttcore.util.LangUtil;
 import com.gtt.gttcore.common.block.BlackholeBombBlock;
 import com.gtt.gttcore.common.block.NuclearBombBlock;
 import com.gtt.gttcore.data.lang.GTTChineseLanguageProvider;
@@ -69,6 +69,12 @@ public class GTTBlocks {
             GTTCore.id("block/casings/machine_casing_sealed_steel"), "密封钢机械方块");
     public static final BlockEntry<Block> CASING_LEAD_GLASS = createGlassCasingBlock("lead_glass",
             GTTCore.id("block/casings/lead_glass"), () -> RenderType::translucent, "铅玻璃");
+    public static final BlockEntry<Block> CASING_PROCESSING = createCasingBlock("processing_casing",
+            GTTCore.id("block/casings/processing_casing"), "加工机械方块");
+    public static final BlockEntry<Block> CASING_REINFORCED_CONCRETE = createCasingBlock("reinforced_concrete",
+            GTTCore.id("block/casings/reinforced_concrete"), "强化混凝土");
+    public static final BlockEntry<Block> CASING_FIELD_PROTECTION = createCasingBlock("field_protection_casing",
+            GTTCore.id("block/casings/field_protection_casing"), "力场防护机械方块");
 
     public static final BlockEntry<Block> CASING_STAINLESS_EVAPORATION = createCasingBlock(
             "stainless_evaporation_casing",

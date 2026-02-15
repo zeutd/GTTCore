@@ -1,0 +1,26 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:blackstone_fullers_earth_ore"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 8,
+      "item": "gtceu:crushed_fullers_earth_ore"
+    },
+    {
+      "chance": 0.14,
+      "item": "gtceu:aluminium_dust"
+    },
+    {
+      "chance": 0.67,
+      "item": "gtceu:blackstone_dust"
+    }
+  ]
+}

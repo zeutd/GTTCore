@@ -14,6 +14,7 @@ import net.minecraft.world.level.levelgen.GenerationStep;
 
 import java.util.Objects;
 
+@SuppressWarnings("removal")
 public class GTTKubeJSPlugin extends KubeJSPlugin {
     @Override
     public void initStartup() {

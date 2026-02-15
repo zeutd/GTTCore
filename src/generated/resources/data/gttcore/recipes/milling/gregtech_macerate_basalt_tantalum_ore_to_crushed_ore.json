@@ -1,0 +1,26 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:basalt_tantalum_ore"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 4,
+      "item": "gtceu:crushed_tantalum_ore"
+    },
+    {
+      "chance": 0.14,
+      "item": "gtceu:tantalum_dust"
+    },
+    {
+      "chance": 0.67,
+      "item": "gtceu:basalt_dust"
+    }
+  ]
+}

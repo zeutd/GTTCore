@@ -2,15 +2,11 @@
   "type": "create:milling",
   "ingredients": [
     {
-      "type": "forge:intersection",
-      "children": [
-        {
-          "tag": "forge:ores/pitchblende"
-        },
-        {
-          "tag": "forge:ores_in_ground/mars"
-        }
-      ]
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:mars_pitchblende_ore"
+      }
     }
   ],
   "results": [

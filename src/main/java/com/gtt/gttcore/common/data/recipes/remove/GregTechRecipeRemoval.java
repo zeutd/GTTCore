@@ -10,6 +10,7 @@ import net.minecraft.world.level.ItemLike;
 
 import java.util.function.Consumer;
 
+@SuppressWarnings("removal")
 public class GregTechRecipeRemoval {
     public static void init(Consumer<RecipeFilter> provider) {
         provider.accept(createOutputFilter(GTItems.RESISTOR));
@@ -41,6 +42,7 @@ public class GregTechRecipeRemoval {
         provider.accept(new ResourceLocation("gtceu:assembler/phenolic_board"));
         provider.accept(new ResourceLocation("gtceu:shaped/basic_circuit_board"));
         provider.accept(new ResourceLocation("gtceu:mixer/tin_alloy"));
+        provider.accept(new ResourceLocation("gtceu:mixer/graphene"));
 
 
 

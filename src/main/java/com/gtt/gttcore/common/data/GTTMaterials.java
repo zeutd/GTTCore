@@ -26,6 +26,7 @@ import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialIcon
 import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 import static com.gtt.gttcore.common.data.GTTElements.*;
+import static com.gtt.gttcore.common.data.GTTMaterialFlags.GENERATE_BALL;
 
 public class GTTMaterials {
 
@@ -168,10 +169,10 @@ public class GTTMaterials {
     public static Material Chlorooctane;
 
     public static Material Inconel718;
+    public static Material AluminiumAlloy6061;
 
     public static Material VenusAir;
-    public static Material LiquidVenusAir
-                    ;
+    public static Material LiquidVenusAir;
     public static void init() {
         MoonStone = new GTTMaterialBuilder(GTTCore.id("moon_stone"))
                 .dust(2)
@@ -1017,8 +1018,18 @@ public class GTTMaterials {
                 .ingot(5).fluid()
                 .chineseLangValue("镍基合金-718")
                 .color(0x3d3e4a).iconSet(METALLIC)
-                .appendFlags(STD_METAL, GENERATE_PLATE, GENERATE_ROD, GENERATE_FRAME)
+                .appendFlags(STD_METAL, GENERATE_PLATE, GENERATE_ROD, GENERATE_FRAME, GENERATE_GEAR)
                 .components(Nickel, 25, Chromium, 10, Molybdenum, 1, Niobium, 2, Iron, 12)
+                .blast(b -> b.temp(4600, BlastProperty.GasTier.HIGH)
+                        .blastStats(VA[EV], 800))
+                .buildAndRegister();
+        AluminiumAlloy6061 = new GTTMaterialBuilder(GTTCore.id("aluminium_alloy_6061"))
+                .langValue("Aluminium Alloy 6061")
+                .ingot(5).fluid()
+                .chineseLangValue("铝合金-6061‘")
+                .color(0x3d3e4a).iconSet(METALLIC)
+                .appendFlags(STD_METAL, GENERATE_PLATE, GENERATE_ROD, GENERATE_FRAME, GENERATE_GEAR)
+                .components(Aluminium, 10, Magnesium, 2, Silicon, 1, Copper, 1)
                 .blast(b -> b.temp(4600, BlastProperty.GasTier.HIGH)
                         .blastStats(VA[EV], 800))
                 .buildAndRegister();
@@ -1055,22 +1066,31 @@ public class GTTMaterials {
         block.setIgnored(MercuryStone, ModItems.MERCURY_STONE);
         block.setIgnored(GlacioStone, ModItems.GLACIO_STONE);
         block.setIgnored(InfernalSpire, ModItems.INFERNAL_SPIRE_BLOCK);
+
+        block.modifyMaterialAmount(MoonStone, 1);
+        block.modifyMaterialAmount(VenusStone, 1);
+        block.modifyMaterialAmount(MarsStone, 1);
+        block.modifyMaterialAmount(MercuryStone, 1);
+        block.modifyMaterialAmount(GlacioStone, 1);
+        block.modifyMaterialAmount(InfernalSpire, 1);
     }
     public static void modify() {
         WroughtIron.addFlags(GENERATE_SMALL_GEAR);
 
         Netherite.addFlags(GENERATE_PLATE, GENERATE_ROD, GENERATE_LONG_ROD, GENERATE_BOLT_SCREW, GENERATE_GEAR);
+        Netherite.setProperty(PropertyKey.FLUID, new FluidProperty(FluidStorageKeys.LIQUID, new FluidBuilder().temperature(2000)));
+        Netherite.setProperty(PropertyKey.BLAST, (new BlastProperty.Builder().temp(3000, BlastProperty.GasTier.HIGH).build()));
+        Netherite.getProperty(PropertyKey.FLUID).getStorage().enqueueRegistration(FluidStorageKeys.MOLTEN,
+                new FluidBuilder().state(FluidState.LIQUID));
         Plutonium239.addFlags(MaterialFlags.GENERATE_ROD);
 
         Zirconium.setMaterialARGB(0x7799a9);
         Zirconium.setMaterialSecondaryARGB(0x6489a9);
         Zirconium.setProperty(PropertyKey.INGOT, new IngotProperty());
-        Zirconium.setProperty(PropertyKey.FLUID, new FluidProperty(FluidStorageKeys.LIQUID, new FluidBuilder()));
+        Zirconium.setProperty(PropertyKey.FLUID, new FluidProperty(FluidStorageKeys.LIQUID, new FluidBuilder().temperature(1852)));
         Zirconium.addFlags(MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_FRAME);
         Zirconium.setProperty(PropertyKey.FLUID_PIPE, new FluidPipeProperties(2000, 800, true, true, true, false));
-        Zirconium.setProperty(PropertyKey.BLAST, (new BlastProperty.Builder().temp(1941, BlastProperty.GasTier.MID)
-                .blastStats(VA[EV], 1500)
-                .vacuumStats(VA[EV])).build());
+        Zirconium.setProperty(PropertyKey.BLAST, (new BlastProperty.Builder().temp(1941, BlastProperty.GasTier.MID)).build());
         NaquadahAlloy.setProperty(PropertyKey.FLUID_PIPE, new FluidPipeProperties(12000, 2300, true, true, true, true));
         Gallium.setProperty(PropertyKey.ORE, new OreProperty(1, 1));
         Tantalum.setProperty(PropertyKey.ORE, new OreProperty(1, 1));
@@ -1087,6 +1107,8 @@ public class GTTMaterials {
         Neptunium.setMaterialARGB(0x198595);
         Neptunium.setMaterialSecondaryARGB(0x051E1E);
         Neptunium.setProperty(PropertyKey.INGOT, new IngotProperty());
+
+        Uranium235.addFlags(GENERATE_BALL);
 
         InertMetalMixture.setComponents();
         InertMetalMixture.setFormula("");

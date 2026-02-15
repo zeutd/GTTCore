@@ -17,10 +17,6 @@
     {
       "chance": 0.14,
       "item": "gtceu:tantalum_dust"
-    },
-    {
-      "chance": 0.67,
-      "item": "gtceu:stone_dust"
     }
   ]
 }

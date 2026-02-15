@@ -1,0 +1,26 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:blackstone_quartzite_ore"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 8,
+      "item": "gtceu:crushed_quartzite_ore"
+    },
+    {
+      "chance": 0.14,
+      "item": "ae2:certus_quartz_crystal"
+    },
+    {
+      "chance": 0.67,
+      "item": "gtceu:blackstone_dust"
+    }
+  ]
+}

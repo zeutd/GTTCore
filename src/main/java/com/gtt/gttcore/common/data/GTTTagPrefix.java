@@ -1,5 +1,6 @@
 package com.gtt.gttcore.common.data;
 
+import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
@@ -7,10 +8,21 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
 
+@SuppressWarnings("removal")
 public class GTTTagPrefix {
     public static void init(){
 
     }
+    public static final TagPrefix ball = new TagPrefix("ball")
+            .defaultTagPath("balls/%s")
+            .unformattedTagPath("balls")
+            .langValue("%s Ball")
+            .materialAmount(GTValues.M)
+            .materialIconType(GTTMaterialIconType.ball)
+            .unificationEnabled(true)
+            .enableRecycling()
+            .generateItem(true)
+            .generationCondition(mat -> mat.hasFlag(GTTMaterialFlags.GENERATE_BALL));
     public static final TagPrefix oreMoon = TagPrefix.oreTagPrefix("moon", BlockTags.MINEABLE_WITH_PICKAXE)
             .langValue("Moon %s Ore")
                 .registerOre(() -> BuiltInRegistries.BLOCK.get(new ResourceLocation("ad_astra", "moon_stone")).defaultBlockState(),

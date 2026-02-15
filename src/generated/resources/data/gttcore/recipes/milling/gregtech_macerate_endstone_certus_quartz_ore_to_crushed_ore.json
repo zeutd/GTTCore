@@ -2,15 +2,11 @@
   "type": "create:milling",
   "ingredients": [
     {
-      "type": "forge:intersection",
-      "children": [
-        {
-          "tag": "forge:ores/certus_quartz"
-        },
-        {
-          "tag": "forge:ores_in_ground/endstone"
-        }
-      ]
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:endstone_certus_quartz_ore"
+      }
     }
   ],
   "results": [

@@ -2,15 +2,11 @@
   "type": "create:milling",
   "ingredients": [
     {
-      "type": "forge:intersection",
-      "children": [
-        {
-          "tag": "forge:ores/ice_shard"
-        },
-        {
-          "tag": "forge:ores_in_ground/mercury"
-        }
-      ]
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gttcore:mercury_ice_shard_ore"
+      }
     }
   ],
   "results": [

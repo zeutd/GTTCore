@@ -1,0 +1,26 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:basalt_blue_topaz_ore"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 8,
+      "item": "gtceu:crushed_blue_topaz_ore"
+    },
+    {
+      "chance": 0.14,
+      "item": "gtceu:topaz_gem"
+    },
+    {
+      "chance": 0.67,
+      "item": "gtceu:basalt_dust"
+    }
+  ]
+}

@@ -22,12 +22,12 @@ public class GTTBedrockOres {
                         .dimensions(oreDefinition.dimensionFilter())
                         .size(5)
                         .yield(5, 10)
-                        .depletionAmount(4)
+                        .depletionAmount(3)
                         .depletionChance(100)
                         .depletedYield(1)
-                        .weight(oreDefinition.weight() * 20);
+                        .weight(oreDefinition.weight());
                 oreDefinition.veinGenerator().getAllEntries().forEach(entry -> {
-                    Material material = entry.mapToMaterial();
+                    Material material = entry.vein().right().orElse(null);
                     if (material != null && material != GTMaterials.NULL) {
                         bedrockOreDefinition.material(material, entry.chance());
                     }

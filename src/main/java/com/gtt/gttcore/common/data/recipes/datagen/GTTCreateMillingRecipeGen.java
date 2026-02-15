@@ -1,7 +1,6 @@
 package com.gtt.gttcore.common.data.recipes.datagen;
 
 import com.gregtechceu.gtceu.api.capability.recipe.ItemRecipeCapability;
-import com.gregtechceu.gtceu.api.recipe.ingredient.SizedIngredient;
 import com.gregtechceu.gtceu.data.recipe.builder.GTRecipeBuilder;
 import com.gtt.gttcore.GTTCore;
 import com.gtt.gttcore.common.data.recipes.GTTRecipeTypes;
@@ -10,8 +9,6 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.world.item.crafting.Ingredient;
 
 import java.util.Arrays;
-
-import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags.NO_SMASHING;
 
 public class GTTCreateMillingRecipeGen extends MillingRecipeGen {
     public GTTCreateMillingRecipeGen(PackOutput output) {
@@ -24,7 +21,7 @@ public class GTTCreateMillingRecipeGen extends MillingRecipeGen {
                 if (recipeBuilder.input.containsKey(ItemRecipeCapability.CAP))
                     recipeBuilder.input.get(ItemRecipeCapability.CAP).stream().filter(content -> content.chance != 0).forEach(content -> b.require((Ingredient) content.content));
                 if (recipeBuilder.output.containsKey(ItemRecipeCapability.CAP))
-                    recipeBuilder.output.get(ItemRecipeCapability.CAP).forEach(content -> Arrays.stream(((SizedIngredient) content.content).getItems()).forEach(i -> b.output((float) content.chance / content.maxChance, i)));
+                    recipeBuilder.output.get(ItemRecipeCapability.CAP).forEach(content -> Arrays.stream(((Ingredient) content.content).getItems()).forEach(i -> b.output((float) content.chance / content.maxChance, i)));
                 return b;
             });
         }

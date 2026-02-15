@@ -3,7 +3,6 @@ package com.gtt.gttcore.common.data.recipes.datagen;
 import com.gregtechceu.gtceu.api.capability.recipe.FluidRecipeCapability;
 import com.gregtechceu.gtceu.api.capability.recipe.ItemRecipeCapability;
 import com.gregtechceu.gtceu.api.recipe.ingredient.FluidIngredient;
-import com.gregtechceu.gtceu.api.recipe.ingredient.SizedIngredient;
 import com.gregtechceu.gtceu.data.recipe.builder.GTRecipeBuilder;
 import com.gtt.gttcore.GTTCore;
 import com.gtt.gttcore.common.data.recipes.GTTRecipeTypes;
@@ -33,7 +32,7 @@ public class GTTCreateMixingRecipeGen extends MixingRecipeGen {
                                     .forEach(fluidStack -> b.require(com.simibubi.create.foundation.fluid.FluidIngredient.fromFluidStack(fluidStack))));
                 if (recipeBuilder.output.containsKey(ItemRecipeCapability.CAP))
                     recipeBuilder.output.get(ItemRecipeCapability.CAP)
-                            .forEach(content -> Arrays.stream(((SizedIngredient) content.content).getItems())
+                            .forEach(content -> Arrays.stream(((Ingredient) content.content).getItems())
                                     .forEach(i -> b.output((float) content.chance / content.maxChance, i)));
                 if (recipeBuilder.output.containsKey(FluidRecipeCapability.CAP))
                     recipeBuilder.output.get(FluidRecipeCapability.CAP).forEach(content -> Arrays.stream(((FluidIngredient) content.content).getStacks()).forEach(b::output));

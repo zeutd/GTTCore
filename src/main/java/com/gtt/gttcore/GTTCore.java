@@ -5,10 +5,8 @@ import com.gtt.gttcore.client.ClientProxy;
 import com.gtt.gttcore.common.CommonProxy;
 import com.gtt.gttcore.data.GTTDatagen;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -16,6 +14,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 @Mod(GTTCore.MOD_ID)
+@SuppressWarnings("removal")
 public class GTTCore {
     public static final String MOD_ID = "gttcore";
     public static final String NAME = "GTT Core";
@@ -26,11 +25,6 @@ public class GTTCore {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         DistExecutor.unsafeRunForDist(() -> ClientProxy::new, () -> CommonProxy::new);
         modEventBus.addListener(EventPriority.LOWEST, GTTDatagen::gatherData);
-    }
-
-    @SubscribeEvent
-    public static void onPortalIgnition(BlockEvent.PortalSpawnEvent event) {
-        event.setCanceled(true);
     }
 
     public static ResourceLocation id(String path) {

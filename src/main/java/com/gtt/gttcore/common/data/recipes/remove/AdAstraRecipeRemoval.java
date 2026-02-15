@@ -8,6 +8,7 @@ import net.minecraft.resources.ResourceLocation;
 
 import java.util.function.Consumer;
 
+@SuppressWarnings("removal")
 public class AdAstraRecipeRemoval {
     public static void init(Consumer<RecipeFilter> provider) {
         provider.accept(new TypeFilter(ModRecipeTypes.ALLOYING.getId()));

@@ -2,15 +2,11 @@
   "type": "create:milling",
   "ingredients": [
     {
-      "type": "forge:intersection",
-      "children": [
-        {
-          "tag": "forge:ores/desh"
-        },
-        {
-          "tag": "forge:ores_in_ground/mars"
-        }
-      ]
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gttcore:mars_desh_ore"
+      }
     }
   ],
   "results": [

@@ -233,6 +233,34 @@ public class GTTOres {
     // ***** Stone *****//
     //////////////////////////////////////
     public static RuleTest[] OVERWORLD_RULES = new RuleTest[]{new TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES)};
+    public static final GTOreDefinition SULFUR_VEIN_OVERWORLD = create("sulfur_vein_overworld", vein -> vein
+            .clusterSize(UniformInt.of(32, 40)).density(0.2f).weight(100)
+            .layer(WorldGenLayers.STONE)
+            .heightRangeUniform(10, 30)
+            .biomes(BiomeTags.IS_OVERWORLD)
+            .layeredVeinGenerator(generator -> generator
+                    .withLayerPattern(() -> GTLayerPattern.builder(OVERWORLD_RULES)
+                            .layer(l -> l.weight(3).mat(Sulfur).size(2, 4))
+                            .layer(l -> l.weight(2).mat(Pyrite).size(1, 1))
+                            .layer(l -> l.weight(1).mat(Sphalerite).size(1, 1))
+                            .build()))
+            .surfaceIndicatorGenerator(indicator -> indicator
+                    .surfaceRock(Sulfur)
+                    .placement(SurfaceIndicatorGenerator.IndicatorPlacement.ABOVE)));
+    public static final GTOreDefinition CERTUS_QUARTZ_VEIN_OVERWORLD = create("certus_quartz_overworld", vein -> vein
+            .clusterSize(UniformInt.of(25, 29)).density(0.25f).weight(40)
+            .layer(WorldGenLayers.DEEPSLATE)
+            .heightRangeUniform(80, 120)
+            .biomes(BiomeTags.IS_OVERWORLD)
+            .layeredVeinGenerator(generator -> generator
+                    .withLayerPattern(() -> GTLayerPattern.builder(OVERWORLD_RULES)
+                            .layer(l -> l.weight(3).mat(Quartzite).size(2, 4))
+                            .layer(l -> l.weight(2).mat(CertusQuartz).size(1, 1))
+                            .layer(l -> l.weight(1).mat(Barite).size(1, 1))
+                            .build()))
+            .surfaceIndicatorGenerator(indicator -> indicator
+                    .surfaceRock(CertusQuartz)
+                    .placement(SurfaceIndicatorGenerator.IndicatorPlacement.BELOW)));
     //////////////////////////////////////
     // ***** Deepslate *****//
     //////////////////////////////////////

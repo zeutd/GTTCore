@@ -1,0 +1,26 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:tuff_soapstone_ore"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 6,
+      "item": "gtceu:crushed_soapstone_ore"
+    },
+    {
+      "chance": 0.14,
+      "item": "gtceu:silicon_dioxide_dust"
+    },
+    {
+      "chance": 0.67,
+      "item": "gtceu:tuff_dust"
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gttcore:basalt_zircon_ore"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 8,
+      "item": "gttcore:crushed_zircon_ore"
+    },
+    {
+      "chance": 0.14,
+      "item": "gttcore:zircon_gem"
+    },
+    {
+      "chance": 0.67,
+      "item": "gtceu:basalt_dust"
+    }
+  ]
+}

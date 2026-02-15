@@ -1,0 +1,26 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:blackstone_apatite_ore"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 16,
+      "item": "gtceu:crushed_apatite_ore"
+    },
+    {
+      "chance": 0.14,
+      "item": "gtceu:tricalcium_phosphate_dust"
+    },
+    {
+      "chance": 0.67,
+      "item": "gtceu:blackstone_dust"
+    }
+  ]
+}

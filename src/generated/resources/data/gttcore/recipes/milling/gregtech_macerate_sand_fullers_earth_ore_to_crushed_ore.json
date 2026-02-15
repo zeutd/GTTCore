@@ -1,0 +1,26 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gtceu:sand_fullers_earth_ore"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 4,
+      "item": "gtceu:crushed_fullers_earth_ore"
+    },
+    {
+      "chance": 0.14,
+      "item": "gtceu:aluminium_dust"
+    },
+    {
+      "chance": 0.67,
+      "item": "gtceu:silicon_dioxide_dust"
+    }
+  ]
+}

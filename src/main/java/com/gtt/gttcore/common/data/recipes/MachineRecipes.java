@@ -51,7 +51,7 @@ public class MachineRecipes {
         registerMachineRecipes(provider);
     }
     private static void registerMachineRecipes(Consumer<FinishedRecipe> provider){
-        VanillaRecipeHelper.addShapedRecipe(provider, true, GTTCore.id("steam_turbine_ulv"), ULV_STEAM_TURBINE.asStack(),
+        VanillaRecipeHelper.addShapedRecipe(provider, true, GTTCore.id("steam_engine_ulv"), ULV_STEAM_ENGINE.asStack(),
                 "PCP", "RMR", "EWE", 'M', GTMachines.HULL[GTValues.LV].asStack(), 'E', ELECTRIC_MOTOR_ULV, 'R',
                 new MaterialEntry(TagPrefix.rotor, Lead), 'C', CustomTags.ULV_CIRCUITS, 'W',
                 new MaterialEntry(TagPrefix.cableGtSingle, RedAlloy), 'P',

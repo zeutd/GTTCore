@@ -1,0 +1,26 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "item": "gttcore:basalt_xenotime_ore"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 8,
+      "item": "gttcore:crushed_xenotime_ore"
+    },
+    {
+      "chance": 0.14,
+      "item": "gtceu:phosphate_dust"
+    },
+    {
+      "chance": 0.67,
+      "item": "gtceu:basalt_dust"
+    }
+  ]
+}

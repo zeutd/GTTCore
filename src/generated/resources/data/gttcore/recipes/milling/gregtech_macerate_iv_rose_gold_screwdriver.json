@@ -1,0 +1,20 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "type": "gtceu:sized",
+      "count": 1,
+      "ingredient": {
+        "type": "forge:nbt",
+        "count": 1,
+        "item": "gtceu:iv_rose_gold_screwdriver",
+        "nbt": "{Damage:0,GT.Tool:{}}"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "gtceu:rose_gold_dust"
+    }
+  ]
+}

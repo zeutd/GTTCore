@@ -28,9 +28,9 @@ public class MixerRecipes {
         }
         MIXER_RECIPES.recipeBuilder(GTTCore.id("nether_star_dust"))
                 .duration(100)
-                .EUt(VA[IV])
-                .inputItems(TagPrefix.dust, Rhodium, 4)
-                .inputItems(TagPrefix.dust, Iridium, 4)
+                .EUt(VA[HV])
+                .inputItems(TagPrefix.dust, Platinum, 4)
+                .inputItems(TagPrefix.dust, Palladium, 4)
                 .inputItems(TagPrefix.dust, Caesium, 3)
                 .inputItems(TagPrefix.dust, Iodine, 1)
                 .outputItems(TagPrefix.dust, NetherStar, 12)

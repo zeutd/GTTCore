@@ -5,14 +5,20 @@
   "refmap": "gttcore.mixins.refmap.json",
   "minVersion": "0.8",
   "mixins": [
-    "GCYMMachinesMixin",
-    "GravityApiImplMixin",
-    "GTDimensionMarkersMixin",
-    "MetaMachineBlockEntityMixin",
-    "OxygenApiImplMixin",
-    "ParallelHatchPartMachineMixin",
-    "RecipeLogicMixin",
-    "RotorHolderPartMachineMixin"
+    "adastra.GravityApiImplMixin",
+    "adastra.OxygenApiImplMixin",
+    "appeng.BasicStorageCellMixin",
+    "appeng.BasicCellInventoryMixin",
+    "gtm.GCYMMachinesMixin",
+    "gtm.GTDimensionMarkersMixin",
+    "gtm.MetaMachineBlockEntityMixin",
+    "gtm.ParallelHatchPartMachineMixin",
+    "gtm.RecipeLogicMixin",
+    "gtm.RotorHolderPartMachineMixin",
+    "gtmt.WirelessEnergyBindingToolBehaviorMixin",
+    "gtmt.WirelessEnergyContainerMixin",
+    "gtmt.WirelessEnergyMonitorMixin",
+    "gtmt.WirelessEnergyTerminalBehaviorMixin"
   ],
   "client": [
   ],

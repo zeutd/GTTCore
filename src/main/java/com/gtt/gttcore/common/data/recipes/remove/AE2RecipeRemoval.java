@@ -6,6 +6,7 @@ import net.minecraft.resources.ResourceLocation;
 
 import java.util.function.Consumer;
 
+@SuppressWarnings("removal")
 public class AE2RecipeRemoval {
     public static void init(Consumer<RecipeFilter> provider) {
         provider.accept(new IDFilter(new ResourceLocation("ae2:network/blocks/inscribers")));
@@ -39,14 +40,28 @@ public class AE2RecipeRemoval {
         provider.accept(new IDFilter(new ResourceLocation("ae2:decorative/quartz_block")));
         provider.accept(new IDFilter(new ResourceLocation("ae2:decorative/fluix_block")));
         provider.accept(new IDFilter(new ResourceLocation("ae2:misc/fluixpearl")));
-
-//        provider.accept(new IDFilter(new ResourceLocation("ae2:transform/damaged_budding_quartz")));
-//        provider.accept(new IDFilter(new ResourceLocation("ae2:transform/fluix_crystals")));
-//        provider.accept(new IDFilter(new ResourceLocation("ae2:transform/flawed_budding_quartz")));
-//        provider.accept(new IDFilter(new ResourceLocation("ae2:transform/certus_quartz_crystals")));
-//        provider.accept(new IDFilter(new ResourceLocation("ae2:transform/fluix_crystal")));
-//        provider.accept(new IDFilter(new ResourceLocation("ae2:transform/chipped_budding_quartz")));
-//        provider.accept(new IDFilter(new ResourceLocation("ae2:transform/entangled_singularity")));
-//        provider.accept(new IDFilter(new ResourceLocation("ae2:transform/entangled_singularity_from_pearl")));
+        provider.accept(new IDFilter(new ResourceLocation("ae2:blasting/silicon_from_certus_quartz_dust")));
+        provider.accept(new IDFilter(new ResourceLocation("expatternprovider:silicon_block")));
+        provider.accept(new IDFilter(new ResourceLocation("expatternprovider:ex_charger")));
+        provider.accept(new IDFilter(new ResourceLocation("expatternprovider:ex_inscriber")));
+        provider.accept(new IDFilter(new ResourceLocation("expatternprovider:crystal_fixer")));
+        provider.accept(new IDFilter(new ResourceLocation("expatternprovider:assembler_matrix_wall")));
+        provider.accept(new IDFilter(new ResourceLocation("expatternprovider:assembler_matrix_frame")));
+        provider.accept(new IDFilter(new ResourceLocation("expatternprovider:circuit_cutter")));
+        provider.accept(new IDFilter(new ResourceLocation("expatternprovider:caner")));
+        provider.accept(new IDFilter(new ResourceLocation("expatternprovider:crystal_fixer")));
+//        provider.accept(new IDFilter(new ResourceLocation("ae2:misc/fluixpearl")));
+//        provider.accept(new IDFilter(new ResourceLocation("ae2:misc/fluixpearl")));
+//        provider.accept(new IDFilter(new ResourceLocation("ae2:misc/fluixpearl")));
+//        provider.accept(new IDFilter(new ResourceLocation("ae2:misc/fluixpearl")));
+//        provider.accept(new IDFilter(new ResourceLocation("ae2:misc/fluixpearl")));
+//        provider.accept(new IDFilter(new ResourceLocation("ae2:misc/fluixpearl")));
+//        provider.accept(new IDFilter(new ResourceLocation("ae2:misc/fluixpearl")));
+//        provider.accept(new IDFilter(new ResourceLocation("ae2:misc/fluixpearl")));
+//        provider.accept(new IDFilter(new ResourceLocation("ae2:misc/fluixpearl")));
+//        provider.accept(new IDFilter(new ResourceLocation("ae2:misc/fluixpearl")));
+//        provider.accept(new IDFilter(new ResourceLocation("ae2:misc/fluixpearl")));
+//        provider.accept(new IDFilter(new ResourceLocation("ae2:misc/fluixpearl")));
+//        provider.accept(new IDFilter(new ResourceLocation("ae2:misc/fluixpearl")));
     }
 }

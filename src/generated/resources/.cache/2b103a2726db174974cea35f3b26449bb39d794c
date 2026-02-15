@@ -1,4 +1,4 @@
-// 1.20.1	2026-02-01T10:52:38.4661557	Registrate Provider for gttcore [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider]
+// 1.20.1	2026-02-13T12:37:45.7370201	Registrate Provider for gttcore [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider]
 307011c930f083bc3f416782a6746fac3e2adda1 assets/gttcore/blockstates/bedrock_drill.json
 d18033916a4e0742236fd0b240e1b22060c21dee assets/gttcore/blockstates/blackhole_bomb.json
 c9be24b9d4ad700638f61c95427bd13baf9b85ee assets/gttcore/blockstates/chemical_plant.json
@@ -47,11 +47,12 @@ ff02aea50f3213c670d55c1bf1ad9f56018e02d9 assets/gttcore/blockstates/nether_capsu
 0da2df78143e93b2f34b673a1415e11d856c5c0b assets/gttcore/blockstates/opv_cultivator.json
 bfb9d760b2f07cccf0ac026df4832ace71123215 assets/gttcore/blockstates/opv_large_rotor_holder.json
 fefa870fe3ed76c314bd6dfbacda63782334e688 assets/gttcore/blockstates/particle_accelerator.json
-77f9ee56f5c678b6be02af74f98e1152cf7276f9 assets/gttcore/blockstates/ph_purification_plant.json
 3c64305796d471185aa64c81f866a1159e7b910d assets/gttcore/blockstates/plasma_huge_turbine.json
 551be9c8b41a3f5cdaa52981996610c35e5550e2 assets/gttcore/blockstates/primitive_brewery.json
 3ff27552c3c8fe733f94ad23c77ed54fab5df1fd assets/gttcore/blockstates/primitive_fermenter.json
+676a04155a4106206f43c8b24ac80d1c37bf1737 assets/gttcore/blockstates/processing_casing.json
 e7e3a77cadf05409742a26c47384c0156fdb154e assets/gttcore/blockstates/radiation_proof_machine_casing.json
+e83e8ed91f21e483a04aa041741954800cba5d3a assets/gttcore/blockstates/reinforced_concrete.json
 3734ee11b43422a77e154b569655214af687bd38 assets/gttcore/blockstates/reinforced_machine_casing.json
 9fe4ce298454eeef05cb848c5075905630c0b808 assets/gttcore/blockstates/rocket_assembler.json
 3a7f8cb2cb85b0ac5b31ba386623ea5d29f14290 assets/gttcore/blockstates/sealed_casing.json
@@ -108,8 +109,8 @@ a590727da2f8e08a5a1e6d4361658e81cf53df5d assets/gttcore/blockstates/uxv_large_ro
 7cb177d33e8666afea503a8b035d6c16c4453b82 assets/gttcore/blockstates/zpm_cultivator.json
 6c75aa714df8c7c5370e41888f8a3e47a6701da5 assets/gttcore/blockstates/zpm_large_fusion_reactor.json
 ba8eea4dc2407d09d7b0e71095830cd0e85ac77a assets/gttcore/blockstates/zpm_large_rotor_holder.json
-740bac61c2c1f8bd42e915fff1101c96eda9735b assets/gttcore/lang/en_ud.json
-9317ae071fe85e6f92983c2e7d938d27602740a6 assets/gttcore/lang/en_us.json
+98a35800f252ff351a5bb1f9cd9dfb6497684590 assets/gttcore/lang/en_ud.json
+3c80371e7c24f3d0ba7173b13d9c3fb1a09eca6f assets/gttcore/lang/en_us.json
 22cd8c5930eb824390c9e17f6bd858938914a602 assets/gttcore/models/block/blackhole_bomb.json
 1d06e52ec0cfa0c4280211e57dc8adb196e66d6d assets/gttcore/models/block/inconel_718_turbine_casing.json
 9c266659b005bbd4e6b5497f8088e795907befc3 assets/gttcore/models/block/lead_glass.json
@@ -157,7 +158,6 @@ a801333f0825e86482982e446af058fc169d6b9d assets/gttcore/models/block/machine/net
 3801a73f6294a02ef23026400a86bcf0e6f448d3 assets/gttcore/models/block/machine/opv_cultivator.json
 e2d093f6c923e76c870c77385c8952cd194aa8ab assets/gttcore/models/block/machine/opv_large_rotor_holder.json
 0933d3a9e26f6682f7b4f9bdda160f6386111f8b assets/gttcore/models/block/machine/particle_accelerator.json
-f81721da5f8673c54ca317a6417260ce56a7e1f3 assets/gttcore/models/block/machine/ph_purification_plant.json
 49ae81e93619c864f690d234d1a4f7708b8d0a1e assets/gttcore/models/block/machine/plasma_huge_turbine.json
 d73aaf826f41749e15c78da92fa7e164d0797c89 assets/gttcore/models/block/machine/primitive_brewery.json
 40364acd4fee1e67f87e025969a7cb68ba8cd2d6 assets/gttcore/models/block/machine/primitive_fermenter.json
@@ -213,7 +213,9 @@ c4ddd923b4fafdc2f1b02cd7ff0bb2604e925331 assets/gttcore/models/block/machine/zpm
 1492eb3787b2b4f19bcf8cfdfdbb7e75a9776860 assets/gttcore/models/block/machine/zpm_large_fusion_reactor.json
 d095cba262caee5e365187b03a2ab2e612844cd0 assets/gttcore/models/block/machine/zpm_large_rotor_holder.json
 984af981a7794e704bba20d07e778972beb319a2 assets/gttcore/models/block/nuclear_bomb.json
+e5397a8b66f88b92a9912c61374897033a7b50f0 assets/gttcore/models/block/processing_casing.json
 b5a776353d6db386a4f8981e3fe8617b97398a6b assets/gttcore/models/block/radiation_proof_machine_casing.json
+1a206b68c8049a3c3051c0d80a8b2bd18af311ca assets/gttcore/models/block/reinforced_concrete.json
 5f9849c3a2b731386996304ea2db9631b245ddf8 assets/gttcore/models/block/reinforced_machine_casing.json
 d4fc651ee924c7d6b66c1f2e872eaeadbc05938f assets/gttcore/models/block/sealed_casing.json
 12e71f30ae8654abe3a0d0caf03848667d28a96c assets/gttcore/models/block/stainless_evaporation_casing.json
@@ -276,6 +278,7 @@ d482821c07d191ee22bceaac09528eff01015171 assets/gttcore/models/item/luv_cultivat
 ceab2eccdfe2f5f19e5de18f8df04c050fef8134 assets/gttcore/models/item/lv_cultivator.json
 6404f96d17cb160ea5e3749592f3ab9efa9dfecc assets/gttcore/models/item/magnetic_confinement_ring.json
 5580a2e9fe5a77891c2c3f51ff60f91c7f21a8dd assets/gttcore/models/item/mv_cultivator.json
+f795b8998f57b9e7b19df00d00917f52df2f072c assets/gttcore/models/item/netherite_scrap_seed.json
 f129f220eab7daffa32fa0f55828f07535149bdc assets/gttcore/models/item/nether_capsule.json
 8df9b9a550d70f348e2480b632468651ee4f5885 assets/gttcore/models/item/nuclear_bomb.json
 3ae149927d7dc1f1853248b694616554976dfb90 assets/gttcore/models/item/optical_processor.json
@@ -301,11 +304,12 @@ f7d9b0ab68bb82867b3faf42ce929bc2849663d2 assets/gttcore/models/item/packaged_cir
 7e615ed1a5af3b6982efd7b2036270e8d34dd5be assets/gttcore/models/item/packaged_circuit_zpm.json
 7d7ed9693d5075b8bbdbd9b4d7ca49227c98a8f6 assets/gttcore/models/item/particle_accelerator.json
 f0852b4d807fe06cb5fcad68e4e219202ad733c8 assets/gttcore/models/item/particle_container.json
-de5bb634b4f689d00e699fc5249984044933ab39 assets/gttcore/models/item/ph_purification_plant.json
 c25d27cf46c0589feffc76d849ef92498897e9d0 assets/gttcore/models/item/plasma_huge_turbine.json
 64d953f6f9fefbe4cb85b723c27a2dfe40e2d9de assets/gttcore/models/item/primitive_brewery.json
 8295eda15c839828511f56a6e0c569b48bfa3bd3 assets/gttcore/models/item/primitive_fermenter.json
+a517c29296e43bf8c67b76c57a5c901d50cfec0f assets/gttcore/models/item/processing_casing.json
 4e0fd6b97ceba9a04a17fdb8fc630676e29e7c27 assets/gttcore/models/item/radiation_proof_machine_casing.json
+9b8b92885d0ecb1e9d6d38f26fdc21f923429d12 assets/gttcore/models/item/reinforced_concrete.json
 52913a0c8885346ec0ed8241e703dc44a5f9818c assets/gttcore/models/item/reinforced_machine_casing.json
 66939b6d9730951934958947124e54aeb14d49dd assets/gttcore/models/item/rocket_assembler.json
 39d66a24281255e9a41a72e7bd94b52337511051 assets/gttcore/models/item/sealed_casing.json
@@ -372,7 +376,7 @@ be40f53d3bc1bf9112d189b3e169ff9149bf0d89 assets/gttcore/models/item/uxv_large_ro
 0daf5bfe945d0c7964555f736e335c4b3485756d assets/gttcore/models/item/zpm_cultivator.json
 a02f832f56db6f4278ee7a5614e64cddc453aa2c assets/gttcore/models/item/zpm_large_fusion_reactor.json
 d2295e3280d8b64810ee7a9699f97342f0dcb35e assets/gttcore/models/item/zpm_large_rotor_holder.json
-af7c5afc93902263ea23c1e6cbe9871e597001be data/forge/tags/blocks/mineable/wrench.json
+46ecc19b10431bb7f3bfc2b04dbeacdb785abeb6 data/forge/tags/blocks/mineable/wrench.json
 5ca2034ab909ee251a9096b7dee7f4284ef7b215 data/gtceu/tags/blocks/mineable/pickaxe_or_wrench.json
 9e102400b99cfb5826c3b4231a8037735211e622 data/gtceu/tags/items/circuits/ev.json
 5570e29913b0bcbf5e08dae2c7e69a94a327c724 data/gtceu/tags/items/circuits/hv.json
@@ -400,7 +404,9 @@ a7a46b915762792115a753c4c79ba550e47bc68e data/gtceu/tags/items/circuits/zpm.json
 0b76b7846521d3c5319113e7ce5f3ecd58ff588b data/gttcore/loot_tables/blocks/lead_glass.json
 076a0eef0a2b86ae6ffc30961d5190f548ae3b40 data/gttcore/loot_tables/blocks/low_neutron_absorption_casing.json
 5a632b65da52997601140ba62fcaa4f924551848 data/gttcore/loot_tables/blocks/nuclear_bomb.json
+dbae35791986385395186e2b1761e6f5d8011242 data/gttcore/loot_tables/blocks/processing_casing.json
 550d334968ad3ca9a384f806208832ab70cbd4ed data/gttcore/loot_tables/blocks/radiation_proof_machine_casing.json
+8b713b84a1d0a7a8aed63490e995f719438ec8f6 data/gttcore/loot_tables/blocks/reinforced_concrete.json
 e007cb94b9fa660f83a69514c641754611e75f38 data/gttcore/loot_tables/blocks/reinforced_machine_casing.json
 366ef6235e32301e2a8ee3b25a320561a55927f6 data/gttcore/loot_tables/blocks/sealed_casing.json
 ea4125a6d2750d16d0a6e7ea0fd06ffeec5ab681 data/gttcore/loot_tables/blocks/stainless_evaporation_casing.json
@@ -408,4 +414,4 @@ f493fed17df67994c1b7a026f45ba4f5b401e74b data/gttcore/loot_tables/blocks/steam_c
 0bff8ef20efc94ed562393adf1e8381826e05e93 data/gttcore/loot_tables/blocks/zirconium_pipe_casing.json
 8a9f3c9816cdc820732233d9cdcb464da218f114 data/gttcore/tags/items/andesite_alloyable.json
 9c6223ac73c3aa26dfc785ef33a2aad2940dda89 data/minecraft/tags/blocks/mineable/axe.json
-af7c5afc93902263ea23c1e6cbe9871e597001be data/minecraft/tags/blocks/mineable/pickaxe.json
+46ecc19b10431bb7f3bfc2b04dbeacdb785abeb6 data/minecraft/tags/blocks/mineable/pickaxe.json

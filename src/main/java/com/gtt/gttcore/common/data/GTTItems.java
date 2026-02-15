@@ -5,7 +5,7 @@ import com.gregtechceu.gtceu.common.item.CoverPlaceBehavior;
 import com.gregtechceu.gtceu.common.item.TooltipBehavior;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
-import com.gtt.gttcore.api.LangUtil;
+import com.gtt.gttcore.util.LangUtil;
 import com.gtt.gttcore.common.item.BeerItem;
 import com.tterrag.registrate.util.entry.ItemEntry;
 import net.minecraft.network.chat.Component;
@@ -75,6 +75,9 @@ public class GTTItems {
             .register();
     public static ItemEntry<Item> GRAVITATIONAL_LENS = REGISTRATE.item(LangUtil.createItemZhTranslation("gravitational_lens", "引力透镜"), Item::new)
             .lang("Gravitational Lens")
+            .register();
+    public static ItemEntry<Item> NETHERITE_SCRAP_SEED = REGISTRATE.item(LangUtil.createItemZhTranslation("netherite_scrap_seed", "下界合金碎片种子"), Item::new)
+            .lang("Netherite Scrap Seed")
             .register();
 
 
