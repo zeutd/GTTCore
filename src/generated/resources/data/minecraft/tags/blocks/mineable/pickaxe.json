@@ -9,6 +9,7 @@
     "gttcore:lead_glass",
     "gttcore:processing_casing",
     "gttcore:reinforced_concrete",
+    "gttcore:field_protection_casing",
     "gttcore:stainless_evaporation_casing"
   ]
 }

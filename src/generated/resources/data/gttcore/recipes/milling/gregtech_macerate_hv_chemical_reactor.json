@@ -16,15 +16,15 @@
     },
     {
       "count": 6,
-      "item": "gtceu:polyethylene_dust"
-    },
-    {
-      "count": 6,
       "item": "gtceu:rubber_dust"
     },
     {
+      "count": 6,
+      "item": "gtceu:polyethylene_dust"
+    },
+    {
       "count": 4,
-      "item": "gtceu:steel_dust"
+      "item": "gtceu:electrum_dust"
     }
   ]
 }

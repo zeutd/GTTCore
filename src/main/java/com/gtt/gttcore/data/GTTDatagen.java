@@ -26,5 +26,6 @@ public class GTTDatagen {
         LanguageProvider chineseProvider = new GTTChineseLanguageProvider(output);
         REGISTRATE.addDataGenerator(ProviderType.LANG, englishProvider -> GTTLangHandler.init(englishProvider, chineseProvider));
         generator.addProvider(true, chineseProvider);
+        new GTTMoleculeProvider().gatherData(event);
     }
 }

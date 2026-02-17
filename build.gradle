@@ -201,6 +201,7 @@ dependencies {
 //    }
 
     accessCompileOnly(fg.deobf('dev:gtmthings:1.5.4'))
+    accessCompileOnly(fg.deobf('dev:gtmoldraw:3.0.1'))
 
     // lombok
     compileOnly 'org.projectlombok:lombok:1.18.34'
