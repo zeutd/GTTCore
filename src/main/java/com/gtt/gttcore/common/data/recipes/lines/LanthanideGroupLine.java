@@ -56,6 +56,7 @@ public class LanthanideGroupLine {
         CHEMICAL_RECIPES.recipeBuilder(GTTCore.id("ethylene_oxide"))
                 .duration(20)
                 .EUt(VA[LV])
+                .circuitMeta(4)
                 .inputFluids(Ethylene.getFluid(2000))
                 .inputFluids(Oxygen.getFluid(1000))
                 .outputFluids(EthyleneOxide.getFluid(2000))
@@ -120,7 +121,7 @@ public class LanthanideGroupLine {
                 .outputFluids(LowCeriumContentRareEarthChlorideSolution.getFluid(10000))
                 .outputItems(dust, CeriumContainingResidue)
                 .save(provider);
-        CHEMICAL_RECIPES.recipeBuilder(GTTCore.id("rare_earth_solution_purification"))
+        LARGE_CHEMICAL_RECIPES.recipeBuilder(GTTCore.id("rare_earth_solution_purification"))
                 .duration(500)
                 .EUt(VA[HV])
                 .inputItems(dust, Magnesia)

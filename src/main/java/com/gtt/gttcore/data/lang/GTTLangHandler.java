@@ -36,6 +36,13 @@ public class GTTLangHandler {
         add("gtceu.machine.parallel_hatch_mk8.tooltip", "Allows to run up to 1024 recipes in parallel.", "允许同时处理至多1024个配方。");
 
         add("gttcore.machine.wireless_energy_monitor.tooltip.0", "Energy Capacity: %s EU", "能源容量：%s EU");
+
+        add("gttcore.machine.check_structure", "Check Structure", "检查结构");
+
+        add("gttcore.dyson_cloud.set", "Dyson cloud value set: %s", "戴云数量已设置为%s");
+        add("gttcore.dyson_cloud.query", "Dyson cloud value is currently %s", "戴森云数量目前为%s");
+        add("gttcore.dyson_sphere_joint.set", "Dyson sphere joint value set: %s", "戴森球节点数量已设置为%s");
+        add("gttcore.dyson_sphere_joint.query", "Dyson sphere joint value is currently %s", "戴森球节点数量目前是%s");
     }
     
     public static void add(String key, String enValue, String zhValue){

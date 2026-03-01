@@ -1,0 +1,6 @@
+{
+  "gttcore": {
+    "base": "gttcore:block/casings/machine_casing_gravity_resist",
+    "output": "gttcore:block/casings/machine_casing_energy_transfer"
+  }
+}

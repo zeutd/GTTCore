@@ -8,8 +8,11 @@ import com.gregtechceu.gtceu.data.recipe.VanillaRecipeHelper;
 import com.gtt.gttcore.GTTCore;
 import earth.terrarium.adastra.common.registry.ModItems;
 import net.minecraft.data.recipes.FinishedRecipe;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
+import net.minecraftforge.registries.ForgeRegistries;
 
+import java.util.Objects;
 import java.util.function.Consumer;
 
 import static com.gregtechceu.gtceu.api.GTValues.*;
@@ -20,8 +23,24 @@ import static com.gregtechceu.gtceu.data.recipe.GTCraftingComponents.PUMP;
 import static com.gtt.gttcore.common.data.GTTMaterials.*;
 import static com.gtt.gttcore.common.data.recipes.GTTRecipeTypes.*;
 
+@SuppressWarnings("removal")
 public class RocketRecipes {
+    public static void initRocketLaunch(Consumer<FinishedRecipe> provider){
+        ROCKET_LAUNCH_CENTER_RECIPES.recipeBuilder(GTTCore.id("launch_dyson_cloud"))
+                .EUt(VA[UV])
+                .duration(100)
+                .notConsumable(Objects.requireNonNull(ForgeRegistries.ITEMS.getValue(new ResourceLocation("ad_astra_rocketed", "tier_7_rocket"))))
+//                .inputFluids()
+                .circuitMeta(31)
+                .save(provider);
+        MICROWAVE_RECEIVER_RECIPES.recipeBuilder(GTTCore.id("generate_eu"))
+                .EUt(-1)
+                .duration(20)
+                .inputFluids(PCBCoolant.getFluid(10000))
+                .save(provider);
+    }
     public static void init(Consumer<FinishedRecipe> provider) {
+        initRocketLaunch(provider);
         ASSEMBLER_RECIPES.recipeBuilder(GTTCore.id("steel_fuel_tank"))
                 .EUt(VA[MV])
                 .inputItems(plate, Steel, 16)
@@ -161,8 +180,8 @@ public class RocketRecipes {
                 "PSP",
                 "CRC",
                 'A', new MaterialEntry(plate, Calorite),
-                'S', ModItems.NETHERITE_SPACE_SUIT,
-                'W', ModItems.OSTRUM_ENGINE,
+                'S', ModItems.NETHERITE_SPACE_SUIT.get().getDefaultInstance(),
+                'W', ModItems.OSTRUM_ENGINE.get().getDefaultInstance(),
                 'P', PUMP.get(IV),
                 'C', GTItems.LAPOTRON_CRYSTAL,
                 'R', new MaterialEntry(rotor, StainlessSteel)
@@ -172,7 +191,7 @@ public class RocketRecipes {
                 .inputFluids(Polyethylene.getFluid(144))
                 .inputItems(pipeSmallFluid, Ostrum, 2)
                 .inputItems(GTItems.FLUID_CELL_LARGE_STAINLESS_STEEL)
-                .outputItems(ModItems.ZIP_GUN)
+                .outputItems(ModItems.ZIP_GUN.get().getDefaultInstance())
                 .save(provider);
     }
 }

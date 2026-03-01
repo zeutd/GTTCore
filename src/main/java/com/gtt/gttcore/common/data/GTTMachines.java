@@ -44,6 +44,7 @@ import static com.gregtechceu.gtceu.common.data.machines.GTMachineUtils.*;
 import static com.gregtechceu.gtceu.common.data.models.GTMachineModels.createOverlayTieredHullMachineModel;
 import static com.gregtechceu.gtceu.utils.FormattingUtil.toEnglishName;
 import static com.gtt.gttcore.common.registry.GTTRegistration.REGISTRATE;
+import static com.gtt.gttcore.util.LangUtil.VLVH_CHINESE;
 import static net.minecraft.ChatFormatting.RESET;
 
 public class GTTMachines {
@@ -52,7 +53,9 @@ public class GTTMachines {
     }
     public static final MachineDefinition[] LARGE_ROTOR_HOLDER = registerTieredMachines("large_rotor_holder",
             RotorHolderPartMachine::new,
-            (tier, builder) -> builder
+            (tier, builder) -> {
+                LangUtil.createBlockZhTranslation(GTValues.VN[tier].toLowerCase(Locale.ROOT) + "_large_rotor_holder", "%s大型f转子支架".formatted(VNF[tier] + RESET));
+        return builder
                     .langValue("%s Large Rotor Holder".formatted(VNF[tier]))
                     .rotationState(RotationState.ALL)
                     .abilities(GTTPartAbility.LARGE_ROTOR_HOLDER)
@@ -64,11 +67,12 @@ public class GTTMachines {
                     .hasBER(true)
                     .tooltips(LangHandler.getMultiLang("gtceu.machine.rotor_holder.tooltip"))
                     .tooltips(Component.translatable("gtceu.part_sharing.disabled"))
-                    .register(),
+                    .register();
+            },
             GTValues.tiersBetween(HV, OpV));
 
     public static final MachineDefinition HIGH_ENERGY_LASER_EXPORT_HATCH = REGISTRATE
-            .machine("high_energy_laser_export_hatch", holder -> new HighEnergyLaserHatchPartMachine(holder, true))
+            .machine(LangUtil.createBlockZhTranslation("high_energy_laser_export_hatch", "高能激光源仓"), holder -> new HighEnergyLaserHatchPartMachine(holder, true))
             .rotationState(RotationState.ALL)
             .tier(UHV)
             .abilities(GTTPartAbility.EXPORT_HIGH_ENERGY_LASER)
@@ -79,7 +83,7 @@ public class GTTMachines {
                     "为多方块结构输出高能激光")))
             .register();
     public static final MachineDefinition HIGH_ENERGY_LASER_IMPORT_HATCH = REGISTRATE
-            .machine("high_energy_laser_import_hatch", holder -> new HighEnergyLaserHatchPartMachine(holder, false))
+            .machine(LangUtil.createBlockZhTranslation("high_energy_laser_import_hatch", "高能激光靶仓"), holder -> new HighEnergyLaserHatchPartMachine(holder, false))
             .rotationState(RotationState.ALL)
             .tier(UHV)
             .abilities(GTTPartAbility.IMPORT_HIGH_ENERGY_LASER)
@@ -119,36 +123,39 @@ public class GTTMachines {
     public static final MachineDefinition ULV_AUTOCLAVE = registerULVMachines("autoclave", GTRecipeTypes.AUTOCLAVE_RECIPES, "高压釜");
     public static final MachineDefinition ULV_ASSEMBLER = registerULVMachines("assembler", GTRecipeTypes.ASSEMBLER_RECIPES, hvCappedTankSizeFunction, true, "组装机");
     public static final MachineDefinition ULV_GAS_COLLECTOR = registerULVMachines("gas_collector",
-            GTRecipeTypes.GAS_COLLECTOR_RECIPES, largeTankSizeFunction, true);
+            GTRecipeTypes.GAS_COLLECTOR_RECIPES, largeTankSizeFunction, true, "集气室");
 
 
 
-    public static final MachineDefinition[] CULTIVATOR = registerSimpleMachines("cultivator", GTTRecipeTypes.CULTIVATOR_RECIPES, GTCEu.id("block/machines/fermenter" ));
+    public static final MachineDefinition[] CULTIVATOR = registerSimpleMachines("cultivator", "培养机", GTTRecipeTypes.CULTIVATOR_RECIPES, GTCEu.id("block/machines/fermenter"));
 
 
     public static final MachineDefinition[] HIGHER_PARALLEL_HATCH = registerTieredMachines("parallel_hatch",
             ParallelHatchPartMachine::new,
-            (tier, builder) -> builder
-                    .langValue(switch (tier) {
-                        case 9 -> "UHV";
-                        case 10 -> "UEV";
-                        case 11 -> "UIV";
-                        case 12 -> "UXV";
-                        default -> "Simple"; // Should never be hit.
-                    } + " Parallel Control Hatch")
-                    .rotationState(RotationState.ALL)
-                    .abilities(PartAbility.PARALLEL_HATCH)
-                    .workableTieredHullModel(GTCEu.id("block/machines/parallel_hatch_mk" + (tier - 4) % 4))
-                    .tooltips(Component.translatable(LangUtil.createEnZhTranslation("gttcore.machine.parallel_hatch_mk" + tier + ".tooltip", "Allows to run up to %s recipes in parallel.".formatted((int) Math.pow(4, tier - GTValues.EV) * 4), "允许同时处理至多%s个配方。".formatted(Math.pow(4, tier - GTValues.EV) * 4))))
-                    .register(),
+            (tier, builder) -> {
+                LangUtil.createBlockZhTranslation(GTValues.VN[tier].toLowerCase(Locale.ROOT) + "_parallel_hatch", "%s并行控制仓".formatted(VNF[tier] + RESET));
+                return builder
+                                .langValue(switch (tier) {
+                                    case 9 -> "UHV";
+                                    case 10 -> "UEV";
+                                    case 11 -> "UIV";
+                                    case 12 -> "UXV";
+                                    default -> "Simple"; // Should never be hit.
+                                } + " Parallel Control Hatch")
+                                .rotationState(RotationState.ALL)
+                                .abilities(PartAbility.PARALLEL_HATCH)
+                                .workableTieredHullModel(GTCEu.id("block/machines/parallel_hatch_mk" + (tier - 4) % 4))
+                                .tooltips(Component.translatable(LangUtil.createEnZhTranslation("gttcore.machine.parallel_hatch_mk" + tier + ".tooltip", "Allows to run up to %s recipes in parallel.".formatted((int) Math.pow(4, tier - GTValues.EV) * 4), "允许同时处理至多%s个配方。".formatted(Math.pow(4, tier - GTValues.EV) * 4))))
+                                .register();
+                    },
             UHV, UEV, UIV);
     public static final Pair<MachineDefinition, MachineDefinition> STEAM_CENTRIFUGE = registerSimpleSteamMachines(
-            "centrifuge", GTRecipeTypes.CENTRIFUGE_RECIPES);
+            "centrifuge", "离心机", GTRecipeTypes.CENTRIFUGE_RECIPES);
     public static final Pair<MachineDefinition, MachineDefinition> STEAM_MIXER = registerSimpleSteamMachines(
-            "mixer", GTRecipeTypes.MIXER_RECIPES);
+            "mixer", "搅拌机", GTRecipeTypes.MIXER_RECIPES);
 
 
-    public static final MachineDefinition ULV_STEAM_ENGINE = registerSimpleGenerator("steam_engine",
+    public static final MachineDefinition ULV_STEAM_ENGINE = registerSimpleGenerator(LangUtil.createBlockZhTranslation("steam_engine", "蒸汽引擎"),
             GTRecipeTypes.STEAM_TURBINE_FUELS, steamGeneratorTankSizeFunction, 0.0f, GTValues.ULV)[0];
 
     public static final BiConsumer<ItemStack, List<Component>> CREATIVE_TOOLTIPS = (stack, list) -> list.add(
@@ -157,7 +164,7 @@ public class GTTMachines {
                             .withStyle(TooltipHelper.RAINBOW_HSL_SLOW))
                     .append(Component.translatable("gtceu.creative_tooltip.3")));
     public static final MachineDefinition CREATIVE_HIGH_ENERGY_LASER_PROVIDER = REGISTRATE
-            .machine("creative_high_energy_laser_provider", CreativeHighEnergyLaserProviderMachine::new)
+            .machine(LangUtil.createBlockZhTranslation("creative_high_energy_laser_provider", "创造高能激光源"), CreativeHighEnergyLaserProviderMachine::new)
             .rotationState(RotationState.ALL)
             .tooltipBuilder(CREATIVE_TOOLTIPS)
             .tier(UHV)
@@ -200,9 +207,9 @@ public class GTTMachines {
         return definitions;
     }
 
-    public static Pair<MachineDefinition, MachineDefinition> registerSimpleSteamMachines(String name,
+    public static Pair<MachineDefinition, MachineDefinition> registerSimpleSteamMachines(String name, String chineseName,
                                                                                          GTRecipeType recipeType) {
-        return registerSteamMachines("steam_" + name, SimpleSteamMachine::new, (pressure, builder) -> builder
+        return registerSteamMachines("steam_" + name, chineseName, SimpleSteamMachine::new, (pressure, builder) -> builder
                 .rotationState(RotationState.ALL)
                 .recipeType(recipeType)
                 .recipeModifier(SimpleSteamMachine::recipeModifier)
@@ -210,13 +217,15 @@ public class GTTMachines {
                 .register());
     }
 
-    public static Pair<MachineDefinition, MachineDefinition> registerSteamMachines(String name,
+    public static Pair<MachineDefinition, MachineDefinition> registerSteamMachines(String name, String chineseName,
                                                                                    BiFunction<IMachineBlockEntity, Boolean, MetaMachine> factory,
                                                                                    BiFunction<Boolean, MachineBuilder<MachineDefinition, ?>, MachineDefinition> builder) {
+        LangUtil.createBlockZhTranslation("lp_%s".formatted(name), "低压蒸汽" + chineseName);
         MachineDefinition lowTier = builder.apply(false,
                 REGISTRATE.machine("lp_%s".formatted(name), holder -> factory.apply(holder, false))
                         .langValue("Low Pressure " + FormattingUtil.toEnglishName(name))
                         .tier(0));
+        LangUtil.createBlockZhTranslation("hp_%s".formatted(name), "高压蒸汽" + chineseName);
         MachineDefinition highTier = builder.apply(true,
                 REGISTRATE.machine("hp_%s".formatted(name), holder -> factory.apply(holder, true))
                         .langValue("High Pressure " + FormattingUtil.toEnglishName(name))
@@ -247,23 +256,24 @@ public class GTTMachines {
                 tiers);
     }
 
-    public static MachineDefinition[] registerSimpleMachines(String name, GTRecipeType recipeType,
+    public static MachineDefinition[] registerSimpleMachines(String name, String chineseName, GTRecipeType recipeType,
                                                              Int2IntFunction tankScalingFunction,
                                                              boolean hasPollutionDebuff,
                                                              ResourceLocation texture) {
-        return registerSimpleMachines(name, recipeType, tankScalingFunction, hasPollutionDebuff, texture, ELECTRIC_TIERS);
+        return registerSimpleMachines(name, chineseName, recipeType, tankScalingFunction, hasPollutionDebuff, texture, ELECTRIC_TIERS);
     }
 
-    public static MachineDefinition[] registerSimpleMachines(String name, GTRecipeType recipeType,
+    public static MachineDefinition[] registerSimpleMachines(String name, String chineseName, GTRecipeType recipeType,
                                                              Int2IntFunction tankScalingFunction, ResourceLocation texture) {
-        return registerSimpleMachines(name, recipeType, tankScalingFunction, false, texture);
+        return registerSimpleMachines(name, chineseName, recipeType, tankScalingFunction, false, texture);
     }
 
-    public static MachineDefinition[] registerSimpleMachines(String name, GTRecipeType recipeType, ResourceLocation texture) {
-        return registerSimpleMachines(name, recipeType, defaultTankSizeFunction, texture);
+    public static MachineDefinition[] registerSimpleMachines(String name, String chineseName, GTRecipeType recipeType, ResourceLocation texture) {
+        return registerSimpleMachines(name, chineseName, recipeType, defaultTankSizeFunction, texture);
     }
 
     public static MachineDefinition[] registerSimpleMachines(String name,
+                                                             String chineseName,
                                                              GTRecipeType recipeType,
                                                              Int2IntFunction tankScalingFunction,
                                                              boolean hasPollutionDebuff,
@@ -280,6 +290,7 @@ public class GTTMachines {
                     } else {
                         builder.recipeModifier(GTRecipeModifiers.OC_NON_PERFECT);
                     }
+                    LangUtil.createBlockZhTranslation(name, "%s %s %s".formatted(VLVH_CHINESE[tier], chineseName, VLVT[tier]));
                     return builder
                             .langValue("%s %s %s".formatted(VLVH[tier], toEnglishName(name), VLVT[tier]))
                             .editableUI(SimpleTieredMachine.EDITABLE_UI_CREATOR.apply(GTCEu.id(name), recipeType))
@@ -289,7 +300,7 @@ public class GTTMachines {
                             .tooltips(workableTiered(tier, GTValues.V[tier], GTValues.V[tier] * 64, recipeType,
                                     tankScalingFunction.applyAsInt(tier), true))
                             .register();
-                },
+                    },
                 tiers);
     }
 

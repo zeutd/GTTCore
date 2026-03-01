@@ -89,8 +89,8 @@ public class ZieglerNattaLine {
                 .EUt(VH[3])
                 .save(provider);
         CHEMICAL_RECIPES.recipeBuilder(GTTCore.id("phosphorus_trichloride"))
-                .inputFluids(Chlorine.getFluid(1000))
-                .inputItems(dust, Phosphorus, 2)
+                .inputFluids(Chlorine.getFluid(3000))
+                .inputItems(dust, Phosphorus, 1)
                 .outputFluids(PhosphorusTrichloride.getFluid(1000))
                 .duration(100)
                 .EUt(VH[3])

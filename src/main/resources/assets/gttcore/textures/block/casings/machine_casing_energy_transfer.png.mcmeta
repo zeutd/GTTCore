@@ -1,0 +1,9 @@
+{
+  "animation": {
+    "interpolate": false,
+    "frametime": 2
+  },
+  "ldlib": {
+    "connection": "gttcore:block/casings/machine_casing_energy_transfer_ctm"
+  }
+}

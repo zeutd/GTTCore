@@ -218,6 +218,7 @@ mixin {
 }
 
 tasks.named('processResources', ProcessResources).configure {
+    duplicatesStrategy = DuplicatesStrategy.INCLUDE
     var properties = [
             "mod_license": mod_license,
             "mod_id": mod_id,
@@ -232,6 +233,7 @@ tasks.named('processResources', ProcessResources).configure {
             "create_version": create_version
     ]
     inputs.properties(properties)
+    exclude "src/main/resources/multiblocks.txt"
 
     filesMatching("META-INF/mods.toml") {
         expand properties + [project: project]

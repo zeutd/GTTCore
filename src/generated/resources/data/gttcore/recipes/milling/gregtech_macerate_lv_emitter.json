@@ -12,17 +12,17 @@
   "results": [
     {
       "count": 2,
-      "item": "gtceu:rubber_dust"
-    },
-    {
-      "count": 2,
       "item": "gtceu:brass_dust"
     },
     {
-      "item": "gtceu:quartzite_dust"
+      "count": 2,
+      "item": "gtceu:rubber_dust"
     },
     {
       "item": "gtceu:tin_dust"
+    },
+    {
+      "item": "gtceu:quartzite_dust"
     }
   ]
 }

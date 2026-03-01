@@ -1,4 +1,17 @@
-// 1.20.1	2026-02-17T14:48:04.7807036	GTT Molecules provider
-3b5a93ff assets/gtceu/molecules/ultra_high_molecule_weight_polyethylene.json
+// 1.20.1	2026-02-24T15:23:02.5022559	GTT Molecules provider
+6f2ccf56 assets/gttcore/molecules/bromobutane.json
+9c5f393c assets/gttcore/molecules/butanol.json
+6343fdfe assets/gttcore/molecules/dibutyl_magnesium.json
+afa736de assets/gttcore/molecules/diisooctyl_phthalate.json
+55eeefd4 assets/gttcore/molecules/ethylene_glycol.json
+a700d787 assets/gttcore/molecules/ethylene_oxide.json
 836599a0 assets/gttcore/molecules/fullerene.json
+593aabcf assets/gttcore/molecules/octanol.json
+afcffe52 assets/gttcore/molecules/octanol_magnesium.json
+a1fdf5a7 assets/gttcore/molecules/oxalic_acid.json
 1da611fb assets/gttcore/molecules/phenolic_resin.json
+f5645531 assets/gttcore/molecules/phthaloyl_chlorine.json
+ba36b911 assets/gttcore/molecules/p_204.json
+a60873a1 assets/gttcore/molecules/p_507.json
+3b5a93ff assets/gttcore/molecules/ultra_high_molecular_weight_polyethylene.json
+6343fdfe assets/gttcore/molecules/wet_dibutyl_magnesium.json

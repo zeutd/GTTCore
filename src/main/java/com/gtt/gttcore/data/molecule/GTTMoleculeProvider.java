@@ -1,4 +1,4 @@
-package com.gtt.gttcore.data;
+package com.gtt.gttcore.data.molecule;
 
 import com.google.common.hash.HashCode;
 import com.rubenverg.moldraw.molecule.Molecule;
@@ -29,7 +29,7 @@ public class GTTMoleculeProvider {
 
                     @Override
                     public @NotNull CompletableFuture<?> run(@NotNull CachedOutput cachedOutput) {
-                        MolfileToMolecule.run(((resourceLocation, molecule) -> {
+                        MolfileToMolecule.run(event.getExistingFileHelper(), (resourceLocation, molecule) -> {
                             final var json = gson.toJson(molecule, Molecule.class);
                             try {
                                 cachedOutput.writeIfNeeded(moleculesPathProvider.json(resourceLocation),
@@ -37,7 +37,7 @@ public class GTTMoleculeProvider {
                             } catch (IOException e) {
                                 throw new RuntimeException(e);
                             }
-                        }));
+                        });
                         for (final var entry : GTTMoleculesData.molecules().entrySet()) {
                             final var json = gson.toJson(entry.getValue(), Molecule.class);
                             try {

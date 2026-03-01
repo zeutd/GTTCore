@@ -3,6 +3,7 @@ package com.gtt.gttcore.data;
 import com.gtt.gttcore.common.data.recipes.GTTRecipeTypes;
 import com.gtt.gttcore.data.lang.GTTChineseLanguageProvider;
 import com.gtt.gttcore.data.lang.GTTLangHandler;
+import com.gtt.gttcore.data.molecule.GTTMoleculeProvider;
 import com.gtt.gttcore.data.recipe.GTTRecipeProvider;
 import com.gtt.gttcore.data.recipe.GTTTags;
 import com.tterrag.registrate.providers.ProviderType;
@@ -27,5 +28,10 @@ public class GTTDatagen {
         REGISTRATE.addDataGenerator(ProviderType.LANG, englishProvider -> GTTLangHandler.init(englishProvider, chineseProvider));
         generator.addProvider(true, chineseProvider);
         new GTTMoleculeProvider().gatherData(event);
+    }
+    public static void gatherDataHighPriority(GatherDataEvent event){
+        DataGenerator generator = event.getGenerator();
+        PackOutput output = generator.getPackOutput();
+        generator.addProvider(true, new GTTTextureProvider(output, event.getExistingFileHelper()));
     }
 }

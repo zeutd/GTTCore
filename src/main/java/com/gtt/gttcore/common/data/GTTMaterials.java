@@ -988,11 +988,12 @@ public class GTTMaterials {
                 .dust().ore(2, 1)
                 .chineseLangValue("磷钇矿")
                 .color(0x444b2c).secondaryColor(0x867e43).iconSet(FINE)
-                .components(RareEarth, 1, Phosphate, 1)
-                .buildAndRegister();
+                .components(RareEarth, 4, Phosphate, 4, Yttrium, 1)
+                .buildAndRegister()
+                .setFormula("(?PO4)4Y1");
         OreProperty oreProp = Xenotime.getProperty(PropertyKey.ORE);
         oreProp.setOreByProducts(Phosphate, RareEarth);
-        oreProp.setSeparatedInto(RareEarth);
+        oreProp.setSeparatedInto(Yttrium);
 
 
 
@@ -1114,14 +1115,6 @@ public class GTTMaterials {
         InertMetalMixture.setFormula("");
 
         Neodymium.removeProperty(PropertyKey.ORE);
-        Bastnasite.setComponents(new MaterialStack(Carbon, 1), new MaterialStack(Fluorine, 1), new MaterialStack(Oxygen, 3), new MaterialStack(RareEarth, 1));
-        Bastnasite.setFormula("?CFO3");
-        OreProperty oreProp = Bastnasite.getProperty(PropertyKey.ORE);
-        oreProp.setOreByProducts(Carbon, RareEarth);
-        oreProp.setSeparatedInto(RareEarth);
-        oreProp = Monazite.getProperty(PropertyKey.ORE);
-        oreProp.setOreByProducts(Thorium, Phosphate, RareEarth);
-        oreProp.setSeparatedInto(RareEarth);
 
         Glowstone.setProperty(PropertyKey.ORE, new OreProperty(5, 1));
         Glowstone.setComponents(new MaterialStack(Boron, 8), new MaterialStack(Argon, 1), new MaterialStack(Fluorine, 2), new MaterialStack(Uranium238, 2));

@@ -15,6 +15,7 @@ public class GTTElements {
     public static Element createAndRegister(long protons, long neutrons, long halfLifeSeconds, String decayTo, String name, String symbol, boolean isIsotope) {
         Element element = new Element(protons, neutrons, halfLifeSeconds, decayTo, name, symbol, isIsotope);
         GTRegistries.ELEMENTS.register(name, element);
+        //com.rubenverg.moldraw.molecule.Element.create(symbol, null, )
         return element;
     }
 }

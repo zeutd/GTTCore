@@ -2,7 +2,6 @@ package com.gtt.gttcore.common.machine.multiblock;
 
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
-import com.gregtechceu.gtceu.common.machine.multiblock.electric.BedrockOreMinerMachine;
 import com.gtt.gttcore.common.CustomNetherTeleporter;
 import com.lowdragmc.lowdraglib.gui.util.ClickData;
 import com.lowdragmc.lowdraglib.gui.widget.ComponentPanelWidget;
@@ -14,12 +13,10 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 
 import java.util.List;
-import java.util.Objects;
 
 public class NetherCapsuleMachine extends WorkableElectricMultiblockMachine {
     public NetherCapsuleMachine(IMachineBlockEntity holder) {
         super(holder, 0);
-
     }
 
     @Override

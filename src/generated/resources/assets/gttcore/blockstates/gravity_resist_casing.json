@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "gttcore:block/gravity_resist_casing"
+    }
+  }
+}

@@ -25,6 +25,7 @@ public class GTTCore {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         DistExecutor.unsafeRunForDist(() -> ClientProxy::new, () -> CommonProxy::new);
         modEventBus.addListener(EventPriority.LOWEST, GTTDatagen::gatherData);
+        modEventBus.addListener(EventPriority.HIGH, GTTDatagen::gatherDataHighPriority);
     }
 
     public static ResourceLocation id(String path) {

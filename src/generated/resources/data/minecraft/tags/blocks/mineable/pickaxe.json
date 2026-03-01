@@ -10,6 +10,10 @@
     "gttcore:processing_casing",
     "gttcore:reinforced_concrete",
     "gttcore:field_protection_casing",
+    "gttcore:tritanium_strength_casing",
+    "gttcore:polyethylene_sterile_casing",
+    "gttcore:gravity_resist_casing",
+    "gttcore:energy_transfer_casing",
     "gttcore:stainless_evaporation_casing"
   ]
 }

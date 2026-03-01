@@ -75,6 +75,15 @@ public class GTTBlocks {
             GTTCore.id("block/casings/reinforced_concrete"), "强化混凝土");
     public static final BlockEntry<Block> CASING_FIELD_PROTECTION = createCasingBlock("field_protection_casing",
             GTTCore.id("block/casings/field_protection_casing"), "力场防护机械方块");
+    public static final BlockEntry<Block> CASING_TRITANIUM_STRENGTH = createCasingBlock("tritanium_strength_casing",
+            GTTCore.id("block/casings/machine_casing_strength_tritanium"), "三钛强度机械方块");
+    public static final BlockEntry<Block> CASING_POLYETHYLENE_STERILE = createCasingBlock("polyethylene_sterile_casing",
+            GTTCore.id("block/casings/machine_casing_sterile_polyethylene"), "无菌聚乙烯机械方块");
+
+    public static final BlockEntry<Block> CASING_GRAVITY_RESIST = createCasingBlock("gravity_resist_casing",
+            GTTCore.id("block/casings/machine_casing_gravity_resist"), "抗重力机械方块");
+    public static final BlockEntry<Block> CASING_ENERGY_TRANSFER = createCasingBlockWithModel("energy_transfer_casing",
+            GTTCore.id("block/energy_transfer_casing"), "能量传输机械方块");
 
     public static final BlockEntry<Block> CASING_STAINLESS_EVAPORATION = createCasingBlock(
             "stainless_evaporation_casing",
@@ -87,6 +96,14 @@ public class GTTBlocks {
     }
     public static BlockEntry<Block> createCasingBlock(String name, ResourceLocation texture) {
         return createCasingBlock(name, Block::new, texture, () -> Blocks.IRON_BLOCK,
+                () -> RenderType::cutoutMipped);
+    }
+    public static BlockEntry<Block> createCasingBlockWithModel(String name, ResourceLocation model, String chineseName) {
+        GTTChineseLanguageProvider.chineseNameMap.put("block.gttcore." + name, chineseName);
+        return createCasingBlockWithModel(name, model);
+    }
+    public static BlockEntry<Block> createCasingBlockWithModel(String name, ResourceLocation model) {
+        return createCasingBlockWithModel(name, Block::new, model, () -> Blocks.IRON_BLOCK,
                 () -> RenderType::cutoutMipped);
     }
     private static BlockEntry<Block> createGlassCasingBlock(String name, ResourceLocation texture,
@@ -108,6 +125,21 @@ public class GTTBlocks {
                 .properties(p -> p.isValidSpawn((state, level, pos, ent) -> false))
                 .addLayer(type)
                 .exBlockstate(GTModels.cubeAllModel(texture))
+                .tag(TagUtil.createBlockTag("mineable/wrench"), BlockTags.MINEABLE_WITH_PICKAXE)
+                .item(BlockItem::new)
+                .build()
+                .register();
+    }
+    public static BlockEntry<Block> createCasingBlockWithModel(String name,
+                                                      NonNullFunction<BlockBehaviour.Properties, Block> blockSupplier,
+                                                      ResourceLocation model,
+                                                      NonNullSupplier<? extends Block> properties,
+                                                      Supplier<Supplier<RenderType>> type) {
+        return REGISTRATE.block(name, blockSupplier)
+                .initialProperties(properties)
+                .properties(p -> p.isValidSpawn((state, level, pos, ent) -> false))
+                .addLayer(type)
+                .exBlockstate(GTModels.createModelBlockState(model))
                 .tag(TagUtil.createBlockTag("mineable/wrench"), BlockTags.MINEABLE_WITH_PICKAXE)
                 .item(BlockItem::new)
                 .build()

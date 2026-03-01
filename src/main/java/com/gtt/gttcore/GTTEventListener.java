@@ -1,10 +1,12 @@
 package com.gtt.gttcore;
 
 import com.gtt.gttcore.api.IWirelessEnergyContainerMixin;
+import com.gtt.gttcore.common.data.GTTCommands;
 import com.gtt.gttcore.util.WirelessUtil;
 import com.hepdd.gtmthings.api.misc.WirelessEnergyContainer;
 import com.hepdd.gtmthings.data.WirelessEnergySavaedData;
 import net.minecraft.core.GlobalPos;
+import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -24,7 +26,7 @@ public class GTTEventListener {
                     if (pos != null) {
                         capacity = WirelessUtil.getCapacity(event.getServer().getLevel(pos.dimension()), pos.pos());
                     }
-                    ((IWirelessEnergyContainerMixin)(Object) container).gTTCore$setCapacity(capacity);
+                    ((IWirelessEnergyContainerMixin) container).gTTCore$setCapacity(capacity);
                 }
             }
         }
@@ -33,5 +35,10 @@ public class GTTEventListener {
     @SubscribeEvent
     public static void onPortalIgnition(BlockEvent.PortalSpawnEvent event) {
         event.setCanceled(true);
+    }
+
+    @SubscribeEvent
+    public static void registerCommand(RegisterCommandsEvent event) {
+        GTTCommands.register(event.getDispatcher(), event.getBuildContext());
     }
 }

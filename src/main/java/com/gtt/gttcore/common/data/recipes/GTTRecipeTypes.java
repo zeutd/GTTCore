@@ -183,6 +183,16 @@ public class GTTRecipeTypes {
             .setEUIO(IO.IN)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE, LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.MOTOR);
+    public static final GTRecipeType ROCKET_LAUNCH_CENTER_RECIPES = register("rocket_launch_center", ELECTRIC)
+            .setMaxIOSize(1, 9, 1, 6)
+            .setEUIO(IO.IN)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_SLICE, LEFT_TO_RIGHT)
+            .setSound(GTSoundEntries.SPRAY_CAN_TOOL);
+    public static final GTRecipeType MICROWAVE_RECEIVER_RECIPES = register("microwave_receiver", ELECTRIC)
+            .setMaxIOSize(0, 0, 1, 0)
+            .setEUIO(IO.OUT)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_SOLAR_STEAM.get(false), LEFT_TO_RIGHT)
+            .setSound(GTSoundEntries.REPLICATOR);
     public static final GTRecipeType EXTRACTION_TANK_RECIPE = register("extraction_tank", ELECTRIC)
             .setMaxIOSize(0, 0, 2, 6)
             .setEUIO(IO.IN)

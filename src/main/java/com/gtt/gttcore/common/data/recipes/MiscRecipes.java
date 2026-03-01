@@ -15,6 +15,7 @@ import com.gregtechceu.gtceu.data.recipe.VanillaRecipeHelper;
 import com.gtt.gttcore.GTTCore;
 import com.gtt.gttcore.common.data.GTTBlocks;
 import com.gtt.gttcore.common.data.GTTItems;
+import com.gtt.gttcore.common.data.GTTMachines;
 import com.gtt.gttcore.common.data.GTTMultiMachines;
 import com.gtt.gttcore.data.recipe.GTTTags;
 import com.simibubi.create.AllBlocks;
@@ -42,6 +43,7 @@ import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.*;
 import static com.gregtechceu.gtceu.common.data.machines.GTMultiMachines.LARGE_CHEMICAL_REACTOR;
 import static com.gregtechceu.gtceu.common.data.machines.GTMultiMachines.PRIMITIVE_BLAST_FURNACE;
 import static com.gregtechceu.gtceu.data.recipe.GTCraftingComponents.*;
+import static com.gregtechceu.gtceu.data.recipe.GTCraftingComponents.PUMP;
 import static com.gtt.gttcore.common.data.GTTBlocks.*;
 import static com.gtt.gttcore.common.data.GTTItems.*;
 import static com.gtt.gttcore.common.data.GTTMachines.STEAM_CENTRIFUGE;
@@ -100,6 +102,10 @@ public class MiscRecipes {
                 "PMP", 'P', new MaterialEntry(TagPrefix.plate, GTMaterials.StainlessSteel), 'F',
                 new MaterialEntry(TagPrefix.frameGt, GTMaterials.StainlessSteel), 'W', PISTON.get(MV),
                 'M', MOTOR.get(MV));
+        VanillaRecipeHelper.addShapedRecipe(provider, true, "processing_plant",
+                PROCESSING_PLANT.asStack(), "MPM", "CCC",
+                "ASA", 'C', CustomTags.MV_CIRCUITS, 'S', CASING_PROCESSING.asItem(), 'P', PISTON.get(MV),
+                'M', MOTOR.get(MV), 'A', ROBOT_ARM.get(MV));
         VanillaRecipeHelper.addShapedRecipe(provider, true, GTTCore.id("casing_zirconium_pipe"),
                 GTTBlocks.CASING_ZIRCONIUM_PIPE.asStack(ConfigHolder.INSTANCE.recipes.casingsPerCraft), "PIP", "IFI",
                 "PIP", 'P', new MaterialEntry(TagPrefix.plate, Zirconium), 'F',
@@ -108,6 +114,7 @@ public class MiscRecipes {
         FLUID_SOLIDFICATION_RECIPES.recipeBuilder(GTTCore.id("lead_glass")).EUt(16)
                 .inputItems(Tags.Blocks.GLASS)
                 .inputFluids(Lead.getFluid(L * 2))
+                .outputItems(CASING_LEAD_GLASS.asStack())
                 .duration(50).save(provider);
         CENTRIFUGE_RECIPES.recipeBuilder(GTTCore.id("depleted_uranium"))
                 .EUt(VA[EV])
@@ -311,11 +318,47 @@ public class MiscRecipes {
                 "RMR",
                 "EWE",
                 'M', GREENHOUSE.asStack(),
-                'E', ROBOT_ARM.get(IV),
-                'R', new MaterialEntry(gear, Platinum),
-                'C', CustomTags.IV_CIRCUITS,
+                'E', ROBOT_ARM.get(EV),
+                'R', new MaterialEntry(gear, Titanium),
+                'C', CustomTags.EV_CIRCUITS,
                 'W', Items.BONE_MEAL,
                 'P', new MaterialEntry(TagPrefix.pipeLargeFluid, TungstenSteel));
+        VanillaRecipeHelper.addShapedRecipe(provider, true, GTTCore.id("large_cultivator"), LARGE_CULTIVATOR.asStack(),
+                "WPW",
+                "SCS",
+                "CWC",
+                'P', PUMP.get(IV),
+                'W', GTItems.PETRI_DISH,
+                'S', GTTMachines.CULTIVATOR[IV],
+                'C', CustomTags.IV_CIRCUITS
+                );
+        VanillaRecipeHelper.addShapedRecipe(provider, true, GTTCore.id("large_rock_crusher"), LARGE_ROCK_CRUSHER.asStack(),
+                "PGU",
+                "SCS",
+                "CUP",
+                'U', PUMP.get(IV),
+                'P', GTCraftingComponents.PISTON.get(IV),
+                'G', COMPONENT_GRINDER_TUNGSTEN,
+                'S', ROCK_CRUSHER[IV],
+                'C', CustomTags.IV_CIRCUITS
+        );
+        VanillaRecipeHelper.addShapedRecipe(provider, true, GTTCore.id("extraction_tank"), EXTRACTION_TANK.asStack(),
+                "PCP",
+                "WCW",
+                "ACA",
+                'P', PUMP.get(EV),
+                'C', CustomTags.EV_CIRCUITS,
+                'W', WIRE_ELECTRIC.get(EV),
+                'A', PIPE_NORMAL.get(EV)
+        );
+
+        FLUID_SOLIDFICATION_RECIPES.recipeBuilder(GTTCore.id("polyethylene_sterile_casing"))
+                .inputFluids(Polyethylene.getFluid(L * 6))
+                .outputItems(CASING_POLYETHYLENE_STERILE)
+                .inputItems(ChemicalHelper.get(frameGt, Steel))
+                .EUt(VA[LV])
+                .duration(100);
+
         VanillaRecipeHelper.addShapedRecipe(provider, true, "huge_chemical_reactor",
                 HUGE_CHEMICAL_REACTOR.asStack(), "CRC", "CMP", "HHH", 'C', CustomTags.IV_CIRCUITS, 'R',
                 ChemicalHelper.get(TagPrefix.rotor, TitaniumCarbide), 'P',

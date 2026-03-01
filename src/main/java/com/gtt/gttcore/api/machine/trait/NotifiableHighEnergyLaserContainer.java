@@ -17,8 +17,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Collections;
 import java.util.List;
-
-import static com.gtt.gttcore.GTTCore.LOGGER;
+import java.util.Objects;
 
 public class NotifiableHighEnergyLaserContainer extends NotifiableRecipeHandlerTrait<Integer> implements IHighEnergyLaserProvider, IHighEnergyLaserHatch, IHighEnergyLaserInfoProvider {
     protected IO handlerIO;
@@ -99,7 +98,7 @@ public class NotifiableHighEnergyLaserContainer extends NotifiableRecipeHandlerT
 
     public void outputTick() {
         if (!isTransmitter()) return;
-        if (getMachine().getLevel().isClientSide) return;
+        if (Objects.requireNonNull(getMachine().getLevel()).isClientSide) return;
         BlockPos pos = getMachine().getPos().relative(getMachine().getFrontFacing());
         IHighEnergyLaserProvider nhelc = GTTCapabilityHelper.getHighEnergyLaserContainer(getMachine().getLevel(), pos, getMachine().getFrontFacing().getOpposite());
         if (nhelc != null && !nhelc.isTransmitter()) {
