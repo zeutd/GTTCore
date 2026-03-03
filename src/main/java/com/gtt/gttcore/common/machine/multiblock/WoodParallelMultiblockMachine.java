@@ -1,16 +1,13 @@
 package com.gtt.gttcore.common.machine.multiblock;
 
+import com.gregtechceu.gtceu.api.blockentity.BlockEntityCreationInfo;
 import com.gregtechceu.gtceu.api.capability.recipe.EURecipeCapability;
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
-import com.gregtechceu.gtceu.api.capability.recipe.IRecipeHandler;
-import com.gregtechceu.gtceu.api.capability.recipe.RecipeCapability;
 import com.gregtechceu.gtceu.api.gui.GuiTextures;
 import com.gregtechceu.gtceu.api.gui.UITemplate;
-import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.feature.multiblock.IDisplayUIMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableMultiblockMachine;
-import com.gregtechceu.gtceu.api.machine.steam.SteamEnergyRecipeHandler;
 import com.gregtechceu.gtceu.api.machine.trait.RecipeHandlerList;
 import com.gregtechceu.gtceu.api.misc.IgnoreEnergyRecipeHandler;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
@@ -29,7 +26,6 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
 import net.minecraft.world.entity.player.Player;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
@@ -37,11 +33,12 @@ public class WoodParallelMultiblockMachine extends WorkableMultiblockMachine imp
 
     public int maxParallels = ConfigHolder.INSTANCE.machines.steamMultiParallelAmount;
 
-    public WoodParallelMultiblockMachine(IMachineBlockEntity holder, Object... args) {
-        super(holder);
-        if (args.length > 0 && args[0] instanceof Integer i) {
-            this.maxParallels = i;
-        }
+    public WoodParallelMultiblockMachine(BlockEntityCreationInfo info, int maxParallels) {
+        super(info);
+        this.maxParallels = maxParallels;
+    }
+    public WoodParallelMultiblockMachine(BlockEntityCreationInfo info) {
+        super(info);
     }
 
     @Override

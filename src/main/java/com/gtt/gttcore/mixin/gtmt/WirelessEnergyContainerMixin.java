@@ -3,6 +3,7 @@ package com.gtt.gttcore.mixin.gtmt;
 import com.gtt.gttcore.api.IWirelessEnergyContainerMixin;
 import com.hepdd.gtmthings.api.misc.WirelessEnergyContainer;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Pseudo;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -12,6 +13,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.math.BigInteger;
 
+@Pseudo
 @Mixin(value = WirelessEnergyContainer.class, remap = false)
 public abstract class WirelessEnergyContainerMixin implements IWirelessEnergyContainerMixin {
     @Shadow public abstract BigInteger getCapacity();

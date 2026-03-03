@@ -1,7 +1,7 @@
 package com.gtt.gttcore.common.machine.multiblock;
 
+import com.gregtechceu.gtceu.api.blockentity.BlockEntityCreationInfo;
 import com.gregtechceu.gtceu.api.item.MetaMachineItem;
-import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
@@ -9,9 +9,9 @@ import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
 import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
 import com.gregtechceu.gtceu.api.recipe.modifier.ParallelLogic;
 import com.gregtechceu.gtceu.api.recipe.modifier.RecipeModifier;
+import com.gregtechceu.gtceu.api.sync_system.annotations.SaveField;
+import com.gregtechceu.gtceu.api.sync_system.annotations.SyncToClient;
 import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
-import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
-import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
@@ -23,15 +23,8 @@ import java.util.function.Predicate;
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.*;
 
 public class ProcessingPlantMachine extends SlotMultiblockMachine {
-    protected static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(
-            ProcessingPlantMachine.class, SlotMultiblockMachine.MANAGED_FIELD_HOLDER);
-
-    @Override
-    public ManagedFieldHolder getFieldHolder() {
-        return MANAGED_FIELD_HOLDER;
-    }
-
-    @Persisted
+    @SaveField
+    @SyncToClient
     public int itemTier;
     public static final GTRecipeType[] AVAILABLE_RECIPE_TYPES = new GTRecipeType[]{
             FURNACE_RECIPES,
@@ -69,8 +62,8 @@ public class ProcessingPlantMachine extends SlotMultiblockMachine {
             SIFTER_RECIPES,
             LASER_ENGRAVER_RECIPES
     };
-    public ProcessingPlantMachine(IMachineBlockEntity holder, Object... args) {
-        super(holder, args);
+    public ProcessingPlantMachine(BlockEntityCreationInfo info) {
+        super(info);
     }
 
     public static ModifierFunction recipeModifier(@NotNull MetaMachine machine, @NotNull GTRecipe recipe){
@@ -113,6 +106,7 @@ public class ProcessingPlantMachine extends SlotMultiblockMachine {
         if (getInventory().getStackInSlot(0).getItem() instanceof MetaMachineItem machineItem) {
             GTRecipeType recipeType = machineItem.getDefinition().getRecipeTypes()[0];
             itemTier = machineItem.getDefinition().getTier();
+            getSyncDataHolder().markClientSyncFieldDirty("itemTier");
             for (int i = 0; i < AVAILABLE_RECIPE_TYPES.length; i++) {
                 if (AVAILABLE_RECIPE_TYPES[i] == recipeType){
                     result = i;

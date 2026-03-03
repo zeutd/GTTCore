@@ -1,6 +1,6 @@
 package com.gtt.gttcore.common.machine.multiblock;
 
-import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
+import com.gregtechceu.gtceu.api.blockentity.BlockEntityCreationInfo;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gtt.gttcore.common.CustomNetherTeleporter;
 import com.lowdragmc.lowdraglib.gui.util.ClickData;
@@ -15,8 +15,8 @@ import net.minecraft.world.phys.AABB;
 import java.util.List;
 
 public class NetherCapsuleMachine extends WorkableElectricMultiblockMachine {
-    public NetherCapsuleMachine(IMachineBlockEntity holder) {
-        super(holder, 0);
+    public NetherCapsuleMachine(BlockEntityCreationInfo holder) {
+        super(holder);
     }
 
     @Override
@@ -34,7 +34,7 @@ public class NetherCapsuleMachine extends WorkableElectricMultiblockMachine {
         if (getLevel() instanceof ServerLevel serverLevel) {
             if (serverLevel.dimension() != Level.NETHER) return;
             if (componentData.equals("set_out")) {
-                final BlockPos pos = getPos();
+                final BlockPos pos = getBlockPos();
                 List<ServerPlayer> entities = serverLevel.getEntitiesOfClass(ServerPlayer.class, new AABB(pos.getX() - 2,
                         pos.getY() - 2,
                         pos.getZ() - 2,

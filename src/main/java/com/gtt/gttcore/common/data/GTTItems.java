@@ -1,12 +1,12 @@
 package com.gtt.gttcore.common.data;
 
 import com.gregtechceu.gtceu.api.item.ComponentItem;
-import com.gregtechceu.gtceu.common.item.CoverPlaceBehavior;
-import com.gregtechceu.gtceu.common.item.TooltipBehavior;
+import com.gregtechceu.gtceu.common.item.behavior.CoverPlaceBehavior;
+import com.gregtechceu.gtceu.common.item.behavior.TooltipBehavior;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
-import com.gtt.gttcore.util.LangUtil;
 import com.gtt.gttcore.common.item.BeerItem;
+import com.gtt.gttcore.util.LangUtil;
 import com.tterrag.registrate.util.entry.ItemEntry;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.effect.MobEffectInstance;

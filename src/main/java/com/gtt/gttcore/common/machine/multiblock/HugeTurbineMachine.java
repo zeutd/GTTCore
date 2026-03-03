@@ -1,16 +1,15 @@
 package com.gtt.gttcore.common.machine.multiblock;
 
-import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
+import com.gregtechceu.gtceu.api.blockentity.BlockEntityCreationInfo;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.feature.multiblock.IMultiPart;
-import com.gregtechceu.gtceu.api.machine.feature.multiblock.IRotorHolderMachine;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
-import com.gregtechceu.gtceu.api.recipe.RecipeHelper;
 import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
 import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
 import com.gregtechceu.gtceu.api.recipe.modifier.ParallelLogic;
 import com.gregtechceu.gtceu.api.recipe.modifier.RecipeModifier;
 import com.gregtechceu.gtceu.common.machine.multiblock.generator.LargeTurbineMachine;
+import com.gregtechceu.gtceu.common.machine.multiblock.part.RotorHolderPartMachine;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -23,13 +22,13 @@ public class HugeTurbineMachine extends LargeTurbineMachine{
 
 
 
-    public HugeTurbineMachine(IMachineBlockEntity holder, int tier) {
-        super(holder, tier);
+    public HugeTurbineMachine(BlockEntityCreationInfo info, int tier) {
+        super(info, tier);
     }
     @Nullable
-    private IRotorHolderMachine getRotorHolder() {
+    private RotorHolderPartMachine getRotorHolder() {
         for (IMultiPart part : getParts()) {
-            if (part instanceof IRotorHolderMachine rotorHolder) {
+            if (part instanceof RotorHolderPartMachine rotorHolder) {
                 return rotorHolder;
             }
         }

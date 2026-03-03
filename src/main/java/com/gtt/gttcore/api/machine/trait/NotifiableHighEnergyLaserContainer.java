@@ -4,6 +4,7 @@ import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.capability.recipe.RecipeCapability;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.TickableSubscription;
+import com.gregtechceu.gtceu.api.machine.trait.MachineTraitType;
 import com.gregtechceu.gtceu.api.machine.trait.NotifiableRecipeHandlerTrait;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gtt.gttcore.api.GTTCapabilityHelper;
@@ -25,6 +26,9 @@ public class NotifiableHighEnergyLaserContainer extends NotifiableRecipeHandlerT
     protected int laserAmount;
     @Nullable
     protected TickableSubscription outputSubs;
+
+    public static final MachineTraitType<NotifiableHighEnergyLaserContainer> TYPE = new MachineTraitType<>(
+            NotifiableHighEnergyLaserContainer.class);
 
     public NotifiableHighEnergyLaserContainer(MetaMachine machine, IO handlerIO, boolean transmitter) {
         super(machine);
@@ -82,14 +86,19 @@ public class NotifiableHighEnergyLaserContainer extends NotifiableRecipeHandlerT
     }
 
     @Override
+    public @NotNull MachineTraitType<?> getTraitType() {
+        return TYPE;
+    }
+
+    @Override
     public void onMachineLoad() {
         super.onMachineLoad();
         outputSubs = getMachine().subscribeServerTick(outputSubs, this::outputTick);
     }
 
     @Override
-    public void onMachineUnLoad() {
-        super.onMachineUnLoad();
+    public void onMachineUnload() {
+        super.onMachineUnload();
         if (outputSubs != null) {
             outputSubs.unsubscribe();
             outputSubs = null;
@@ -99,7 +108,7 @@ public class NotifiableHighEnergyLaserContainer extends NotifiableRecipeHandlerT
     public void outputTick() {
         if (!isTransmitter()) return;
         if (Objects.requireNonNull(getMachine().getLevel()).isClientSide) return;
-        BlockPos pos = getMachine().getPos().relative(getMachine().getFrontFacing());
+        BlockPos pos = getMachine().getBlockPos().relative(getMachine().getFrontFacing());
         IHighEnergyLaserProvider nhelc = GTTCapabilityHelper.getHighEnergyLaserContainer(getMachine().getLevel(), pos, getMachine().getFrontFacing().getOpposite());
         if (nhelc != null && !nhelc.isTransmitter()) {
             nhelc.setLaserAmount(getLaserAmount());

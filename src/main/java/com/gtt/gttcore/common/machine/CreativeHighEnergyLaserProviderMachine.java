@@ -1,37 +1,29 @@
 package com.gtt.gttcore.common.machine;
 
+import com.gregtechceu.gtceu.api.blockentity.BlockEntityCreationInfo;
 import com.gregtechceu.gtceu.api.gui.GuiTextures;
-import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.feature.IUIMachine;
+import com.gregtechceu.gtceu.api.sync_system.annotations.SaveField;
+import com.gregtechceu.gtceu.api.sync_system.annotations.SyncToClient;
 import com.gtt.gttcore.api.machine.trait.InfiniteHighEnergyLaserContainer;
-import com.gtt.gttcore.api.machine.trait.NotifiableHighEnergyLaserContainer;
 import com.lowdragmc.lowdraglib.gui.modular.ModularUI;
 import com.lowdragmc.lowdraglib.gui.texture.GuiTextureGroup;
 import com.lowdragmc.lowdraglib.gui.texture.ResourceBorderTexture;
 import com.lowdragmc.lowdraglib.gui.texture.TextTexture;
-import com.lowdragmc.lowdraglib.gui.widget.LabelWidget;
 import com.lowdragmc.lowdraglib.gui.widget.SwitchWidget;
 import com.lowdragmc.lowdraglib.gui.widget.TextFieldWidget;
-import com.lowdragmc.lowdraglib.syncdata.annotation.DescSynced;
-import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
-import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
 import lombok.Getter;
-import lombok.Setter;
-import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Player;
 
 public class CreativeHighEnergyLaserProviderMachine extends MetaMachine implements IUIMachine {
-    public static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(CreativeHighEnergyLaserProviderMachine.class, MetaMachine.MANAGED_FIELD_HOLDER);
-
     private final InfiniteHighEnergyLaserContainer laserContainer;
-    @Setter
     @Getter
-    @Persisted
-    @DescSynced
+    @SaveField
+    @SyncToClient
     private boolean active;
-    public CreativeHighEnergyLaserProviderMachine(IMachineBlockEntity holder) {
-        super(holder);
+    public CreativeHighEnergyLaserProviderMachine(BlockEntityCreationInfo info) {
+        super(info);
         laserContainer = new InfiniteHighEnergyLaserContainer(this, 0);
     }
 
@@ -47,10 +39,8 @@ public class CreativeHighEnergyLaserProviderMachine extends MetaMachine implemen
                 ;
     }
 
-    @Override
-    public ManagedFieldHolder getFieldHolder() {
-        return MANAGED_FIELD_HOLDER;
+    public void setActive(boolean active){
+        this.active = active;
+        getSyncDataHolder().markClientSyncFieldDirty("active");
     }
-
-
 }

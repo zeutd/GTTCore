@@ -1,8 +1,5 @@
 package com.gtt.gttcore.api;
 
-import com.gregtechceu.gtceu.api.capability.GTCapabilityHelper;
-import com.gregtechceu.gtceu.api.capability.IEnergyInfoProvider;
-import com.gregtechceu.gtceu.api.capability.forge.GTCapability;
 import com.gtt.gttcore.api.capability.IHighEnergyLaserInfoProvider;
 import com.gtt.gttcore.api.capability.forge.GTTCapability;
 import com.gtt.gttcore.common.machine.IHighEnergyLaserProvider;

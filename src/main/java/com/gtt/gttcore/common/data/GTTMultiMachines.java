@@ -2,12 +2,11 @@ package com.gtt.gttcore.common.data;
 
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.GTValues;
+import com.gregtechceu.gtceu.api.blockentity.BlockEntityCreationInfo;
 import com.gregtechceu.gtceu.api.data.RotationState;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
-import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.MultiblockMachineDefinition;
-import com.gregtechceu.gtceu.api.machine.feature.multiblock.IRotorHolderMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.MultiblockControllerMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.PartAbility;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
@@ -32,6 +31,7 @@ import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
 import com.gregtechceu.gtceu.common.data.machines.GTAEMachines;
 import com.gregtechceu.gtceu.common.data.machines.GTMachineUtils;
 import com.gregtechceu.gtceu.common.machine.multiblock.electric.FusionReactorMachine;
+import com.gregtechceu.gtceu.common.machine.multiblock.part.RotorHolderPartMachine;
 import com.gregtechceu.gtceu.common.machine.multiblock.steam.SteamParallelMultiblockMachine;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
 import com.gtt.gttcore.GTTCore;
@@ -129,7 +129,7 @@ public class GTTMultiMachines {
                     .where(' ', Predicates.any())
                     .build())
             .allowExtendedFacing(false)
-            .partSorter(Comparator.comparingInt(a -> a.self().getPos().getY()))
+            .partSorter(Comparator.comparingInt(a -> a.self().getBlockPos().getY()))
             .workableCasingModel(GTCEu.id("block/casings/solid/machine_casing_stainless_evaporation"),
                     GTCEu.id("block/multiblock/evaporation_plant"))
             .register();
@@ -422,7 +422,7 @@ public class GTTMultiMachines {
                         .build();
             })
             .allowExtendedFacing(false)
-            .partSorter(Comparator.comparingInt(p -> p.self().getPos().getY()))
+            .partSorter(Comparator.comparingInt(p -> p.self().getBlockPos().getY()))
             .model(createWorkableCasingMachineModel(GTTCore.id("block/casings/machine_casing_sealed_steel"),
                     GTCEu.id("block/multiblock/generator/large_steel_boiler"))
                     .andThen(b -> b.addDynamicRenderer(
@@ -1165,7 +1165,7 @@ public class GTTMultiMachines {
                                 new TraceabilityPredicate(
                                         new SimplePredicate(
                                                 state -> MetaMachine.getMachine(state.getWorld(),
-                                                        state.getPos()) instanceof IRotorHolderMachine rotorHolder &&
+                                                        state.getPos()) instanceof RotorHolderPartMachine rotorHolder &&
                                                         state.getWorld()
                                                                 .getBlockState(state.getPos()
                                                                         .relative(rotorHolder.self().getFrontFacing()))
@@ -1192,7 +1192,7 @@ public class GTTMultiMachines {
     }
 
     public static MultiblockMachineDefinition[] registerTieredMultis(String name,
-                                                                     BiFunction<IMachineBlockEntity, Integer, MultiblockControllerMachine> factory,
+                                                                     BiFunction<BlockEntityCreationInfo, Integer, MultiblockControllerMachine> factory,
                                                                      BiFunction<Integer, MultiblockMachineBuilder<?, ?>, MultiblockMachineDefinition> builder,
                                                                      int... tiers) {
         MultiblockMachineDefinition[] definitions = new MultiblockMachineDefinition[GTValues.TIER_COUNT];

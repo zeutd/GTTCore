@@ -2,11 +2,12 @@ package com.gtt.gttcore.mixin.gtm;
 
 import com.gregtechceu.gtceu.api.machine.multiblock.MultiblockControllerMachine;
 import com.gregtechceu.gtceu.api.pattern.MultiblockState;
-import com.gregtechceu.gtceu.api.pattern.MultiblockWorldSavedData;
 import com.gtt.gttcore.api.ICheckPattern;
-import net.minecraft.server.level.ServerLevel;
 import org.jetbrains.annotations.NotNull;
 import org.spongepowered.asm.mixin.*;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.concurrent.locks.Lock;
 
@@ -24,28 +25,17 @@ public abstract class MultiblockControllerMachineMixin implements ICheckPattern 
      * @author zeutd
      * @reason checkPattern
      */
-    @Overwrite
-    public void asyncCheckPattern(long periodID) {
-        MultiblockControllerMachine self = (MultiblockControllerMachine)(Object) this;
-        if (gTTCore$isCheckStructureButtonToggled()) {
-            if ((getMultiblockState().hasError() || !isFormed) && (self.getHolder().getOffset() + periodID) % 4 == 0 &&
-                    self.checkPatternWithTryLock()) { // per second
-                if (self.getLevel() instanceof ServerLevel serverLevel) {
-                    serverLevel.getServer().execute(() -> {
-                        patternLock.lock();
-                        if (self.checkPatternWithLock()) { // formed
-                            self.setFlipped(getMultiblockState().isNeededFlip());
-                            self.onStructureFormed();
-                            var mwsd = MultiblockWorldSavedData.getOrCreate(serverLevel);
-                            mwsd.addMapping(getMultiblockState());
-                            mwsd.removeAsyncLogic(self);
-                            gTTCore$setCheckStructureButtonToggled(false);
-                        }
-                        patternLock.unlock();
-                    });
-                }
-            }
-        }
+    @Inject(method = "asyncCheckPattern", at = @At("HEAD"), cancellable = true)
+    public void asyncCheckPatternMixin(long periodID, CallbackInfo ci) {
+        if (!gTTCore$isCheckStructureButtonToggled()) ci.cancel();
+
+        //MultiblockControllerMachine self = (MultiblockControllerMachine)(Object) this;
+    }
+
+    @Inject(method = "onStructureFormed", at = @At("TAIL"))
+    public void onStructureFormedMixin(CallbackInfo ci) {
+        gTTCore$setCheckStructureButtonToggled(false);
+        //MultiblockControllerMachine self = (MultiblockControllerMachine)(Object) this;
     }
 
     @Override

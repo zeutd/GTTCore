@@ -1,6 +1,6 @@
 package com.gtt.gttcore.common.machine.multiblock;
 
-import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
+import com.gregtechceu.gtceu.api.blockentity.BlockEntityCreationInfo;
 import com.gregtechceu.gtceu.common.machine.multiblock.electric.BedrockOreMinerMachine;
 import com.gtt.gttcore.common.CustomNetherTeleporter;
 import com.lowdragmc.lowdraglib.gui.util.ClickData;
@@ -14,12 +14,9 @@ import net.minecraft.world.phys.AABB;
 
 import java.util.List;
 
-import static com.gregtechceu.gtceu.api.GTValues.HV;
-
 public class BedrockDrillMachine extends BedrockOreMinerMachine {
-    public BedrockDrillMachine(IMachineBlockEntity holder, int tier) {
-        super(holder, tier);
-
+    public BedrockDrillMachine(BlockEntityCreationInfo info, int tier) {
+        super(info, tier);
     }
 
     @Override
@@ -37,7 +34,7 @@ public class BedrockDrillMachine extends BedrockOreMinerMachine {
         if (getLevel() instanceof ServerLevel serverLevel) {
             if (serverLevel.dimension() != Level.OVERWORLD) return;
             if (componentData.equals("set_out")) {
-                final BlockPos pos = getPos();
+                final BlockPos pos = getBlockPos();
                 List<ServerPlayer> entities = serverLevel.getEntitiesOfClass(ServerPlayer.class, new AABB(pos.getX() - 2,
                         pos.getY() - 2,
                         pos.getZ() - 2,

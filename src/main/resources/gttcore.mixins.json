@@ -11,7 +11,7 @@
     "appeng.BasicStorageCellMixin",
     "gtm.GCYMMachinesMixin",
     "gtm.GTDimensionMarkersMixin",
-    "gtm.MetaMachineBlockEntityMixin",
+    "gtm.MetaMachineMixin",
     "gtm.MultiblockControllerMachineMixin",
     "gtm.ParallelHatchPartMachineMixin",
     "gtm.RecipeLogicMixin",

@@ -2,6 +2,7 @@ package com.gtt.gttcore.common.data;
 
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.GTValues;
+import com.gregtechceu.gtceu.api.blockentity.BlockEntityCreationInfo;
 import com.gregtechceu.gtceu.api.capability.recipe.FluidRecipeCapability;
 import com.gregtechceu.gtceu.api.capability.recipe.ItemRecipeCapability;
 import com.gregtechceu.gtceu.api.data.RotationState;
@@ -193,7 +194,7 @@ public class GTTMachines {
 
 
     public static MachineDefinition[] registerTieredMachines(String name,
-                                                             BiFunction<IMachineBlockEntity, Integer, MetaMachine> factory,
+                                                             BiFunction<BlockEntityCreationInfo, Integer, MetaMachine> factory,
                                                              BiFunction<Integer, MachineBuilder<MachineDefinition, ?>, MachineDefinition> builder,
                                                              int... tiers) {
         MachineDefinition[] definitions = new MachineDefinition[GTValues.TIER_COUNT];
@@ -218,7 +219,7 @@ public class GTTMachines {
     }
 
     public static Pair<MachineDefinition, MachineDefinition> registerSteamMachines(String name, String chineseName,
-                                                                                   BiFunction<IMachineBlockEntity, Boolean, MetaMachine> factory,
+                                                                                   BiFunction<BlockEntityCreationInfo, Boolean, MetaMachine> factory,
                                                                                    BiFunction<Boolean, MachineBuilder<MachineDefinition, ?>, MachineDefinition> builder) {
         LangUtil.createBlockZhTranslation("lp_%s".formatted(name), "低压蒸汽" + chineseName);
         MachineDefinition lowTier = builder.apply(false,

@@ -1,6 +1,6 @@
 package com.gtt.gttcore.common.machine.multiblock;
 
-import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
+import com.gregtechceu.gtceu.api.blockentity.BlockEntityCreationInfo;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gtt.gttcore.api.DysonWorldSavedData;
 import net.minecraft.server.level.ServerLevel;
@@ -8,8 +8,8 @@ import net.minecraft.server.level.ServerLevel;
 public class MicrowaveReceiverMachine extends WorkableElectricMultiblockMachine {
     public static final long EU_T_PER_CLOUD = 1L << 20;
     public static final long EU_T_PER_JOINT = 1L << 26;
-    public MicrowaveReceiverMachine(IMachineBlockEntity holder, Object... args) {
-        super(holder, args);
+    public MicrowaveReceiverMachine(BlockEntityCreationInfo info) {
+        super(info);
     }
 
     @Override

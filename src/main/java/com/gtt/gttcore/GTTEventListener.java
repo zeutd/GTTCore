@@ -10,6 +10,7 @@ import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
 
 import java.math.BigInteger;
@@ -18,15 +19,17 @@ import java.math.BigInteger;
 public class GTTEventListener {
     @SubscribeEvent
     public static void onServerTickEvent(TickEvent.ServerTickEvent event) {
-        if (event.phase == TickEvent.Phase.END) {
-            if (event.getServer().getTickCount() % 200 == 0) {
-                for (WirelessEnergyContainer container : WirelessEnergySavaedData.INSTANCE.containerMap.values()) {
-                    BigInteger capacity = BigInteger.ZERO;
-                    GlobalPos pos = container.getBindPos();
-                    if (pos != null) {
-                        capacity = WirelessUtil.getCapacity(event.getServer().getLevel(pos.dimension()), pos.pos());
+        if (ModList.get().isLoaded("gtmthings")) {
+            if (event.phase == TickEvent.Phase.END) {
+                if (event.getServer().getTickCount() % 200 == 0) {
+                    for (WirelessEnergyContainer container : WirelessEnergySavaedData.INSTANCE.containerMap.values()) {
+                        BigInteger capacity = BigInteger.ZERO;
+                        GlobalPos pos = container.getBindPos();
+                        if (pos != null) {
+                            capacity = WirelessUtil.getCapacity(event.getServer().getLevel(pos.dimension()), pos.pos());
+                        }
+                        ((IWirelessEnergyContainerMixin) container).gTTCore$setCapacity(capacity);
                     }
-                    ((IWirelessEnergyContainerMixin) container).gTTCore$setCapacity(capacity);
                 }
             }
         }
