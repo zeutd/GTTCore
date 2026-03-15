@@ -54,7 +54,6 @@ public class GTTMaterials {
     public static Material IceShard;
     public static Material UltraHighMolecularWeightPolyethylene;
     public static Material Fullerene;
-    public static Material WetDibutylMagnesium;
     public static Material DibutylMagnesium;
     public static Material Bromobutane;
     public static Material SodiumBromide;
@@ -173,47 +172,71 @@ public class GTTMaterials {
 
     public static Material VenusAir;
     public static Material LiquidVenusAir;
+
+    public static Material Trichlorosilane;
+    public static Material Silane;
+    public static Material SiliconChloride;
+
+    public static Material Phosphine;
+    public static Material ArsenicHydride;
+    public static Material Trimethylindium;
+    public static Material Trimethylgallium;
+    public static Material Trimethylaluminium;
+    public static Material ZincDiarsenide;
+    public static Material ZincSulfate;
+    public static Material Iodomethane;
+    public static Material GalliumTrichloride;
+    public static Material LithiumCarbonate;
+    public static Material LithiumHydroxide;
+    public static Material NiobiumPentoxide;
+
+    public static Material LithiumAmalgam;
+    public static Material Lithium6;
+    public static Material Lithium6Amalgam;
+    //public static Material LithiumNiobate;
+
+    public static Material[] alloysGeneratesData;
     public static void init() {
         MoonStone = new GTTMaterialBuilder(GTTCore.id("moon_stone"))
                 .dust(2)
-                .color(0x4F5C5D).secondaryColor(0x506869).iconSet(METALLIC)
+                .color(0x506869).secondaryColor(0x4F5C5D).iconSet(METALLIC)
                 .flags(NO_SMASHING, NO_SMELTING)
                 .chineseLangValue("月石")
                 .buildAndRegister();
         MarsStone = new GTTMaterialBuilder(GTTCore.id("mars_stone"))
                 .dust(2)
-                .color(0xBF6F50).secondaryColor(0xCD9360).iconSet(METALLIC)
+                .color(0xCD9360).secondaryColor(0xBF6F50).iconSet(METALLIC)
                 .flags(NO_SMASHING, NO_SMELTING)
                 .chineseLangValue("火星石")
                 .buildAndRegister();
         MercuryStone = new GTTMaterialBuilder(GTTCore.id("mercury_stone"))
                 .dust(2)
-                .color(0x603948).secondaryColor(0x723E49).iconSet(METALLIC)
+                .color(0x723E49).secondaryColor(0x603948).iconSet(METALLIC)
                 .flags(NO_SMASHING, NO_SMELTING)
                 .chineseLangValue("水星石")
                 .buildAndRegister();
         VenusStone = new GTTMaterialBuilder(GTTCore.id("venus_stone"))
                 .dust(2)
-                .color(0xB88143).secondaryColor(0xDFB271).iconSet(METALLIC)
+                .color(0xDFB271).secondaryColor(0xB88143).iconSet(METALLIC)
                 .flags(NO_SMASHING, NO_SMELTING)
                 .chineseLangValue("金星石")
                 .buildAndRegister();
         GlacioStone = new GTTMaterialBuilder(GTTCore.id("glacio_stone"))
                 .dust(2)
-                .color(0x7C73A9).secondaryColor(0xB4B8D2).iconSet(METALLIC)
+                .color(0xB4B8D2).secondaryColor(0x7C73A9).iconSet(METALLIC)
                 .chineseLangValue("霜原石")
                 .flags(NO_SMASHING, NO_SMELTING)
                 .buildAndRegister();
         InfernalSpire = new GTTMaterialBuilder(GTTCore.id("infernal_spire"))
                 .dust(2)
-                .color(0x662F24).secondaryColor(0xD9863C).iconSet(METALLIC)
+                .color(0xD9863C).secondaryColor(0x662F24).iconSet(METALLIC)
                 .flags(NO_SMASHING, NO_SMELTING)
                 .chineseLangValue("炎狱尖塔")
                 .buildAndRegister();
         FluixCrystal = new GTTMaterialBuilder(GTTCore.id("fluix_crystal"))
                 .gem()
                 .dust()
-                .color(0x995399).secondaryColor(0xb67eb7).iconSet(CERTUS)
+                .color(0xb67eb7).secondaryColor(0x995399).iconSet(CERTUS)
                 .appendFlags(EXT_METAL, NO_SMELTING, NO_SMASHING, CRYSTALLIZABLE, DISABLE_DECOMPOSITION)
                 .components(CertusQuartz, 1, Redstone, 1, NetherQuartz, 1)
                 .chineseLangValue("福鲁伊克斯")
@@ -225,7 +248,7 @@ public class GTTMaterials {
                 .element(De)
                 .ore()
                 .chineseLangValue("戴斯")
-                .color(0xDF5D07).secondaryColor(0xFF8D37).iconSet(METALLIC)
+                .color(0xFF8D37).secondaryColor(0xDF5D07).iconSet(METALLIC)
                 .flags(MaterialFlags.GENERATE_PLATE, GENERATE_ROD)
                 .fluidPipeProperties(1900, 100, true, true, true, false)
                 .buildAndRegister();
@@ -236,7 +259,7 @@ public class GTTMaterials {
                 .element(Ct)
                 .ore()
                 .chineseLangValue("耐热金属")
-                .color(0xD44267).secondaryColor(0xEE6688).iconSet(SHINY)
+                .color(0xEE6688).secondaryColor(0xD44267).iconSet(SHINY)
                 .flags(MaterialFlags.GENERATE_PLATE, GENERATE_ROD)
                 .fluidPipeProperties(2900, 200, true, true, true, true)
                 .buildAndRegister();
@@ -246,7 +269,7 @@ public class GTTMaterials {
                 .liquid()
                 .element(Om)
                 .ore()
-                .color(0xA95675).secondaryColor(0xCB7799).iconSet(METALLIC)
+                .color(0xCB7799).secondaryColor(0xa63f59).iconSet(METALLIC)
                 .chineseLangValue("紫金")
                 .flags(MaterialFlags.GENERATE_PLATE, GENERATE_ROD)
                 .fluidPipeProperties(2400, 150, true, true, true, false)
@@ -275,13 +298,6 @@ public class GTTMaterials {
                 .components(Carbon, 60)
                 .buildAndRegister();
         //region Ziegler-Natta Catalyst
-        WetDibutylMagnesium = new GTTMaterialBuilder(GTTCore.id("wet_dibutyl_magnesium"))
-                .fluid()
-                .color(0xbbbb71)
-                .chineseLangValue("湿二丁基镁")
-                .flags(DISABLE_DECOMPOSITION)
-                .components(Carbon, 8, Hydrogen, 18, Magnesium, 1)
-                .buildAndRegister();
         DibutylMagnesium = new GTTMaterialBuilder(GTTCore.id("dibutyl_magnesium"))
                 .fluid()
                 .color(0xdddd91)
@@ -580,7 +596,7 @@ public class GTTMaterials {
                 .setFormula("OsCl2O2(NH3)4");
         //endregion
         AndesiteAlloy = new GTTMaterialBuilder(GTTCore.id("andesite_alloy"))
-                .color(0xe0f0e9).secondaryColor(0x596059)
+                .color(0xd7f0da).secondaryColor(0x525e52)
                 .ingot()
                 .dust()
                 .liquid()
@@ -778,7 +794,7 @@ public class GTTMaterials {
                 .liquid()
                 .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister();
-        AluminiumChloride = new GTTMaterialBuilder(GTTCore.id("aluminum_chloride"))
+        AluminiumChloride = new GTTMaterialBuilder(GTTCore.id("aluminium_chloride"))
                 .color(0x74caff)
                 .chineseLangValue("三氯化铝")
                 .dust()
@@ -887,6 +903,7 @@ public class GTTMaterials {
                 .components(Phosphorus, 1, Oxygen, 1, Chlorine, 3)
                 .buildAndRegister();
         Di2EthylhexylPhosphorylChloride = new GTTMaterialBuilder(GTTCore.id("di_2_ethylhexyl_phosphoryl_chloride"))
+                .langValue("Di (2-Ethylhexyl) Phosphoryl Chloride")
                 .color(0x5c69bf)
                 .liquid()
                 .chineseLangValue("二（2-乙基己基）磷酰氯")
@@ -987,7 +1004,7 @@ public class GTTMaterials {
         Xenotime = new GTTMaterialBuilder(GTTCore.id("xenotime"))
                 .dust().ore(2, 1)
                 .chineseLangValue("磷钇矿")
-                .color(0x444b2c).secondaryColor(0x867e43).iconSet(FINE)
+                .color(0x867e43).secondaryColor(0x444b2c).iconSet(FINE)
                 .components(RareEarth, 4, Phosphate, 4, Yttrium, 1)
                 .buildAndRegister()
                 .setFormula("(?PO4)4Y1");
@@ -1027,13 +1044,165 @@ public class GTTMaterials {
         AluminiumAlloy6061 = new GTTMaterialBuilder(GTTCore.id("aluminium_alloy_6061"))
                 .langValue("Aluminium Alloy 6061")
                 .ingot(5).fluid()
-                .chineseLangValue("铝合金-6061‘")
-                .color(0x3d3e4a).iconSet(METALLIC)
+                .chineseLangValue("铝合金-6061")
+                .color(0xd2d7ff).iconSet(METALLIC)
                 .appendFlags(STD_METAL, GENERATE_PLATE, GENERATE_ROD, GENERATE_FRAME, GENERATE_GEAR)
                 .components(Aluminium, 10, Magnesium, 2, Silicon, 1, Copper, 1)
                 .blast(b -> b.temp(4600, BlastProperty.GasTier.HIGH)
                         .blastStats(VA[EV], 800))
                 .buildAndRegister();
+
+
+
+
+        Trichlorosilane  = new GTTMaterialBuilder(GTTCore.id("trichlorosilane"))
+                .langValue("Trichlorosilane")
+                .gas()
+                .chineseLangValue("三氯硅烷")
+                .color(0xa6a9b5)
+                .flags(DISABLE_DECOMPOSITION)
+                .components(Silicon, 1, Hydrogen, 1, Chlorine, 3)
+                .buildAndRegister();
+        Silane = new GTTMaterialBuilder(GTTCore.id("silane"))
+                .langValue("Silane")
+                .gas()
+                .chineseLangValue("甲硅烷")
+                .color(0xa6a9b5)
+                .flags(DISABLE_DECOMPOSITION)
+                .components(Silicon, 1, Hydrogen, 4)
+                .buildAndRegister();
+        SiliconChloride  = new GTTMaterialBuilder(GTTCore.id("silicon_chloride"))
+                .langValue("Silicon Chloride")
+                .liquid()
+                .chineseLangValue("四氯化硅")
+                .color(0xa6a9b5)
+                .flags(DISABLE_DECOMPOSITION)
+                .components(Silicon, 1, Chlorine, 4)
+                .buildAndRegister();
+        Phosphine = new GTTMaterialBuilder(GTTCore.id("phosphine"))
+                .langValue("Phosphine")
+                .gas()
+                .chineseLangValue("磷化氢")
+                .color(0xe8b94e)
+                .components(Phosphorus, 1, Hydrogen, 3)
+                .buildAndRegister();
+        ArsenicHydride = new GTTMaterialBuilder(GTTCore.id("arsenic_hydride"))
+                .langValue("Arsenic Hydride")
+                .gas()
+                .chineseLangValue("砷化氢")
+                .color(0xe85b67)
+                .components(Arsenic, 1, Hydrogen, 3)
+                .buildAndRegister();
+        Trimethylindium = new GTTMaterialBuilder(GTTCore.id("trimethylindium"))
+                .langValue("Trimethylindium")
+                .liquid()
+                .chineseLangValue("三甲基铟")
+                .color(0xa58ae8)
+                .components(Indium, 1, Carbon, 3, Hydrogen, 9)
+                .buildAndRegister()
+                .setFormula("In(CH3)3");
+        Trimethylgallium = new GTTMaterialBuilder(GTTCore.id("trimethylgallium"))
+                .langValue("Trimethylgallium")
+                .liquid()
+                .chineseLangValue("三甲基镓")
+                .color(0xb3e2e8)
+                .components(Gallium, 1, Carbon, 3, Hydrogen, 9)
+                .buildAndRegister()
+                .setFormula("Ga(CH3)3");
+        Trimethylaluminium = new GTTMaterialBuilder(GTTCore.id("trimethylaluminium"))
+                .langValue("Trimethylaluminium")
+                .liquid()
+                .chineseLangValue("三甲基铝")
+                .color(0xa7bbe6)
+                .components(Aluminium, 1, Carbon, 3, Hydrogen, 9)
+                .buildAndRegister()
+                .setFormula("Al(CH3)3");
+        ZincDiarsenide = new GTTMaterialBuilder(GTTCore.id("zinc_diarsenide"))
+                .langValue("Zinc Diarsenide")
+                .dust()
+                .chineseLangValue("砷化锌")
+                .color(0x7f424c)
+                .components(Zinc, 3, Arsenic, 2)
+                .buildAndRegister()
+                .setFormula("Ga(CH3)3");
+        ZincSulfate = new GTTMaterialBuilder(GTTCore.id("zinc_sulfate"))
+                .langValue("Zinc Sulfate")
+                .dust()
+                .chineseLangValue("硫酸锌")
+                .color(0x4d433d)
+                .components(Zinc, 1, Sulfur, 1, Oxygen, 4)
+                .buildAndRegister()
+                .setFormula("Ga(CH3)3");
+        Iodomethane = new GTTMaterialBuilder(GTTCore.id("iodomethane"))
+                .langValue("Iodomethane")
+                .liquid()
+                .chineseLangValue("碘甲烷")
+                .color(0x425c69)
+                .components(Carbon, 1, Hydrogen, 3, Iodine, 1)
+                .buildAndRegister();
+        GalliumTrichloride = new GTTMaterialBuilder(GTTCore.id("gallium_trichloride"))
+                .langValue("Gallium Trichloride")
+                .dust()
+                .chineseLangValue("三氯化镓")
+                .color(0x303c4d)
+                .components(Gallium, 1, Chlorine, 3)
+                .buildAndRegister();
+        LithiumCarbonate = new GTTMaterialBuilder(GTTCore.id("lithium_carbonate"))
+                .langValue("Lithium Carbonate")
+                .dust()
+                .chineseLangValue("碳酸锂")
+                .color(0x4d3300)
+                .components(Lithium, 2, Carbon, 1, Oxygen, 3)
+                .buildAndRegister();
+        NiobiumPentoxide = new GTTMaterialBuilder(GTTCore.id("niobium_pentoxide"))
+                .langValue("Niobium Pentoxide")
+                .dust()
+                .chineseLangValue("五氧化二铌")
+                .color(0x3d3d5e)
+                .components(Niobium, 2, Oxygen, 5)
+                .buildAndRegister();
+        LithiumAmalgam = new GTTMaterialBuilder(GTTCore.id("lithium_amalgam"))
+                .langValue("Lithium Amalgam")
+                .dust()
+                .chineseLangValue("锂汞齐")
+                .color(0x3d3d5e)
+                .flags(DECOMPOSITION_BY_ELECTROLYZING)
+                .components(Lithium, 1, Mercury, 1)
+                .buildAndRegister();
+        LithiumHydroxide = new GTTMaterialBuilder(GTTCore.id("lithium_hydroxide"))
+                .langValue("Lithium Hydroxide")
+                .dust()
+                .chineseLangValue("氢氧化锂")
+                .color(0x00455c)
+                .components(Lithium, 1, Oxygen, 1, Hydrogen, 1)
+                .buildAndRegister();
+        Lithium6 = new GTTMaterialBuilder(GTTCore.id("lithium_6"))
+                .langValue("Lithium-6")
+                .dust()
+                .chineseLangValue("锂-6")
+                .color(0xb8e1f1).secondaryColor(0x779dc1)
+                .element(Li6)
+                .buildAndRegister();
+        Lithium6Amalgam = new GTTMaterialBuilder(GTTCore.id("lithium_6_amalgam"))
+                .langValue("Lithium-6 Amalgam")
+                .dust()
+                .chineseLangValue("锂-6汞齐")
+                .color(0x595985)
+                .flags(DECOMPOSITION_BY_ELECTROLYZING)
+                .components(Lithium6, 1, Mercury, 1)
+                .buildAndRegister();
+
+
+
+
+
+        alloysGeneratesData = new Material[]{
+                AtomicSteel,
+                Inconel718,
+                AluminiumAlloy6061,
+                AndesiteAlloy
+        };
+
 
         if (GTCEu.Mods.isCreateLoaded()) ingot.setIgnored(AndesiteAlloy, (Supplier<? extends ItemLike>) AllItems.ANDESITE_ALLOY);
         ingot.setIgnored(Desh, ModItems.DESH_INGOT);
@@ -1112,7 +1281,7 @@ public class GTTMaterials {
         Uranium235.addFlags(GENERATE_BALL);
 
         InertMetalMixture.setComponents();
-        InertMetalMixture.setFormula("");
+        InertMetalMixture.setFormula("?");
 
         Neodymium.removeProperty(PropertyKey.ORE);
 

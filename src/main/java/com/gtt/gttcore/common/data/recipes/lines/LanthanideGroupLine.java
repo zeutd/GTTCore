@@ -11,7 +11,7 @@ import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.dustTiny;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.*;
 import static com.gtt.gttcore.common.data.GTTMaterials.*;
-import static com.gtt.gttcore.common.data.recipes.GTTRecipeTypes.EXTRACTION_TANK_RECIPE;
+import static com.gtt.gttcore.common.data.recipes.GTTRecipeTypes.EXTRACTION_TANK_RECIPES;
 
 public class LanthanideGroupLine {
     public static void init(Consumer<FinishedRecipe> provider) {
@@ -144,7 +144,7 @@ public class LanthanideGroupLine {
                 .outputItems(dustTiny, ZincSulfide, 2)
                 .outputItems(dust, Salt)
                 .save(provider);
-        EXTRACTION_TANK_RECIPE.recipeBuilder(GTTCore.id("rare_earth_solution_extraction"))
+        EXTRACTION_TANK_RECIPES.recipeBuilder(GTTCore.id("rare_earth_solution_extraction"))
                 .duration(500)
                 .EUt(VA[IV])
                 .inputFluids(HeavyMetalsRemovedRareEarthChlorideSolution.getFluid(3000))
@@ -270,21 +270,21 @@ public class LanthanideGroupLine {
 
 
 
-        EXTRACTION_TANK_RECIPE.recipeBuilder(GTTCore.id("heavy_rare_earth_solution_separation"))
+        EXTRACTION_TANK_RECIPES.recipeBuilder(GTTCore.id("heavy_rare_earth_solution_separation"))
                 .duration(500)
                 .EUt(VA[IV])
                 .inputFluids(HeavyRareEarthSolution.getFluid(2000))
                 .outputFluids(LutetiumSolution.getFluid(1000))
                 .outputFluids(YttriumSolution.getFluid(1000))
                 .save(provider);
-        EXTRACTION_TANK_RECIPE.recipeBuilder(GTTCore.id("medium_rare_earth_solution_separation"))
+        EXTRACTION_TANK_RECIPES.recipeBuilder(GTTCore.id("medium_rare_earth_solution_separation"))
                 .duration(500)
                 .EUt(VA[IV])
                 .inputFluids(MediumRareEarthSolution.getFluid(2000))
                 .outputFluids(SamariumSolution.getFluid(1000))
                 .outputFluids(EuropiumSolution.getFluid(1000))
                 .save(provider);
-        EXTRACTION_TANK_RECIPE.recipeBuilder(GTTCore.id("light_rare_earth_solution_separation"))
+        EXTRACTION_TANK_RECIPES.recipeBuilder(GTTCore.id("light_rare_earth_solution_separation"))
                 .duration(500)
                 .EUt(VA[IV])
                 .inputFluids(LightRareEarthSolution.getFluid(2000))

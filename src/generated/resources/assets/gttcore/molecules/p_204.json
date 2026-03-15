@@ -31,6 +31,7 @@
     {
       "index": 4,
       "element": "O",
+      "right": "H",
       "x": 0.0,
       "y": -0.4125,
       "type": "atom"

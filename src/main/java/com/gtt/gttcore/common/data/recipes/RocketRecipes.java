@@ -37,6 +37,7 @@ public class RocketRecipes {
                 .EUt(-1)
                 .duration(20)
                 .inputFluids(PCBCoolant.getFluid(10000))
+                .circuitMeta(0)
                 .save(provider);
     }
     public static void init(Consumer<FinishedRecipe> provider) {

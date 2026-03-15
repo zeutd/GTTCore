@@ -11,8 +11,8 @@ import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.dust;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.CENTRIFUGE_RECIPES;
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.DISTILLATION_RECIPES;
-import static com.gtt.gttcore.common.data.GTTMaterials.LiquidVenusAir;
-import static com.gtt.gttcore.common.data.GTTMaterials.VenusAir;
+import static com.gtt.gttcore.common.data.GTTMaterials.*;
+import static com.gtt.gttcore.common.data.GTTMaterials.Lithium6Amalgam;
 
 public class SeparationRecipes {
     public static void init(Consumer<FinishedRecipe> provider){
@@ -31,5 +31,11 @@ public class SeparationRecipes {
                 .chancedOutput(dust, Sulfur, 2250, 0)
                 .disableDistilleryRecipes(true)
                 .duration(2000).EUt(VA[EV]).save(provider);
+        CENTRIFUGE_RECIPES.recipeBuilder(GTTCore.id("lithium_6_amalgam"))
+                .inputItems(dust, LithiumAmalgam, 8)
+                .outputItems(dust, Lithium6Amalgam)
+                .duration(200)
+                .EUt(VA[EV])
+                .save(provider);
     }
 }

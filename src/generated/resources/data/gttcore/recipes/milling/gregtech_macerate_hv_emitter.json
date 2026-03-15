@@ -12,17 +12,17 @@
   "results": [
     {
       "count": 2,
-      "item": "gtceu:chromium_dust"
-    },
-    {
-      "count": 2,
       "item": "gtceu:rubber_dust"
     },
     {
-      "item": "gtceu:ender_eye_dust"
+      "count": 2,
+      "item": "gtceu:chromium_dust"
     },
     {
       "item": "gtceu:gold_dust"
+    },
+    {
+      "item": "gtceu:ender_eye_dust"
     }
   ]
 }

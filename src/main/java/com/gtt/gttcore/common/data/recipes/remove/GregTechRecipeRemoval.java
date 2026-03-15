@@ -45,12 +45,17 @@ public class GregTechRecipeRemoval {
         provider.accept(new ResourceLocation("gtceu:mixer/graphene"));
 
 
-
+        provider.accept(new ResourceLocation("gtceu:centrifuge/glowstone_separation"));
+        removeChemical(provider, "hpic_wafer");
+        removeChemical(provider, "uhpic_wafer");
+        removeChemical(provider, "nano_cpu_wafer");
+        //provider.accept(new ResourceLocation("gtceu:centrifuge/glowstone_separation"));
 
 
 
         provider.accept(new ResourceLocation("gtceu:centrifuge/pgs_separation"));
         provider.accept(new ResourceLocation("gtceu:centrifuge/decomposition_centrifuging__platinum_sludge_residue"));
+
         provider.accept(new ResourceLocation("gtceu:electrolyzer/raw_platinum_separation"));
         removeChemical(provider, "raw_palladium_separation");
         removeChemical(provider, "inert_metal_mixture_separation");

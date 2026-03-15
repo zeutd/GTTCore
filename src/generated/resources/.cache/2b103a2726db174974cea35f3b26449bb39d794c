@@ -1,8 +1,9 @@
-// 1.20.1	2026-02-27T14:12:20.0626878	Registrate Provider for gttcore [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider]
+// 1.20.1	2026-03-13T22:44:19.3992348	Registrate Provider for gttcore [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider]
+3d72a05378e609815c5d86e1abb2020239215fed assets/gttcore/blockstates/alloy_blast_smelter.json
 307011c930f083bc3f416782a6746fac3e2adda1 assets/gttcore/blockstates/bedrock_drill.json
 d18033916a4e0742236fd0b240e1b22060c21dee assets/gttcore/blockstates/blackhole_bomb.json
-c9be24b9d4ad700638f61c95427bd13baf9b85ee assets/gttcore/blockstates/chemical_plant.json
 2696c275000d3016f2fa8bec0025bf2b52ba9e9d assets/gttcore/blockstates/creative_high_energy_laser_provider.json
+9b21dd081907005accc8c42f555b59c8be93ec18 assets/gttcore/blockstates/cvd_chamber.json
 6019cfb82a6f7e39b7660d659dbad9594f293841 assets/gttcore/blockstates/energy_transfer_casing.json
 1613469b7fb8403c52a04f071a8a5641b1096edf assets/gttcore/blockstates/evaporation_plant.json
 37123b140b0948048b9f2fab5cc2bd6383a31864 assets/gttcore/blockstates/ev_cultivator.json
@@ -117,17 +118,18 @@ a590727da2f8e08a5a1e6d4361658e81cf53df5d assets/gttcore/blockstates/uxv_large_ro
 7cb177d33e8666afea503a8b035d6c16c4453b82 assets/gttcore/blockstates/zpm_cultivator.json
 6c75aa714df8c7c5370e41888f8a3e47a6701da5 assets/gttcore/blockstates/zpm_large_fusion_reactor.json
 ba8eea4dc2407d09d7b0e71095830cd0e85ac77a assets/gttcore/blockstates/zpm_large_rotor_holder.json
-61d67038a9901b207e265a097cde6d298cdbb52a assets/gttcore/lang/en_ud.json
-1d36dbdaf7696d750be87b9f94744d46d6359e70 assets/gttcore/lang/en_us.json
+442a500f370ad2816f94e69428526be16a82fc79 assets/gttcore/lang/en_ud.json
+e7dc4d06cac7f5e98e8fce7344a362c0382c4c57 assets/gttcore/lang/en_us.json
 22cd8c5930eb824390c9e17f6bd858938914a602 assets/gttcore/models/block/blackhole_bomb.json
 762b7132f12673eeda680afc2d9c6a82e82dae30 assets/gttcore/models/block/field_protection_casing.json
 abe6ce5ca0dd6726529e3ddfb9c1960e1800dce6 assets/gttcore/models/block/gravity_resist_casing.json
 1d06e52ec0cfa0c4280211e57dc8adb196e66d6d assets/gttcore/models/block/inconel_718_turbine_casing.json
 9c266659b005bbd4e6b5497f8088e795907befc3 assets/gttcore/models/block/lead_glass.json
 fd1fe22095a12d613deb3fdf4bc7a61636e8ece5 assets/gttcore/models/block/low_neutron_absorption_casing.json
+d2dedff8002378eedde7c0a2e5d7748db3117edb assets/gttcore/models/block/machine/alloy_blast_smelter.json
 c670753a4bd715127934c314b0940c302f051a18 assets/gttcore/models/block/machine/bedrock_drill.json
-f5eb421c9864e792c837a3fc541b38bbf716b25b assets/gttcore/models/block/machine/chemical_plant.json
 ea74bd556075e5b52bfbd9b8d0268d0b474fa6c8 assets/gttcore/models/block/machine/creative_high_energy_laser_provider.json
+20db3a39bed01a1b2a4a8a4468877c425a499472 assets/gttcore/models/block/machine/cvd_chamber.json
 2640703a5959ccc5a592635fb6b81f46af581996 assets/gttcore/models/block/machine/evaporation_plant.json
 e907c28aed8fc57b2aa1e80d01954c3298642378 assets/gttcore/models/block/machine/ev_cultivator.json
 63b0366d6f94b324a2723303d39c4aa9b6f57d44 assets/gttcore/models/block/machine/ev_large_rotor_holder.json
@@ -235,6 +237,7 @@ d4fc651ee924c7d6b66c1f2e872eaeadbc05938f assets/gttcore/models/block/sealed_casi
 12e71f30ae8654abe3a0d0caf03848667d28a96c assets/gttcore/models/block/stainless_evaporation_casing.json
 ab7a849c1ec8ae495b364ea462e6ac7c32aa493f assets/gttcore/models/block/tritanium_strength_casing.json
 47edd8a57719d8aa8ac64fd4a16c199e5f76767d assets/gttcore/models/block/zirconium_pipe_casing.json
+6646fafd0f03f12ab2ed0beb6d510b1aa775f0c2 assets/gttcore/models/item/alloy_blast_smelter.json
 4f23c947bf8da375dcb58329f3f1378a35fd50f9 assets/gttcore/models/item/annihilation_processor.json
 d2f191d082a0551776d143f5a24bbe81ea4645e6 assets/gttcore/models/item/annihilation_processor_assembly.json
 ca4657d4549a9fb8becba20ce7cf5820d17135bc assets/gttcore/models/item/annihilation_processor_computer.json
@@ -242,8 +245,8 @@ c0b213c52ce4daa52d0cb857f57c55559c061fa2 assets/gttcore/models/item/annihilation
 804aefcadad201c386c295cf9174e53dee6c0641 assets/gttcore/models/item/bedrock_drill.json
 e6ed54464ada2978b3798102d377d0272ee806dd assets/gttcore/models/item/beer_bottle.json
 56f2383265e4268fb6dab8973e6d90366d4a3d6d assets/gttcore/models/item/blackhole_bomb.json
-a9f01f55a90042664a4d31a9f85dc5ee949592b9 assets/gttcore/models/item/chemical_plant.json
 42c5641d8f2484ea04054da2676ac1f8a38ebcb0 assets/gttcore/models/item/creative_high_energy_laser_provider.json
+269a046529e3d407a5b5aa209f7b2dc548ee9741 assets/gttcore/models/item/cvd_chamber.json
 d9569d0f32c389b46f52b10f1ffec43b6d7c35fc assets/gttcore/models/item/energy_transfer_casing.json
 4292e95e891fc876e6dc78493f70df63912a9e6e assets/gttcore/models/item/entanglement_processor.json
 7a26bc68af15545269ca0856f8a4337617b8aba8 assets/gttcore/models/item/entanglement_processor_assembly.json
@@ -287,6 +290,7 @@ fdc5b70669f8d237c5caf71ccc32997702c1d429 assets/gttcore/models/item/large_steam_
 35674e7ec263619d982790e12c83cb167a9dcdb3 assets/gttcore/models/item/laser_engraving_plant.json
 dfc198af9e9fafe8bc3bab8f9b71c26f6e0b266e assets/gttcore/models/item/laser_freezer.json
 e21bb4d7002c9bf772b65ed5b88307621da3a45c assets/gttcore/models/item/lead_glass.json
+2ca841b2f5409164e05cd71642d02f41e3ebf531 assets/gttcore/models/item/lithium_niobate_boule.json
 089c324352f4e91c19ae407a8158aee7c1a2caa1 assets/gttcore/models/item/low_neutron_absorption_casing.json
 5224747c61862bbd45bc0e21361d23092bb1789b assets/gttcore/models/item/lp_steam_centrifuge.json
 9138a99c468bbbf6ba754c9d66f8c78ddae64306 assets/gttcore/models/item/lp_steam_mixer.json
@@ -304,6 +308,8 @@ f129f220eab7daffa32fa0f55828f07535149bdc assets/gttcore/models/item/nether_capsu
 44bc289a2da709cc755d4a3e22bb68b5784db33a assets/gttcore/models/item/optical_processor_assembly.json
 0bc69dde14c454d822d57497df0fe809338b0bc5 assets/gttcore/models/item/optical_processor_computer.json
 ef8e1788def91d93448827ebd7fe7bcbc583243e assets/gttcore/models/item/optical_processor_mainframe.json
+c80f0dbb21e48a47a96b25f02f348d739bf6e5ce assets/gttcore/models/item/optical_waveguide_circuit_board.json
+39b237ee9027894ba1b9efd56f02dc37ccee3d74 assets/gttcore/models/item/optical_waveguide_printed_circuit_board.json
 52e1d3c5e2e4979db3c6ea13d590af8dc81d8fce assets/gttcore/models/item/opv_cultivator.json
 c8ebcd56108b419417f3ec764c09cbb11a74bb5d assets/gttcore/models/item/opv_large_rotor_holder.json
 e4e8f5e3a5a25707ce03f5b45fbd6d1fd8276ccd assets/gttcore/models/item/packaged_circuit_ev.json
@@ -323,6 +329,9 @@ f7d9b0ab68bb82867b3faf42ce929bc2849663d2 assets/gttcore/models/item/packaged_cir
 7e615ed1a5af3b6982efd7b2036270e8d34dd5be assets/gttcore/models/item/packaged_circuit_zpm.json
 7d7ed9693d5075b8bbdbd9b4d7ca49227c98a8f6 assets/gttcore/models/item/particle_accelerator.json
 f0852b4d807fe06cb5fcad68e4e219202ad733c8 assets/gttcore/models/item/particle_container.json
+6334949f8283a6d929fcb3f8273f073f88555057 assets/gttcore/models/item/photonic_cpu_chip.json
+520d4dc2ee89ffd679d0af5a625d0d04687e702d assets/gttcore/models/item/photonic_cpu_wafer.json
+92e3e3dd6e8cb78867cfd2cb3d85367d631aa0ed assets/gttcore/models/item/photonic_wafer.json
 c25d27cf46c0589feffc76d849ef92498897e9d0 assets/gttcore/models/item/plasma_huge_turbine.json
 b005124b51e9bc1345b5db6c1d61f42a7527760c assets/gttcore/models/item/polyethylene_sterile_casing.json
 64d953f6f9fefbe4cb85b723c27a2dfe40e2d9de assets/gttcore/models/item/primitive_brewery.json
@@ -335,6 +344,7 @@ a517c29296e43bf8c67b76c57a5c901d50cfec0f assets/gttcore/models/item/processing_c
 66939b6d9730951934958947124e54aeb14d49dd assets/gttcore/models/item/rocket_assembler.json
 ffc259bdf2ef6f19b4ccd76693168699eac26d15 assets/gttcore/models/item/rocket_launch_center.json
 39d66a24281255e9a41a72e7bd94b52337511051 assets/gttcore/models/item/sealed_casing.json
+1d7cfe95e17d3874cb9354d2bd788a9364f71401 assets/gttcore/models/item/silicon_layered_photonic_wafer.json
 135fe41f72c5a826486611f74aa5323019778244 assets/gttcore/models/item/stainless_evaporation_casing.json
 3063203b0d5804a7da7e2aa10e878e335afc31f2 assets/gttcore/models/item/steam_crushing_wheels.json
 6268d00eb7dda215580321e60d8fbb40d99756a5 assets/gttcore/models/item/steam_distillation_tower.json

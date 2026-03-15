@@ -116,7 +116,7 @@ public class GTTRecipeTypes {
             .setSound(GTSoundEntries.BOILER);
     public final static GTRecipeType ROCKET_ASSEMBLER_RECIPES = register("rocket_assembler", MULTIBLOCK).setMaxIOSize(9, 1, 0, 0)
             .setEUIO(IO.OUT)
-            .setProgressBar(GuiTextures.PROGRESS_BAR_ASSEMBLY_LINE, LEFT_TO_RIGHT)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_CANNER, LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.ASSEMBLER);
     public final static GTRecipeType GREENHOUSE_RECIPES = register("greenhouse", MULTIBLOCK).setMaxIOSize(3, 6, 1, 0)
             .setEUIO(IO.IN)
@@ -189,11 +189,11 @@ public class GTTRecipeTypes {
             .setProgressBar(GuiTextures.PROGRESS_BAR_SLICE, LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.SPRAY_CAN_TOOL);
     public static final GTRecipeType MICROWAVE_RECEIVER_RECIPES = register("microwave_receiver", ELECTRIC)
-            .setMaxIOSize(0, 0, 1, 0)
+            .setMaxIOSize(1, 0, 1, 1)
             .setEUIO(IO.OUT)
             .setProgressBar(GuiTextures.PROGRESS_BAR_SOLAR_STEAM.get(false), LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.REPLICATOR);
-    public static final GTRecipeType EXTRACTION_TANK_RECIPE = register("extraction_tank", ELECTRIC)
+    public static final GTRecipeType EXTRACTION_TANK_RECIPES = register("extraction_tank", ELECTRIC)
             .setMaxIOSize(0, 0, 2, 6)
             .setEUIO(IO.IN)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE, LEFT_TO_RIGHT)
@@ -214,4 +214,9 @@ public class GTTRecipeTypes {
                     recipeBuilder.inputFluids(P507.getFluid(10000));
                 }
             });
+    public static final GTRecipeType CVD_RECIPES = register("cvd", ELECTRIC)
+            .setMaxIOSize(3, 3, 6, 6)
+            .setEUIO(IO.IN)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_CRYSTALLIZATION, LEFT_TO_RIGHT)
+            .setSound(GTSoundEntries.CHEMICAL);
 }

@@ -6,13 +6,106 @@ import com.rubenverg.moldraw.molecule.Element;
 import com.rubenverg.moldraw.molecule.Molecule;
 import com.rubenverg.moldraw.molecule.Parens;
 import net.minecraft.resources.ResourceLocation;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class GTTMoleculesData {
+    public static Molecule tetragonalNullable(Element center, @Nullable Element top, @Nullable Element back, @Nullable Element front, @Nullable Element side) {
+        Molecule molecule = new Molecule()
+                .xy()
+                .atom(center, 0.0F, 0.0F);
+        if (top != null) {
+            molecule
+                    .atom(top, 0.0F, 1.0F)
+                    .bond(0, 1);
+        }
+        if (back != null) {
+            molecule
+                    .atom(back, (float) Math.cos(Math.toRadians(-15.0)), (float) Math.sin(Math.toRadians(-15.0)))
+                    .bond(0, 2, Bond.Line.INWARD);
+        }
+        if (top != null) {
+            molecule
+                    .atom(front, (float) Math.cos(Math.toRadians(-60.0)), (float) Math.sin(Math.toRadians(-60.0)))
+                    .bond(0, 3, Bond.Line.OUTWARD);
+        }
+        if (top != null) {
+            molecule
+                    .atom(side, (float)Math.cos(Math.toRadians(-150.0)), (float)Math.sin(Math.toRadians(-150.0)))
+                    .bond(0, 4);
+        }
+        return molecule;
+    }
     public static Map<ResourceLocation, Molecule> molecules() {
         Map<ResourceLocation, Molecule> molecules = new HashMap<>();
+        molecules.put(GTTCore.id("silane"), Molecule.tetragonal(
+                Element.Si,
+                Element.H,
+                Element.H,
+                Element.H,
+                Element.H
+        ));
+        molecules.put(GTTCore.id("silicon_chloride"), Molecule.tetragonal(
+                Element.Si,
+                Element.Cl,
+                Element.Cl,
+                Element.Cl,
+                Element.Cl
+        ));
+        molecules.put(GTTCore.id("trichlorosilane"), Molecule.tetragonal(
+                Element.Si,
+                Element.H,
+                Element.Cl,
+                Element.Cl,
+                Element.Cl
+        ));
+        molecules.put(GTTCore.id("phosphine"), tetragonalNullable(
+                Element.P,
+                null,
+                Element.H,
+                Element.H,
+                Element.H
+        ));
+        molecules.put(GTTCore.id("arsenic_hydride"), tetragonalNullable(
+                Element.As,
+                null,
+                Element.H,
+                Element.H,
+                Element.H
+        ));
+        molecules.put(GTTCore.id("trimethylindium"), tetragonalNullable(
+                Element.In,
+                null,
+                Element.INVISIBLE,
+                Element.INVISIBLE,
+                Element.INVISIBLE
+        ));
+        molecules.put(GTTCore.id("trimethylgallium"), tetragonalNullable(
+                Element.Ga,
+                null,
+                Element.INVISIBLE,
+                Element.INVISIBLE,
+                Element.INVISIBLE
+        ));
+        molecules.put(GTTCore.id("trimethylaluminium"), tetragonalNullable(
+                Element.Al,
+                null,
+                Element.INVISIBLE,
+                Element.INVISIBLE,
+                Element.INVISIBLE
+        ));
+        molecules.put(GTTCore.id("iodomethane"), tetragonalNullable(
+                Element.C,
+                Element.I,
+                Element.H,
+                Element.H,
+                Element.H
+        ));
+
+
+
         molecules.put(GTTCore.id("phenolic_resin"), new Molecule()
                 .uv()
                 .invAtom(0.0F, 0.0F)
@@ -33,8 +126,8 @@ public class GTTMoleculesData {
                 .bond(5, 0, Bond.DOUBLE)
                 .bond(5, 6)
                 .bond(7, 0)
-                .bond(8, 3)
-                .bond(9, 4)
+                .bond(8, 4)
+                .bond(9, 3)
                 .add(Parens.polymer(0, 1, 2, 3, 4, 5, 6))
         );
         molecules.put(GTTCore.id("ultra_high_molecular_weight_polyethylene"), new Molecule()
@@ -91,27 +184,6 @@ public class GTTMoleculesData {
                 .bond(6, 7)
                 .bond(7, 8)
         );
-        molecules.put(GTTCore.id("octanol_magnesium"), new Molecule()
-                .uv()
-                .atom(Element.Mg, 0, 0)
-                .invAtom(-1, 0)
-                .invAtom(-1, 1)
-                .invAtom(-2, 1)
-                .invAtom(-2, 2)
-                .invAtom(-3, 2)
-                .invAtom(-3, 3)
-                .invAtom(-4, 3)
-                .invAtom(-4, 4)
-                .atom(Element.O.one(), null, Element.H.one(), null, null, -2, 0)
-                .bond(0, 1)
-                .bond(1, 2)
-                .bond(2, 3)
-                .bond(3, 4)
-                .bond(4, 5)
-                .bond(5, 6)
-                .bond(6, 7)
-                .bond(7, 8)
-        );
         molecules.put(GTTCore.id("phthaloyl_chlorine"), new Molecule()
                 .uv()
                 .invAtom(0, 0)
@@ -135,6 +207,9 @@ public class GTTMoleculesData {
                 .bond(4, 6)
                 .bond(6, 7)
                 .bond(6, 8, Bond.DOUBLE)
+                .bond(3, 9)
+                .bond(9, 10)
+                .bond(9, 11, Bond.DOUBLE)
         );
         molecules.put(GTTCore.id("oxalic_acid"), new Molecule()
                 .uv()

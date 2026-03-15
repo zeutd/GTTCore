@@ -49,6 +49,7 @@ public class MachineRecipes {
         registerCultivatorRecipes(provider);
         registerHighEnergyLaserRecipes(provider);
         registerMachineRecipes(provider);
+        registerCVDRecipes(provider);
     }
     private static void registerMachineRecipes(Consumer<FinishedRecipe> provider){
         VanillaRecipeHelper.addShapedRecipe(provider, true, GTTCore.id("steam_engine_ulv"), ULV_STEAM_ENGINE.asStack(),
@@ -366,6 +367,17 @@ public class MachineRecipes {
                 .duration(400)
                 .inputFluids(PCBCoolant.getFluid(1000))
                 .save(provider);
+    }
+
+    private static void registerCVDRecipes(Consumer<FinishedRecipe> provider){
+        CVD_RECIPES.recipeBuilder(GTTCore.id("graphene"))
+                .EUt(VA[EV])
+                .duration(400)
+                .notConsumable(plate, Nickel)
+                .outputItems(foil, Graphene)
+                .inputFluids(Methane.getFluid(250))
+                .save(provider);
+
     }
 
     private static void registerGreenhouseRecipes(Consumer<FinishedRecipe> provider){

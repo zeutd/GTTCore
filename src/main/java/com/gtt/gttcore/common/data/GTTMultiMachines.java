@@ -7,6 +7,7 @@ import com.gregtechceu.gtceu.api.data.RotationState;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.MultiblockMachineDefinition;
+import com.gregtechceu.gtceu.api.machine.multiblock.CoilWorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.MultiblockControllerMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.PartAbility;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
@@ -40,7 +41,9 @@ import com.gtt.gttcore.common.data.recipes.GTTRecipeTypes;
 import com.gtt.gttcore.common.machine.multiblock.*;
 import com.gtt.gttcore.util.LangUtil;
 import com.lowdragmc.lowdraglib.utils.BlockInfo;
+import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.Style;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;
@@ -60,6 +63,7 @@ import static com.gregtechceu.gtceu.api.machine.multiblock.PartAbility.*;
 import static com.gregtechceu.gtceu.api.pattern.Predicates.*;
 import static com.gregtechceu.gtceu.api.pattern.util.RelativeDirection.*;
 import static com.gregtechceu.gtceu.common.data.GCYMBlocks.*;
+import static com.gregtechceu.gtceu.common.data.GCYMRecipeTypes.ALLOY_BLAST_RECIPES;
 import static com.gregtechceu.gtceu.common.data.GTBlocks.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 import static com.gregtechceu.gtceu.common.data.GTRecipeModifiers.OC_NON_PERFECT_SUBTICK;
@@ -99,6 +103,33 @@ public class GTTMultiMachines {
                     .build())
             .allowExtendedFacing(false)
             .workableCasingModel(GTTCore.id("block/casings/processing_casing"),
+                    GTCEu.id("block/multiblock/assembly_line"))
+            .register();
+
+    public static final MultiblockMachineDefinition CVD_CHAMBER = REGISTRATE
+            .multiblock(LangUtil.createBlockZhTranslation("cvd_chamber", "化学气相沉积室"), ProcessingPlantMachine::new)
+            .langValue("Chemical Vapor Deposition Chamber")
+            .rotationState(RotationState.ALL)
+            .recipeModifiers(GTRecipeModifiers.OC_NON_PERFECT_SUBTICK)
+            .appearanceBlock(CASING_PTFE_INERT)
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle("AAAAA   ", "ACCCA   ", "ACCCA   ", "AAAAA   ", " AAA    ")
+                    .aisle("ABBBA DD", "C   A DD", "C   C DD", "A   A   ", "AAAAA   ")
+                    .aisle("ABBBA DD", "C   AEDD", "C   C DD", "A   A   ", "AAAAA   ")
+                    .aisle("ABBBA DD", "C   A DD", "C   C DD", "A   A   ", "AAAAA   ")
+                    .aisle("AA~AA   ", "ACCCA   ", "ACCCA   ", "AAAAA   ", " AAA    ")
+                    .where('~', Predicates.controller(blocks(definition.getBlock())))
+                    .where('A', blocks(CASING_PTFE_INERT.get()).setMinGlobalLimited(9)
+                            .or(autoAbilities(true, false, false))
+                            .or(autoAbilities(definition.getRecipeTypes()))
+                    )
+                    .where('B', blocks(CASING_INVAR_HEATPROOF.get()))
+                    .where('C', blocks(CASING_TEMPERED_GLASS.get()))
+                    .where('D', blocks(CASING_STEEL_SOLID.get()))
+                    .where('E', blocks(CASING_STEEL_PIPE.get()))
+                    .build())
+            .allowExtendedFacing(false)
+            .workableCasingModel(GTCEu.id("block/casings/solid/machine_casing_inert_ptfe"),
                     GTCEu.id("block/multiblock/assembly_line"))
             .register();
 
@@ -200,6 +231,71 @@ public class GTTMultiMachines {
             .workableCasingModel(GTCEu.id("block/casings/gcym/laser_safe_engraving_casing"),
                     GTCEu.id("block/multiblock/assembly_line"))
             .register();
+    public final static MultiblockMachineDefinition MEGA_BLAST_ALLOY_SMELTER = REGISTRATE
+            .multiblock(LangUtil.createBlockZhTranslation("alloy_blast_smelter", "巨型合金冶炼炉"), CoilWorkableElectricMultiblockMachine::new)
+            .langValue("Mega Alloy Blast Smelter")
+            .tooltips(Component.translatable("gtceu.machine.available_recipe_map_1.tooltip",
+                    Component.translatable("gtceu.alloy_blast_smelter")))
+            .tooltips(Component.translatable("gtceu.machine.electric_blast_furnace.tooltip.0"),
+                    Component.translatable("gtceu.machine.electric_blast_furnace.tooltip.1"),
+                    Component.translatable("gtceu.machine.electric_blast_furnace.tooltip.2"))
+            .rotationState(RotationState.ALL)
+            .recipeType(ALLOY_BLAST_RECIPES)
+            .recipeModifiers(GTRecipeModifiers.PARALLEL_HATCH, GTRecipeModifiers::ebfOverclock, baseParallel(128))
+            .appearanceBlock(CASING_HIGH_TEMPERATURE_SMELTING)
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle("#XXX#", "#CCC#", "#GGG#", "#CCC#", "#XXX#")
+                    .aisle("XXXXX", "CAAAC", "GAAAG", "CAAAC", "XXXXX")
+                    .aisle("XXXXX", "CAAAC", "GAAAG", "CAAAC", "XXMXX")
+                    .aisle("XXXXX", "CAAAC", "GAAAG", "CAAAC", "XXXXX")
+                    .aisle("#XSX#", "#CCC#", "#GGG#", "#CCC#", "#XXX#")
+                    .where('S', controller(blocks(definition.get())))
+                    .where('X', blocks(CASING_HIGH_TEMPERATURE_SMELTING.get()).setMinGlobalLimited(30)
+                            .or(autoAbilities(definition.getRecipeTypes()))
+                            .or(Predicates.autoAbilities(true, false, false)))
+                    .where('C', heatingCoils())
+                    .where('M', abilities(PartAbility.MUFFLER))
+                    .where('G', blocks(HEAT_VENT.get()))
+                    .where('A', air())
+                    .where('#', any())
+                    .build())
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle("  AAAAAAAAA  ","  AAAAAAAAA  ","      B      ","      B      ","      B      ","      B      ","             ","             ","             ","             ","             ","             ","             ","             ","             ","             ","             ")
+                    .aisle(" AAAAAAAAAAA "," AAAAAAAAAAA "," B CCCCCCC B "," B CCCCCCC B "," B AAAAAAA B "," B    B    B ","      B      ","      B      ","    BBBBB    ","      B      ","      B      ","      B      ","    BBBBB    ","      B      ","      B      ","      B      ","   AAAAAAA   ")
+                    .aisle("AAAAAAAAAAAAA","AAAAAAAAAAAAA","  CCCCCCCCC  ","  CCCCCCCCC  ","  AAAAAAAAA  ","  B DDDDD B  ","  B DDDDD B  ","  B DDDDD B  ","  BBDDDDDBB  ","  B DDDDD B  ","  B DDDDD B  ","  B DDDDD B  ","  BBDDDDDBB  ","  B DDDDD B  ","  B DDDDD B  ","  B DDDDD B  ","  AAAAAAAAA  ")
+                    .aisle("AAAAAAAAAAAAA","AAAAAAAAAAAAA"," CCCCCCCCCCC "," CCCCCCCCCCC "," AAAAAAAAAAA ","   D     D   ","   D     D   ","   D     D   ","  BD     DB  ","   D     D   ","   D     D   ","   D     D   ","  BD     DB  ","   D     D   ","   D     D   ","   D     D   "," AAAAAAAAAAA ")
+                    .aisle("AAAAAAAAAAAAA","AAAAAAAAAAAAA"," CCCCCCCCCCC "," CCCCCCCCCCC "," AAAAAAAAAAA ","  D       D  ","  D       D  ","  D       D  "," BD       DB ","  D       D  ","  D       D  ","  D       D  "," BD       DB ","  D       D  ","  D       D  ","  D       D  "," AAAAAAAAAAA ")
+                    .aisle("AAAAAAAAAAAAA","AAAAAAAAAAAAA"," CCCCCCCCCCC "," CCCCCCCCCCC "," AAAAAAAAAAA ","  D       D  ","  D       D  ","  D       D  "," BD       DB ","  D       D  ","  D       D  ","  D       D  "," BD       DB ","  D       D  ","  D       D  ","  D       D  "," AAAAAAAAAAA ")
+                    .aisle("AAAAAAAAAAAAA","AAAAAAAAAAAAA","BCCCCCCCCCCCB","BCCCCCCCCCCCB","BAAAAAAAAAAAB","BBD       DBB"," BD       DB "," BD       DB "," BD       DB "," BD       DB "," BD       DB "," BD       DB "," BD       DB "," BD       DB "," BD       DB "," BD       DB "," AAAAAEAAAAA ")
+                    .aisle("AAAAAAAAAAAAA","AAAAAAAAAAAAA"," CCCCCCCCCCC "," CCCCCCCCCCC "," AAAAAAAAAAA ","  D       D  ","  D       D  ","  D       D  "," BD       DB ","  D       D  ","  D       D  ","  D       D  "," BD       DB ","  D       D  ","  D       D  ","  D       D  "," AAAAAAAAAAA ")
+                    .aisle("AAAAAAAAAAAAA","AAAAAAAAAAAAA"," CCCCCCCCCCC "," CCCCCCCCCCC "," AAAAAAAAAAA ","  D       D  ","  D       D  ","  D       D  "," BD       DB ","  D       D  ","  D       D  ","  D       D  "," BD       DB ","  D       D  ","  D       D  ","  D       D  "," AAAAAAAAAAA ")
+                    .aisle("AAAAAAAAAAAAA","AAAAAAAAAAAAA"," CCCCCCCCCCC "," CCCCCCCCCCC "," AAAAAAAAAAA ","   D     D   ","   D     D   ","   D     D   ","  BD     DB  ","   D     D   ","   D     D   ","   D     D   ","  BD     DB  ","   D     D   ","   D     D   ","   D     D   "," AAAAAAAAAAA ")
+                    .aisle("AAAAAAAAAAAAA","AAAAAAAAAAAAA","  CCCCCCCCC  ","  CCCCCCCCC  ","  AAAAAAAAA  ","  B DDDDD B  ","  B DDDDD B  ","  B DDDDD B  ","  BBDDDDDBB  ","  B DDDDD B  ","  B DDDDD B  ","  B DDDDD B  ","  BBDDDDDBB  ","  B DDDDD B  ","  B DDDDD B  ","  B DDDDD B  ","  AAAAAAAAA  ")
+                    .aisle(" AAAAAAAAAAA "," AAAAAAAAAAA "," B CCCCCCC B "," B CCCCCCC B "," B AAAAAAA B "," B    B    B ","      B      ","      B      ","    BBBBB    ","      B      ","      B      ","      B      ","    BBBBB    ","      B      ","      B      ","      B      ","   AAAAAAA   ")
+                    .aisle("  AAAAAAAAA  ","  AAAAAAAAA  ","      B      ","      B      ","      B      ","      B      ","             ","             ","             ","             ","             ","             ","             ","             ","             ","             ","             ")
+                    .where("~", Predicates.controller(Predicates.blocks(definition.get())))
+                    .where("A", Predicates.blocks(ForgeRegistries.BLOCKS.getValue(new ResourceLocation("gtceu:high_temperature_smelting_casing"))))
+                    .where("B", frames(NaquadahAlloy))
+                    .where("C", Predicates.blocks(ForgeRegistries.BLOCKS.getValue(new ResourceLocation("gtceu:tungstensteel_firebox_casing"))))
+                    .where("D", heatingCoils())
+                    .where("E", abilities(PartAbility.MUFFLER))
+                    .where(" ", any())
+                    .build())
+            .workableCasingModel(GTCEu.id("block/casings/gcym/high_temperature_smelting_casing"),
+                    GTCEu.id("block/multiblock/gcym/blast_alloy_smelter"))
+            .additionalDisplay((controller, components) -> {
+                if (controller instanceof CoilWorkableElectricMultiblockMachine coilMachine && controller.isFormed()) {
+                    components.add(Component.translatable("gtceu.multiblock.blast_furnace.max_temperature",
+                            Component
+                                    .translatable(
+                                            FormattingUtil
+                                                    .formatNumbers(coilMachine.getCoilType().getCoilTemperature() +
+                                                            100L * Math.max(0, coilMachine.getTier() - GTValues.MV)) +
+                                                    "K")
+                                    .setStyle(Style.EMPTY.withColor(ChatFormatting.RED))));
+                }
+            })
+            .register();
 
     public static final MultiblockMachineDefinition HIGH_ENERGY_LASER_PIPE = REGISTRATE
             .multiblock(LangUtil.createBlockZhTranslation("high_energy_laser_pipe", "高能激光管道"), HighEnergyLaserPipeMachine::new)
@@ -249,7 +345,7 @@ public class GTTMultiMachines {
     public final static MultiblockMachineDefinition EXTRACTION_TANK = REGISTRATE.multiblock(LangUtil.createBlockZhTranslation("extraction_tank", "萃取槽"), WorkableElectricMultiblockMachine::new)
             .langValue("Extraction tank")
             .rotationState(RotationState.NON_Y_AXIS)
-            .recipeType(EXTRACTION_TANK_RECIPE)
+            .recipeType(EXTRACTION_TANK_RECIPES)
             .appearanceBlock(CASING_STEEL_SOLID)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("AAAAA", "AAAAA", "AAAAA")

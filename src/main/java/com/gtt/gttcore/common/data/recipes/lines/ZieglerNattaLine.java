@@ -51,16 +51,9 @@ public class ZieglerNattaLine {
         CHEMICAL_RECIPES.recipeBuilder(GTTCore.id("wet_dibutyl_magnesium"))
                 .inputFluids(Bromobutane.getFluid(2000))
                 .inputItems(dust, Magnesium)
-                .outputFluids(WetDibutylMagnesium.getFluid(1000))
+                .outputFluids(DibutylMagnesium.getFluid(1000))
                 .outputFluids(Bromine.getFluid(2000))
                 .duration(100)
-                .EUt(VH[2])
-                .save(provider);
-        CHEMICAL_RECIPES.recipeBuilder(GTTCore.id("dibutyl_magnesium"))
-                .inputFluids(WetDibutylMagnesium.getFluid(1000))
-                .inputItems(dust, Agar)
-                .outputFluids(DibutylMagnesium.getFluid(1000))
-                .duration(80)
                 .EUt(VH[2])
                 .save(provider);
         CHEMICAL_RECIPES.recipeBuilder(GTTCore.id("octanol"))

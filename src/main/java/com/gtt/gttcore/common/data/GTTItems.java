@@ -229,6 +229,26 @@ public class GTTItems {
             PACKAGED_CIRCUIT_OpV,
             PACKAGED_CIRCUIT_MAX
     };
+
+    public static ItemEntry<Item> OPTICAL_WAVEGUIDE_BOARD = REGISTRATE.item(LangUtil.createItemZhTranslation("optical_waveguide_circuit_board", "光学波导电路基板"), Item::new).lang("Optical Waveguide Circuit Board").register();
+    public static ItemEntry<Item> OPTICAL_WAVEGUIDE_CIRCUIT_BOARD = REGISTRATE.item(LangUtil.createItemZhTranslation("optical_waveguide_printed_circuit_board", "光学波导印刷电路基板"), Item::new).lang("Optical Waveguide Printed Circuit Board").register();
+
+
+    public static ItemEntry<Item> PHOTONIC_WAFER = REGISTRATE.item(LangUtil.createItemZhTranslation("photonic_wafer", "光学晶圆"), Item::new)
+            .lang("Photonic Wafer").register();
+
+    public static ItemEntry<Item> SILICON_LAYERED_PHOTONIC_WAFER = REGISTRATE.item(LangUtil.createItemZhTranslation("silicon_layered_photonic_wafer", "覆硅的光学晶圆"), Item::new)
+            .lang("Silicon Layered Photonic Wafer").register();
+
+    public static ItemEntry<Item> PHOTONIC_CPU_WAFER = REGISTRATE.item(LangUtil.createItemZhTranslation("photonic_cpu_wafer", "光学CPU晶圆"), Item::new)
+            .lang("Photonic CPU Wafer").register();
+
+    public static ItemEntry<Item> PHOTONIC_CPU_CHIP = REGISTRATE.item(LangUtil.createItemZhTranslation("photonic_cpu_chip", "光学CPU芯片"), Item::new)
+            .lang("Photonic CPU Chip").register();
+
+    public static ItemEntry<Item> LITHIUM_NIOBATE_BOULE = REGISTRATE.item(LangUtil.createItemZhTranslation("lithium_niobate_boule", "铌酸锂晶体"), Item::new)
+            .lang("Monocrystalline Lithium Niobate Boule")
+            .register();
     public static void init(){
 
     }

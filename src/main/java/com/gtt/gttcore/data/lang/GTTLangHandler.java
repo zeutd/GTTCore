@@ -43,6 +43,10 @@ public class GTTLangHandler {
         add("gttcore.dyson_cloud.query", "Dyson cloud value is currently %s", "戴森云数量目前为%s");
         add("gttcore.dyson_sphere_joint.set", "Dyson sphere joint value set: %s", "戴森球节点数量已设置为%s");
         add("gttcore.dyson_sphere_joint.query", "Dyson sphere joint value is currently %s", "戴森球节点数量目前是%s");
+
+
+
+        add("gttcore.machine.base_parallel", "Base parallel: %s", "基础并行：%s");
     }
     
     public static void add(String key, String enValue, String zhValue){

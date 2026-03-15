@@ -572,5 +572,39 @@ public class MiscRecipes {
 
 
 
+
+        CHEMICAL_RECIPES.recipeBuilder(GTTCore.id("aluminium_chloride"))
+                .EUt(VA[LV])
+                .duration(100)
+                .inputItems(dust, Aluminium, 2)
+                .inputFluids(HydrochloricAcid.getFluid(6000))
+                .outputFluids(Hydrogen.getFluid(6000))
+                .outputItems(dust, AluminiumChloride, 8)
+                .save(provider);
+        CHEMICAL_RECIPES.recipeBuilder(GTTCore.id("trichlorosilane"))
+                .EUt(VA[LV])
+                .duration(100)
+                .inputItems(dust, Silicon, 1)
+                .inputFluids(HydrochloricAcid.getFluid(3000))
+                .outputFluids(Hydrogen.getFluid(2000))
+                .outputFluids(Trichlorosilane.getFluid(1000))
+                .save(provider);
+        CHEMICAL_RECIPES.recipeBuilder(GTTCore.id("silane"))
+                .EUt(VA[LV])
+                .duration(100)
+                .notConsumable(dust, AluminiumChloride, 1)
+                .inputFluids(Trichlorosilane.getFluid(4000))
+                .outputFluids(Silane.getFluid(1000))
+                .outputFluids(SiliconChloride.getFluid(3000))
+                .save(provider);
+        CHEMICAL_RECIPES.recipeBuilder(GTTCore.id("silicon_dust_from_silicon_chloride"))
+                .EUt(VA[LV])
+                .duration(100)
+                .inputFluids(SiliconChloride.getFluid(1000))
+                .inputFluids(Hydrogen.getFluid(4000))
+                .outputFluids(HydrochloricAcid.getFluid(4000))
+                .outputItems(dust, Silicon)
+                .save(provider);
+
     }
 }

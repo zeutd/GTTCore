@@ -9,10 +9,7 @@ import com.gregtechceu.gtceu.common.data.GTItems;
 import com.gregtechceu.gtceu.data.recipe.configurable.RecipeRemoval;
 import com.gtt.gttcore.common.data.GTTItems;
 import com.gtt.gttcore.common.data.recipes.lines.*;
-import com.gtt.gttcore.common.data.recipes.remove.AE2RecipeRemoval;
-import com.gtt.gttcore.common.data.recipes.remove.AdAstraRecipeRemoval;
-import com.gtt.gttcore.common.data.recipes.remove.CreateRecipeRemoval;
-import com.gtt.gttcore.common.data.recipes.remove.GregTechRecipeRemoval;
+import com.gtt.gttcore.common.data.recipes.remove.*;
 import com.simibubi.create.AllItems;
 import dev.latvian.mods.kubejs.item.InputItem;
 import dev.latvian.mods.kubejs.item.OutputItem;
@@ -127,6 +124,7 @@ public class GTTRecipes {
         AE2RecipeRemoval.init(provider);
         GregTechRecipeRemoval.init(provider);
         RecipeRemoval.init(resourceLocation -> provider.accept(new IDFilter(resourceLocation)));
+        BWGRecipeRemoval.init(provider);
         provider.accept(new IDFilter(new ResourceLocation("minecraft:netherite_ingot")));
     }
 }

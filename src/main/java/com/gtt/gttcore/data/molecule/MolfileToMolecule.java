@@ -1,7 +1,6 @@
 package com.gtt.gttcore.data.molecule;
 
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
-import com.gregtechceu.gtceu.common.data.GTElements;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gtt.gttcore.GTTCore;
 import com.rubenverg.moldraw.molecule.*;
@@ -83,188 +82,48 @@ public class MolfileToMolecule {
         Molecule result = new Molecule();
         result.addAll(molecule.contents().stream().map(moleculeElement -> {
             if (moleculeElement instanceof Atom atom){
+                if (atom.isInvisible()) return moleculeElement;
                 int connectionCount = 0;
                 for (MoleculeElement<?> content : molecule.contents()) {
                     if (content instanceof Bond bond){
                         if (bond.a() == atom.index() || bond.b() == atom.index()){
-                            connectionCount += 1;
+                            connectionCount += bond.lines().length;
                         }
                     }
                 }
                 Material material = atom.element().element().material;
                 int hydrogenCount = 0;
                 if (material != GTMaterials.NULL) {
-                     hydrogenCount = calculateValence(
-                            (int) material.getElement().protons(),
-                            connectionCount
-                    ).hydrogenCount;
+                    int protonCount = (int) material.getElement().protons();
+                    hydrogenCount = getMaxValence(protonCount) - connectionCount;
                     LOGGER.info("Element {} Hydrogen Count {}", atom.element().element().symbol, hydrogenCount);
                 }
                 return new Atom(atom.index(), atom.element(), Optional.empty(), Optional.ofNullable(hydrogenCount <= 0 ? null : Element.H.count(hydrogenCount)), Optional.empty(), Optional.empty(), atom.position());
             }
             return moleculeElement;
         }).collect(Collectors.toList()));
-        return molecule;
+        return result;
 
     }
-
-    public static ValenceCalculationResult calculateValence(int protonCount, int connectionCount){
-        return switch (calculateGroup(protonCount)){
-            case 1 -> new ValenceCalculationResult(1, 1 - connectionCount);
-            case 2 -> {
-                if (connectionCount == 0 || connectionCount == 2) yield new ValenceCalculationResult(2, 0);
-                yield new ValenceCalculationResult(connectionCount, -1);
-            }
-            case 3 -> {
-                if (
-                        protonCount == GTElements.B.protons() ||
-                        protonCount == GTElements.Al.protons() ||
-                        protonCount == GTElements.Ga.protons() ||
-                        protonCount == GTElements.In.protons()
-                ){
-                    yield new ValenceCalculationResult(3, 3 - connectionCount);
-                } else if (protonCount == GTElements.Tl.protons()) {
-                    if (connectionCount <= 1){
-                        yield new ValenceCalculationResult(1, 1 - connectionCount);
-                    }else {
-                        yield new ValenceCalculationResult(3, 3 - connectionCount);
-                    }
-                }
-                yield new ValenceCalculationResult(connectionCount, 0);
-            }
-            case 4 -> {
-                if (
-                        protonCount == GTElements.C.protons() ||
-                        protonCount == GTElements.Si.protons() ||
-                        protonCount == GTElements.Ge.protons()
-                ){
-                    yield new ValenceCalculationResult(4, 4 - connectionCount);
-                } else if (
-                        protonCount == GTElements.Sn.protons() ||
-                        protonCount == GTElements.Pb.protons()
-                ) {
-                    if (connectionCount <= 2){
-                        yield new ValenceCalculationResult(2, 2 - connectionCount);
-                    } else {
-                        yield new ValenceCalculationResult(4, 4 - connectionCount);
-                    }
-                }
-                yield new ValenceCalculationResult(connectionCount, 0);
-            }
-            case 5 -> {
-                if (
-                        protonCount == GTElements.N.protons() ||
-                        protonCount == GTElements.P.protons()
-                ){
-                    if (protonCount == GTElements.N.protons() || connectionCount <= 3){
-                        yield new ValenceCalculationResult(3, 3 - connectionCount);
-                    }
-                    else {
-                        yield new ValenceCalculationResult(5, 5 - connectionCount);
-                    }
-                }
-                else if (
-                        protonCount == GTElements.Bi.protons() ||
-                        protonCount == GTElements.Sb.protons() ||
-                        protonCount == GTElements.As.protons()
-                ) {
-                    if (connectionCount <= 3 && protonCount != GTElements.As.protons()){
-                        yield new ValenceCalculationResult(3, 3 - connectionCount);
-                    } else {
-                        yield new ValenceCalculationResult(5, 5 - connectionCount);
-                    }
-                } else {
-                    yield new ValenceCalculationResult(connectionCount, 0);
-                }
-            }
-            case 6 -> {
-                if (protonCount == GTElements.O.protons()){
-                    yield new ValenceCalculationResult(2, 2 - connectionCount);
-                } else if (
-                        protonCount == GTElements.S.protons() ||
-                        protonCount == GTElements.Se.protons() ||
-                        protonCount == GTElements.Po.protons()
-                ) {
-                    if (connectionCount <= 2){
-                        yield new ValenceCalculationResult(2, 2 - connectionCount);
-                    } else if (connectionCount <= 4){
-                        yield new ValenceCalculationResult(4, 4 - connectionCount);
-                    } else {
-                        yield new ValenceCalculationResult(6, 6 - connectionCount);
-                    }
-                } else if (protonCount == GTElements.Te.protons()) {
-                    if (connectionCount <= 2) {
-                        yield new ValenceCalculationResult(2, 2 - connectionCount);
-                    } else if (connectionCount <= 4) {
-                        yield new ValenceCalculationResult(4, 4 - connectionCount);
-                    } else if (connectionCount <= 6) {
-                        yield new ValenceCalculationResult(6, 6 - connectionCount);
-                    } else {
-                        yield new ValenceCalculationResult(connectionCount, -1);
-                    }
-                }
-                yield new ValenceCalculationResult(connectionCount, 0);
-            }
-            case 7 -> {
-                if (protonCount == GTElements.F.protons()) {
-                    yield new ValenceCalculationResult(1, 1 - connectionCount);
-                } else if (
-                        protonCount == GTElements.Cl.protons() ||
-                        protonCount == GTElements.Br.protons() ||
-                        protonCount == GTElements.I.protons() ||
-                        protonCount == GTElements.At.protons()
-                ) {
-                    if (connectionCount <= 1) {
-                        yield new ValenceCalculationResult(1, 1 - connectionCount);
-                    }
-                    if (
-                            connectionCount == 2 ||
-                            connectionCount == 4 ||
-                            connectionCount == 6
-                    ) {
-                        yield new ValenceCalculationResult(connectionCount, -1);
-                    }
-                    if (connectionCount > 7) {
-                        yield new ValenceCalculationResult(connectionCount, -1);
-                    }
-                }
-                yield new ValenceCalculationResult(connectionCount, 0);
-            }
-            case 8 -> {
-                if (protonCount == GTElements.Pt.protons()) {
-                    if (connectionCount <= 2) {
-                        yield new ValenceCalculationResult(2, 2 - connectionCount);
-                    }
-                    if (connectionCount <= 4) {
-                        yield new ValenceCalculationResult(4, 4 - connectionCount);
-                    }
-                    yield new ValenceCalculationResult(connectionCount, -1);
-                }
-                if (connectionCount == 0) {
-                    yield new ValenceCalculationResult(1, 0);
-                }
-                yield new ValenceCalculationResult(connectionCount, -1);
-            }
-            default -> throw new IllegalStateException("Unexpected group value: " + calculateGroup(protonCount));
+    public static int getMaxValence(int protonCount) {
+        return switch (protonCount) {
+            case 1 -> 1;    // H
+            case 5 -> 3;    // B
+            case 6 -> 4;    // C
+            case 7 -> 3;    // N
+            case 8 -> 2;    // O
+            case 9 -> 1;    // F
+            case 13 -> 3;    // Al
+            case 14 -> 4;    // Si
+            case 15 -> 3;  // P
+            case 16 -> 2;    // S
+            case 17 -> 1;    // Cl
+            case 33 -> 3;    // As
+            case 34 -> 2;    // Se
+            case 35 -> 1;    // Br
+            case 52 -> 2;    // Te
+            case 53 -> 1;    // I
+            default -> 0;
         };
-    }
-
-    public static int calculateGroup(int protonCount){
-        if (protonCount <= 2){
-            return protonCount <= 1 ? 1 : 8;
-        } else if (protonCount <= 18) {
-            return (protonCount - 3) % 8 + 1;
-        } else if (protonCount <= 54) {
-            return (protonCount - 2) % 18 < 8 ? Math.min((protonCount - 2) % 18 + 1, 8) : (protonCount - 11) % 18 + 1;
-        } else if (protonCount <= 118) {
-            return (protonCount - 23) % 32 + 1 < 3 ? (protonCount - 23) % 32 + 1 :
-                    (protonCount - 23) % 32 + 1 < 18 ? 3 :
-                    ((protonCount - 23) % 32 + 1 >= 25 ? Math.min((protonCount - 4) % 32 + 1, 8) : (protonCount - 15) % 32 + 1);
-        }
-        return 1;
-    }
-
-    public record ValenceCalculationResult(int valence, int hydrogenCount){
-
     }
 }
