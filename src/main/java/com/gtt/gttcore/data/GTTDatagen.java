@@ -13,7 +13,7 @@ import net.minecraftforge.common.data.LanguageProvider;
 import net.minecraftforge.data.event.GatherDataEvent;
 
 import static com.gtt.gttcore.GTTCore.LOGGER;
-import static com.gtt.gttcore.common.registry.GTTRegistration.REGISTRATE;
+import static com.gtt.gttcore.api.registry.GTTRegistration.REGISTRATE;
 
 public class GTTDatagen {
     public static void gatherData(GatherDataEvent event){

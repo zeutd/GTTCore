@@ -1,7 +1,6 @@
 package com.gtt.gttcore.api.machine.trait;
 
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
-import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,8 +10,8 @@ public class InfiniteHighEnergyLaserContainer extends NotifiableHighEnergyLaserC
 
     private int maxLaser;
 
-    public InfiniteHighEnergyLaserContainer(MetaMachine machine, int maxLaser){
-        super(machine, IO.OUT, true);
+    public InfiniteHighEnergyLaserContainer(int maxLaser){
+        super(IO.OUT, true);
         this.maxLaser = maxLaser;
     }
 

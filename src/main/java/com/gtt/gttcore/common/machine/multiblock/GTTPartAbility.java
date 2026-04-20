@@ -5,5 +5,7 @@ import com.gregtechceu.gtceu.api.machine.multiblock.PartAbility;
 public class GTTPartAbility {
     public static final PartAbility EXPORT_HIGH_ENERGY_LASER = new PartAbility("export_high_energy_laser");
     public static final PartAbility IMPORT_HIGH_ENERGY_LASER = new PartAbility("import_high_energy_laser");
+    public static final PartAbility EXPORT_PARTICLE = new PartAbility("export_particle");
+    public static final PartAbility IMPORT_PARTICLE = new PartAbility("import_particle");
     public static final PartAbility LARGE_ROTOR_HOLDER = new PartAbility("large_rotor_holder");
 }

@@ -24,11 +24,11 @@ public abstract class SlotMultiblockMachine extends WorkableElectricMultiblockMa
     private final NotifiableItemStackHandler inventory;
     public SlotMultiblockMachine(BlockEntityCreationInfo info) {
         super(info);
-        inventory = createInventory();
+        inventory = attachTrait(createInventory());
     }
 
     protected NotifiableItemStackHandler createInventory() {
-        return new NotifiableItemStackHandler(this, 1, IO.NONE, IO.BOTH, size -> new CustomItemStackHandler(size) {
+        return new NotifiableItemStackHandler(1, IO.NONE, IO.BOTH, size -> new CustomItemStackHandler(size) {
             @Override
             public int getSlotLimit(int slot) {
                 return 1;

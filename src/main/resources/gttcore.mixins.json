@@ -5,10 +5,13 @@
   "refmap": "gttcore.mixins.refmap.json",
   "minVersion": "0.8",
   "mixins": [
+    "ExistingFileHelperAccessor",
     "adastra.GravityApiImplMixin",
     "adastra.OxygenApiImplMixin",
     "appeng.BasicCellInventoryMixin",
     "appeng.BasicStorageCellMixin",
+    "gtm.Fix1",
+    "gtm.Fix2",
     "gtm.GCYMMachinesMixin",
     "gtm.GTDimensionMarkersMixin",
     "gtm.MetaMachineMixin",

@@ -24,7 +24,7 @@ public class CreativeHighEnergyLaserProviderMachine extends MetaMachine implemen
     private boolean active;
     public CreativeHighEnergyLaserProviderMachine(BlockEntityCreationInfo info) {
         super(info);
-        laserContainer = new InfiniteHighEnergyLaserContainer(this, 0);
+        laserContainer = attachTrait(new InfiniteHighEnergyLaserContainer(0));
     }
 
     @Override

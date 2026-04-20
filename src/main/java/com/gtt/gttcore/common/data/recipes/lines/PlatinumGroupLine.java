@@ -103,7 +103,7 @@ public class PlatinumGroupLine {
                 .EUt(VHA[LV])
                 .duration(100)
                 .save(provider);
-        CHEMICAL_RECIPES.recipeBuilder(GTTCore.id("platinum_group_ammonium_hexanitrorhodium"))
+        LARGE_CHEMICAL_RECIPES.recipeBuilder(GTTCore.id("platinum_group_ammonium_hexanitrorhodium"))
                 .inputItems(dust, RhodiumHydroxide, 1)
                 .inputItems(dust, SodiumNitrite, 1)
                 .inputItems(dust, AmmoniumChloride, 1)

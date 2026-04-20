@@ -71,7 +71,7 @@ public class ZieglerNattaLine {
                 .duration(100)
                 .EUt(VH[2])
                 .save(provider);
-        CHEMICAL_RECIPES.recipeBuilder(GTTCore.id("phthaloyl_chlorine"))
+        LARGE_CHEMICAL_RECIPES.recipeBuilder(GTTCore.id("phthaloyl_chlorine"))
                 .inputFluids(PhosphorusTrichloride.getFluid(4000))
                 .inputFluids(PhthalicAcid.getFluid(4000))
                 .outputFluids(PhthaloylChlorine.getFluid(4000))

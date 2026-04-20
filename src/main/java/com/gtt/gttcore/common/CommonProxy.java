@@ -25,7 +25,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.RegisterEvent;
 
 import static com.gtt.gttcore.GTTCore.LOGGER;
-import static com.gtt.gttcore.common.registry.GTTRegistration.REGISTRATE;
+import static com.gtt.gttcore.api.registry.GTTRegistration.REGISTRATE;
 
 @SuppressWarnings("removal")
 public class CommonProxy {
@@ -51,11 +51,13 @@ public class CommonProxy {
             GTTPoiTypes.init();
         });
         GTTParticleTypes.init(modEventBus);
+        GTTParticles.init();
     }
 
     public static void init(){
         GTTMaterialIconType.init();
         GTTBlocks.init();
+        GTTBlockEntities.init();
         GTTEntityTypes.init();
     }
 

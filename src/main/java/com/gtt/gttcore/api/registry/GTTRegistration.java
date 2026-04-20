@@ -1,4 +1,4 @@
-package com.gtt.gttcore.common.registry;
+package com.gtt.gttcore.api.registry;
 
 import com.gregtechceu.gtceu.api.registry.registrate.GTRegistrate;
 import com.gtt.gttcore.GTTCore;

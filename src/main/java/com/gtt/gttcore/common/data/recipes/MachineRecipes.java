@@ -13,6 +13,9 @@ import com.gregtechceu.gtceu.data.recipe.CustomTags;
 import com.gregtechceu.gtceu.data.recipe.VanillaRecipeHelper;
 import com.gtt.gttcore.GTTCore;
 import com.gtt.gttcore.api.capability.recipe.HighEnergyLaserRecipeCapability;
+import com.gtt.gttcore.api.capability.recipe.ParticleRecipeCapability;
+import com.gtt.gttcore.api.particle.ParticleStack;
+import com.gtt.gttcore.common.data.GTTParticles;
 import com.tterrag.registrate.util.entry.ItemProviderEntry;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import net.minecraft.data.recipes.FinishedRecipe;
@@ -28,28 +31,38 @@ import java.util.function.Consumer;
 
 import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
-import static com.gregtechceu.gtceu.common.data.GTBlocks.*;
+import static com.gregtechceu.gtceu.common.data.GTBlocks.RUBBER_LOG;
+import static com.gregtechceu.gtceu.common.data.GTBlocks.RUBBER_SAPLING;
 import static com.gregtechceu.gtceu.common.data.GTItems.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
-import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.*;
-import static com.gregtechceu.gtceu.data.recipe.GTCraftingComponents.*;
-import static com.gregtechceu.gtceu.data.recipe.GTCraftingComponents.CABLE;
+import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.ASSEMBLER_RECIPES;
 import static com.gregtechceu.gtceu.data.recipe.GTCraftingComponents.PISTON;
+import static com.gregtechceu.gtceu.data.recipe.GTCraftingComponents.*;
 import static com.gtt.gttcore.common.data.GTTItems.*;
 import static com.gtt.gttcore.common.data.GTTMachines.*;
 import static com.gtt.gttcore.common.data.GTTMaterials.*;
 import static com.gtt.gttcore.common.data.recipes.GTTRecipeTypes.*;
-import static net.minecraft.world.item.Items.*;
 import static net.minecraft.world.item.Items.GLASS;
+import static net.minecraft.world.item.Items.*;
 
 public class MachineRecipes {
     public static void init(Consumer<FinishedRecipe> provider) {
         registerFissionRecipes(provider);
+        registerNeutronIrradiationRecipes(provider);
         registerGreenhouseRecipes(provider);
         registerCultivatorRecipes(provider);
         registerHighEnergyLaserRecipes(provider);
         registerMachineRecipes(provider);
         registerCVDRecipes(provider);
+    }
+    private static void registerNeutronIrradiationRecipes(Consumer<FinishedRecipe> provider){
+        NEUTRON_IRRADIATION_RECIPES.recipeBuilder(GTTCore.id("tritium"))
+                .duration(40)
+                .inputItems(dust, Lithium6, 2)
+                .outputFluids(Tritium.getFluid(L))
+                .outputFluids(Helium.getFluid(L))
+                .EUt(VA[LV])
+                .save(provider);
     }
     private static void registerMachineRecipes(Consumer<FinishedRecipe> provider){
         VanillaRecipeHelper.addShapedRecipe(provider, true, GTTCore.id("steam_engine_ulv"), ULV_STEAM_ENGINE.asStack(),
@@ -330,21 +343,31 @@ public class MachineRecipes {
                 .outputItems(rod, DepletedUranium238, 16)
                 .outputFluids(SupercriticalSteam.getFluid((int) (V[IV])))
                 .inputFluids(Water.getFluid((int) (V[IV] / 100)))
-                .duration(200)
+                .duration(800)
                 .save(provider);
         FISSION_RECIPES.recipeBuilder(GTTCore.id("fission_plutonium"))
                 .inputItems(rod, Plutonium239, 16)
                 .outputItems(rod, DepletedPlutonium239, 16)
                 .outputFluids(SupercriticalSteam.getFluid((int) (V[IV])))
                 .inputFluids(Water.getFluid((int) (V[IV] / 100)))
-                .duration(200)
+                .duration(800)
                 .save(provider);
         FISSION_RECIPES.recipeBuilder(GTTCore.id("fission_thorium"))
                 .inputItems(rod, Thorium, 16)
                 .outputItems(rod, DepletedThorium, 16)
                 .outputFluids(SupercriticalSteam.getFluid((int) (V[IV])))
                 .inputFluids(Water.getFluid((int) (V[IV] / 100)))
-                .duration(200)
+                .duration(800)
+                .save(provider);
+        FISSION_RECIPES.recipeBuilder(GTTCore.id("fission_lithium_6"))
+                .inputItems(rod, Uranium238, 8)
+                .inputItems(rod, Lithium6, 8)
+                .outputItems(rod, DepletedUranium238, 8)
+                .outputFluids(SupercriticalSteam.getFluid((int) (V[IV] / 2)))
+                .outputFluids(Tritium.getFluid(L * 4))
+                .outputFluids(Helium.getFluid(L * 4))
+                .inputFluids(Water.getFluid((int) (V[IV] / 100)))
+                .duration(800)
                 .save(provider);
     }
 
@@ -355,6 +378,7 @@ public class MachineRecipes {
                 .duration(10)
                 .outputItems(DIRT_PATH)
                 .output(HighEnergyLaserRecipeCapability.CAP, 1000)
+                .output(ParticleRecipeCapability.CAP, new ParticleStack(GTTParticles.ANTIPROTON, 1))
                 .save(provider);
         LASER_ENGRAVING_PLANT_RECIPES.recipeBuilder(GTTCore.id("test"))
                 .EUt(VA[ULV])

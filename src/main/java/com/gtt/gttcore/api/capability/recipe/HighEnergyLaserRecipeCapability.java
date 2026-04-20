@@ -4,17 +4,13 @@ import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.capability.recipe.IRecipeCapabilityHolder;
 import com.gregtechceu.gtceu.api.capability.recipe.IRecipeHandler;
 import com.gregtechceu.gtceu.api.capability.recipe.RecipeCapability;
-import com.gregtechceu.gtceu.api.machine.feature.IOverclockMachine;
-import com.gregtechceu.gtceu.api.machine.feature.ITieredMachine;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
-import com.gregtechceu.gtceu.api.recipe.RecipeHelper;
 import com.gregtechceu.gtceu.api.recipe.content.Content;
 import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
 import com.gregtechceu.gtceu.api.recipe.content.SerializerInteger;
 import com.gregtechceu.gtceu.utils.GTMath;
 import com.gtt.gttcore.api.GTTRecipeHelper;
 import com.gtt.gttcore.api.machine.trait.NotifiableHighEnergyLaserContainer;
-import com.gtt.gttcore.common.machine.IHighEnergyLaserProvider;
 import com.lowdragmc.lowdraglib.gui.widget.LabelWidget;
 import com.lowdragmc.lowdraglib.gui.widget.WidgetGroup;
 import com.lowdragmc.lowdraglib.utils.LocalizationUtils;
@@ -51,7 +47,7 @@ public class HighEnergyLaserRecipeCapability extends RecipeCapability<Integer> {
     @Override
     public int getMaxParallelByInput(IRecipeCapabilityHolder holder, GTRecipe recipe, int limit, boolean tick) {
         int recipeLaserAmount = GTTRecipeHelper.getInputHighEnergyLaser(recipe);
-        int maxLaser = Integer.MAX_VALUE;
+        int maxLaser = 0;
         for (IRecipeHandler<?> container : holder.getCapabilitiesFlat(IO.IN, CAP)) {
             if (container instanceof NotifiableHighEnergyLaserContainer laserContainer) {
                 maxLaser += laserContainer.getLaserAmount();

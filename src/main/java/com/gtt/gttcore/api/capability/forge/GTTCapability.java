@@ -1,6 +1,8 @@
 package com.gtt.gttcore.api.capability.forge;
 
 import com.gtt.gttcore.api.capability.IHighEnergyLaserInfoProvider;
+import com.gtt.gttcore.api.capability.IParticleContainer;
+import com.gtt.gttcore.api.capability.IParticleInfoProvider;
 import com.gtt.gttcore.common.machine.IHighEnergyLaserProvider;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityManager;
@@ -15,8 +17,16 @@ public class GTTCapability {
     public static final Capability<IHighEnergyLaserProvider> CAPABILITY_HIGH_ENERGY_LASER_CONTAINER = CapabilityManager
             .get(new CapabilityToken<>() {});
 
+    public static final Capability<IParticleContainer> CAPABILITY_PARTICLE = CapabilityManager
+            .get(new CapabilityToken<>() {});
+
+    public static final Capability<IParticleInfoProvider> CAPABILITY_PARTICLE_INFO_PROVIDER = CapabilityManager
+            .get(new CapabilityToken<>() {});
+
     public static void register(RegisterCapabilitiesEvent event) {
         event.register(IHighEnergyLaserInfoProvider.class);
         event.register(IHighEnergyLaserProvider.class);
+        event.register(IParticleContainer.class);
+        event.register(IParticleInfoProvider.class);
     }
 }

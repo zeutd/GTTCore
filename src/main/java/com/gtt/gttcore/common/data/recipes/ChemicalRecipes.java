@@ -9,8 +9,7 @@ import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.api.GTValues.L;
 import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.dust;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
-import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.BLAST_RECIPES;
-import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.CHEMICAL_RECIPES;
+import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.*;
 import static com.gtt.gttcore.common.data.GTTMaterials.*;
 
 public class ChemicalRecipes {
@@ -47,7 +46,7 @@ public class ChemicalRecipes {
         CHEMICAL_RECIPES.recipeBuilder(GTTCore.id("arsenic_hydride"))
                 .inputItems(dust, ZincDiarsenide, 5)
                 .inputFluids(SulfuricAcid.getFluid(3000))
-                .outputItems(ZincSulfate, 18)
+                .outputItems(dust, ZincSulfate, 18)
                 .outputFluids(ArsenicHydride.getFluid(2000))
                 .duration(100)
                 .EUt(VA[MV])
@@ -59,7 +58,7 @@ public class ChemicalRecipes {
 //                .duration(100)
 //                .EUt(VA[MV])
 //                .save(provider);
-        CHEMICAL_RECIPES.recipeBuilder(GTTCore.id("iodomethane"))
+        LARGE_CHEMICAL_RECIPES.recipeBuilder(GTTCore.id("iodomethane"))
                 .inputItems(dust, Iodine, 5)
                 .inputItems(dust, Phosphorus, 1)
                 .inputFluids(Methanol.getFluid(5000))
@@ -96,7 +95,7 @@ public class ChemicalRecipes {
         CHEMICAL_RECIPES.recipeBuilder(GTTCore.id("lithium_carbonate"))
                 .inputItems(dust, LithiumHydroxide, 6)
                 .inputFluids(CarbonDioxide.getFluid(1000))
-                .outputItems(LithiumCarbonate, 6)
+                .outputItems(dust, LithiumCarbonate, 6)
                 .outputFluids(Water.getFluid(1000))
                 .duration(100)
                 .EUt(VA[MV])
@@ -109,5 +108,85 @@ public class ChemicalRecipes {
                 .duration(100)
                 .EUt(VA[MV])
                 .save(provider);
+        CHEMICAL_RECIPES.recipeBuilder(GTTCore.id("aluminium_chloride"))
+                .EUt(VA[LV])
+                .duration(100)
+                .inputItems(dust, Aluminium, 2)
+                .inputFluids(HydrochloricAcid.getFluid(6000))
+                .outputFluids(Hydrogen.getFluid(6000))
+                .outputItems(dust, AluminiumChloride, 8)
+                .save(provider);
+        CHEMICAL_RECIPES.recipeBuilder(GTTCore.id("trichlorosilane"))
+                .EUt(VA[LV])
+                .duration(100)
+                .inputItems(dust, Silicon, 1)
+                .inputFluids(HydrochloricAcid.getFluid(3000))
+                .outputFluids(Hydrogen.getFluid(2000))
+                .outputFluids(Trichlorosilane.getFluid(1000))
+                .save(provider);
+        CHEMICAL_RECIPES.recipeBuilder(GTTCore.id("silane"))
+                .EUt(VA[LV])
+                .duration(100)
+                .notConsumable(dust, AluminiumChloride, 1)
+                .inputFluids(Trichlorosilane.getFluid(4000))
+                .outputFluids(Silane.getFluid(1000))
+                .outputFluids(SiliconChloride.getFluid(3000))
+                .save(provider);
+        CHEMICAL_RECIPES.recipeBuilder(GTTCore.id("silicon_dust_from_silicon_chloride"))
+                .EUt(VA[LV])
+                .duration(100)
+                .inputFluids(SiliconChloride.getFluid(1000))
+                .inputFluids(Hydrogen.getFluid(4000))
+                .outputFluids(HydrochloricAcid.getFluid(4000))
+                .outputItems(dust, Silicon)
+                .save(provider);
+
+        CHEMICAL_RECIPES.recipeBuilder(GTTCore.id("lithium_amalgam"))
+                .inputItems(dust, Lithium)
+                .inputFluids(Mercury.getFluid(1000))
+                .outputFluids(LithiumAmalgam.getFluid(1000))
+                .duration(100)
+                .EUt(VA[LV])
+                .save(provider);
+        CHEMICAL_RECIPES.recipeBuilder(GTTCore.id("lithium_6_amalgam"))
+                .inputFluids(LithiumAmalgam.getFluid(1000))
+                .inputItems(dust, LithiumHydroxide)
+                .outputFluids(Lithium6Amalgam.getFluid(1000))
+                .duration(100)
+                .EUt(VA[LV])
+                .save(provider);
+
+
+
+        CHEMICAL_RECIPES.recipeBuilder("formaldehyde")
+                .inputFluids(Methanol.getFluid(1000))
+                .inputFluids(Oxygen.getFluid(1000))
+                .notConsumable(dust, Silver)
+                .outputFluids(Formaldehyde.getFluid(1000))
+                .outputFluids(Water.getFluid(1000))
+                .duration(100).EUt(VA[ULV]).save(provider);
+
+        CHEMICAL_RECIPES.recipeBuilder("methanol_from_dioxide")
+                .inputFluids(Hydrogen.getFluid(6000))
+                .inputFluids(CarbonDioxide.getFluid(1000))
+                .circuitMeta(2)
+                .outputFluids(Water.getFluid(1000))
+                .outputFluids(Methanol.getFluid(1000))
+                .duration(120).EUt(VA[ULV]).save(provider);
+
+        CHEMICAL_RECIPES.recipeBuilder("methanol_from_monoxide")
+                .circuitMeta(1)
+                .inputFluids(Hydrogen.getFluid(4000))
+                .inputFluids(CarbonMonoxide.getFluid(1000))
+                .outputFluids(Methanol.getFluid(1000))
+                .duration(120).EUt(VA[ULV]).save(provider);
+
+        CHEMICAL_RECIPES.recipeBuilder("methanol_from_carbon")
+                .circuitMeta(3)
+                .inputItems(dust, Carbon)
+                .inputFluids(Hydrogen.getFluid(4000))
+                .inputFluids(Oxygen.getFluid(1000))
+                .outputFluids(Methanol.getFluid(1000))
+                .duration(320).EUt(VA[ULV]).save(provider);
     }
 }

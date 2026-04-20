@@ -167,15 +167,24 @@ public class MiscRecipes {
                 .duration(80).EUt(VA[EV]).save(provider);
     }
     public static void registerMachineRecipes(Consumer<FinishedRecipe> provider){
-//        ASSEMBLER_RECIPES.recipeBuilder(GTTCore.id("fission_reactor_machine"))
-//                .inputItems(CASING_LEAD_RADIATION_PROOF)
-//                .inputItems(CustomTags.LuV_CIRCUITS, 5)
-//                .inputItems(NEUTRON_REFLECTOR, 5)
-//                .inputItems(CustomTags.IV_CIRCUITS, 6)
-//                .inputItems(ELECTRIC_PUMP_IV, 10)
-//                .inputItems(ELECTRIC_PISTON_IV, 10)
-//                .outputItems(FISSION_REACTOR)
-//                .EUt(VA[IV]).duration(200).save(provider);
+        ASSEMBLER_RECIPES.recipeBuilder(GTTCore.id("fission_reactor_machine"))
+                .inputItems(CASING_LEAD_RADIATION_PROOF)
+                .inputItems(CustomTags.LuV_CIRCUITS, 5)
+                .inputItems(NEUTRON_REFLECTOR, 5)
+                .inputItems(CustomTags.IV_CIRCUITS, 6)
+                .inputItems(ELECTRIC_PUMP_IV, 10)
+                .inputItems(ELECTRIC_PISTON_IV, 10)
+                .outputItems(FISSION_REACTOR)
+                .EUt(VA[IV]).duration(200).save(provider);
+        ASSEMBLER_RECIPES.recipeBuilder(GTTCore.id("neutron_irradiation_chamber"))
+                .inputItems(CASING_LEAD_RADIATION_PROOF)
+                .inputItems(CustomTags.UV_CIRCUITS, 5)
+                .inputItems(CustomTags.ZPM_CIRCUITS, 6)
+                .inputItems(NEUTRON_REFLECTOR, 5)
+                .inputItems(EMITTER_LuV, 2)
+                .inputItems(FIELD_GENERATOR_IV, 2)
+                .outputItems(NEUTRON_IRRAADIATION_CHAMBER)
+                .EUt(VA[IV]).duration(200).save(provider);
         ASSEMBLER_RECIPES.recipeBuilder(GTTCore.id("huge_steam_turbine_machine"))
                 .inputItems(CASING_STEEL_SOLID)
                 .inputItems(gear, Steel, 5)
@@ -250,7 +259,7 @@ public class MiscRecipes {
                     "BA",
                     "AB",
                     'A', new MaterialEntry(dust, Andesite),
-                    'B', GTTTags.andesiteAlloyable
+                    'B', GTTTags.ANDESITE_ALLOYABLE
             );
         }
 
@@ -329,7 +338,7 @@ public class MiscRecipes {
                 "CWC",
                 'P', PUMP.get(IV),
                 'W', GTItems.PETRI_DISH,
-                'S', GTTMachines.CULTIVATOR[IV],
+                'S', GTTMachines.CULTIVATOR[IV].asStack(),
                 'C', CustomTags.IV_CIRCUITS
                 );
         VanillaRecipeHelper.addShapedRecipe(provider, true, GTTCore.id("large_rock_crusher"), LARGE_ROCK_CRUSHER.asStack(),
@@ -339,7 +348,7 @@ public class MiscRecipes {
                 'U', PUMP.get(IV),
                 'P', GTCraftingComponents.PISTON.get(IV),
                 'G', COMPONENT_GRINDER_TUNGSTEN,
-                'S', ROCK_CRUSHER[IV],
+                'S', ROCK_CRUSHER[IV].asStack(),
                 'C', CustomTags.IV_CIRCUITS
         );
         VanillaRecipeHelper.addShapedRecipe(provider, true, GTTCore.id("extraction_tank"), EXTRACTION_TANK.asStack(),
@@ -568,43 +577,5 @@ public class MiscRecipes {
                 .outputFluids(CarbonDioxide.getFluid(400))
                 .outputFluids(Methane.getFluid(600))
                 .duration(75).EUt(VA[MV]).save(provider);
-
-
-
-
-
-        CHEMICAL_RECIPES.recipeBuilder(GTTCore.id("aluminium_chloride"))
-                .EUt(VA[LV])
-                .duration(100)
-                .inputItems(dust, Aluminium, 2)
-                .inputFluids(HydrochloricAcid.getFluid(6000))
-                .outputFluids(Hydrogen.getFluid(6000))
-                .outputItems(dust, AluminiumChloride, 8)
-                .save(provider);
-        CHEMICAL_RECIPES.recipeBuilder(GTTCore.id("trichlorosilane"))
-                .EUt(VA[LV])
-                .duration(100)
-                .inputItems(dust, Silicon, 1)
-                .inputFluids(HydrochloricAcid.getFluid(3000))
-                .outputFluids(Hydrogen.getFluid(2000))
-                .outputFluids(Trichlorosilane.getFluid(1000))
-                .save(provider);
-        CHEMICAL_RECIPES.recipeBuilder(GTTCore.id("silane"))
-                .EUt(VA[LV])
-                .duration(100)
-                .notConsumable(dust, AluminiumChloride, 1)
-                .inputFluids(Trichlorosilane.getFluid(4000))
-                .outputFluids(Silane.getFluid(1000))
-                .outputFluids(SiliconChloride.getFluid(3000))
-                .save(provider);
-        CHEMICAL_RECIPES.recipeBuilder(GTTCore.id("silicon_dust_from_silicon_chloride"))
-                .EUt(VA[LV])
-                .duration(100)
-                .inputFluids(SiliconChloride.getFluid(1000))
-                .inputFluids(Hydrogen.getFluid(4000))
-                .outputFluids(HydrochloricAcid.getFluid(4000))
-                .outputItems(dust, Silicon)
-                .save(provider);
-
     }
 }

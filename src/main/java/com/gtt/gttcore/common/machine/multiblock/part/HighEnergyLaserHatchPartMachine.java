@@ -19,7 +19,7 @@ public class HighEnergyLaserHatchPartMachine extends MultiblockPartMachine imple
 
     public HighEnergyLaserHatchPartMachine(BlockEntityCreationInfo info, boolean transmitter) {
         super(info);
-        this.highEnergyLaserContainer = new NotifiableHighEnergyLaserContainer(this, transmitter ? IO.OUT : IO.IN, transmitter);
+        this.highEnergyLaserContainer = attachTrait(new NotifiableHighEnergyLaserContainer(transmitter ? IO.OUT : IO.IN, transmitter));
     }
 
     @Override
@@ -37,7 +37,6 @@ public class HighEnergyLaserHatchPartMachine extends MultiblockPartMachine imple
         return highEnergyLaserContainer.getLaserAmount();
     }
 
-    @Override
     public void setLaserAmount(int amount) {
         highEnergyLaserContainer.setLaserAmount(amount);
     }

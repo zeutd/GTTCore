@@ -16,6 +16,7 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Vec3i;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.inventory.InventoryMenu;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
@@ -26,6 +27,10 @@ import org.joml.Matrix4f;
 public class LargeRotorHolderRenderer extends DynamicRender<RotorHolderPartMachine, LargeRotorHolderRenderer> implements IMachineRendererModel<RotorHolderPartMachine> {
     public static final Codec<LargeRotorHolderRenderer> CODEC = Codec.unit(LargeRotorHolderRenderer::new);
     public static final DynamicRenderType<RotorHolderPartMachine, LargeRotorHolderRenderer> TYPE = new DynamicRenderType<>(CODEC);
+    public static final ResourceLocation BASE_BG_LOCATION = GTTCore.id("block/large_rotor_holder/base_bg");
+    public static final ResourceLocation BASE_RING_LOCATION = GTTCore.id("block/large_rotor_holder/base_ring");
+    public static final ResourceLocation ROTOR_IDLE_LOCATION = GTTCore.id("block/large_rotor_holder/rotor_idle");
+    public static final ResourceLocation ROTOR_SPINNING_LOCATION = GTTCore.id("block/large_rotor_holder/rotor_spinning");
 
     public LargeRotorHolderRenderer(){}
     @Override
@@ -37,10 +42,10 @@ public class LargeRotorHolderRenderer extends DynamicRender<RotorHolderPartMachi
     public void render(RotorHolderPartMachine machine, float partialTick, PoseStack poseStack, MultiBufferSource buffer, int packedLight, int packedOverlay) {
         if(!machine.isFormed() || !(machine.getControllers().last() instanceof WorkableElectricMultiblockMachine controller)) return;
         Minecraft instance = Minecraft.getInstance();
-        TextureAtlasSprite backgroundSprite = instance.getTextureAtlas(InventoryMenu.BLOCK_ATLAS).apply(GTTCore.id("block/large_rotor_holder/base_bg"));
-        TextureAtlasSprite ringSprite = instance.getTextureAtlas(InventoryMenu.BLOCK_ATLAS).apply(GTTCore.id("block/large_rotor_holder/base_ring"));
-        TextureAtlasSprite rotorIdleSprite = instance.getTextureAtlas(InventoryMenu.BLOCK_ATLAS).apply(GTTCore.id("block/large_rotor_holder/rotor_idle"));
-        TextureAtlasSprite rotorSpinningSprite = instance.getTextureAtlas(InventoryMenu.BLOCK_ATLAS).apply(GTTCore.id("block/large_rotor_holder/rotor_spinning"));
+        TextureAtlasSprite backgroundSprite = instance.getTextureAtlas(InventoryMenu.BLOCK_ATLAS).apply(BASE_BG_LOCATION);
+        TextureAtlasSprite ringSprite = instance.getTextureAtlas(InventoryMenu.BLOCK_ATLAS).apply(BASE_RING_LOCATION);
+        TextureAtlasSprite rotorIdleSprite = instance.getTextureAtlas(InventoryMenu.BLOCK_ATLAS).apply(ROTOR_IDLE_LOCATION);
+        TextureAtlasSprite rotorSpinningSprite = instance.getTextureAtlas(InventoryMenu.BLOCK_ATLAS).apply(ROTOR_SPINNING_LOCATION);
 
         Vec3i dir = machine.getFrontFacing().getNormal();
         Vec3i up = (machine.getFrontFacing() != Direction.UP && machine.getFrontFacing() != Direction.DOWN) ? Direction.UP.getNormal() : Direction.NORTH.getNormal();

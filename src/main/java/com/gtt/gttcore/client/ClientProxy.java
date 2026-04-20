@@ -5,6 +5,7 @@ import com.gregtechceu.gtceu.client.renderer.machine.DynamicRenderManager;
 import com.gtt.gttcore.GTTCore;
 import com.gtt.gttcore.client.particles.MushroomCloudParticle;
 import com.gtt.gttcore.client.renderers.BlackholeRenderer;
+import com.gtt.gttcore.client.renderers.FluidBoxRender;
 import com.gtt.gttcore.client.renderers.LargeRotorHolderRenderer;
 import com.gtt.gttcore.common.CommonProxy;
 import com.gtt.gttcore.common.data.GTTEntityTypes;
@@ -35,6 +36,7 @@ public class ClientProxy extends CommonProxy {
 
     public static void registerDynamicRenderers(){
         DynamicRenderManager.register(GTTCore.id("large_rotor_holder"), LargeRotorHolderRenderer.TYPE);
+        DynamicRenderManager.register(GTTCore.id("fluid_box"), FluidBoxRender.TYPE);
     }
 
     @SubscribeEvent

@@ -4,6 +4,7 @@ import com.google.common.hash.HashCode;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.gtt.gttcore.GTTCore;
+import com.gtt.gttcore.mixin.ExistingFileHelperAccessor;
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.data.CachedOutput;
 import net.minecraft.data.DataProvider;
@@ -33,7 +34,7 @@ public class GTTTextureProvider implements DataProvider{
     }
     @Override
     public @NotNull CompletableFuture<?> run(@NotNull CachedOutput output) {
-        existingFileHelper.getManager(PackType.CLIENT_RESOURCES).listResources("textures", r -> true)
+        ((ExistingFileHelperAccessor) existingFileHelper).callGetManager(PackType.CLIENT_RESOURCES).listResources("textures", r -> true)
                 .forEach(((rl, resource) -> {
                     try {
                         var pair = loadTexture(rl);

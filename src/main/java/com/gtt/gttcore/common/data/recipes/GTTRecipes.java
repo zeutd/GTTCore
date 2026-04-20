@@ -114,6 +114,7 @@ public class GTTRecipes {
         SeparationRecipes.init(provider);
         ChemicalRecipes.init(provider);
         NetheriteLine.init(provider);
+        MolybdeniteSmokeDustLine.init(provider);
     }
 
     public static void remove(Consumer<RecipeFilter> provider) {

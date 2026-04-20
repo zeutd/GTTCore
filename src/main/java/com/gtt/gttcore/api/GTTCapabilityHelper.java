@@ -1,6 +1,8 @@
 package com.gtt.gttcore.api;
 
 import com.gtt.gttcore.api.capability.IHighEnergyLaserInfoProvider;
+import com.gtt.gttcore.api.capability.IParticleContainer;
+import com.gtt.gttcore.api.capability.IParticleInfoProvider;
 import com.gtt.gttcore.api.capability.forge.GTTCapability;
 import com.gtt.gttcore.common.machine.IHighEnergyLaserProvider;
 import net.minecraft.core.BlockPos;
@@ -18,6 +20,16 @@ public class GTTCapabilityHelper {
     @Nullable
     public static IHighEnergyLaserProvider getHighEnergyLaserContainer(Level level, BlockPos pos, @Nullable Direction side) {
         return getBlockEntityCapability(GTTCapability.CAPABILITY_HIGH_ENERGY_LASER_CONTAINER, level, pos, side);
+    }
+
+    @Nullable
+    public static IParticleContainer getParticle(Level level, BlockPos pos, @Nullable Direction side) {
+        return getBlockEntityCapability(GTTCapability.CAPABILITY_PARTICLE, level, pos, side);
+    }
+
+    @Nullable
+    public static IParticleInfoProvider getParticleInfoProvider(Level level, BlockPos pos, @Nullable Direction side) {
+        return getBlockEntityCapability(GTTCapability.CAPABILITY_PARTICLE_INFO_PROVIDER, level, pos, side);
     }
 
     @Nullable

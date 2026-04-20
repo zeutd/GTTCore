@@ -9,7 +9,7 @@ import com.gtt.gttcore.util.LangUtil;
 import com.tterrag.registrate.util.entry.EntityEntry;
 import net.minecraft.world.entity.MobCategory;
 
-import static com.gtt.gttcore.common.registry.GTTRegistration.REGISTRATE;
+import static com.gtt.gttcore.api.registry.GTTRegistration.REGISTRATE;
 
 public class GTTEntityTypes {
     public static final EntityEntry<BlackholeBombEntity> BLACKHOLE_BOMB = REGISTRATE

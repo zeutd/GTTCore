@@ -2,7 +2,6 @@ package com.gtt.gttcore.api.machine.trait;
 
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.capability.recipe.RecipeCapability;
-import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.TickableSubscription;
 import com.gregtechceu.gtceu.api.machine.trait.MachineTraitType;
 import com.gregtechceu.gtceu.api.machine.trait.NotifiableRecipeHandlerTrait;
@@ -30,8 +29,8 @@ public class NotifiableHighEnergyLaserContainer extends NotifiableRecipeHandlerT
     public static final MachineTraitType<NotifiableHighEnergyLaserContainer> TYPE = new MachineTraitType<>(
             NotifiableHighEnergyLaserContainer.class);
 
-    public NotifiableHighEnergyLaserContainer(MetaMachine machine, IO handlerIO, boolean transmitter) {
-        super(machine);
+    public NotifiableHighEnergyLaserContainer(IO handlerIO, boolean transmitter) {
+        super();
         this.handlerIO = handlerIO;
         this.transmitter = transmitter;
     }

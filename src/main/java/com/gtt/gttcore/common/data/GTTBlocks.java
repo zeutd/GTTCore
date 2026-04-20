@@ -4,13 +4,18 @@ import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.block.ActiveBlock;
 import com.gregtechceu.gtceu.api.data.tag.TagUtil;
 import com.gregtechceu.gtceu.common.data.models.GTModels;
+import com.gregtechceu.gtceu.common.pipelike.laser.LaserPipeType;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
 import com.gtt.gttcore.GTTCore;
-import com.gtt.gttcore.util.LangUtil;
 import com.gtt.gttcore.common.block.BlackholeBombBlock;
 import com.gtt.gttcore.common.block.NuclearBombBlock;
+import com.gtt.gttcore.common.block.ParticlePipeBlock;
+import com.gtt.gttcore.common.item.ParticlePipeBlockItem;
+import com.gtt.gttcore.common.pipelike.particle.ParticlePipeType;
 import com.gtt.gttcore.data.lang.GTTChineseLanguageProvider;
+import com.gtt.gttcore.util.LangUtil;
 import com.tterrag.registrate.util.entry.BlockEntry;
+import com.tterrag.registrate.util.nullness.NonNullBiConsumer;
 import com.tterrag.registrate.util.nullness.NonNullFunction;
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
 import net.minecraft.client.renderer.RenderType;
@@ -26,9 +31,13 @@ import net.minecraft.world.level.material.MapColor;
 
 import java.util.function.Supplier;
 
-import static com.gtt.gttcore.common.registry.GTTRegistration.REGISTRATE;
+import static com.gtt.gttcore.api.registry.GTTRegistration.REGISTRATE;
 
+@SuppressWarnings("removal")
 public class GTTBlocks {
+
+    public static final BlockEntry<ParticlePipeBlock>[] PARTICLE_PIPES = new BlockEntry[ParticlePipeType.values().length];
+
 
     public static final BlockEntry<BlackholeBombBlock> BLACKHOLE_BOMB = REGISTRATE
             .block(LangUtil.createBlockZhTranslation("blackhole_bomb", "黑洞炸弹"), BlackholeBombBlock::new)
@@ -163,6 +172,34 @@ public class GTTBlocks {
     }
 
     public static void init(){
+        generateParticlePipeBlocks();
+    }
 
+    private static void generateParticlePipeBlocks() {
+        GTTCore.LOGGER.debug("Generating GTTCore Particle Pipe Blocks...");
+        for (int i = 0; i < LaserPipeType.values().length; ++i) {
+            registerParticlePipeBlock(i);
+        }
+        GTTCore.LOGGER.debug("Generating GTTCore Particle Pipe Blocks... Complete!");
+    }
+
+    private static void registerParticlePipeBlock(int index) {
+        var type = ParticlePipeType.values()[index];
+        var entry = REGISTRATE
+                .block("%s_particle_pipe".formatted(type.getSerializedName()), (p) -> new ParticlePipeBlock(p, type))
+                .initialProperties(() -> Blocks.IRON_BLOCK)
+                .properties(p -> p.dynamicShape().noOcclusion().forceSolidOn())
+                .gtBlockstate(GTModels::createPipeBlockModel)
+                .defaultLoot()
+                .tag(CustomTags.MINEABLE_WITH_CONFIG_VALID_PICKAXE_WIRE_CUTTER)
+                .addLayer(() -> RenderType::cutoutMipped)
+                .addLayer(() -> RenderType::translucent)
+                .color(() -> ParticlePipeBlock::tintedColor)
+                .item(ParticlePipeBlockItem::new)
+                .model(NonNullBiConsumer.noop())
+                .color(() -> ParticlePipeBlockItem::tintColor)
+                .build()
+                .register();
+        PARTICLE_PIPES[index] = entry;
     }
 }

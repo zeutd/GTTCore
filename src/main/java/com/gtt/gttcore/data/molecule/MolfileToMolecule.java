@@ -3,6 +3,7 @@ package com.gtt.gttcore.data.molecule;
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gtt.gttcore.GTTCore;
+import com.gtt.gttcore.mixin.ExistingFileHelperAccessor;
 import com.rubenverg.moldraw.molecule.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.PackType;
@@ -19,7 +20,7 @@ import static com.gtt.gttcore.GTTCore.LOGGER;
 
 public class MolfileToMolecule {
     public static void run(ExistingFileHelper existingFileHelper, BiConsumer<ResourceLocation, Molecule> provider) {
-        existingFileHelper.getManager(PackType.CLIENT_RESOURCES).listResources("molecules", r -> r.getNamespace().equals(GTTCore.MOD_ID) && r.getPath().endsWith(".mol")).forEach((rl, resource) -> {
+        ((ExistingFileHelperAccessor) existingFileHelper).callGetManager(PackType.CLIENT_RESOURCES).listResources("molecules", r -> r.getNamespace().equals(GTTCore.MOD_ID) && r.getPath().endsWith(".mol")).forEach((rl, resource) -> {
             String path = rl.getPath();
             String childName = path.substring(path.lastIndexOf("/") + 1).replaceAll(".mol", "");
             LOGGER.info("Generating Molfile {}", childName);

@@ -3,6 +3,8 @@ package com.gtt.gttcore.common.data.recipes;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.capability.recipe.FluidRecipeCapability;
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
+import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
+import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.api.gui.GuiTextures;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeSerializer;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
@@ -24,6 +26,7 @@ import java.util.List;
 
 import static com.gregtechceu.gtceu.api.GTValues.ULV;
 import static com.gregtechceu.gtceu.api.GTValues.VA;
+import static com.gregtechceu.gtceu.common.data.GTMaterials.Neutronium;
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.*;
 import static com.gtt.gttcore.common.data.GTTMaterials.P204;
 import static com.gtt.gttcore.common.data.GTTMaterials.P507;
@@ -37,7 +40,7 @@ public class GTTRecipeTypes {
     public static List<GTRecipeBuilder> toReRegisterCreateCutting;
     //public static List<GTRecipeBuilder> toReRegisterCreate;
     public static void init(){
-        CENTRIFUGE_RECIPES.setMaxIOSize(2, 8, 1, 8);
+        CENTRIFUGE_RECIPES.setMaxIOSize(2, 9, 1, 6);
         LARGE_CHEMICAL_RECIPES.setMaxIOSize(3, 6, 5, 4);
         BENDER_RECIPES.onRecipeBuild((recipeBuilder, provider) -> {
             recipeBuilder.EUt(Math.max(recipeBuilder.EUt().voltage() / 4, VA[ULV]), recipeBuilder.EUt().amperage());
@@ -63,12 +66,14 @@ public class GTTRecipeTypes {
                         .copyFrom(recipeBuilder)
                         .save(provider)
         );
-        ROCK_BREAKER_RECIPES.onRecipeBuild((recipeBuilder, provider) ->
-                recipeBuilder.copy(recipeBuilder.id)
-                        .onSave(null)
-                        .recipeType(LARGE_ROCK_BREAKER_RECIPES)
-                        .category(LARGE_ROCK_BREAKER_RECIPES.getCategory())
-                        .save(provider)
+        ROCK_BREAKER_RECIPES.onRecipeBuild((recipeBuilder, provider) -> {
+                    var newBuilder = recipeBuilder.copy(recipeBuilder.id)
+                            .onSave(null)
+                            .recipeType(LARGE_ROCK_BREAKER_RECIPES)
+                            .category(LARGE_ROCK_BREAKER_RECIPES.getCategory());
+                    newBuilder.conditions.clear();
+                    newBuilder.save(provider);
+                }
         );
         PLASMA_GENERATOR_FUELS.onRecipeBuild((recipeBuilder, provider) -> {
             int eu = (int) (recipeBuilder.duration * GTValues.V[GTValues.EV]);
@@ -79,6 +84,7 @@ public class GTTRecipeTypes {
                     .outputFluids((FluidIngredient) recipeBuilder.output.get(GTRecipeCapabilities.FLUID).get(0).content)
                     .save(provider);
         });
+        BLAST_RECIPES.setMaxIOSize(3, 3, 1, 2);
     }
     public static void gatherData(){
         toReRegisterCreatePressing = new ArrayList<>();
@@ -109,13 +115,21 @@ public class GTTRecipeTypes {
         GTRegistries.RECIPE_TYPES.register(recipeType.registryName, recipeType);
         return recipeType;
     }
-    public final static GTRecipeType FISSION_RECIPES = register("fission_reactor", GENERATOR).setMaxIOSize(1, 1, 1, 1)
-            .setEUIO(IO.OUT)
+    public final static GTRecipeType FISSION_RECIPES = register("fission_reactor", GENERATOR).setMaxIOSize(2, 2, 2, 3)
+            .setEUIO(IO.NONE)
             .setSlotOverlay(false, false, GuiTextures.MOLECULAR_OVERLAY_1)
             .setProgressBar(GuiTextures.PROGRESS_BAR_FUSION, LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.BOILER);
+    public final static GTRecipeType NEUTRON_IRRADIATION_RECIPES = register("neutron_irradiation", GENERATOR).setMaxIOSize(3, 3, 0, 3)
+            .setEUIO(IO.IN)
+            .setSlotOverlay(true, false, GuiTextures.MOLECULAR_OVERLAY_1)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_FUSION, LEFT_TO_RIGHT)
+            .setSound(GTSoundEntries.ELECTROLYZER)
+            .onRecipeBuild(((recipeBuilder, provider) -> {
+                recipeBuilder.chancedInput(ChemicalHelper.get(TagPrefix.dustTiny, Neutronium), 10, 0);
+            }));
     public final static GTRecipeType ROCKET_ASSEMBLER_RECIPES = register("rocket_assembler", MULTIBLOCK).setMaxIOSize(9, 1, 0, 0)
-            .setEUIO(IO.OUT)
+            .setEUIO(IO.IN)
             .setProgressBar(GuiTextures.PROGRESS_BAR_CANNER, LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.ASSEMBLER);
     public final static GTRecipeType GREENHOUSE_RECIPES = register("greenhouse", MULTIBLOCK).setMaxIOSize(3, 6, 1, 0)
@@ -184,7 +198,7 @@ public class GTTRecipeTypes {
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE, LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.MOTOR);
     public static final GTRecipeType ROCKET_LAUNCH_CENTER_RECIPES = register("rocket_launch_center", ELECTRIC)
-            .setMaxIOSize(1, 9, 1, 6)
+            .setMaxIOSize(9, 9, 1, 6)
             .setEUIO(IO.IN)
             .setProgressBar(GuiTextures.PROGRESS_BAR_SLICE, LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.SPRAY_CAN_TOOL);

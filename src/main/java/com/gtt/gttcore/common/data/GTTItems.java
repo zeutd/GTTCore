@@ -17,7 +17,7 @@ import net.minecraft.world.item.Item;
 import static com.gregtechceu.gtceu.api.GTValues.ULV;
 import static com.gregtechceu.gtceu.api.GTValues.VCF;
 import static com.gregtechceu.gtceu.common.data.GTItems.attach;
-import static com.gtt.gttcore.common.registry.GTTRegistration.REGISTRATE;
+import static com.gtt.gttcore.api.registry.GTTRegistration.REGISTRATE;
 import static net.minecraft.ChatFormatting.RESET;
 
 @SuppressWarnings("unchecked")
@@ -67,14 +67,17 @@ public class GTTItems {
     public static ItemEntry<Item> PACKAGED_CIRCUIT_MAX = REGISTRATE.item(LangUtil.createItemZhTranslation("packaged_circuit_max", "封装MAX电路"), Item::new)
             .lang("Packaged MAX Circuit").tag(CustomTags.MAX_CIRCUITS)
             .register();
-    public static ItemEntry<Item> PARTICLE_CONTAINER = REGISTRATE.item(LangUtil.createItemZhTranslation("particle_container", "粒子容器"), Item::new)
-            .lang("Particle Container")
-            .register();
+//    public static ItemEntry<Item> PARTICLE_CONTAINER = REGISTRATE.item(LangUtil.createItemZhTranslation("particle_container", "粒子容器"), Item::new)
+//            .lang("Particle Container")
+//            .register(); 
     public static ItemEntry<Item> MAGNETIC_CONFINEMENT_RING = REGISTRATE.item(LangUtil.createItemZhTranslation("magnetic_confinement_ring", "磁力约束环"), Item::new)
             .lang("Magnetic Confinement Ring")
             .register();
     public static ItemEntry<Item> GRAVITATIONAL_LENS = REGISTRATE.item(LangUtil.createItemZhTranslation("gravitational_lens", "引力透镜"), Item::new)
             .lang("Gravitational Lens")
+            .register();
+    public static ItemEntry<Item> PHOTON_COUPLER = REGISTRATE.item(LangUtil.createItemZhTranslation("photon_coupler", "光子合并器"), Item::new)
+            .lang("Photon Coupler")
             .register();
     public static ItemEntry<Item> NETHERITE_SCRAP_SEED = REGISTRATE.item(LangUtil.createItemZhTranslation("netherite_scrap_seed", "下界合金碎片种子"), Item::new)
             .lang("Netherite Scrap Seed")
@@ -232,6 +235,8 @@ public class GTTItems {
 
     public static ItemEntry<Item> OPTICAL_WAVEGUIDE_BOARD = REGISTRATE.item(LangUtil.createItemZhTranslation("optical_waveguide_circuit_board", "光学波导电路基板"), Item::new).lang("Optical Waveguide Circuit Board").register();
     public static ItemEntry<Item> OPTICAL_WAVEGUIDE_CIRCUIT_BOARD = REGISTRATE.item(LangUtil.createItemZhTranslation("optical_waveguide_printed_circuit_board", "光学波导印刷电路基板"), Item::new).lang("Optical Waveguide Printed Circuit Board").register();
+
+    public static ItemEntry<Item> LASER = REGISTRATE.item(LangUtil.createItemZhTranslation("laser", "激光器"), Item::new).lang("Laser").register();
 
 
     public static ItemEntry<Item> PHOTONIC_WAFER = REGISTRATE.item(LangUtil.createItemZhTranslation("photonic_wafer", "光学晶圆"), Item::new)

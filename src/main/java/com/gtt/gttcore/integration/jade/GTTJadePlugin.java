@@ -12,10 +12,12 @@ public class GTTJadePlugin implements IWailaPlugin {
     @Override
     public void register(IWailaCommonRegistration registration) {
         registration.registerBlockDataProvider(new HighEnergyLaserContainerBlockProvider(), BlockEntity.class);
+        registration.registerBlockDataProvider(new ParticleContainerBlockProvider(), BlockEntity.class);
     }
 
     @Override
     public void registerClient(IWailaClientRegistration registration) {
         registration.registerBlockComponent(new HighEnergyLaserContainerBlockProvider(), Block.class);
+        registration.registerBlockComponent(new ParticleContainerBlockProvider(), Block.class);
     }
 }

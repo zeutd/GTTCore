@@ -1,6 +1,8 @@
 package com.gtt.gttcore.data.lang;
 
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
+import com.gtt.gttcore.api.particle.ParticleType;
+import com.gtt.gttcore.api.registry.GTTRegistries;
 import net.minecraftforge.common.data.LanguageProvider;
 
 import java.util.HashMap;
@@ -18,6 +20,13 @@ public class GTTLangHandler {
         add("gttcore.machine.high_energy_laser_amount", "Laser Amount: %s", "激光能量：%s");
         add("gttcore.machine.high_energy_laser_amount_input", "Laser Amount Input: %s", "输入激光能量：%s");
         add("gttcore.machine.high_energy_laser_amount_output", "Laser Amount Output: %s", "输出激光能量：%s");
+        add("gttcore.machine.particle_amount", "Laser Amount: %s", "激光能量：%s");
+        add("gttcore.machine.particle_amount_input", "Laser Amount Input: %s", "输入激光能量：%s");
+        add("gttcore.machine.particle_amount_output", "Laser Amount Output: %s", "输出激光能量：%s");
+        add("gttcore.creative.particle.amountpc", "Amount per Cycle: %s", "每次输出粒子量：%s");
+        add("gttcore.creative.particle", "Particle", "粒子");
+
+
         add("gttcore.go_to_nether", "Go to nether", "前往下界");
         add("gttcore.back_to_overworld", "Back to overworld", "返回主世界");
         add("tagprefix.moon", TagPrefix.get("moon").langValue(), "月球%s矿石");
@@ -29,6 +38,7 @@ public class GTTLangHandler {
 
 
         add("config.jade.plugin_gttcore.high_energy_laser_container_provider",  "[GTTCore] High Energy Laser", "[GTTCore] 高能激光");
+        add("config.jade.plugin_gttcore.particle_container_provider",  "[GTTCore] Particle", "[GTTCore] 粒子");
 
         add("gtceu.machine.parallel_hatch_mk5.tooltip", "Allows to run up to 16 recipes in parallel.", "允许同时处理至多16个配方。");
         add("gtceu.machine.parallel_hatch_mk6.tooltip", "Allows to run up to 64 recipes in parallel.", "允许同时处理至多64个配方。");
@@ -47,6 +57,10 @@ public class GTTLangHandler {
 
 
         add("gttcore.machine.base_parallel", "Base parallel: %s", "基础并行：%s");
+
+        for (ParticleType particleType : GTTRegistries.PARTICLE_TYPES) {
+            add(particleType.getId().toLanguageKey("particle_type"), particleType.englishName, particleType.chineseName);
+        }
     }
     
     public static void add(String key, String enValue, String zhValue){

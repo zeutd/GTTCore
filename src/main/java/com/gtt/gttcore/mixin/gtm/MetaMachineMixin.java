@@ -3,6 +3,8 @@ package com.gtt.gttcore.mixin.gtm;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.trait.MachineTrait;
 import com.gtt.gttcore.api.capability.IHighEnergyLaserInfoProvider;
+import com.gtt.gttcore.api.capability.IParticleContainer;
+import com.gtt.gttcore.api.capability.IParticleInfoProvider;
 import com.gtt.gttcore.api.capability.forge.GTTCapability;
 import com.gtt.gttcore.common.machine.IHighEnergyLaserProvider;
 import net.minecraft.core.Direction;
@@ -45,6 +47,26 @@ public abstract class MetaMachineMixin {
             var list = getCapabilitiesFromTraits(machine.getTraitHolder().getAllTraits(), side, IHighEnergyLaserProvider.class);
             if (!list.isEmpty()) {
                 cir.setReturnValue(GTTCapability.CAPABILITY_HIGH_ENERGY_LASER_CONTAINER.orEmpty(cap, LazyOptional.of(() -> list.get(0))));
+            }
+        }
+        if (cap == GTTCapability.CAPABILITY_PARTICLE) {
+            if (machine instanceof IParticleContainer particleContainer) {
+                cir.setReturnValue(GTTCapability.CAPABILITY_PARTICLE.orEmpty(cap, LazyOptional.of(() -> particleContainer)));
+            }
+
+            var list = getCapabilitiesFromTraits(machine.getTraitHolder().getAllTraits(), side, IParticleContainer.class);
+            if (!list.isEmpty()) {
+                cir.setReturnValue(GTTCapability.CAPABILITY_PARTICLE.orEmpty(cap, LazyOptional.of(() -> list.get(0))));
+            }
+        }
+        if (cap == GTTCapability.CAPABILITY_PARTICLE_INFO_PROVIDER) {
+            if (machine instanceof IParticleInfoProvider particleInfoProvider) {
+                cir.setReturnValue(GTTCapability.CAPABILITY_PARTICLE_INFO_PROVIDER.orEmpty(cap, LazyOptional.of(() -> particleInfoProvider)));
+            }
+
+            var list = getCapabilitiesFromTraits(machine.getTraitHolder().getAllTraits(), side, IParticleInfoProvider.class);
+            if (!list.isEmpty()) {
+                cir.setReturnValue(GTTCapability.CAPABILITY_PARTICLE_INFO_PROVIDER.orEmpty(cap, LazyOptional.of(() -> list.get(0))));
             }
         }
     }

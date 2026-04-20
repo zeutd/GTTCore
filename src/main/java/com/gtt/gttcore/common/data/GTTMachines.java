@@ -4,9 +4,13 @@ import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.blockentity.BlockEntityCreationInfo;
 import com.gregtechceu.gtceu.api.capability.recipe.FluidRecipeCapability;
+import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.capability.recipe.ItemRecipeCapability;
 import com.gregtechceu.gtceu.api.data.RotationState;
-import com.gregtechceu.gtceu.api.machine.*;
+import com.gregtechceu.gtceu.api.machine.MachineDefinition;
+import com.gregtechceu.gtceu.api.machine.MetaMachine;
+import com.gregtechceu.gtceu.api.machine.SimpleGeneratorMachine;
+import com.gregtechceu.gtceu.api.machine.SimpleTieredMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.PartAbility;
 import com.gregtechceu.gtceu.api.machine.property.GTMachineModelProperties;
 import com.gregtechceu.gtceu.api.machine.steam.SimpleSteamMachine;
@@ -22,13 +26,15 @@ import com.gregtechceu.gtceu.config.ConfigHolder;
 import com.gregtechceu.gtceu.data.lang.LangHandler;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
 import com.gtt.gttcore.GTTCore;
-import com.gtt.gttcore.util.LangUtil;
 import com.gtt.gttcore.client.renderers.LargeRotorHolderRenderer;
 import com.gtt.gttcore.common.data.recipes.GTTRecipeTypes;
 import com.gtt.gttcore.common.machine.CreativeHighEnergyLaserProviderMachine;
+import com.gtt.gttcore.common.machine.CreativeParticleProviderMachine;
 import com.gtt.gttcore.common.machine.multiblock.GTTPartAbility;
 import com.gtt.gttcore.common.machine.multiblock.part.HighEnergyLaserHatchPartMachine;
+import com.gtt.gttcore.common.machine.multiblock.part.ParticleHatchPartMachine;
 import com.gtt.gttcore.data.lang.GTTChineseLanguageProvider;
+import com.gtt.gttcore.util.LangUtil;
 import it.unimi.dsi.fastutil.Pair;
 import it.unimi.dsi.fastutil.ints.Int2IntFunction;
 import net.minecraft.network.chat.Component;
@@ -44,7 +50,7 @@ import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.common.data.machines.GTMachineUtils.*;
 import static com.gregtechceu.gtceu.common.data.models.GTMachineModels.createOverlayTieredHullMachineModel;
 import static com.gregtechceu.gtceu.utils.FormattingUtil.toEnglishName;
-import static com.gtt.gttcore.common.registry.GTTRegistration.REGISTRATE;
+import static com.gtt.gttcore.api.registry.GTTRegistration.REGISTRATE;
 import static com.gtt.gttcore.util.LangUtil.VLVH_CHINESE;
 import static net.minecraft.ChatFormatting.RESET;
 
@@ -55,7 +61,7 @@ public class GTTMachines {
     public static final MachineDefinition[] LARGE_ROTOR_HOLDER = registerTieredMachines("large_rotor_holder",
             RotorHolderPartMachine::new,
             (tier, builder) -> {
-                LangUtil.createBlockZhTranslation(GTValues.VN[tier].toLowerCase(Locale.ROOT) + "_large_rotor_holder", "%s大型f转子支架".formatted(VNF[tier] + RESET));
+                LangUtil.createBlockZhTranslation(GTValues.VN[tier].toLowerCase(Locale.ROOT) + "_large_rotor_holder", "%s大型转子支架".formatted(VNF[tier] + RESET));
         return builder
                     .langValue("%s Large Rotor Holder".formatted(VNF[tier]))
                     .rotationState(RotationState.ALL)
@@ -77,10 +83,10 @@ public class GTTMachines {
             .rotationState(RotationState.ALL)
             .tier(UHV)
             .abilities(GTTPartAbility.EXPORT_HIGH_ENERGY_LASER)
-            .workableTieredHullModel(GTCEu.id("laser_source_hatch"))
+            .overlayTieredHullModel(GTCEu.id("block/machine/part/laser_source_hatch"))
             .tooltips(Component.translatable(LangUtil.createEnZhTranslation(
-                    "gttcore.machine.high_energy_hatch.export.tooltip",
-                    "High Energy Laser Output for Multiblocks",
+                    "gttcore.machine.high_energy_laser_hatch.export.tooltip",
+                    "Output high energy laser for multiblocks",
                     "为多方块结构输出高能激光")))
             .register();
     public static final MachineDefinition HIGH_ENERGY_LASER_IMPORT_HATCH = REGISTRATE
@@ -88,12 +94,32 @@ public class GTTMachines {
             .rotationState(RotationState.ALL)
             .tier(UHV)
             .abilities(GTTPartAbility.IMPORT_HIGH_ENERGY_LASER)
-            .workableTieredHullModel(GTCEu.id("laser_target_hatch"))
+            .overlayTieredHullModel(GTCEu.id("block/machine/part/laser_target_hatch"))
             .tooltips(Component.translatable(LangUtil.createEnZhTranslation(
-                    "gttcore.machine.high_energy_hatch.export.tooltip",
-                    "High Energy Laser Input for Multiblocks",
+                    "gttcore.machine.high_energy_laser_hatch.export.tooltip",
+                    "Input high energy laser for multiblocks",
                     "为多方块结构输入高能激光")))
             .register();
+    public static final MachineDefinition[] PARTICLE_EXPORT_HATCH = registerTieredMachines("particle_export_hatch", (info, tier) -> new ParticleHatchPartMachine(info, tier, IO.OUT), (tier, builder) -> builder
+            .rotationState(RotationState.ALL)
+            .tier(tier)
+            .abilities(GTTPartAbility.EXPORT_PARTICLE)
+            .overlayTieredHullModel(GTCEu.id("block/machine/part/laser_source_hatch"))
+            .tooltips(Component.translatable(LangUtil.createEnZhTranslation(
+                    "gttcore.machine.particle_hatch.export.tooltip",
+                    "Output particles for multiblocks",
+                    "为多方块结构输出粒子")))
+            .register(), GTValues.tiersBetween(ZPM, MAX));
+    public static final MachineDefinition[] PARTICLE_IMPORT_HATCH = registerTieredMachines("particle_import_hatch", (info, tier) -> new ParticleHatchPartMachine(info, tier, IO.IN), (tier, builder) -> builder
+            .rotationState(RotationState.ALL)
+            .tier(tier)
+            .abilities(GTTPartAbility.IMPORT_PARTICLE)
+            .overlayTieredHullModel(GTCEu.id("block/machine/part/laser_target_hatch"))
+            .tooltips(Component.translatable(LangUtil.createEnZhTranslation(
+                    "gttcore.machine.particle_hatch.import.tooltip",
+                    "Input particles for multiblocks",
+                    "为多方块结构输入粒子")))
+            .register(), GTValues.tiersBetween(ZPM, MAX));
 
 
     public static final MachineDefinition ULV_BENDER = registerULVMachines("bender", GTRecipeTypes.BENDER_RECIPES, "卷板机");
@@ -168,10 +194,16 @@ public class GTTMachines {
             .machine(LangUtil.createBlockZhTranslation("creative_high_energy_laser_provider", "创造高能激光源"), CreativeHighEnergyLaserProviderMachine::new)
             .rotationState(RotationState.ALL)
             .tooltipBuilder(CREATIVE_TOOLTIPS)
-            .tier(UHV)
-            .workableTieredHullModel(
-                    GTCEu.id("laser_source_hatch")
-            )
+            .tier(MAX)
+            .overlayTieredHullModel(GTCEu.id("block/machine/part/laser_source_hatch"))
+            .register();
+
+    public static final MachineDefinition CREATIVE_PARTICLE_PROVIDER = REGISTRATE
+            .machine(LangUtil.createBlockZhTranslation("creative_particle_provider", "创造粒子源"), CreativeParticleProviderMachine::new)
+            .rotationState(RotationState.ALL)
+            .tooltipBuilder(CREATIVE_TOOLTIPS)
+            .tier(MAX)
+            .overlayTieredHullModel(GTCEu.id("block/machine/part/laser_source_hatch"))
             .register();
 
 
@@ -281,7 +313,10 @@ public class GTTMachines {
                                                              ResourceLocation texture,
                                                              int... tiers) {
         return registerTieredMachines(name,
-                (holder, tier) -> new SimpleTieredMachine(holder, tier, tankScalingFunction), (tier, builder) -> {
+                (holder, tier) -> {
+                    LangUtil.createBlockZhTranslation(name, "%s %s %s".formatted(VLVH_CHINESE[tier], chineseName, VLVT[tier]));
+                    return new SimpleTieredMachine(holder, tier, tankScalingFunction);
+                }, (tier, builder) -> {
                     if (hasPollutionDebuff) {
                         builder.recipeModifiers(GTRecipeModifiers.ENVIRONMENT_REQUIREMENT
                                                 .apply(GTMedicalConditions.CARBON_MONOXIDE_POISONING, 100 * tier),
@@ -291,7 +326,6 @@ public class GTTMachines {
                     } else {
                         builder.recipeModifier(GTRecipeModifiers.OC_NON_PERFECT);
                     }
-                    LangUtil.createBlockZhTranslation(name, "%s %s %s".formatted(VLVH_CHINESE[tier], chineseName, VLVT[tier]));
                     return builder
                             .langValue("%s %s %s".formatted(VLVH[tier], toEnglishName(name), VLVT[tier]))
                             .editableUI(SimpleTieredMachine.EDITABLE_UI_CREATOR.apply(GTCEu.id(name), recipeType))

@@ -22,8 +22,31 @@ public class CircuitRecipes {
         componentRecipes(provider);
         boardRecipes(provider);
         waferRecipes(provider);
+        circuitRecipes(provider);
+    }
+    public static void circuitRecipes(Consumer<FinishedRecipe> provider) {
+        CHEMICAL_RECIPES.recipeBuilder(GTTCore.id("aluminium_oxide"))
+                .inputFluids(Oxygen.getFluid(3000))
+                .inputItems(dust, Aluminium, 2)
+                .outputItems(dust, AluminiumOxide, 5)
+                .duration(200)
+                .EUt(VA[MV])
+                .save(provider);
+        MIXER_RECIPES.recipeBuilder(GTTCore.id("cerium_doped_lutetium_aluminium_garnet"))
+                .inputItems(dust, Cerium)
+                .inputItems(dust, Lutetium, 3)
+                .inputItems(dust, AluminiumOxide, 5)
+                .outputItems(dust, CeriumDopedLutetiumAluminiumGarnet, 9)
+                .EUt(VA[IV])
+                .duration(500)
+                .save(provider);
+
+
+
+
     }
     private static void waferRecipes(Consumer<FinishedRecipe> provider){
+
 
         BLAST_RECIPES.recipeBuilder(GTTCore.id("lithium_niobate_boule"))
                 .EUt(VA[LuV])
@@ -180,6 +203,7 @@ public class CircuitRecipes {
         ASSEMBLER_RECIPES.recipeBuilder(GTTCore.id("optical_waveguide_circuit_board"))
                 .inputItems(MULTILAYER_FIBER_BOARD)
                 .inputItems(foil, TungstenCarbide, 4)
+                .inputItems(foil, Rhenium, 1)
                 .inputItems(plate, UltraHighMolecularWeightPolyethylene)
                 .inputFluids(Polybenzimidazole.getFluid(100))
                 .outputItems(OPTICAL_WAVEGUIDE_BOARD)
@@ -187,7 +211,8 @@ public class CircuitRecipes {
 
         ASSEMBLER_RECIPES.recipeBuilder(GTTCore.id("optical_waveguide_printed_circuit_board"))
                 .inputItems(OPTICAL_WAVEGUIDE_BOARD)
-                .inputItems(OPTICAL_PIPES[0], 16)
+                .inputItems(OPTICAL_PIPES[0].asStack(), 16)
+                .outputItems(OPTICAL_WAVEGUIDE_CIRCUIT_BOARD)
                 .duration(200).EUt(VA[ZPM]).save(provider);
     }
 }

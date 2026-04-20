@@ -160,7 +160,7 @@ dependencies {
     compileOnly fg.deobf("mezz.jei:jei-${minecraft_version}-forge-api:${jei_version}")
     compileOnly fg.deobf("mezz.jei:jei-${minecraft_version}-common-api:${jei_version}")
     runtimeOnly fg.deobf("mezz.jei:jei-${minecraft_version}-forge:${jei_version}")
-    runtimeOnly fg.deobf("dev.emi:emi-forge:${emi_version}+${minecraft_version}")
+    implementation fg.deobf("dev.emi:emi-forge:${emi_version}+${minecraft_version}")
     implementation fg.deobf("curse.maven:jade-324717:5390389")
 
     // GregTech and dependencies
@@ -228,7 +228,8 @@ tasks.named('processResources', ProcessResources).configure {
             "create_version": create_version
     ]
     inputs.properties(properties)
-    exclude "src/main/resources/multiblocks.txt"
+    exclude("multiblocks.txt")
+    exclude("main/data/gttcore/recipes/**")
 
     filesMatching("META-INF/mods.toml") {
         expand properties + [project: project]

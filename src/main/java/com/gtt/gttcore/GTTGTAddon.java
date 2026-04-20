@@ -6,9 +6,11 @@ import com.gregtechceu.gtceu.api.addon.events.KJSRecipeKeyEvent;
 import com.gregtechceu.gtceu.api.addon.events.MaterialCasingCollectionEvent;
 import com.gregtechceu.gtceu.api.registry.registrate.GTRegistrate;
 import com.gregtechceu.gtceu.integration.kjs.recipe.components.ContentJS;
+import com.gtt.gttcore.api.particle.ParticleStack;
 import com.gtt.gttcore.common.data.*;
 import com.gtt.gttcore.common.data.recipes.GTTRecipes;
 import com.gtt.gttcore.common.data.recipes.remove.GregTechRecipeRemoval;
+import com.gtt.gttcore.integration.kjs.GTTRecipeComponents;
 import com.mojang.datafixers.util.Pair;
 import dev.latvian.mods.kubejs.recipe.component.NumberComponent;
 import net.minecraft.data.recipes.FinishedRecipe;
@@ -20,7 +22,7 @@ import static com.gregtechceu.gtceu.common.data.GCYMBlocks.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 import static com.gtt.gttcore.common.data.GTTBlocks.*;
 import static com.gtt.gttcore.common.data.GTTMaterials.*;
-import static com.gtt.gttcore.common.registry.GTTRegistration.REGISTRATE;
+import static com.gtt.gttcore.api.registry.GTTRegistration.REGISTRATE;
 
 @SuppressWarnings("unused")
 @GTAddon
@@ -63,10 +65,13 @@ public class GTTGTAddon implements IGTAddon {
 
     public static final ContentJS<Integer> HIGH_ENERGY_LASER_IN = new ContentJS<>(NumberComponent.ANY_INT, GTTRecipeCapabilities.HIGH_ENERGY_LASER, false);
     public static final ContentJS<Integer> HIGH_ENERGY_LASER_OUT = new ContentJS<>(NumberComponent.ANY_INT, GTTRecipeCapabilities.HIGH_ENERGY_LASER, true);
+    public static final ContentJS<ParticleStack> PARTICLE_IN = new ContentJS<>(GTTRecipeComponents.PARTICLE_STACK, GTTRecipeCapabilities.PARTICLE, false);
+    public static final ContentJS<ParticleStack> PARTICLE_OUT = new ContentJS<>(GTTRecipeComponents.PARTICLE_STACK, GTTRecipeCapabilities.PARTICLE, true);
 
     @Override
     public void registerRecipeKeys(KJSRecipeKeyEvent event) {
         event.registerKey(GTTRecipeCapabilities.HIGH_ENERGY_LASER, Pair.of(HIGH_ENERGY_LASER_IN, HIGH_ENERGY_LASER_OUT));
+        event.registerKey(GTTRecipeCapabilities.PARTICLE, Pair.of(HIGH_ENERGY_LASER_IN, HIGH_ENERGY_LASER_OUT));
     }
 
     @Override

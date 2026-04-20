@@ -13,7 +13,6 @@ public class BWGRecipeRemoval {
         provider.accept(new IDFilter(new ResourceLocation("biomeswevegone:black_stained_glass_from_black_sand")));
         provider.accept(new IDFilter(new ResourceLocation("biomeswevegone:white_stained_glass_from_white_sand")));
         provider.accept(new IDFilter(new ResourceLocation("biomeswevegone:pink_stained_glass_from_pink_sand")));
-        provider.accept(new IDFilter(new ResourceLocation("biomeswevegone:pink_stained_glass_from_pink_sand")));
         provider.accept(new IDFilter(new ResourceLocation("biomeswevegone:blue_stained_glass_from_blue_sand")));
     }
 }

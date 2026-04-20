@@ -1,22 +1,33 @@
-// 1.20.1	2026-03-14T18:00:14.3074529	GTT Molecules provider
+// 1.20.1	2026-03-20T18:04:41.2562257	GTT Molecules provider
 0fb6622a assets/gttcore/alloys/aluminium_alloy_6061.json
 0fb6622a assets/gttcore/alloys/andesite_alloy.json
 0fb6622a assets/gttcore/alloys/atomic_steel.json
 0fb6622a assets/gttcore/alloys/inconel_718.json
+75ca6bf3 assets/gttcore/molecules/arsenic_hydride.json
 0e73e38c assets/gttcore/molecules/bis_2_ethylhexyl_phosphite.json
 6f2ccf56 assets/gttcore/molecules/bromobutane.json
 9c5f393c assets/gttcore/molecules/butanol.json
+49c840fb assets/gttcore/molecules/chlorooctane.json
 6343fdfe assets/gttcore/molecules/dibutyl_magnesium.json
 afa736de assets/gttcore/molecules/diisooctyl_phthalate.json
+3e5739bc assets/gttcore/molecules/di_2_ethylhexyl_phosphoryl_chloride.json
 55eeefd4 assets/gttcore/molecules/ethylene_glycol.json
 a700d787 assets/gttcore/molecules/ethylene_oxide.json
 836599a0 assets/gttcore/molecules/fullerene.json
+8fae6eb8 assets/gttcore/molecules/iodomethane.json
 593aabcf assets/gttcore/molecules/octanol.json
-afcffe52 assets/gttcore/molecules/octanol_magnesium.json
+53938e54 assets/gttcore/molecules/octanol_magnesium.json
 a1fdf5a7 assets/gttcore/molecules/oxalic_acid.json
-1da611fb assets/gttcore/molecules/phenolic_resin.json
-f5645531 assets/gttcore/molecules/phthaloyl_chlorine.json
+1d4932e3 assets/gttcore/molecules/phenolic_resin.json
+4d478e86 assets/gttcore/molecules/phosphine.json
+bb8956a1 assets/gttcore/molecules/phthaloyl_chlorine.json
 ee37f2c3 assets/gttcore/molecules/p_204.json
 f2ce86d3 assets/gttcore/molecules/p_507.json
+418e6b33 assets/gttcore/molecules/silane.json
+bfe03856 assets/gttcore/molecules/silicon_chloride.json
+6a7eb79f assets/gttcore/molecules/trichlorosilane.json
+701408ab assets/gttcore/molecules/trimethylaluminium.json
+617dbfff assets/gttcore/molecules/trimethylgallium.json
+3661a048 assets/gttcore/molecules/trimethylindium.json
 3b5a93ff assets/gttcore/molecules/ultra_high_molecular_weight_polyethylene.json
 6343fdfe assets/gttcore/molecules/wet_dibutyl_magnesium.json

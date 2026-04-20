@@ -194,6 +194,14 @@ public class GTTMaterials {
     public static Material Lithium6;
     public static Material Lithium6Amalgam;
     //public static Material LithiumNiobate;
+    public static Material MolybdenumSmokeDust;
+    public static Material RheniumSolution;
+    public static Material RheniumOxide;
+    public static Material AmmoniumPerrhenate;
+    public static Material GermaniumDioxide;
+
+    public static Material AluminiumOxide;
+    public static Material CeriumDopedLutetiumAluminiumGarnet;
 
     public static Material[] alloysGeneratesData;
     public static void init() {
@@ -306,13 +314,13 @@ public class GTTMaterials {
                 .buildAndRegister();
         Bromobutane = new GTTMaterialBuilder(GTTCore.id("bromobutane"))
                 .fluid()
-                .color(0xdddd91)
+                .color(0x916c2c)
                 .chineseLangValue("溴丁烷")
                 .components(Carbon, 4, Hydrogen, 9, Bromine, 1)
                 .buildAndRegister();
         SodiumBromide = new GTTMaterialBuilder(GTTCore.id("sodium_bromide"))
                 .dust()
-                .color(0xcbd2db)
+                .color(0xc7a181)
                 .chineseLangValue("溴化钠")
                 .components(Sodium, 1, Bromine, 1)
                 .buildAndRegister();
@@ -329,7 +337,7 @@ public class GTTMaterials {
                 .buildAndRegister();
         SodiumSulfate = new GTTMaterialBuilder(GTTCore.id("sodium_sulfate"))
                 .dust()
-                .color(0xDDDDDD)
+                .color(0x98942a)
                 .chineseLangValue("硫酸钠")
                 .components(Sodium, 2, Sulfur, 1, Oxygen, 4)
                 .buildAndRegister();
@@ -1163,7 +1171,7 @@ public class GTTMaterials {
                 .buildAndRegister();
         LithiumAmalgam = new GTTMaterialBuilder(GTTCore.id("lithium_amalgam"))
                 .langValue("Lithium Amalgam")
-                .dust()
+                .liquid()
                 .chineseLangValue("锂汞齐")
                 .color(0x3d3d5e)
                 .flags(DECOMPOSITION_BY_ELECTROLYZING)
@@ -1179,13 +1187,14 @@ public class GTTMaterials {
         Lithium6 = new GTTMaterialBuilder(GTTCore.id("lithium_6"))
                 .langValue("Lithium-6")
                 .dust()
+                .flags(GENERATE_ROD)
                 .chineseLangValue("锂-6")
                 .color(0xb8e1f1).secondaryColor(0x779dc1)
                 .element(Li6)
                 .buildAndRegister();
         Lithium6Amalgam = new GTTMaterialBuilder(GTTCore.id("lithium_6_amalgam"))
                 .langValue("Lithium-6 Amalgam")
-                .dust()
+                .liquid()
                 .chineseLangValue("锂-6汞齐")
                 .color(0x595985)
                 .flags(DECOMPOSITION_BY_ELECTROLYZING)
@@ -1193,6 +1202,62 @@ public class GTTMaterials {
                 .buildAndRegister();
 
 
+
+        MolybdenumSmokeDust = new GTTMaterialBuilder(GTTCore.id("molybdenum_smoke_dust"))
+                .langValue("Molybdenum Smoke Dust")
+                .dust()
+                .chineseLangValue("钼烟尘")
+                .color(0x171d23)
+                .buildAndRegister();
+        RheniumSolution = new GTTMaterialBuilder(GTTCore.id("rhenium_solution"))
+                .langValue("Rhenium Solution")
+                .liquid()
+                .chineseLangValue("铼溶液")
+                .color(0x313b8c)
+                .buildAndRegister();
+        RheniumOxide = new GTTMaterialBuilder(GTTCore.id("rhenium_oxide"))
+                .langValue("Rhenium Oxide")
+                .dust()
+                .flags(DISABLE_DECOMPOSITION)
+                .chineseLangValue("七氧化二铼")
+                .color(0x211e5e)
+                .components(Rhenium, 2, Oxygen, 7)
+                .buildAndRegister();
+        AmmoniumPerrhenate = new GTTMaterialBuilder(GTTCore.id("AmmoniumPerrhenate"))
+                .langValue("Ammonium Perrhenate")
+                .dust()
+                .flags(DISABLE_DECOMPOSITION)
+                .chineseLangValue("高铼酸铵")
+                .color(0x5c3025)
+                .components(Nitrogen, 1, Hydrogen, 4, Rhenium, 1, Oxygen, 4)
+                .buildAndRegister();
+        GermaniumDioxide = new GTTMaterialBuilder(GTTCore.id("germanium_dioxide"))
+                .langValue("Germanium Dioxide")
+                .dust()
+                .flags(DISABLE_DECOMPOSITION)
+                .chineseLangValue("二氧化锗")
+                .color(0x5e4d33)
+                .components(Germanium, 1, Oxygen, 2)
+                .buildAndRegister();
+
+
+        AluminiumOxide = new GTTMaterialBuilder(GTTCore.id("aluminium_oxide"))
+                .langValue("Aluminium Oxide")
+                .dust()
+                .chineseLangValue("氧化铝")
+                .color(0x405a5c)
+                .components(Aluminium, 2, Oxygen, 3)
+                .buildAndRegister();
+        CeriumDopedLutetiumAluminiumGarnet = new GTTMaterialBuilder(GTTCore.id("cerium_doped_lutetium_aluminium_garnet"))
+                .langValue("Cerium-doped Lutetium Aluminium Garnet")
+                .gem()
+                .flags(CRYSTALLIZABLE, GENERATE_LENS, DECOMPOSITION_BY_CENTRIFUGING)
+                .chineseLangValue("掺铈的镥铝榴石")
+                .color(0x5fb96c)
+                .secondaryColor(0x12621a)
+                .iconSet(DULL)
+                .components(Cerium, 1, Lutetium, 3, AluminiumOxide, 5)
+                .buildAndRegister();
 
 
 
@@ -1286,7 +1351,19 @@ public class GTTMaterials {
         Neodymium.removeProperty(PropertyKey.ORE);
 
         Glowstone.setProperty(PropertyKey.ORE, new OreProperty(5, 1));
-        Glowstone.setComponents(new MaterialStack(Boron, 8), new MaterialStack(Argon, 1), new MaterialStack(Fluorine, 2), new MaterialStack(Uranium238, 2));
-        Glowstone.setFormula("B8F2ArU2");
+        Glowstone.setComponents(new MaterialStack(Boron, 8), new MaterialStack(Argon, 1), new MaterialStack(Fluorine, 2));
+        Glowstone.setFormula("B8F2Ar");
+
+        Germanium.setProperty(PropertyKey.INGOT, new IngotProperty());
+        Rhenium.setProperty(PropertyKey.INGOT, new IngotProperty());
+        Rhenium.setMaterialARGB(0x0033AA);
+        Rhenium.setMaterialSecondaryARGB(0x000090);
+    }
+
+    private static void excludeAllGemsButNormal(Material material) {
+        gemChipped.setIgnored(material);
+        gemFlawed.setIgnored(material);
+        gemFlawless.setIgnored(material);
+        gemExquisite.setIgnored(material);
     }
 }
