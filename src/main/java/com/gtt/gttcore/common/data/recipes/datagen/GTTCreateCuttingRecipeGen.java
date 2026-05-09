@@ -10,6 +10,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 
 import java.util.Arrays;
 
+@Deprecated
 public class GTTCreateCuttingRecipeGen extends CuttingRecipeGen {
     public GTTCreateCuttingRecipeGen(PackOutput output) {
         super(output, GTTCore.MOD_ID);

@@ -2,7 +2,6 @@ package com.gtt.gttcore.data.recipe;
 
 import com.gregtechceu.gtceu.common.data.GTRecipes;
 import com.gregtechceu.gtceu.data.recipe.GTCraftingComponents;
-import com.gtt.gttcore.common.data.recipes.datagen.*;
 import com.simibubi.create.api.data.recipe.BaseRecipeProvider;
 import net.minecraft.data.CachedOutput;
 import net.minecraft.data.DataGenerator;
@@ -16,6 +15,7 @@ import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Consumer;
 
+@Deprecated
 public class GTTRecipeProvider extends RecipeProvider {
 
     static final List<BaseRecipeProvider> GENERATORS = new ArrayList<>();
@@ -32,11 +32,11 @@ public class GTTRecipeProvider extends RecipeProvider {
     public static void registerAllProcessing(DataGenerator gen, PackOutput output) {
         GTCraftingComponents.init();
         GTRecipes.recipeAddition(ignored -> {});
-        GENERATORS.add(new GTTCreatePressingRecipeGen(output));
-        GENERATORS.add(new GTTCreateMixingRecipeGen(output));
-        GENERATORS.add(new GTTCreateFillingRecipeGen(output));
-        GENERATORS.add(new GTTCreateMillingRecipeGen(output));
-        GENERATORS.add(new GTTCreateCuttingRecipeGen(output));
+//        GENERATORS.add(new GTTCreatePressingRecipeGen(output));
+//        GENERATORS.add(new GTTCreateMixingRecipeGen(output));
+//        GENERATORS.add(new GTTCreateFillingRecipeGen(output));
+//        GENERATORS.add(new GTTCreateMillingRecipeGen(output));
+//        GENERATORS.add(new GTTCreateCuttingRecipeGen(output));
         gen.addProvider(true, new DataProvider() {
 
             @Override

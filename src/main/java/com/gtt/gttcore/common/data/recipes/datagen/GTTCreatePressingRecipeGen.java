@@ -10,6 +10,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 
 import java.util.Arrays;
 
+@Deprecated
 public class GTTCreatePressingRecipeGen extends PressingRecipeGen {
     public GTTCreatePressingRecipeGen(PackOutput output) {
         super(output, GTTCore.MOD_ID);

@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "gttcore:block/normal_particle_pipe"
+    }
+  }
+}

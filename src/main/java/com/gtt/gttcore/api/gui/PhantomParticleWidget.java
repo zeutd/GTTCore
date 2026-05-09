@@ -1,9 +1,10 @@
 package com.gtt.gttcore.api.gui;
 
 import com.gregtechceu.gtceu.GTCEu;
-import com.gtt.gttcore.GTTCore;
 import com.gtt.gttcore.api.capability.IParticleContainer;
 import com.gtt.gttcore.api.particle.ParticleStack;
+import com.gtt.gttcore.api.particle.ParticleType;
+import com.gtt.gttcore.api.registry.GTTRegistries;
 import com.lowdragmc.lowdraglib.gui.editor.annotation.LDLRegister;
 import com.lowdragmc.lowdraglib.gui.ingredient.IGhostIngredientTarget;
 import com.lowdragmc.lowdraglib.gui.ingredient.Target;
@@ -11,6 +12,7 @@ import dev.emi.emi.api.stack.EmiStack;
 import lombok.Getter;
 import net.minecraft.client.renderer.Rect2i;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
@@ -20,6 +22,7 @@ import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
+@SuppressWarnings("removal")
 @LDLRegister(name = "gtt_phantom_particle_widget", group = "widget.gtt_container", priority = 50)
 public class PhantomParticleWidget extends ParticleWidget implements IGhostIngredientTarget {
 
@@ -28,6 +31,7 @@ public class PhantomParticleWidget extends ParticleWidget implements IGhostIngre
 
     @Getter
     private ParticleStack lastPhantomStack;
+
     public PhantomParticleWidget(IParticleContainer container, int x, int y, Supplier<ParticleStack> phantomParticleGetter, Consumer<ParticleStack> phantomParticleSetter) {
         super(container, x, y);
         this.phantomParticleGetter = phantomParticleGetter;
@@ -37,12 +41,19 @@ public class PhantomParticleWidget extends ParticleWidget implements IGhostIngre
     @Override
     @OnlyIn(Dist.CLIENT)
     public List<Target> getPhantomTargets(Object ingredient) {
-        GTTCore.LOGGER.info(ingredient);
         if (GTCEu.Mods.isEMILoaded() && ingredient instanceof EmiStack emiStack){
-            GTTCore.LOGGER.info(emiStack.getKey());
+            //GTTCore.LOGGER.info(emiStack.getKey());
             if (emiStack.getKey() instanceof ParticleStack stack){
-                GTTCore.LOGGER.info("123456");
                 ingredient = stack.withAmount(stack.getAmount() == 0 ? 1000 : stack.getAmount());
+            }
+            if (emiStack.getKey() instanceof ParticleType type){
+                ingredient = new ParticleStack(type, 1000);
+            }
+            if (emiStack.getKey() instanceof String name){
+                ingredient = new ParticleStack(GTTRegistries.PARTICLE_TYPES.get(new ResourceLocation(name)), 1000);
+            }
+            if (emiStack.getKey() instanceof ResourceLocation location){
+                ingredient = new ParticleStack(GTTRegistries.PARTICLE_TYPES.get(location), 1000);
             }
         }
 
@@ -61,6 +72,15 @@ public class PhantomParticleWidget extends ParticleWidget implements IGhostIngre
                 if (GTCEu.Mods.isEMILoaded() && ingredient instanceof EmiStack emiStack){
                     if (emiStack.getKey() instanceof ParticleStack stack){
                         ingredient = stack.withAmount(stack.getAmount() == 0 ? 1000 : stack.getAmount());
+                    }
+                    if (emiStack.getKey() instanceof ParticleType type){
+                        ingredient = new ParticleStack(type, 1000);
+                    }
+                    if (emiStack.getKey() instanceof String name){
+                        ingredient = new ParticleStack(GTTRegistries.PARTICLE_TYPES.get(new ResourceLocation(name)), 1000);
+                    }
+                    if (emiStack.getKey() instanceof ResourceLocation location){
+                        ingredient = new ParticleStack(GTTRegistries.PARTICLE_TYPES.get(location), 1000);
                     }
                 }
                 if (!(ingredient instanceof ParticleStack stack)) return;

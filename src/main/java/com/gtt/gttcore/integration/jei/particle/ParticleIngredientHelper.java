@@ -11,6 +11,7 @@ import net.minecraft.resources.ResourceLocation;
 import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.ParametersAreNonnullByDefault;
+import java.util.Collections;
 
 @MethodsReturnNonnullByDefault
 @ParametersAreNonnullByDefault
@@ -22,12 +23,28 @@ public class ParticleIngredientHelper implements IIngredientHelper<ParticleStack
 
     @Override
     public String getDisplayName(ParticleStack ingredient) {
+        //LOGGER.info(s);
         return Component.translatable(ingredient.getType().getId().toLanguageKey("particle_type")).getString();
+    }
+
+    @Override
+    public Iterable<Integer> getColors(ParticleStack ingredient) {
+        return Collections.singleton(ingredient.getType().color);
     }
 
     @Override
     public String getUniqueId(ParticleStack ingredient, UidContext context) {
         return ingredient.getType().getId().toString();
+    }
+
+    @Override
+    public long getAmount(ParticleStack ingredient) {
+        return ingredient.getAmount();
+    }
+
+    @Override
+    public ParticleStack copyWithAmount(ParticleStack ingredient, long amount) {
+        return ingredient.copyWithAmount((int) amount);
     }
 
     @Override

@@ -1,0 +1,65 @@
+package com.gtt.gttcore.util;
+
+import com.gregtechceu.gtceu.api.capability.recipe.FluidRecipeCapability;
+import com.gregtechceu.gtceu.api.capability.recipe.ItemRecipeCapability;
+import com.gregtechceu.gtceu.api.recipe.GTRecipe;
+import com.gtt.gttcore.GTTCore;
+import com.simibubi.create.content.processing.recipe.ProcessingRecipe;
+import com.simibubi.create.content.processing.recipe.ProcessingRecipeBuilder;
+import net.minecraft.client.Minecraft;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.Recipe;
+
+import java.util.function.Consumer;
+
+public class RecipeUtil {
+    public static <T extends ProcessingRecipe<?>> T convertGregTechToCreate(GTRecipe gtRecipe, ProcessingRecipeBuilder.ProcessingRecipeFactory<T> factory) {
+        ProcessingRecipeBuilder<T> processingRecipeBuilder = new ProcessingRecipeBuilder<>(factory::create, GTTCore.id("converted_" + gtRecipe.getId().getPath()));
+        if (gtRecipe.inputs.containsKey(ItemRecipeCapability.CAP))
+            gtRecipe.getInputContents(ItemRecipeCapability.CAP)
+                    .stream()
+                    .filter(content -> content.chance != 0)
+                    .forEach(content -> processingRecipeBuilder.require((Ingredient) content.content));
+        if (gtRecipe.inputs.containsKey(FluidRecipeCapability.CAP))
+            gtRecipe.getInputContents(FluidRecipeCapability.CAP)
+                    .forEach(content ->
+                            processingRecipeBuilder.require(com.simibubi.create.foundation.fluid.FluidIngredient.fromFluidStack(((com.gregtechceu.gtceu.api.recipe.ingredient.FluidIngredient) content.content).getStacks()[0])));
+        if (gtRecipe.outputs.containsKey(ItemRecipeCapability.CAP))
+            gtRecipe.getOutputContents(ItemRecipeCapability.CAP)
+                    .forEach(content -> processingRecipeBuilder.output((float) content.chance / content.maxChance, ((Ingredient) content.content).getItems()[0]));
+        if (gtRecipe.outputs.containsKey(FluidRecipeCapability.CAP))
+            gtRecipe.getOutputContents(FluidRecipeCapability.CAP).forEach(content -> processingRecipeBuilder.output(((com.gregtechceu.gtceu.api.recipe.ingredient.FluidIngredient) content.content).getStacks()[0]));
+        return processingRecipeBuilder.build();
+    }
+
+    public static <T extends ProcessingRecipe<?>> T convertGregTechToCreateOnlyFirstOutput(GTRecipe gtRecipe, ProcessingRecipeBuilder.ProcessingRecipeFactory<T> factory) {
+        ProcessingRecipeBuilder<T> processingRecipeBuilder = new ProcessingRecipeBuilder<>(factory::create, GTTCore.id("converted_" + gtRecipe.getId().getPath()));
+        if (gtRecipe.inputs.containsKey(ItemRecipeCapability.CAP))
+            gtRecipe.getInputContents(ItemRecipeCapability.CAP)
+                    .stream()
+                    .filter(content -> content.chance != 0)
+                    .forEach(content -> processingRecipeBuilder.require((Ingredient) content.content));
+        if (gtRecipe.inputs.containsKey(FluidRecipeCapability.CAP))
+            gtRecipe.getInputContents(FluidRecipeCapability.CAP)
+                    .forEach(content ->
+                            processingRecipeBuilder.require(com.simibubi.create.foundation.fluid.FluidIngredient.fromFluidStack(((com.gregtechceu.gtceu.api.recipe.ingredient.FluidIngredient) content.content).getStacks()[0])));
+        if (gtRecipe.outputs.containsKey(ItemRecipeCapability.CAP))
+            gtRecipe.getOutputContents(ItemRecipeCapability.CAP)
+                    .stream()
+                    .findFirst()
+                    .map(content -> processingRecipeBuilder.output((float) content.chance / content.maxChance, ((Ingredient) content.content).getItems()[0]));
+        if (gtRecipe.outputs.containsKey(FluidRecipeCapability.CAP))
+            gtRecipe.getOutputContents(FluidRecipeCapability.CAP).stream()
+                    .findFirst()
+                    .map(content -> processingRecipeBuilder.output(((com.gregtechceu.gtceu.api.recipe.ingredient.FluidIngredient) content.content).getStacks()[0]));
+        return processingRecipeBuilder.build();
+    }
+
+    public static void consumeAllRecipes(Consumer<Recipe<?>> consumer) {
+        Minecraft.getInstance()
+                .getConnection()
+                .getRecipeManager()
+                .getRecipes()
+                .forEach(consumer);
+    }
+}

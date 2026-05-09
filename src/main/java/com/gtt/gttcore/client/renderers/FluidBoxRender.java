@@ -209,6 +209,7 @@ public class FluidBoxRender extends DynamicRender<WorkableElectricMultiblockMach
     @Override
     public AABB getRenderBoundingBox(WorkableElectricMultiblockMachine machine) {
         var box = super.getRenderBoundingBox(machine);
+        if (!machine.isFormed()) return box;
         var trait = machine.getTrait(MultiblockFluidBoxRendererTrait.TYPE);
         if (trait == null) return box;
         return box.minmax(AABB.of(trait.getFluidBox())).inflate(getViewDistance());

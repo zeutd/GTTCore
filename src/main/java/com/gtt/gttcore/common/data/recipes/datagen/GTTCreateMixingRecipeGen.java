@@ -12,6 +12,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 
 import java.util.Arrays;
 
+@Deprecated
 public class GTTCreateMixingRecipeGen extends MixingRecipeGen {
     public GTTCreateMixingRecipeGen(PackOutput output) {
         super(output, GTTCore.MOD_ID);

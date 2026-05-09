@@ -30,6 +30,6 @@ public class ParticleIngredientRenderer implements IIngredientRenderer<ParticleS
 
     @Override
     public @NotNull List<Component> getTooltip(ParticleStack ingredient, TooltipFlag tooltipFlag) {
-        return List.of();
+        return List.of(ingredient.getType().getDisplayName());
     }
 }

@@ -42,6 +42,10 @@ public class ParticleStack {
         return new ParticleStack(type, amount);
     }
 
+    public ParticleStack copyWithAmount(int amount){
+        return new ParticleStack(type, amount);
+    }
+
     public void addAmount(int amount){
         this.amount += amount;
     }

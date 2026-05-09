@@ -4,7 +4,6 @@ import com.gtt.gttcore.common.data.recipes.GTTRecipeTypes;
 import com.gtt.gttcore.data.lang.GTTChineseLanguageProvider;
 import com.gtt.gttcore.data.lang.GTTLangHandler;
 import com.gtt.gttcore.data.molecule.GTTMoleculeProvider;
-import com.gtt.gttcore.data.recipe.GTTRecipeProvider;
 import com.gtt.gttcore.data.recipe.GTTTags;
 import com.tterrag.registrate.providers.ProviderType;
 import net.minecraft.data.DataGenerator;
@@ -21,7 +20,7 @@ public class GTTDatagen {
         LOGGER.info("GTT Datagen");
         DataGenerator generator = event.getGenerator();
         PackOutput output = generator.getPackOutput();
-        GTTRecipeProvider.registerAllProcessing(generator, output);
+        //GTTRecipeProvider.registerAllProcessing(generator, output);
         generator.addProvider(true, new GTTPlanetProvider(output));
         REGISTRATE.addDataGenerator(ProviderType.ITEM_TAGS, GTTTags::addItemTags);
         LanguageProvider chineseProvider = new GTTChineseLanguageProvider(output);
