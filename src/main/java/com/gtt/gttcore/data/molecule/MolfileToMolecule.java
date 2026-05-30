@@ -99,7 +99,7 @@ public class MolfileToMolecule {
                     hydrogenCount = getMaxValence(protonCount) - connectionCount;
                     LOGGER.info("Element {} Hydrogen Count {}", atom.element().element().symbol, hydrogenCount);
                 }
-                return new Atom(atom.index(), atom.element(), Optional.empty(), Optional.ofNullable(hydrogenCount <= 0 ? null : Element.H.count(hydrogenCount)), Optional.empty(), Optional.empty(), atom.position());
+                return new Atom(atom.index(), atom.element(), Optional.empty(), Optional.ofNullable(hydrogenCount <= 0 ? null : Element.H.count(hydrogenCount)), Optional.empty(), Optional.empty(), atom.position(), atom.spinGroup());
             }
             return moleculeElement;
         }).collect(Collectors.toList()));

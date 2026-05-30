@@ -1,10 +1,10 @@
 package com.gtt.gttcore.common.data.recipes;
 
 import com.gregtechceu.gtceu.GTCEu;
-import com.gregtechceu.gtceu.api.GTCEuAPI;
 import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
+import com.gregtechceu.gtceu.api.registry.GTRegistries;
 import com.gregtechceu.gtceu.common.data.GTItems;
 import com.gregtechceu.gtceu.data.recipe.configurable.RecipeRemoval;
 import com.gtt.gttcore.common.data.GTTItems;
@@ -97,7 +97,7 @@ public class GTTRecipes {
         }
     }
     public static void init(Consumer<FinishedRecipe> provider) {
-        for (Material material : GTCEuAPI.materialManager.getRegisteredMaterials()) {
+        for (Material material : GTRegistries.MATERIALS.values()) {
             GTTPartsRecipeHandler.run(provider, material);
         }
         MiscRecipes.init(provider);

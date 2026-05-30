@@ -1,20 +1,30 @@
 package com.gtt.gttcore.util;
 
 import com.gregtechceu.gtceu.api.capability.recipe.FluidRecipeCapability;
+import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.capability.recipe.ItemRecipeCapability;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
+import com.gregtechceu.gtceu.api.recipe.ingredient.IntCircuitIngredient;
+import com.gregtechceu.gtceu.utils.DummyRecipeUtils;
 import com.gtt.gttcore.GTTCore;
 import com.simibubi.create.content.processing.recipe.ProcessingRecipe;
 import com.simibubi.create.content.processing.recipe.ProcessingRecipeBuilder;
 import net.minecraft.client.Minecraft;
+import net.minecraft.core.NonNullList;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
 
+import java.util.Objects;
 import java.util.function.Consumer;
+import java.util.stream.IntStream;
 
 public class RecipeUtil {
+
+    public static final DummyRecipeUtils.DummyItemHandler itemHandlerWithAllCircuits = new DummyRecipeUtils.DummyItemHandler(IO.IN, NonNullList.of(ItemStack.EMPTY, IntStream.range(1, IntCircuitIngredient.CIRCUIT_MAX).mapToObj(i -> IntCircuitIngredient.of(i).getItems()[0]).toArray(ItemStack[]::new)));
+
     public static <T extends ProcessingRecipe<?>> T convertGregTechToCreate(GTRecipe gtRecipe, ProcessingRecipeBuilder.ProcessingRecipeFactory<T> factory) {
-        ProcessingRecipeBuilder<T> processingRecipeBuilder = new ProcessingRecipeBuilder<>(factory::create, GTTCore.id("converted_" + gtRecipe.getId().getPath()));
+        ProcessingRecipeBuilder<T> processingRecipeBuilder = new ProcessingRecipeBuilder<>(factory, GTTCore.id("converted_" + gtRecipe.getId().getPath()));
         if (gtRecipe.inputs.containsKey(ItemRecipeCapability.CAP))
             gtRecipe.getInputContents(ItemRecipeCapability.CAP)
                     .stream()
@@ -33,7 +43,7 @@ public class RecipeUtil {
     }
 
     public static <T extends ProcessingRecipe<?>> T convertGregTechToCreateOnlyFirstOutput(GTRecipe gtRecipe, ProcessingRecipeBuilder.ProcessingRecipeFactory<T> factory) {
-        ProcessingRecipeBuilder<T> processingRecipeBuilder = new ProcessingRecipeBuilder<>(factory::create, GTTCore.id("converted_" + gtRecipe.getId().getPath()));
+        ProcessingRecipeBuilder<T> processingRecipeBuilder = new ProcessingRecipeBuilder<>(factory, GTTCore.id("converted_" + gtRecipe.getId().getPath()));
         if (gtRecipe.inputs.containsKey(ItemRecipeCapability.CAP))
             gtRecipe.getInputContents(ItemRecipeCapability.CAP)
                     .stream()
@@ -56,8 +66,8 @@ public class RecipeUtil {
     }
 
     public static void consumeAllRecipes(Consumer<Recipe<?>> consumer) {
-        Minecraft.getInstance()
-                .getConnection()
+        Objects.requireNonNull(Minecraft.getInstance()
+                        .getConnection())
                 .getRecipeManager()
                 .getRecipes()
                 .forEach(consumer);

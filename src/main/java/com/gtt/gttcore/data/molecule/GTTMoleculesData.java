@@ -13,28 +13,33 @@ import java.util.Map;
 
 public class GTTMoleculesData {
     public static Molecule tetragonalNullable(Element center, @Nullable Element top, @Nullable Element back, @Nullable Element front, @Nullable Element side) {
+        int index = 0;
         Molecule molecule = new Molecule()
                 .xy()
                 .atom(center, 0.0F, 0.0F);
         if (top != null) {
+            index++;
             molecule
                     .atom(top, 0.0F, 1.0F)
-                    .bond(0, 1);
+                    .bond(0, index);
         }
         if (back != null) {
+            index++;
             molecule
                     .atom(back, (float) Math.cos(Math.toRadians(-15.0)), (float) Math.sin(Math.toRadians(-15.0)))
-                    .bond(0, 2, Bond.Line.INWARD);
+                    .bond(0, index, Bond.Line.INWARD);
         }
         if (top != null) {
+            index++;
             molecule
                     .atom(front, (float) Math.cos(Math.toRadians(-60.0)), (float) Math.sin(Math.toRadians(-60.0)))
-                    .bond(0, 3, Bond.Line.OUTWARD);
+                    .bond(0, index, Bond.Line.OUTWARD);
         }
         if (top != null) {
+            index++;
             molecule
                     .atom(side, (float)Math.cos(Math.toRadians(-150.0)), (float)Math.sin(Math.toRadians(-150.0)))
-                    .bond(0, 4);
+                    .bond(0, index);
         }
         return molecule;
     }

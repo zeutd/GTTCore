@@ -18,15 +18,13 @@ import com.gregtechceu.gtceu.api.pattern.TraceabilityPredicate;
 import com.gregtechceu.gtceu.api.pattern.predicates.SimplePredicate;
 import com.gregtechceu.gtceu.api.pattern.util.RelativeDirection;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
-import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
-import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
-import com.gregtechceu.gtceu.api.recipe.modifier.ParallelLogic;
-import com.gregtechceu.gtceu.api.recipe.modifier.RecipeModifier;
 import com.gregtechceu.gtceu.api.registry.registrate.GTRegistrate;
 import com.gregtechceu.gtceu.api.registry.registrate.MultiblockMachineBuilder;
 import com.gregtechceu.gtceu.client.renderer.machine.DynamicRenderHelper;
 import com.gregtechceu.gtceu.common.block.BoilerFireboxType;
-import com.gregtechceu.gtceu.common.data.*;
+import com.gregtechceu.gtceu.common.data.GTMaterialItems;
+import com.gregtechceu.gtceu.common.data.GTRecipeModifiers;
+import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
 import com.gregtechceu.gtceu.common.data.machines.GTAEMachines;
 import com.gregtechceu.gtceu.common.data.machines.GTMachineUtils;
 import com.gregtechceu.gtceu.common.machine.multiblock.electric.FusionReactorMachine;
@@ -57,8 +55,8 @@ import java.util.function.BiFunction;
 import java.util.function.Supplier;
 
 import static com.gregtechceu.gtceu.api.GTValues.*;
-import static com.gregtechceu.gtceu.api.machine.multiblock.PartAbility.*;
 import static com.gregtechceu.gtceu.api.machine.multiblock.PartAbility.STEAM;
+import static com.gregtechceu.gtceu.api.machine.multiblock.PartAbility.*;
 import static com.gregtechceu.gtceu.api.pattern.Predicates.*;
 import static com.gregtechceu.gtceu.api.pattern.util.RelativeDirection.*;
 import static com.gregtechceu.gtceu.common.data.GCYMBlocks.*;
@@ -71,12 +69,13 @@ import static com.gregtechceu.gtceu.common.data.GTRecipeModifiers.OC_PERFECT_SUB
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.*;
 import static com.gregtechceu.gtceu.common.data.models.GTMachineModels.createWorkableCasingMachineModel;
 import static com.gregtechceu.gtceu.utils.FormattingUtil.toRomanNumeral;
-import static com.gtt.gttcore.common.data.GTTBlocks.*;
-import static com.gtt.gttcore.common.data.recipes.GTTRecipeTypes.*;
 import static com.gtt.gttcore.api.registry.GTTRegistration.REGISTRATE;
+import static com.gtt.gttcore.common.data.GTTBlocks.*;
+import static com.gtt.gttcore.common.data.recipes.GTTRecipeModifiers.baseParallel;
+import static com.gtt.gttcore.common.data.recipes.GTTRecipeTypes.*;
 
 
-@SuppressWarnings("removal")
+@SuppressWarnings({"removal", "unused"})
 public class GTTMultiMachines {
     public static void init(){}
 
@@ -239,9 +238,10 @@ public class GTTMultiMachines {
             .tooltips(Component.translatable("gtceu.machine.electric_blast_furnace.tooltip.0"),
                     Component.translatable("gtceu.machine.electric_blast_furnace.tooltip.1"),
                     Component.translatable("gtceu.machine.electric_blast_furnace.tooltip.2"))
+            .tooltips(Component.translatable("gttcore.machine.base_parallel", 128))
             .rotationState(RotationState.ALL)
             .recipeType(ALLOY_BLAST_RECIPES)
-            .recipeModifiers(GTRecipeModifiers.PARALLEL_HATCH, GTRecipeModifiers::ebfOverclock, baseParallel(128))
+            .recipeModifiers(GTRecipeModifiers.PARALLEL_HATCH, GTRecipeModifiers::ebfOverclock, baseParallel.apply(128))
             .appearanceBlock(CASING_HIGH_TEMPERATURE_SMELTING)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("  AAAAAAAAA  ","  AAAAAAAAA  ","      B      ","      B      ","      B      ","      B      ","             ","             ","             ","             ","             ","             ","             ","             ","             ","             ","             ")
@@ -744,10 +744,11 @@ public class GTTMultiMachines {
             .langValue("laser_freezer")
             .tooltips(Component.translatable("gtceu.multiblock.parallelizable.tooltip"))
             .tooltips(Component.translatable("gtceu.machine.available_recipe_map_1.tooltip",
-                    Component.translatable(LangUtil.createEnZhTranslation("gttcore.laser_freezer", "Vacuum Freezer", "真空冷冻"))))
+                    Component.translatable("gtceu.vacuum_freezer")))
+            .tooltips(Component.translatable("gttcore.machine.base_parallel", 2048))
             .rotationState(RotationState.ALL)
             .recipeType(VACUUM_RECIPES)
-            .recipeModifiers(baseParallel(256), GTRecipeModifiers.PARALLEL_HATCH, GTRecipeModifiers.OC_NON_PERFECT_SUBTICK)
+            .recipeModifiers(baseParallel.apply(2048), GTRecipeModifiers.PARALLEL_HATCH, GTRecipeModifiers.OC_NON_PERFECT_SUBTICK)
             .appearanceBlock(CASING_ALUMINIUM_FROSTPROOF)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("                                             ","                                             ","                                             ","                                             ","                                             ","                     AAA                     ","                    AAAAA                    ","                    AAAAA                    ","                    AAAAA                    ","                     AAA                     ","                                             ","                                             ","                                             ","                                             ","                                             ")
@@ -1152,8 +1153,9 @@ public class GTTMultiMachines {
     public final static MultiblockMachineDefinition CHEMICAL_PLANT = REGISTRATE
             .multiblock(LangUtil.createBlockZhTranslation("chemical_plant", "化工厂"), WorkableElectricMultiblockMachine::new)
             .rotationState(RotationState.ALL)
+            .tooltips(Component.translatable("gttcore.machine.base_parallel", 64))
             .recipeType(CHEMICAL_PLANT_RECIPES)
-            .recipeModifiers(GTRecipeModifiers.PARALLEL_HATCH, OC_PERFECT_SUBTICK, baseParallel(32))
+            .recipeModifiers(GTRecipeModifiers.PARALLEL_HATCH, OC_PERFECT_SUBTICK, baseParallel.apply(64))
             .appearanceBlock(CASING_PTFE_INERT)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("AAAAAAAAAAAAAAA","AAAAAAAAAAAAAAA","               ","               ","               ","               ","               ","               ","               ","               ","               ","               ")
@@ -1182,7 +1184,10 @@ public class GTTMultiMachines {
     public static final MultiblockMachineDefinition LARGE_PRIMITIVE_BLAST_FURNACE = REGISTRATE
             .multiblock(LangUtil.createBlockZhTranslation("large_primitive_blast_furnace", "大型土高炉"), WorkableElectricMultiblockMachine::new)
             .rotationState(RotationState.ALL)
+            .recipeModifiers(baseParallel.apply(256))
             .recipeType(GTRecipeTypes.PRIMITIVE_BLAST_FURNACE_RECIPES)
+            .tooltips(Component.translatable("gttcore.machine.base_parallel", 256))
+
             .model(createWorkableCasingMachineModel(GTCEu.id("block/casings/solid/machine_primitive_bricks"),
                     GTCEu.id("block/multiblock/primitive_blast_furnace"))
             )
@@ -1341,7 +1346,7 @@ public class GTTMultiMachines {
                         .build())
                 .recoveryItems(
                         () -> new ItemLike[] {
-                                GTMaterialItems.MATERIAL_ITEMS.get(TagPrefix.dustTiny, GTMaterials.Ash).get() })
+                                Objects.requireNonNull(GTMaterialItems.MATERIAL_ITEMS.get(TagPrefix.dustTiny, Ash)).get() })
                 .workableCasingModel(casingTexture, overlayModel)
                 .tooltips(
                         Component.translatable("gtceu.universal.tooltip.base_production_eut", V[tier] * 2 * 64),
@@ -1362,25 +1367,6 @@ public class GTTMultiMachines {
             definitions[tier] = builder.apply(tier, register);
         }
         return definitions;
-    }
-
-    public static RecipeModifier baseParallel(int maxParallel){
-        return (machine, recipe) -> {
-            int parallels = ParallelLogic.getParallelAmount(machine, recipe, maxParallel);
-            return ModifierFunction.builder()
-                .modifyAllContents(ContentModifier.multiplier(parallels))
-                .eutMultiplier(parallels)
-                .parallels(parallels)
-                .build();
-        };
-    }
-
-    public static RecipeModifier baseSpeedMutiplier(double multiplier){
-        return (machine, recipe) -> {
-            return ModifierFunction.builder()
-                    .durationMultiplier(multiplier)
-                    .build();
-        };
     }
 }
 

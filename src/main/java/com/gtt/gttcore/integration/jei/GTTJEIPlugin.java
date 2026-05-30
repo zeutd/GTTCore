@@ -15,12 +15,11 @@ import com.simibubi.create.compat.jei.CreateJEI;
 import com.simibubi.create.compat.jei.DoubleItemIcon;
 import com.simibubi.create.compat.jei.EmptyBackground;
 import com.simibubi.create.compat.jei.ItemIcon;
-import com.simibubi.create.compat.jei.category.CreateRecipeCategory;
-import com.simibubi.create.compat.jei.category.CrushingCategory;
-import com.simibubi.create.compat.jei.category.MixingCategory;
+import com.simibubi.create.compat.jei.category.*;
 import com.simibubi.create.content.kinetics.crusher.AbstractCrushingRecipe;
 import com.simibubi.create.content.kinetics.crusher.CrushingRecipe;
 import com.simibubi.create.content.kinetics.millstone.MillingRecipe;
+import com.simibubi.create.content.kinetics.press.PressingRecipe;
 import com.simibubi.create.content.processing.basin.BasinRecipe;
 import com.simibubi.create.foundation.item.ItemHelper;
 import com.simibubi.create.foundation.recipe.IRecipeTypeInfo;
@@ -81,7 +80,7 @@ public class GTTJEIPlugin implements IModPlugin {
         CreateRecipeCategory<?>
                 autoGregTechMixing = builder(BasinRecipe.class)
                 .addAllRecipesIf(r -> r instanceof GTRecipe gtRecipe
-                                && gtRecipe.recipeType == GTRecipeTypes.MIXER_RECIPES && gtRecipe.getInputEUt().voltage() <= V[ULV],
+                                && gtRecipe.recipeType == GTRecipeTypes.MIXER_RECIPES && gtRecipe.getInputEUt().voltage() <= V[LV],
                         recipe -> convertGregTechToCreate((GTRecipe) recipe, BasinRecipe::new))
                 .catalyst(AllBlocks.MECHANICAL_MIXER::get)
                 .catalyst(AllBlocks.BASIN::get)
@@ -91,7 +90,7 @@ public class GTTJEIPlugin implements IModPlugin {
         CreateRecipeCategory<?>
                 autoGregTechCrushing = builder(AbstractCrushingRecipe.class)
                 .addAllRecipesIf(r -> r instanceof GTRecipe gtRecipe
-                                && gtRecipe.recipeType == GTRecipeTypes.MACERATOR_RECIPES && gtRecipe.getInputEUt().voltage() <= V[ULV],
+                                && gtRecipe.recipeType == GTRecipeTypes.MACERATOR_RECIPES && gtRecipe.getInputEUt().voltage() <= V[LV],
                         recipe -> convertGregTechToCreate((GTRecipe) recipe, CrushingRecipe::new))
                 .catalyst(AllBlocks.CRUSHING_WHEEL::get)
                 .doubleItemIcon(AllBlocks.CRUSHING_WHEEL.get(), GTMachines.MACERATOR[LV].asStack().getItem())
@@ -100,12 +99,31 @@ public class GTTJEIPlugin implements IModPlugin {
         CreateRecipeCategory<?>
                 autoGregTechMilling = builder(AbstractCrushingRecipe.class)
                 .addAllRecipesIf(r -> r instanceof GTRecipe gtRecipe
-                                && gtRecipe.recipeType == GTRecipeTypes.MACERATOR_RECIPES && gtRecipe.getInputEUt().voltage() <= V[ULV],
+                                && gtRecipe.recipeType == GTRecipeTypes.MACERATOR_RECIPES && gtRecipe.getInputEUt().voltage() <= V[LV],
                         recipe -> convertGregTechToCreateOnlyFirstOutput((GTRecipe) recipe, MillingRecipe::new))
                 .catalyst(AllBlocks.MILLSTONE::get)
                 .doubleItemIcon(AllBlocks.MILLSTONE.get(), GTMachines.MACERATOR[LV].asStack().getItem())
+                .emptyBackground(177, 53)
+                .build("automatic_gregtech_milling", MillingCategory::new);
+        CreateRecipeCategory<?>
+                autoGregTechPressing = builder(PressingRecipe.class)
+                .addAllRecipesIf(r -> r instanceof GTRecipe gtRecipe
+                                && gtRecipe.recipeType == GTRecipeTypes.FORGE_HAMMER_RECIPES && gtRecipe.getInputEUt().voltage() <= V[LV],
+                        recipe -> convertGregTechToCreate((GTRecipe) recipe, PressingRecipe::new))
+                .catalyst(AllBlocks.MECHANICAL_PRESS::get)
+                .doubleItemIcon(AllBlocks.MECHANICAL_PRESS.get(), GTMachines.FORGE_HAMMER[LV].asStack().getItem())
+                .emptyBackground(177, 100)
+                .build("automatic_gregtech_pressing", PressingCategory::new);
+        CreateRecipeCategory<?>
+                autoGregTechCompacting = builder(BasinRecipe.class)
+                .addAllRecipesIf(r -> r instanceof GTRecipe gtRecipe
+                                && gtRecipe.recipeType == GTRecipeTypes.FORGE_HAMMER_RECIPES && gtRecipe.getInputEUt().voltage() <= V[LV],
+                        recipe -> convertGregTechToCreate((GTRecipe) recipe, BasinRecipe::new))
+                .catalyst(AllBlocks.MECHANICAL_PRESS::get)
+                .catalyst(AllBlocks.BASIN::get)
+                .doubleItemIcon(AllBlocks.MECHANICAL_PRESS.get(), GTMachines.COMPRESSOR[LV].asStack().getItem())
                 .emptyBackground(177, 85)
-                .build("automatic_gregtech_milling", CrushingCategory::new);
+                .build("automatic_gregtech_packing", PackingCategory::autoSquare);
         registration.addRecipeCategories(allCategories.toArray(IRecipeCategory[]::new));
     }
 

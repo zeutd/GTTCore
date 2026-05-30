@@ -7,31 +7,23 @@
   ],
   "loader": "gtceu:machine",
   "machine": "gttcore:uv_large_rotor_holder",
+  "multipart": [
+    {
+      "apply": {
+        "model": {
+          "parent": "gtceu:block/machine/template/rotor_holder/block",
+          "textures": {
+            "bottom": "gtceu:block/casings/voltage/uv/bottom",
+            "side": "gtceu:block/casings/voltage/uv/side",
+            "top": "gtceu:block/casings/voltage/uv/top"
+          }
+        }
+      }
+    }
+  ],
   "replaceable_textures": [
     "bottom",
     "top",
     "side"
-  ],
-  "variants": {
-    "is_formed=false": {
-      "model": {
-        "parent": "gtceu:block/machine/template/rotor_holder/block",
-        "textures": {
-          "bottom": "gtceu:block/casings/voltage/uv/bottom",
-          "side": "gtceu:block/casings/voltage/uv/side",
-          "top": "gtceu:block/casings/voltage/uv/top"
-        }
-      }
-    },
-    "is_formed=true": {
-      "model": {
-        "parent": "gtceu:block/machine/template/rotor_holder/block",
-        "textures": {
-          "bottom": "gtceu:block/casings/voltage/uv/bottom",
-          "side": "gtceu:block/casings/voltage/uv/side",
-          "top": "gtceu:block/casings/voltage/uv/top"
-        }
-      }
-    }
-  }
+  ]
 }

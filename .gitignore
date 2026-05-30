@@ -29,6 +29,7 @@ bin/
 
 run/
 run-data/
+/src/generated/resources/.cache/*
 mods/
 executeGame.bat
 copyJar.bat

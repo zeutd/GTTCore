@@ -10,7 +10,7 @@
   "variants": {
     "": {
       "model": {
-        "parent": "gtceu:block/machine/part/laser_source_hatch",
+        "parent": "gttcore:block/part/particle_source_hatch",
         "textures": {
           "bottom": "gtceu:block/casings/voltage/uxv/bottom",
           "side": "gtceu:block/casings/voltage/uxv/side",

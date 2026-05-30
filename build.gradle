@@ -1,9 +1,7 @@
 plugins {
     id "idea"
     id "maven-publish"
-    id 'net.minecraftforge.gradle' version '[6.0,6.2)'
-    id 'org.parchmentmc.librarian.forgegradle' version '1.+'
-    id 'org.spongepowered.mixin' version '0.7.+'
+    id 'net.neoforged.moddev.legacyforge' version '2.0.91'
     id "dev.vfyjxf.modaccessor" version "1.1"
 }
 
@@ -115,6 +113,15 @@ repositories {
             includeGroup "dev.ftb.mods"
         }
     }
+
+    maven {
+        name 'Configuration'
+        url 'https://repo.repsy.io/mvn/toma/public/'
+    }
+    maven {
+        name 'Configuration (alternative/backup)'
+        url 'https://api.repsy.io/mvn/toma/public/'
+    }
 }
 version = mod_version
 group = maven_group
@@ -127,76 +134,103 @@ modAccessor {
     accessTransformerFiles = project.files('src/main/resources/META-INF/accesstransformer.cfg')
 }
 
-minecraft {
-    mappings channel: mapping_channel, version: mapping_version
-    copyIdeResources = true
-    accessTransformer = project.files('src/main/resources/META-INF/accesstransformer.cfg')
+legacyForge {
+    version = project.minecraft_version + '-' + project.forge_version
+
+    parchment {
+        mappingsVersion = project.mapping_version
+        minecraftVersion = project.minecraft_version
+    }
+
+//    accessTransformer = project.files('src/main/resources/META-INF/accesstransformer.cfg')
     runs {
         configureEach {
-            workingDirectory project.file('run')
-            property 'forge.logging.markers', 'REGISTRIES'
-            property 'forge.logging.console.level', 'debug'
-            mods { "${mod_id}" { source sourceSets.main } }
-            property 'mixin.env.remapRefMap', 'true'
-            property 'mixin.env.refMapRemappingFile', "${buildDir}/createSrgToMcp/output.srg"
+            // Recommended logging data for a userdev environment
+            // The markers can be added/remove as needed separated by commas.
+            // "SCAN": For mods scan.
+            // "REGISTRIES": For firing of registry events.
+            // "REGISTRYDUMP": For getting the contents of all registries.
+            systemProperty 'forge.logging.markers', 'REGISTRIES'
+
+            // Recommended logging level for the console
+            // You can set various levels here.
+            // Please read: https://stackoverflow.com/questions/2031163/when-to-use-the-different-log-levels
+            logLevel = org.slf4j.event.Level.DEBUG
+            sourceSet = sourceSets.main
         }
-        client { property 'forge.enabledGameTestNamespaces', mod_id }
-        server { property 'forge.enabledGameTestNamespaces', mod_id; args '--nogui' }
+        client {
+            client()
+            programArguments.addAll('--refresh-dependencies')
+            systemProperty('forge.enabledGameTestNamespaces', project.mod_id)
+        }
+        server {
+            server()
+            systemProperty('forge.enabledGameTestNamespaces', project.mod_id)
+            programArguments.addAll('--nogui', '--world', 'world-extra')
+        }
         data {
             // example of overriding the workingDirectory set in configureEach above
-            workingDirectory project.file('run-data')
+            data()
 
             // Specify the modid for data generation, where to output the resulting resource, and where to look for existing resources.
-            args '--mod', mod_id, '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
-            args '--existing-mod', 'gtceu'
+            programArguments.addAll('--mod', project.mod_id, '--all', '--output', file('src/generated/resources/').getAbsolutePath(), '--existing', file('src/main/resources/').getAbsolutePath())
+            programArguments.addAll('--existing-mod', 'gtceu')
+        }
+    }
+
+    mods {
+        // define mod <-> source bindings
+        // these are used to tell the game which sources are for which mod
+        // mostly optional in a single mod project
+        // but multi mod projects should define one per mod
+        "${mod_id}" {
+            sourceSet(sourceSets.main)
         }
     }
 }
 
 dependencies {
-    minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
 
+    compileOnly("org.jetbrains:annotations:26.0.1")
     // JEI, EMI, Jade
-    compileOnly fg.deobf("mezz.jei:jei-${minecraft_version}-forge-api:${jei_version}")
-    compileOnly fg.deobf("mezz.jei:jei-${minecraft_version}-common-api:${jei_version}")
-    runtimeOnly fg.deobf("mezz.jei:jei-${minecraft_version}-forge:${jei_version}")
-    implementation fg.deobf("dev.emi:emi-forge:${emi_version}+${minecraft_version}")
-    implementation fg.deobf("curse.maven:jade-324717:5390389")
+    modCompileOnly("mezz.jei:jei-${minecraft_version}-forge-api:${jei_version}")
+    modCompileOnly("mezz.jei:jei-${minecraft_version}-common-api:${jei_version}")
+    modRuntimeOnly("mezz.jei:jei-${minecraft_version}-forge:${jei_version}")
+    modImplementation("dev.emi:emi-forge:${emi_version}+${minecraft_version}")
+    modImplementation("curse.maven:jade-324717:5390389")
 
     // GregTech and dependencies
-    implementation fg.deobf("com.gregtechceu.gtceu:gtceu-${project.minecraft_version}:${project.gtceu_version}:slim") {transitive = false}
-    implementation fg.deobf("com.lowdragmc.ldlib:ldlib-forge-${minecraft_version}:${ldlib_version}") {transitive = false}
-    implementation fg.deobf("com.tterrag.registrate:Registrate:${registrate_version}")
-    //compileOnly fg.deobf("com.gregtechceu.gtceu:gtceu-${project.minecraft_version}:${project.gtceu_version}:slim") {transitive = false}
-    //compileOnly fg.deobf("com.lowdragmc.ldlib:ldlib-forge-${minecraft_version}:${ldlib_version}") {transitive = false}
-    implementation fg.deobf("dev.latvian.mods:kubejs-forge:${kubejs_version}")
-    implementation fg.deobf("dev.latvian.mods:rhino-forge:${rhino_version}")
-    implementation fg.deobf("earth.terrarium.adastra:ad_astra-forge-${minecraft_version}:${ad_astra_version}")
-    implementation fg.deobf("com.teamresourceful.resourcefullib:resourcefullib-forge-${minecraft_version}:2.1.29")
-    runtimeOnly fg.deobf("com.teamresourceful.resourcefulconfig:resourcefulconfig-forge-${minecraft_version}:2.1.3")
-    runtimeOnly fg.deobf("earth.terrarium.botarium:botarium-forge-${project.minecraft_version}:${project.botarium_version}")
-    implementation(fg.deobf("com.simibubi.create:create-${minecraft_version}:${create_version}:slim") { transitive = false })
-    implementation(fg.deobf("net.createmod.ponder:Ponder-Forge-${minecraft_version}:${ponder_version}"))
+    modImplementation("com.gregtechceu.gtceu:gtceu-${project.minecraft_version}:${project.gtceu_version}:slim") {transitive = false}
+    modImplementation("com.lowdragmc.ldlib:ldlib-forge-${minecraft_version}:${ldlib_version}") {transitive = false}
+    modImplementation("com.tterrag.registrate:Registrate:${registrate_version}")
+    modImplementation("dev.latvian.mods:kubejs-forge:${kubejs_version}")
+    modImplementation("dev.latvian.mods:rhino-forge:${rhino_version}")
+    modImplementation("earth.terrarium.adastra:ad_astra-forge-${minecraft_version}:${ad_astra_version}")
+    modImplementation("com.teamresourceful.resourcefullib:resourcefullib-forge-${minecraft_version}:2.1.29")
+    modRuntimeOnly("com.teamresourceful.resourcefulconfig:resourcefulconfig-forge-${minecraft_version}:2.1.3")
+    modRuntimeOnly("earth.terrarium.botarium:botarium-forge-${project.minecraft_version}:${project.botarium_version}")
+    modImplementation("com.simibubi.create:create-${minecraft_version}:${create_version}:slim") { transitive = false }
+    modImplementation("net.createmod.ponder:Ponder-Forge-${minecraft_version}:${ponder_version}")
 //    compileOnly(fg.deobf("dev.engine-room.flywheel:flywheel-forge-api-${minecraft_version}:${flywheel_version}"))
-    runtimeOnly(fg.deobf("dev.engine-room.flywheel:flywheel-forge-${minecraft_version}:${flywheel_version}"))
-    implementation fg.deobf("dev.toma.configuration:configuration-forge-${minecraft_version}:${configuration_version}")
-    runtimeOnly fg.deobf("dev.architectury:architectury-forge:${architectury_version}")
-    implementation fg.deobf("appeng:appliedenergistics2-forge:${ae2_version}")
-    compileOnly fg.deobf('dev:gtmthings:1.5.4')
-    implementation fg.deobf('dev:gtmoldraw:3.0.1')
-    runtimeOnly fg.deobf('dev:jecharacters:1.20.1-forge-4.6.3')
-    runtimeOnly fg.deobf('org.appliedenergistics:guideme:20.1.14')
-//    implementation fg.deobf("dev.ftb.mods:ftb-xmod-compat-forge:2.1.3-SNAPSHOT")
-    compileOnly fg.deobf("dev.ftb.mods:ftb-quests-forge:2001.4.17")
-    compileOnly fg.deobf("dev.ftb.mods:ftb-teams-forge:2001.3.1")
-    compileOnly fg.deobf("dev.ftb.mods:ftb-library-forge:2001.2.12")
+    modRuntimeOnly("dev.engine-room.flywheel:flywheel-forge-${minecraft_version}:${flywheel_version}")
+    modImplementation("dev.toma.configuration:configuration-${minecraft_version}:${configuration_version}")
+    modRuntimeOnly("dev.architectury:architectury-forge:${architectury_version}")
+    modImplementation("appeng:appliedenergistics2-forge:${ae2_version}")
+    modCompileOnly('dev:gtmthings:1.5.4')
+    modCompileOnly('dev:gtmoldraw:3.3.0')
+    modRuntimeOnly('dev:jecharacters:1.20.1-forge-4.6.3')
+    modRuntimeOnly('org.appliedenergistics:guideme:20.1.14')
+//    modImplementation("dev.ftb.mods:ftb-xmod-compat-forge:2.1.3-SNAPSHOT")
+    modCompileOnly("dev.ftb.mods:ftb-quests-forge:2001.4.17")
+    modCompileOnly("dev.ftb.mods:ftb-teams-forge:2001.3.1")
+    modCompileOnly("dev.ftb.mods:ftb-library-forge:2001.2.12")
 //    compileOnly(annotationProcessor("io.github.llamalad7:mixinextras-common:0.5.0"))
 //    implementation(jarJar("io.github.llamalad7:mixinextras-forge:0.5.0")) {
 //        jarJar.ranged(it, "[0.5.0,)")
 //    }
 
-    accessCompileOnly(fg.deobf('dev:gtmthings:1.5.4'))
-    accessCompileOnly(fg.deobf('dev:gtmoldraw:3.0.1'))
+    accessCompileOnly('dev:gtmthings:1.5.4')
+    accessCompileOnly('dev:gtmoldraw:3.3.0')
 
     // lombok
     compileOnly 'org.projectlombok:lombok:1.18.34'

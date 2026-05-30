@@ -12,7 +12,6 @@ import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.SimpleGeneratorMachine;
 import com.gregtechceu.gtceu.api.machine.SimpleTieredMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.PartAbility;
-import com.gregtechceu.gtceu.api.machine.property.GTMachineModelProperties;
 import com.gregtechceu.gtceu.api.machine.steam.SimpleSteamMachine;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
 import com.gregtechceu.gtceu.api.registry.registrate.MachineBuilder;
@@ -47,8 +46,10 @@ import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
 
 import static com.gregtechceu.gtceu.api.GTValues.*;
+import static com.gregtechceu.gtceu.api.machine.property.GTMachineModelProperties.*;
 import static com.gregtechceu.gtceu.common.data.machines.GTMachineUtils.*;
-import static com.gregtechceu.gtceu.common.data.models.GTMachineModels.createOverlayTieredHullMachineModel;
+import static com.gregtechceu.gtceu.common.data.models.GTMachineModels.ROTOR_HOLDER_BLOCK;
+import static com.gregtechceu.gtceu.common.data.models.GTMachineModels.tieredHullTextures;
 import static com.gregtechceu.gtceu.utils.FormattingUtil.toEnglishName;
 import static com.gtt.gttcore.api.registry.GTTRegistration.REGISTRATE;
 import static com.gtt.gttcore.util.LangUtil.VLVH_CHINESE;
@@ -66,9 +67,12 @@ public class GTTMachines {
                     .langValue("%s Large Rotor Holder".formatted(VNF[tier]))
                     .rotationState(RotationState.ALL)
                     .abilities(GTTPartAbility.LARGE_ROTOR_HOLDER)
-                    .modelProperty(GTMachineModelProperties.IS_FORMED, false)
+                    .modelProperty(IS_FORMED, false)
+                    .modelProperty(HAS_ROTOR, false)
+                    .modelProperty(IS_ROTOR_SPINNING, false)
+                    .modelProperty(IS_EMISSIVE_ROTOR, false)
                     .model(
-                            createOverlayTieredHullMachineModel(GTCEu.id("block/machine/template/rotor_holder/block"))
+                            createRotorHolderModel()
                                     .andThen(b -> b.addDynamicRenderer(LargeRotorHolderRenderer::new))
                     )
                     .hasBER(true)
@@ -77,6 +81,18 @@ public class GTTMachines {
                     .register();
             },
             GTValues.tiersBetween(HV, OpV));
+
+    public static MachineBuilder.ModelInitializer createRotorHolderModel() {
+        return (ctx, prov, builder) -> {
+            var blockModel = prov.models().nested()
+                    .parent(prov.models().getExistingFile(ROTOR_HOLDER_BLOCK));
+            tieredHullTextures(blockModel, builder.getOwner().getTier());
+
+            builder.part(blockModel).end();
+
+            builder.addReplaceableTextures("bottom", "top", "side");
+        };
+    }
 
     public static final MachineDefinition HIGH_ENERGY_LASER_EXPORT_HATCH = REGISTRATE
             .machine(LangUtil.createBlockZhTranslation("high_energy_laser_export_hatch", "高能激光源仓"), holder -> new HighEnergyLaserHatchPartMachine(holder, true))
@@ -104,7 +120,7 @@ public class GTTMachines {
             .rotationState(RotationState.ALL)
             .tier(tier)
             .abilities(GTTPartAbility.EXPORT_PARTICLE)
-            .overlayTieredHullModel(GTCEu.id("block/machine/part/laser_source_hatch"))
+            .overlayTieredHullModel(GTTCore.id("block/part/particle_source_hatch"))
             .tooltips(Component.translatable(LangUtil.createEnZhTranslation(
                     "gttcore.machine.particle_hatch.export.tooltip",
                     "Output particles for multiblocks",
@@ -114,7 +130,7 @@ public class GTTMachines {
             .rotationState(RotationState.ALL)
             .tier(tier)
             .abilities(GTTPartAbility.IMPORT_PARTICLE)
-            .overlayTieredHullModel(GTCEu.id("block/machine/part/laser_target_hatch"))
+            .overlayTieredHullModel(GTTCore.id("block/part/particle_target_hatch"))
             .tooltips(Component.translatable(LangUtil.createEnZhTranslation(
                     "gttcore.machine.particle_hatch.import.tooltip",
                     "Input particles for multiblocks",
@@ -203,7 +219,7 @@ public class GTTMachines {
             .rotationState(RotationState.ALL)
             .tooltipBuilder(CREATIVE_TOOLTIPS)
             .tier(MAX)
-            .overlayTieredHullModel(GTCEu.id("block/machine/part/laser_source_hatch"))
+            .overlayTieredHullModel(GTTCore.id("block/part/particle_source_hatch"))
             .register();
 
 

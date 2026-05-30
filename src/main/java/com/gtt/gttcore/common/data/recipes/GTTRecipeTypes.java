@@ -20,7 +20,6 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraftforge.fluids.FluidStack;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -34,9 +33,14 @@ import static com.lowdragmc.lowdraglib.gui.texture.ProgressTexture.FillDirection
 
 @SuppressWarnings("deprecation")
 public class GTTRecipeTypes {
+
+    @Deprecated
     public static List<GTRecipeBuilder> toReRegisterCreatePressing;
+    @Deprecated
     public static List<GTRecipeBuilder> toReRegisterCreateMixing;
+    @Deprecated
     public static List<GTRecipeBuilder> toReRegisterCreateMilling;
+    @Deprecated
     public static List<GTRecipeBuilder> toReRegisterCreateCutting;
     //public static List<GTRecipeBuilder> toReRegisterCreate;
     public static void init(){
@@ -87,26 +91,26 @@ public class GTTRecipeTypes {
         BLAST_RECIPES.setMaxIOSize(3, 3, 1, 2);
     }
     public static void gatherData(){
-        toReRegisterCreatePressing = new ArrayList<>();
-        toReRegisterCreateMixing = new ArrayList<>();
-        toReRegisterCreateMilling = new ArrayList<>();
-        toReRegisterCreateCutting = new ArrayList<>();
-        FORGE_HAMMER_RECIPES.onRecipeBuild((recipeBuilder, provider) -> {
-            if (recipeBuilder.EUt().voltage() > GTValues.V[ULV]) return;
-            if (toReRegisterCreatePressing.stream().noneMatch(rb -> rb.id.getPath().equals(recipeBuilder.id.getPath())))toReRegisterCreatePressing.add(recipeBuilder);
-        });
-        MIXER_RECIPES.onRecipeBuild((recipeBuilder, provider) -> {
-            if (recipeBuilder.EUt().voltage() > GTValues.V[ULV]) return;
-            if (toReRegisterCreateMixing.stream().noneMatch(rb -> rb.id.getPath().equals(recipeBuilder.id.getPath())))toReRegisterCreateMixing.add(recipeBuilder);
-        });
-        MACERATOR_RECIPES.onRecipeBuild((recipeBuilder, provider) -> {
-            if (recipeBuilder.EUt().voltage() > GTValues.V[ULV]) return;
-            if (toReRegisterCreateMilling.stream().noneMatch(rb -> rb.id.getPath().equals(recipeBuilder.id.getPath())))toReRegisterCreateMilling.add(recipeBuilder);
-        });
-        CUTTER_RECIPES.onRecipeBuild((recipeBuilder, provider) -> {
-            if (recipeBuilder.EUt().voltage() > GTValues.V[ULV]) return;
-            if (toReRegisterCreateCutting.stream().noneMatch(rb -> rb.id.getPath().equals(recipeBuilder.id.getPath())))toReRegisterCreateCutting.add(recipeBuilder);
-        });
+//        toReRegisterCreatePressing = new ArrayList<>();
+//        toReRegisterCreateMixing = new ArrayList<>();
+//        toReRegisterCreateMilling = new ArrayList<>();
+//        toReRegisterCreateCutting = new ArrayList<>();
+//        FORGE_HAMMER_RECIPES.onRecipeBuild((recipeBuilder, provider) -> {
+//            if (recipeBuilder.EUt().voltage() > GTValues.V[ULV]) return;
+//            if (toReRegisterCreatePressing.stream().noneMatch(rb -> rb.id.getPath().equals(recipeBuilder.id.getPath())))toReRegisterCreatePressing.add(recipeBuilder);
+//        });
+//        MIXER_RECIPES.onRecipeBuild((recipeBuilder, provider) -> {
+//            if (recipeBuilder.EUt().voltage() > GTValues.V[ULV]) return;
+//            if (toReRegisterCreateMixing.stream().noneMatch(rb -> rb.id.getPath().equals(recipeBuilder.id.getPath())))toReRegisterCreateMixing.add(recipeBuilder);
+//        });
+//        MACERATOR_RECIPES.onRecipeBuild((recipeBuilder, provider) -> {
+//            if (recipeBuilder.EUt().voltage() > GTValues.V[ULV]) return;
+//            if (toReRegisterCreateMilling.stream().noneMatch(rb -> rb.id.getPath().equals(recipeBuilder.id.getPath())))toReRegisterCreateMilling.add(recipeBuilder);
+//        });
+//        CUTTER_RECIPES.onRecipeBuild((recipeBuilder, provider) -> {
+//            if (recipeBuilder.EUt().voltage() > GTValues.V[ULV]) return;
+//            if (toReRegisterCreateCutting.stream().noneMatch(rb -> rb.id.getPath().equals(recipeBuilder.id.getPath())))toReRegisterCreateCutting.add(recipeBuilder);
+//        });
     }
     public static GTRecipeType register(String name, String group, RecipeType<?>... proxyRecipes) {
         var recipeType = new GTRecipeType(GTTCore.id(name), group, proxyRecipes);
@@ -233,4 +237,6 @@ public class GTTRecipeTypes {
             .setEUIO(IO.IN)
             .setProgressBar(GuiTextures.PROGRESS_BAR_CRYSTALLIZATION, LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.CHEMICAL);
+
+
 }

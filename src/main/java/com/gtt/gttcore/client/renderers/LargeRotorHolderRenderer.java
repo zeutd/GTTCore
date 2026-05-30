@@ -4,7 +4,6 @@ import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMa
 import com.gregtechceu.gtceu.client.model.machine.IMachineRendererModel;
 import com.gregtechceu.gtceu.client.renderer.machine.DynamicRender;
 import com.gregtechceu.gtceu.client.renderer.machine.DynamicRenderType;
-import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.common.machine.multiblock.part.RotorHolderPartMachine;
 import com.gtt.gttcore.GTTCore;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -23,6 +22,9 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.joml.Matrix4f;
 
+import static com.gregtechceu.gtceu.api.machine.property.GTMachineModelProperties.HAS_ROTOR;
+import static com.gregtechceu.gtceu.api.machine.property.GTMachineModelProperties.IS_ROTOR_SPINNING;
+
 @OnlyIn(Dist.CLIENT)
 public class LargeRotorHolderRenderer extends DynamicRender<RotorHolderPartMachine, LargeRotorHolderRenderer> implements IMachineRendererModel<RotorHolderPartMachine> {
     public static final Codec<LargeRotorHolderRenderer> CODEC = Codec.unit(LargeRotorHolderRenderer::new);
@@ -40,7 +42,7 @@ public class LargeRotorHolderRenderer extends DynamicRender<RotorHolderPartMachi
 
     @Override
     public void render(RotorHolderPartMachine machine, float partialTick, PoseStack poseStack, MultiBufferSource buffer, int packedLight, int packedOverlay) {
-        if(!machine.isFormed() || !(machine.getControllers().last() instanceof WorkableElectricMultiblockMachine controller)) return;
+        if(!machine.isFormed() || !(machine.getControllers().last() instanceof WorkableElectricMultiblockMachine)) return;
         Minecraft instance = Minecraft.getInstance();
         TextureAtlasSprite backgroundSprite = instance.getTextureAtlas(InventoryMenu.BLOCK_ATLAS).apply(BASE_BG_LOCATION);
         TextureAtlasSprite ringSprite = instance.getTextureAtlas(InventoryMenu.BLOCK_ATLAS).apply(BASE_RING_LOCATION);
@@ -52,8 +54,8 @@ public class LargeRotorHolderRenderer extends DynamicRender<RotorHolderPartMachi
         VertexConsumer vc = buffer.getBuffer(RenderType.cutoutMipped());
 
         renderSprite(vc, poseStack, dir, up, 0.012f, backgroundSprite, 0xFFFFFFFF, packedLight, packedOverlay);
-        if (machine.getRotorMaterial() != GTMaterials.NULL) {
-            if (controller.getRecipeLogic().isWorking())
+        if (machine.getBlockState().getValue(HAS_ROTOR)) {
+            if (machine.getBlockState().getValue(IS_ROTOR_SPINNING))
                 renderSprite(vc, poseStack, dir, up, 0.008f, rotorSpinningSprite, machine.getRotorMaterial().getMaterialARGB(), packedLight, packedOverlay);
             else
                 renderSprite(vc, poseStack, dir, up, 0.008f, rotorIdleSprite, machine.getRotorMaterial().getMaterialARGB(), packedLight, packedOverlay);

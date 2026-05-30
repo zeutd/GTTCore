@@ -14,7 +14,7 @@ public class GTTConfigHolder {
     public static void init() {
         synchronized (LOCK) {
             if (INSTANCE == null) {
-                INSTANCE = Configuration.registerConfig(GTTConfigHolder.class, ConfigFormats.yaml()).getConfigInstance();
+                INSTANCE = Configuration.registerConfig(GTTConfigHolder.class, ConfigFormats.YAML).getConfigInstance();
             }
         }
     }

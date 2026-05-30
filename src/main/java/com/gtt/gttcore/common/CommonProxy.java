@@ -3,14 +3,11 @@ package com.gtt.gttcore.common;
 import com.gregtechceu.gtceu.api.GTCEuAPI;
 import com.gregtechceu.gtceu.api.data.DimensionMarker;
 import com.gregtechceu.gtceu.api.data.chemical.material.event.MaterialEvent;
-import com.gregtechceu.gtceu.api.data.chemical.material.event.MaterialRegistryEvent;
 import com.gregtechceu.gtceu.api.data.chemical.material.event.PostMaterialEvent;
 import com.gregtechceu.gtceu.api.machine.MachineDefinition;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
 import com.gregtechceu.gtceu.data.recipe.event.CraftingComponentModificationEvent;
 import com.gtt.gttcore.GTTConfigHolder;
-import com.gtt.gttcore.GTTCore;
-import com.gtt.gttcore.common.data.GTTParticleTypes;
 import com.gtt.gttcore.common.data.*;
 import com.gtt.gttcore.common.data.recipes.GTTRecipeTypes;
 import net.minecraft.core.registries.Registries;
@@ -42,7 +39,7 @@ public class CommonProxy {
         // we need to register our object like this!
         modEventBus.register(this);
         MinecraftForge.EVENT_BUS.register(this);
-        REGISTRATE.registerRegistrate();
+
 
         modEventBus.addListener(EventPriority.LOWEST, (RegisterEvent event) -> {
             if (!event.getRegistryKey().equals(Registries.BLOCK)) {
@@ -71,13 +68,6 @@ public class CommonProxy {
         event.enqueueWork(() -> {
             LOGGER.info("GTT Common Setup");
         });
-    }
-
-    @SubscribeEvent
-    // You MUST have this for custom materials.
-    // Remember to register them not to GT"s namespace, but your own.
-    public void addMaterialRegistries(MaterialRegistryEvent event) {
-        GTCEuAPI.materialManager.createRegistry(GTTCore.MOD_ID);
     }
 
     @SubscribeEvent
