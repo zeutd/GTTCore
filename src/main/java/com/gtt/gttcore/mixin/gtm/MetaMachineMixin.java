@@ -35,7 +35,7 @@ public abstract class MetaMachineMixin {
             }
 
             var list = getCapabilitiesFromTraits(machine.getTraitHolder().getAllTraits(), side, IHighEnergyLaserInfoProvider.class);
-            if (!list.isEmpty()) {
+            if (list != null && !list.isEmpty()) {
                 cir.setReturnValue(GTTCapability.CAPABILITY_HIGH_ENERGY_LASER_INFO_PROVIDER.orEmpty(cap, LazyOptional.of(() -> list.get(0))));
             }
         }
@@ -45,7 +45,7 @@ public abstract class MetaMachineMixin {
             }
 
             var list = getCapabilitiesFromTraits(machine.getTraitHolder().getAllTraits(), side, IHighEnergyLaserProvider.class);
-            if (!list.isEmpty()) {
+            if (list != null && !list.isEmpty()) {
                 cir.setReturnValue(GTTCapability.CAPABILITY_HIGH_ENERGY_LASER_CONTAINER.orEmpty(cap, LazyOptional.of(() -> list.get(0))));
             }
         }
@@ -55,7 +55,7 @@ public abstract class MetaMachineMixin {
             }
 
             var list = getCapabilitiesFromTraits(machine.getTraitHolder().getAllTraits(), side, IParticleContainer.class);
-            if (!list.isEmpty()) {
+            if (list != null && !list.isEmpty()) {
                 cir.setReturnValue(GTTCapability.CAPABILITY_PARTICLE.orEmpty(cap, LazyOptional.of(() -> list.get(0))));
             }
         }
@@ -65,7 +65,7 @@ public abstract class MetaMachineMixin {
             }
 
             var list = getCapabilitiesFromTraits(machine.getTraitHolder().getAllTraits(), side, IParticleInfoProvider.class);
-            if (!list.isEmpty()) {
+            if (list != null && !list.isEmpty()) {
                 cir.setReturnValue(GTTCapability.CAPABILITY_PARTICLE_INFO_PROVIDER.orEmpty(cap, LazyOptional.of(() -> list.get(0))));
             }
         }

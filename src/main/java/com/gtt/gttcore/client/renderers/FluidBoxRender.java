@@ -30,7 +30,6 @@ import java.util.List;
 import java.util.Optional;
 
 import static com.gregtechceu.gtceu.client.util.RenderUtil.getVertices;
-import static net.minecraft.util.FastColor.ARGB32.*;
 
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
@@ -114,7 +113,6 @@ public class FluidBoxRender extends DynamicRender<WorkableElectricMultiblockMach
         var sprite = RenderUtil.FluidTextureType.STILL.map(fluidClientInfo);
         float u0 = sprite.getU0(), v0 = sprite.getV0(), u1 = sprite.getU1(), v1 = sprite.getV1();
         int color = fluidClientInfo.getTintColor();
-        int r = red(color), g = green(color), b = blue(color), a = alpha(color);
 
         for (RelativeDirection face : this.drawFaces) {
 
@@ -131,8 +129,8 @@ public class FluidBoxRender extends DynamicRender<WorkableElectricMultiblockMach
                         for (int j = trait.getFluidBox().minZ(); j <= trait.getFluidBox().maxZ(); j++) {
                             poseStack.pushPose();
                             poseStack.translate(i, trait.getFluidBox().maxY(), j);
-                            var pose = poseStack.last().pose();
-                            fluidBlockRenderer.drawFace(pose, consumer, vertices, normal, u0, u1, v0, v1, r, g, b, a, packedOverlay, packedLight);
+                            var pose = poseStack.last();
+                            fluidBlockRenderer.drawFace(pose, consumer, vertices, normal, u0, u1, v0, v1, color, packedOverlay, packedLight);
                             poseStack.popPose();
                         }
                     }
@@ -142,8 +140,8 @@ public class FluidBoxRender extends DynamicRender<WorkableElectricMultiblockMach
                         for (int j = trait.getFluidBox().minZ(); j <= trait.getFluidBox().maxZ(); j++) {
                             poseStack.pushPose();
                             poseStack.translate(i, trait.getFluidBox().minY(), j);
-                            var pose = poseStack.last().pose();
-                            fluidBlockRenderer.drawFace(pose, consumer, vertices, normal, u0, u1, v0, v1, r, g, b, a, packedOverlay, packedLight);
+                            var pose = poseStack.last();
+                            fluidBlockRenderer.drawFace(pose, consumer, vertices, normal, u0, u1, v0, v1, color, packedOverlay, packedLight);
                             poseStack.popPose();
                         }
                     }
@@ -153,8 +151,8 @@ public class FluidBoxRender extends DynamicRender<WorkableElectricMultiblockMach
                         for (int j = trait.getFluidBox().minY(); j <= trait.getFluidBox().maxY(); j++) {
                             poseStack.pushPose();
                             poseStack.translate(i, j, trait.getFluidBox().maxZ());
-                            var pose = poseStack.last().pose();
-                            fluidBlockRenderer.drawFace(pose, consumer, vertices, normal, u0, u1, v0, v1, r, g, b, a, packedOverlay, packedLight);
+                            var pose = poseStack.last();
+                            fluidBlockRenderer.drawFace(pose, consumer, vertices, normal, u0, u1, v0, v1, color, packedOverlay, packedLight);
                             poseStack.popPose();
                         }
                     }
@@ -164,8 +162,8 @@ public class FluidBoxRender extends DynamicRender<WorkableElectricMultiblockMach
                         for (int j = trait.getFluidBox().minY(); j <= trait.getFluidBox().maxY(); j++) {
                             poseStack.pushPose();
                             poseStack.translate(i, j, trait.getFluidBox().minZ());
-                            var pose = poseStack.last().pose();
-                            fluidBlockRenderer.drawFace(pose, consumer, vertices, normal, u0, u1, v0, v1, r, g, b, a, packedOverlay, packedLight);
+                            var pose = poseStack.last();
+                            fluidBlockRenderer.drawFace(pose, consumer, vertices, normal, u0, u1, v0, v1, color, packedOverlay, packedLight);
                             poseStack.popPose();
                         }
                     }
@@ -175,8 +173,8 @@ public class FluidBoxRender extends DynamicRender<WorkableElectricMultiblockMach
                         for (int j = trait.getFluidBox().minZ(); j <= trait.getFluidBox().maxZ(); j++) {
                             poseStack.pushPose();
                             poseStack.translate(trait.getFluidBox().minX(), i, j);
-                            var pose = poseStack.last().pose();
-                            fluidBlockRenderer.drawFace(pose, consumer, vertices, normal, u0, u1, v0, v1, r, g, b, a, packedOverlay, packedLight);
+                            var pose = poseStack.last();
+                            fluidBlockRenderer.drawFace(pose, consumer, vertices, normal, u0, u1, v0, v1, color, packedOverlay, packedLight);
                             poseStack.popPose();
                         }
                     }
@@ -186,8 +184,8 @@ public class FluidBoxRender extends DynamicRender<WorkableElectricMultiblockMach
                         for (int j = trait.getFluidBox().minZ(); j <= trait.getFluidBox().maxZ(); j++) {
                             poseStack.pushPose();
                             poseStack.translate(trait.getFluidBox().maxX(), i, j);
-                            var pose = poseStack.last().pose();
-                            fluidBlockRenderer.drawFace(pose, consumer, vertices, normal, u0, u1, v0, v1, r, g, b, a, packedOverlay, packedLight);
+                            var pose = poseStack.last();
+                            fluidBlockRenderer.drawFace(pose, consumer, vertices, normal, u0, u1, v0, v1, color, packedOverlay, packedLight);
                             poseStack.popPose();
                         }
                     }

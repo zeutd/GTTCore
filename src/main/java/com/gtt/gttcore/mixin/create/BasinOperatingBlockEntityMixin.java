@@ -188,17 +188,12 @@ public abstract class BasinOperatingBlockEntityMixin {
         }
     }
 
-    @Inject(method = "tick", at = @At("HEAD"))
-    protected void tickMixin(CallbackInfo ci){
-    }
-
-    @Inject(method = "updateBasin", at = @At(value = "INVOKE", target = "Lcom/simibubi/create/content/processing/basin/BasinOperatingBlockEntity;getMatchingRecipes()Ljava/util/List;"), cancellable = true)
+    @Inject(method = "updateBasin", at = @At(value = "INVOKE", target = "Lcom/simibubi/create/content/processing/basin/BasinOperatingBlockEntity;getMatchingRecipes()Ljava/util/List;"))
     protected void updateBasinMixin(CallbackInfoReturnable<Boolean> cir){
         Optional<BasinBlockEntity> basinOptional = getBasin();
         if (basinOptional.isEmpty()) return;
         var recipeOptional = gTTCore$getGTRecipe();
         if (recipeOptional.isEmpty()) {
-            cir.setReturnValue(true);
             return;
         }
         startProcessingBasin();
@@ -207,10 +202,10 @@ public abstract class BasinOperatingBlockEntityMixin {
 
     @Unique
     protected Optional<GTRecipe> gTTCore$getGTRecipe() {
-        var recipeTypeOptional = gTTCore$getGTRecipeType();
-        if (recipeTypeOptional.isEmpty()) return Optional.empty();
         var basinOptional = getBasin();
         if (basinOptional.isEmpty()) return Optional.empty();
+        var recipeTypeOptional = gTTCore$getGTRecipeType();
+        if (recipeTypeOptional.isEmpty()) return Optional.empty();
         var basin = basinOptional.get();
         var inputItemHandler = new DummyRecipeUtils.DummyItemHandler(IO.IN, gTTCore$getInputItemStacks());
         var inputFluidHandler = new DummyFluidHandler(IO.IN, gTTCore$getInputFluidStacks());
